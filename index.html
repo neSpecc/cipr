@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <title>Тест: Что вы знаете о «цифровой экономике»</title>
+
+    <meta charset="utf-8">
+    <meta name="referrer" content="always">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://s38736.cdn.ngenix.net/static/build/vc.ru/all.min.css?da608eee">
+
+    <style>
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            src: url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-regular.eot');
+            src: local('Roboto'), local('Roboto-Regular'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-regular.eot?#iefix') format('embedded-opentype'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-regular.woff2') format('woff2'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-regular.woff') format('woff'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-style: italic;
+            font-weight: 400;
+            src: url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-italic.eot');
+            src: local('Roboto Italic'), local('Roboto-Italic'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-italic.eot?#iefix') format('embedded-opentype'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-italic.woff2') format('woff2'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-italic.woff') format('woff'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-italic.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            src: url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-500.eot');
+            src: local('Roboto Medium'), local('Roboto-Medium'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-500.eot?#iefix') format('embedded-opentype'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-500.woff2') format('woff2'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-500.woff') format('woff'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-500.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            src: url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-700.eot');
+            src: local('Roboto Bold'), local('Roboto-Bold'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-700.eot?#iefix') format('embedded-opentype'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-700.woff2') format('woff2'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-700.woff') format('woff'),
+            url('https://s38736.cdn.ngenix.net/static/build/dtf.ru/fonts/roboto-v18-latin-ext_cyrillic-ext_cyrillic-700.ttf') format('truetype');
+        }
+    </style>
+    <style>
+        body {
+            background-color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 680px){
+            body {
+                padding: 20px 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="cipr_test"></div>
+
+<script>
+    (function (d, ver) {
+
+        var s = d.createElement('script');
+        s.src = './dist/all.js?' + ver;
+        s.async = true;
+
+        var container = document.getElementById('cipr_test'),
+            newContainer = container.cloneNode();
+
+        container.parentNode.replaceChild(newContainer, container);
+
+        s.onload = function () {
+            var special = new CiprTest({
+                css: './dist/all.css?' + ver,
+            });
+            special.init({
+                container: newContainer,
+                isCompact: false,
+                articleUrl: '/11111',
+                share: {
+                    url: 'https://vc.ru/share/url',
+                    twitter: 'twitter title'
+                }
+            });
+        };
+
+        d.body.appendChild(s);
+
+    })(document, 0);
+</script>
+
+</body>
+
+</html>
