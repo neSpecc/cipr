@@ -1030,7 +1030,7 @@ var Special = function (_BaseSpecial) {
         value: function makeQuestionOptions(options) {
             var _this5 = this;
 
-            // shuffle(options);
+            (0, _array.shuffle)(options);
 
             options.forEach(function (option) {
                 var item = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option'), {

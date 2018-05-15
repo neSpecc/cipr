@@ -218,7 +218,7 @@ class Special extends BaseSpecial {
 
     makeQuestionOptions(options) {
 
-        // shuffle(options);
+        shuffle(options);
 
         options.forEach(option => {
             let item = makeElement('div', Bem.set(CSS.main, 'option'), {
