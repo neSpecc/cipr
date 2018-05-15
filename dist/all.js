@@ -1075,6 +1075,8 @@ var Special = function (_BaseSpecial) {
                     var resultData = this.findResult();
 
                     this.makeActionButton('Результат', 'makeResult');
+
+                    (0, _helper.preloadImages)(['https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/']);
                 } else {
                     this.makeActionButton('Продолжить', 'makeQuestion');
                 }
