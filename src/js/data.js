@@ -2,9 +2,9 @@ export default {
     title: 'Тест: Что вы знаете о&nbsp;«цифровой экономике»',
     intro: 'Проверьте, готовы ли вы к&nbsp;будущему торговли.',
     outro: `<div>
-    На конференции ЦИПР вы узнаете о «цифровой экономике» главное. <strong>С&nbsp;6&nbsp;по&nbsp;8&nbsp;июня</strong> её будут обсуждать представители Ростеха, Samsung, Росатома, Ростелекома, Сколково и других крупных технологических компаний и корпораций.
+    На конференции ЦИПР вы узнаете о цифровой экономике главное. <strong>С&nbsp;6&nbsp;по&nbsp;8&nbsp;июня</strong> её будут обсуждать представители Ростеха, Samsung, Росатома, Ростелекома, Сколково и других крупных технологических компаний.
     <span></span>
-    Тем выступлений много— речь пойдёт обо всём от умных городов и робототехники до влияния« цифровой экономики» на промышленность. Пройдёт ЦИПР в Иннополисе неподалёку от Казани, так что о покупке билетов стоит задуматься заранее.
+    Речь на ЦИПР пойдёт обо всём от умных городов до влияния «цифровой экономики» на промышленность. Пройдёт конференция в Иннополисе неподалёку от Казани, так что лучше спланировать поездку заранее — с промокодом <strong>CIPR5</strong> билеты на ЦИПР будут на 5 000 рублей дешевле.
     </div>`,
     promoUrl: 'https://cipr.ru',
     questions: [
@@ -61,54 +61,28 @@ export default {
             ]
         },
         {
-            text: 'С чем в 2020 году среднестатистический человек будет общаться чаще, чем с супругом или супругой?',
+            text: 'Аналитики Gartner ежегодно выпускают отчёты о технологических трендах. Из предсказаний ниже, три взяты из их отчёта, а одно мы придумали. Какое?',
             options: [
                 {
                     id: 0,
-                    text: 'С ботами в мессенджерах',
-                    message: 'Верно. Во всяком случае, так <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a> аналитики Gartner.',
+                    text: 'В 2021 году приложений и устройств с использованием ИИ станет в два раза больше, чем обычных',
+                    message: 'Верно. Этот тренд мы придумали, хотя он и может стать правдой.',
                     isCorrect: true
                 },
                 {
                     id: 1,
-                    text: 'С умной колонкой',
-                    message: 'Неверно. Аналитики Gartner <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a>, что основными собеседниками станут боты.'
+                    text: 'В 2020 году обычные люди будут общаться с ботами чаще, чем с супругами',
+                    message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.',
                 },
                 {
                     id: 2,
-                    text: 'С цифровым ассистентом',
-                    message: 'Неверно. Аналитики Gartner <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a>, что основными собеседниками станут боты.'
+                    text: 'К 2022 году интернет вещей снизит расходы обычных людей и компаний на один триллион долларов в год',
+                    message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.',
                 },
                 {
                     id: 3,
-                    text: 'С подключенными к интернету бытовыми приборами',
-                    message: 'Неверно. Аналитики Gartner <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a>, что основными собеседниками станут боты.'
-                }
-            ]
-        },
-        {
-            text: 'И ещё один вопрос про 2020 год. Как думаете, сколько людей будут покупать товары в дополненной реальности?',
-            options: [
-                {
-                    id: 0,
-                    text: 'Сто миллионов в год',
-                    message: '<a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">Верно!</a> Осталось дождаться появления Ebay для дополненной реальности.',
-                    isCorrect: true
-                },
-                {
-                    id: 1,
-                    text: 'Миллиард в год',
-                    message: 'Многовато. <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">На самом деле</a> — сто миллионов.'
-                },
-                {
-                    id: 2,
-                    text: 'Сто тысяч в год',
-                    message: 'Маловато. <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">На самом деле</a> — сто миллионов.',
-                },
-                {
-                    id: 3,
-                    text: 'Ни одного',
-                    message: 'Совсем наоборот. <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">На самом деле</a> — сто миллионов.',
+                    text: 'В 2020 году 100 миллионов человек будут покупать товары в дополненной реальности',
+                    message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.',
                 }
             ]
         },
@@ -118,62 +92,67 @@ export default {
                 {
                     id: 0,
                     text: '5%',
-                    message: `Верно. Ещё 51% значительно <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">изменится</a> — люди и роботы будут работать вместе.
+                    message: `Правильно. Ещё 51% профессий значительно <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">изменится</a> — люди и роботы будут работать вместе.
                     <span></span>
-                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.
-                    `,
+                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
                     isCorrect: true
                 },
                 {
                     id: 1,
                     text: '51%',
-                    message: 'Неверно. Столько профессий эволюционируют из-за автоматизации, а полностью <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%.'
+                    message: `Неверно. Столько профессий эволюционируют из-за автоматизации, а полностью <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%.
+                    <span></span>
+                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
                 },
                 {
                     id: 2,
                     text: '15%',
-                    message: 'Неверно. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%, и ещё 51% значительно эволюционируют.',
+                    message: `Неверно. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5% профессий, и ещё 51% значительно эволюционируют.
+                    <span></span>
+                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
                 },
                 {
                     id: 3,
                     text: '80%',
-                    message: 'Многовато. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%, и ещё 51% значительно эволюционируют.',
+                    message: `Многовато. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5% профессий, и ещё 51% значительно эволюционируют.
+                    <span></span>
+                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
                 }
             ]
         },
         {
-            text: 'Какая страна больше остальных готова к цифровой экономике?',
+            text: 'Какая страна больше всех готова к цифровой экономике?',
             options: [
                 {
                     id: 0,
                     text: 'Сингапур',
-                    message: 'Верно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, инфраструктура Сингапура подготовлена лучше всего. Россия — на 41 месте.',
+                    message: 'Верно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, инфраструктура Сингапура подготовлена лучше всего. Россия — на 41 месте.',
                     isCorrect: true
                 },
                 {
                     id: 1,
                     text: 'Япония',
-                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
+                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
                 },
                 {
                     id: 2,
                     text: 'США',
-                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
+                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
                 },
                 {
                     id: 3,
-                    text: 'Люксембург',
-                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
+                    text: 'Китай',
+                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
                 }
             ]
         },
         {
-            text: 'Выберите город, в котором полномасштабно используется концепция «интернета вещей».',
+            text: 'Выберите город, в котором широкомасштабно используется концепция интернета вещей.',
             options: [
                 {
                     id: 0,
                     text: 'Барселона',
-                    message: `Верно! В столице Испании с 2012 года транспорт, освещение и даже парки связаны в единую систему со множеством датчиков.
+                    message: `Верно! В испанском городе с 2012 года транспорт, освещение и даже парки связаны в единую систему со множеством датчиков.
                     <span></span>
                     На <a href="https://cipr.ru/" target="_blank">ЦИПР</a> «умным» городам посвящено сразу несколько выступлений: там вы узнаете, как аналитика данных помогает регулировать нагрузки на городские системы, и какой город в России самый «умный».`,
                     isCorrect: true
@@ -181,7 +160,9 @@ export default {
                 {
                     id: 1,
                     text: 'Сингапур',
-                    message: 'Неверно. В столице Испании с 2012 года транспорт, освещение и даже городские парки связаны в единую систему со множеством датчиков.'
+                    message: `Неверно. В Барселоне с 2012 года транспорт, освещение и даже городские парки связаны в единую систему со множеством датчиков.
+                    <span></span>
+                    На <a href="https://cipr.ru/" target="_blank">ЦИПР</a> «умным» городам посвящено сразу несколько выступлений: там вы узнаете, как аналитика данных помогает регулировать нагрузки на городские системы и какой город в России самый «умный».`
                 },
                 {
                     id: 2,
@@ -226,8 +207,8 @@ export default {
             options: [
                 {
                     id: 0,
-                    text: 'Робот-хирург',
-                    message: 'Верно. До этого нам ещё слишком далеко — пока что машинами управляют люди-хирурги, хотя экспериментальные модели <a href="https://youtu.be/v1U2ruHU9iY" target="_blank">могут</a> самостоятельно зашить виноградину.',
+                    text: 'Робот-терапевт, способный ставить диагнозы самостоятельно.',
+                    message: 'Верно. До этого нам ещё слишком далеко — пока что машины лучше всего показывают себя в хирургии. Робот daVinci, например, <a href="https://youtu.be/v1U2ruHU9iY" target="_blank">может</a> самостоятельно зашить виноградину.',
                     isCorrect: true
                 },
                 {
@@ -243,7 +224,7 @@ export default {
                 {
                     id: 3,
                     text: 'Компьютерный анастезиолог',
-                    message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существуeт</a>. Его зовут Sedasys — это компьютерная система, которая управляет анастезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется.'
+                    message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анастезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется.'
                 }
             ]
         }
@@ -251,15 +232,18 @@ export default {
     results: [
         {
             range: [0, 3],
-            title: 'Вы — луддит',
+            title: 'Вы — экономический ретроград',
+            cover: 'https://leonardo.osnova.io/560c5a09-05d7-8a5c-59f1-a74392daa553/'
         },
         {
             range: [4, 6],
             title: 'Вы —<br> владелец «умного» холодильника',
+            cover: 'https://leonardo.osnova.io/baab3277-9bcb-20c3-d5d2-c19797ca424f/'
         },
         {
-            range: [7, 9],
+            range: [7, 8],
             title: 'Вы —<br> «умный» холодильник',
+            cover: 'https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/'
         }
     ]
 };

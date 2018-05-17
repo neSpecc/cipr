@@ -1076,7 +1076,7 @@ var Special = function (_BaseSpecial) {
 
                     this.makeActionButton('Результат', 'makeResult');
 
-                    (0, _helper.preloadImages)(['https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/']);
+                    (0, _helper.preloadImages)([this.findResult().cover]);
                 } else {
                     this.makeActionButton('Продолжить', 'makeQuestion');
                 }
@@ -1148,6 +1148,8 @@ var Special = function (_BaseSpecial) {
             });
 
             this.updateMode('result');
+
+            result.style.backgroundImage = 'url(' + data.cover + ')';
 
             this.mainText.innerHTML = _data2.default.outro;
             (0, _dom.removeChildren)(this.mainOptions);
@@ -2254,7 +2256,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     title: 'Тест: Что вы знаете о&nbsp;«цифровой экономике»',
     intro: 'Проверьте, готовы ли вы к&nbsp;будущему торговли.',
-    outro: '<div>\n    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 \u0426\u0418\u041F\u0420 \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435 \u043E \xAB\u0446\u0438\u0444\u0440\u043E\u0432\u043E\u0439 \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u043A\u0435\xBB \u0433\u043B\u0430\u0432\u043D\u043E\u0435. <strong>\u0421&nbsp;6&nbsp;\u043F\u043E&nbsp;8&nbsp;\u0438\u044E\u043D\u044F</strong> \u0435\u0451 \u0431\u0443\u0434\u0443\u0442 \u043E\u0431\u0441\u0443\u0436\u0434\u0430\u0442\u044C \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u0438 \u0420\u043E\u0441\u0442\u0435\u0445\u0430, Samsung, \u0420\u043E\u0441\u0430\u0442\u043E\u043C\u0430, \u0420\u043E\u0441\u0442\u0435\u043B\u0435\u043A\u043E\u043C\u0430, \u0421\u043A\u043E\u043B\u043A\u043E\u0432\u043E \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043A\u0440\u0443\u043F\u043D\u044B\u0445 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0439 \u0438 \u043A\u043E\u0440\u043F\u043E\u0440\u0430\u0446\u0438\u0439.\n    <span></span>\n    \u0422\u0435\u043C \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439 \u043C\u043D\u043E\u0433\u043E\u2014 \u0440\u0435\u0447\u044C \u043F\u043E\u0439\u0434\u0451\u0442 \u043E\u0431\u043E \u0432\u0441\u0451\u043C \u043E\u0442 \u0443\u043C\u043D\u044B\u0445 \u0433\u043E\u0440\u043E\u0434\u043E\u0432 \u0438 \u0440\u043E\u0431\u043E\u0442\u043E\u0442\u0435\u0445\u043D\u0438\u043A\u0438 \u0434\u043E \u0432\u043B\u0438\u044F\u043D\u0438\u044F\xAB \u0446\u0438\u0444\u0440\u043E\u0432\u043E\u0439 \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u043A\u0438\xBB \u043D\u0430 \u043F\u0440\u043E\u043C\u044B\u0448\u043B\u0435\u043D\u043D\u043E\u0441\u0442\u044C. \u041F\u0440\u043E\u0439\u0434\u0451\u0442 \u0426\u0418\u041F\u0420 \u0432 \u0418\u043D\u043D\u043E\u043F\u043E\u043B\u0438\u0441\u0435 \u043D\u0435\u043F\u043E\u0434\u0430\u043B\u0451\u043A\u0443 \u043E\u0442 \u041A\u0430\u0437\u0430\u043D\u0438, \u0442\u0430\u043A \u0447\u0442\u043E \u043E \u043F\u043E\u043A\u0443\u043F\u043A\u0435 \u0431\u0438\u043B\u0435\u0442\u043E\u0432 \u0441\u0442\u043E\u0438\u0442 \u0437\u0430\u0434\u0443\u043C\u0430\u0442\u044C\u0441\u044F \u0437\u0430\u0440\u0430\u043D\u0435\u0435.\n    </div>',
+    outro: '<div>\n    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 \u0426\u0418\u041F\u0420 \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435 \u043E \u0446\u0438\u0444\u0440\u043E\u0432\u043E\u0439 \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u043A\u0435 \u0433\u043B\u0430\u0432\u043D\u043E\u0435. <strong>\u0421&nbsp;6&nbsp;\u043F\u043E&nbsp;8&nbsp;\u0438\u044E\u043D\u044F</strong> \u0435\u0451 \u0431\u0443\u0434\u0443\u0442 \u043E\u0431\u0441\u0443\u0436\u0434\u0430\u0442\u044C \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u0438 \u0420\u043E\u0441\u0442\u0435\u0445\u0430, Samsung, \u0420\u043E\u0441\u0430\u0442\u043E\u043C\u0430, \u0420\u043E\u0441\u0442\u0435\u043B\u0435\u043A\u043E\u043C\u0430, \u0421\u043A\u043E\u043B\u043A\u043E\u0432\u043E \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043A\u0440\u0443\u043F\u043D\u044B\u0445 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0439.\n    <span></span>\n    \u0420\u0435\u0447\u044C \u043D\u0430 \u0426\u0418\u041F\u0420 \u043F\u043E\u0439\u0434\u0451\u0442 \u043E\u0431\u043E \u0432\u0441\u0451\u043C \u043E\u0442 \u0443\u043C\u043D\u044B\u0445 \u0433\u043E\u0440\u043E\u0434\u043E\u0432 \u0434\u043E \u0432\u043B\u0438\u044F\u043D\u0438\u044F \xAB\u0446\u0438\u0444\u0440\u043E\u0432\u043E\u0439 \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u043A\u0438\xBB \u043D\u0430 \u043F\u0440\u043E\u043C\u044B\u0448\u043B\u0435\u043D\u043D\u043E\u0441\u0442\u044C. \u041F\u0440\u043E\u0439\u0434\u0451\u0442 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u044F \u0432 \u0418\u043D\u043D\u043E\u043F\u043E\u043B\u0438\u0441\u0435 \u043D\u0435\u043F\u043E\u0434\u0430\u043B\u0451\u043A\u0443 \u043E\u0442 \u041A\u0430\u0437\u0430\u043D\u0438, \u0442\u0430\u043A \u0447\u0442\u043E \u043B\u0443\u0447\u0448\u0435 \u0441\u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043F\u043E\u0435\u0437\u0434\u043A\u0443 \u0437\u0430\u0440\u0430\u043D\u0435\u0435 \u2014 \u0441 \u043F\u0440\u043E\u043C\u043E\u043A\u043E\u0434\u043E\u043C <strong>CIPR5</strong> \u0431\u0438\u043B\u0435\u0442\u044B \u043D\u0430 \u0426\u0418\u041F\u0420 \u0431\u0443\u0434\u0443\u0442 \u043D\u0430 5 000 \u0440\u0443\u0431\u043B\u0435\u0439 \u0434\u0435\u0448\u0435\u0432\u043B\u0435.\n    </div>',
     promoUrl: 'https://cipr.ru',
     questions: [{
         text: 'Начнём с простого: сколько сейчас стоит вся цифровая экономика?',
@@ -2297,96 +2299,76 @@ exports.default = {
             message: 'Неверно. Механизация производства — это паровые прялки времён первой индустриальной революции.'
         }]
     }, {
-        text: 'С чем в 2020 году среднестатистический человек будет общаться чаще, чем с супругом или супругой?',
+        text: 'Аналитики Gartner ежегодно выпускают отчёты о технологических трендах. Из предсказаний ниже, три взяты из их отчёта, а одно мы придумали. Какое?',
         options: [{
             id: 0,
-            text: 'С ботами в мессенджерах',
-            message: 'Верно. Во всяком случае, так <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a> аналитики Gartner.',
+            text: 'В 2021 году приложений и устройств с использованием ИИ станет в два раза больше, чем обычных',
+            message: 'Верно. Этот тренд мы придумали, хотя он и может стать правдой.',
             isCorrect: true
         }, {
             id: 1,
-            text: 'С умной колонкой',
-            message: 'Неверно. Аналитики Gartner <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a>, что основными собеседниками станут боты.'
+            text: 'В 2020 году обычные люди будут общаться с ботами чаще, чем с супругами',
+            message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.'
         }, {
             id: 2,
-            text: 'С цифровым ассистентом',
-            message: 'Неверно. Аналитики Gartner <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a>, что основными собеседниками станут боты.'
+            text: 'К 2022 году интернет вещей снизит расходы обычных людей и компаний на один триллион долларов в год',
+            message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.'
         }, {
             id: 3,
-            text: 'С подключенными к интернету бытовыми приборами',
-            message: 'Неверно. Аналитики Gartner <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">считают</a>, что основными собеседниками станут боты.'
-        }]
-    }, {
-        text: 'И ещё один вопрос про 2020 год. Как думаете, сколько людей будут покупать товары в дополненной реальности?',
-        options: [{
-            id: 0,
-            text: 'Сто миллионов в год',
-            message: '<a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">Верно!</a> Осталось дождаться появления Ebay для дополненной реальности.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: 'Миллиард в год',
-            message: 'Многовато. <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">На самом деле</a> — сто миллионов.'
-        }, {
-            id: 2,
-            text: 'Сто тысяч в год',
-            message: 'Маловато. <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">На самом деле</a> — сто миллионов.'
-        }, {
-            id: 3,
-            text: 'Ни одного',
-            message: 'Совсем наоборот. <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">На самом деле</a> — сто миллионов.'
+            text: 'В 2020 году 100 миллионов человек будут покупать товары в дополненной реальности',
+            message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.'
         }]
     }, {
         text: 'Какой процент профессий может полностью исчезнуть из-за автоматизации?',
         options: [{
             id: 0,
             text: '5%',
-            message: '\u0412\u0435\u0440\u043D\u043E. \u0415\u0449\u0451 51% \u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0437\u043C\u0435\u043D\u0438\u0442\u0441\u044F</a> \u2014 \u043B\u044E\u0434\u0438 \u0438 \u0440\u043E\u0431\u043E\u0442\u044B \u0431\u0443\u0434\u0443\u0442 \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C \u0432\u043C\u0435\u0441\u0442\u0435.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.\n                    ',
+            message: '\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E. \u0415\u0449\u0451 51% \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439 \u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0437\u043C\u0435\u043D\u0438\u0442\u0441\u044F</a> \u2014 \u043B\u044E\u0434\u0438 \u0438 \u0440\u043E\u0431\u043E\u0442\u044B \u0431\u0443\u0434\u0443\u0442 \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C \u0432\u043C\u0435\u0441\u0442\u0435.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.',
             isCorrect: true
         }, {
             id: 1,
             text: '51%',
-            message: 'Неверно. Столько профессий эволюционируют из-за автоматизации, а полностью <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%.'
+            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0421\u0442\u043E\u043B\u044C\u043A\u043E \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439 \u044D\u0432\u043E\u043B\u044E\u0446\u0438\u043E\u043D\u0438\u0440\u0443\u044E\u0442 \u0438\u0437-\u0437\u0430 \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0437\u0430\u0446\u0438\u0438, \u0430 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0441\u0447\u0435\u0437\u043D\u0435\u0442</a> \u0432\u0441\u0435\u0433\u043E 5%.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.'
         }, {
             id: 2,
             text: '15%',
-            message: 'Неверно. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%, и ещё 51% значительно эволюционируют.'
+            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u041D\u0430 \u0441\u0430\u043C\u043E\u043C \u0434\u0435\u043B\u0435 <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0441\u0447\u0435\u0437\u043D\u0435\u0442</a> \u0432\u0441\u0435\u0433\u043E 5% \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439, \u0438 \u0435\u0449\u0451 51% \u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u044D\u0432\u043E\u043B\u044E\u0446\u0438\u043E\u043D\u0438\u0440\u0443\u044E\u0442.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.'
         }, {
             id: 3,
             text: '80%',
-            message: 'Многовато. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%, и ещё 51% значительно эволюционируют.'
+            message: '\u041C\u043D\u043E\u0433\u043E\u0432\u0430\u0442\u043E. \u041D\u0430 \u0441\u0430\u043C\u043E\u043C \u0434\u0435\u043B\u0435 <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0441\u0447\u0435\u0437\u043D\u0435\u0442</a> \u0432\u0441\u0435\u0433\u043E 5% \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439, \u0438 \u0435\u0449\u0451 51% \u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u044D\u0432\u043E\u043B\u044E\u0446\u0438\u043E\u043D\u0438\u0440\u0443\u044E\u0442.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.'
         }]
     }, {
-        text: 'Какая страна больше остальных готова к цифровой экономике?',
+        text: 'Какая страна больше всех готова к цифровой экономике?',
         options: [{
             id: 0,
             text: 'Сингапур',
-            message: 'Верно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, инфраструктура Сингапура подготовлена лучше всего. Россия — на 41 месте.',
+            message: 'Верно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, инфраструктура Сингапура подготовлена лучше всего. Россия — на 41 месте.',
             isCorrect: true
         }, {
             id: 1,
             text: 'Япония',
-            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
+            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
         }, {
             id: 2,
             text: 'США',
-            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
+            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
         }, {
             id: 3,
-            text: 'Люксембург',
-            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">версии</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
+            text: 'Китай',
+            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
         }]
     }, {
-        text: 'Выберите город, в котором полномасштабно используется концепция «интернета вещей».',
+        text: 'Выберите город, в котором широкомасштабно используется концепция интернета вещей.',
         options: [{
             id: 0,
             text: 'Барселона',
-            message: '\u0412\u0435\u0440\u043D\u043E! \u0412 \u0441\u0442\u043E\u043B\u0438\u0446\u0435 \u0418\u0441\u043F\u0430\u043D\u0438\u0438 \u0441 2012 \u0433\u043E\u0434\u0430 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442, \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0430\u0436\u0435 \u043F\u0430\u0440\u043A\u0438 \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u0432 \u0435\u0434\u0438\u043D\u0443\u044E \u0441\u0438\u0441\u0442\u0435\u043C\u0443 \u0441\u043E \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u0434\u0430\u0442\u0447\u0438\u043A\u043E\u0432.\n                    <span></span>\n                    \u041D\u0430 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \xAB\u0443\u043C\u043D\u044B\u043C\xBB \u0433\u043E\u0440\u043E\u0434\u0430\u043C \u043F\u043E\u0441\u0432\u044F\u0449\u0435\u043D\u043E \u0441\u0440\u0430\u0437\u0443 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439: \u0442\u0430\u043C \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438 \u043D\u0430 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B, \u0438 \u043A\u0430\u043A\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438 \u0441\u0430\u043C\u044B\u0439 \xAB\u0443\u043C\u043D\u044B\u0439\xBB.',
+            message: '\u0412\u0435\u0440\u043D\u043E! \u0412 \u0438\u0441\u043F\u0430\u043D\u0441\u043A\u043E\u043C \u0433\u043E\u0440\u043E\u0434\u0435 \u0441 2012 \u0433\u043E\u0434\u0430 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442, \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0430\u0436\u0435 \u043F\u0430\u0440\u043A\u0438 \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u0432 \u0435\u0434\u0438\u043D\u0443\u044E \u0441\u0438\u0441\u0442\u0435\u043C\u0443 \u0441\u043E \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u0434\u0430\u0442\u0447\u0438\u043A\u043E\u0432.\n                    <span></span>\n                    \u041D\u0430 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \xAB\u0443\u043C\u043D\u044B\u043C\xBB \u0433\u043E\u0440\u043E\u0434\u0430\u043C \u043F\u043E\u0441\u0432\u044F\u0449\u0435\u043D\u043E \u0441\u0440\u0430\u0437\u0443 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439: \u0442\u0430\u043C \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438 \u043D\u0430 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B, \u0438 \u043A\u0430\u043A\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438 \u0441\u0430\u043C\u044B\u0439 \xAB\u0443\u043C\u043D\u044B\u0439\xBB.',
             isCorrect: true
         }, {
             id: 1,
             text: 'Сингапур',
-            message: 'Неверно. В столице Испании с 2012 года транспорт, освещение и даже городские парки связаны в единую систему со множеством датчиков.'
+            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0412 \u0411\u0430\u0440\u0441\u0435\u043B\u043E\u043D\u0435 \u0441 2012 \u0433\u043E\u0434\u0430 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442, \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0430\u0436\u0435 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u043F\u0430\u0440\u043A\u0438 \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u0432 \u0435\u0434\u0438\u043D\u0443\u044E \u0441\u0438\u0441\u0442\u0435\u043C\u0443 \u0441\u043E \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u0434\u0430\u0442\u0447\u0438\u043A\u043E\u0432.\n                    <span></span>\n                    \u041D\u0430 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \xAB\u0443\u043C\u043D\u044B\u043C\xBB \u0433\u043E\u0440\u043E\u0434\u0430\u043C \u043F\u043E\u0441\u0432\u044F\u0449\u0435\u043D\u043E \u0441\u0440\u0430\u0437\u0443 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439: \u0442\u0430\u043C \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438 \u043D\u0430 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B \u0438 \u043A\u0430\u043A\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438 \u0441\u0430\u043C\u044B\u0439 \xAB\u0443\u043C\u043D\u044B\u0439\xBB.'
         }, {
             id: 2,
             text: 'Нью-Йорк',
@@ -2420,8 +2402,8 @@ exports.default = {
         text: 'Цифровые технологии уже меняют медицину и биотехнологии. Одно из изобретений ниже мы придумали — сможете определить, какое?',
         options: [{
             id: 0,
-            text: 'Робот-хирург',
-            message: 'Верно. До этого нам ещё слишком далеко — пока что машинами управляют люди-хирурги, хотя экспериментальные модели <a href="https://youtu.be/v1U2ruHU9iY" target="_blank">могут</a> самостоятельно зашить виноградину.',
+            text: 'Робот-терапевт, способный ставить диагнозы самостоятельно.',
+            message: 'Верно. До этого нам ещё слишком далеко — пока что машины лучше всего показывают себя в хирургии. Робот daVinci, например, <a href="https://youtu.be/v1U2ruHU9iY" target="_blank">может</a> самостоятельно зашить виноградину.',
             isCorrect: true
         }, {
             id: 1,
@@ -2434,18 +2416,21 @@ exports.default = {
         }, {
             id: 3,
             text: 'Компьютерный анастезиолог',
-            message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существуeт</a>. Его зовут Sedasys — это компьютерная система, которая управляет анастезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется.'
+            message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анастезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется.'
         }]
     }],
     results: [{
         range: [0, 3],
-        title: 'Вы — луддит'
+        title: 'Вы — экономический ретроград',
+        cover: 'https://leonardo.osnova.io/560c5a09-05d7-8a5c-59f1-a74392daa553/'
     }, {
         range: [4, 6],
-        title: 'Вы —<br> владелец «умного» холодильника'
+        title: 'Вы —<br> владелец «умного» холодильника',
+        cover: 'https://leonardo.osnova.io/baab3277-9bcb-20c3-d5d2-c19797ca424f/'
     }, {
-        range: [7, 9],
-        title: 'Вы —<br> «умный» холодильник'
+        range: [7, 8],
+        title: 'Вы —<br> «умный» холодильник',
+        cover: 'https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/'
     }]
 };
 

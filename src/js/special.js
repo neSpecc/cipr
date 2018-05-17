@@ -265,7 +265,7 @@ class Special extends BaseSpecial {
                 this.makeActionButton('Результат', 'makeResult');
 
                 preloadImages([
-                    'https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/'
+                    this.findResult().cover
                 ]);
             } else {
                 this.makeActionButton('Продолжить', 'makeQuestion');
@@ -315,6 +315,8 @@ class Special extends BaseSpecial {
             });
 
         this.updateMode('result');
+
+        result.style.backgroundImage = `url(${data.cover})`;
 
         this.mainText.innerHTML = Data.outro;
         removeChildren(this.mainOptions);
