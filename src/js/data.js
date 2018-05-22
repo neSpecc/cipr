@@ -13,24 +13,24 @@ export default {
             options: [
                 {
                     id: 0,
-                    text: '$3 трлн долларов',
+                    text: '$3 трлн',
                     message: 'Верно! Это в два раза больше, чем ВВП России.',
                     isCorrect: true
                 },
                 {
                     id: 1,
                     text: '$400 млрд',
-                    message: 'Маловато — на самом деле общая стоимость цифровой экономики сейчас составляет 2,9 триллиона долларов. Это в два раза больше, чем ВВП России.'
+                    message: 'Маловато — на самом деле общая стоимость цифровой экономики составляет $3 трлн. Это в два раза больше, чем ВВП России.'
                 },
                 {
                     id: 2,
                     text: '$15,2 трлн',
-                    message: 'Неверно. На самом деле цифровая экономика стоит 2,9 триллиона долларов. Что немало — это в два раза больше, чем ВВП России.',
+                    message: 'Неверно. На самом деле цифровая экономика стоит $3 трлн. Что немало — это в два раза больше, чем ВВП России.',
                 },
                 {
                     id: 3,
-                    text: '$947 млрд долларов',
-                    message: 'Маловато — на самом деле общая стоимость цифровой экономики сейчас составляет 2,9 триллиона долларов. Это в два раза больше, чем ВВП России.',
+                    text: '$947 млрд',
+                    message: 'Маловато — на самом деле общая стоимость цифровой экономики составляет $3 трлн. Это в два раза больше, чем ВВП России.',
                 }
             ]
         },
@@ -80,17 +80,17 @@ export default {
                 {
                     id: 1,
                     text: 'В 2020 году обычные люди будут общаться с ботами чаще, чем с супругами',
-                    message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.',
+                    message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
                 },
                 {
                     id: 2,
                     text: 'К 2022 году интернет вещей снизит расходы обычных людей и компаний на один триллион долларов в год',
-                    message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.',
+                    message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
                 },
                 {
                     id: 3,
                     text: 'В 2020 году 100 миллионов человек будут покупать товары в дополненной реальности',
-                    message: 'Неверно. В <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд.',
+                    message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
                 }
             ]
         },
@@ -106,17 +106,17 @@ export default {
                 {
                     id: 1,
                     text: 'Роботы на производстве',
-                    message: 'Неверно. Это признак третьей индустриальной революции.'
+                    message: 'Неверно. Это признак третьей индустриальной революции. К четвёртой относится интернет вещей.'
                 },
                 {
                     id: 2,
                     text: 'Промышленный термоядерный синтез',
-                    message: 'Увы, до этого ещё далеко.',
+                    message: 'Увы, до этого ещё далеко. К четвёртой относится интернет вещей.',
                 },
                 {
                     id: 3,
                     text: 'Механизация производства',
-                    message: 'Неверно. Механизация производства — это паровые прялки времён первой индустриальной революции.',
+                    message: 'Неверно. Механизация производства — это паровые прялки времён первой индустриальной революции. К четвёртой относится интернет вещей.',
                 }
             ]
         },
@@ -218,17 +218,17 @@ export default {
                 {
                     id: 1,
                     text: 'Операции на мозге в VR',
-                    message: 'Такое <a href="http://www.wired.co.uk/article/vr-brain-surgery-nhs-london-watch-video-360" target="_blank">уже было</a> в сентябре 2017 года. Врачи из Barts Health NHS Trust записали в VR операцию по удалению аневризмы из мозга пациента, чтобы потом научить этому студентов-нейрохирургов.'
+                    message: 'Такое <a href="http://www.wired.co.uk/article/vr-brain-surgery-nhs-london-watch-video-360" target="_blank">уже было</a> в сентябре 2017 года. Врачи из Barts Health NHS Trust записали в VR операцию по удалению аневризмы из мозга пациента, чтобы потом научить этому студентов-нейрохирургов. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
                 },
                 {
                     id: 2,
                     text: 'Копия плаценты в виде микрочипа',
-                    message: 'Неверно. Её с сентября 2017 года <a href="https://motherboard.vice.com/en_us/article/599n7n/placenta-on-a-chip-techn-will-let-scientists-research-neonatal-diseases-without-using-human-fetuses" target="_blank">разрабатывают</a> учёные из Florida Atlantic University, чтобы изучать болезни, не задействуя реальные ткани.'
+                    message: 'Неверно. Её с сентября 2017 года <a href="https://motherboard.vice.com/en_us/article/599n7n/placenta-on-a-chip-techn-will-let-scientists-research-neonatal-diseases-without-using-human-fetuses" target="_blank">разрабатывают</a> учёные из Florida Atlantic University, чтобы изучать болезни, не задействуя реальные ткани. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
                 },
                 {
                     id: 3,
                     text: 'Компьютерный анастезиолог',
-                    message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анастезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется.'
+                    message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анастезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
                 }
             ]
         }
