@@ -647,8 +647,8 @@
   }
 }
 .Cipr[data-mode="result"] .Cipr__button:hover {
-  border-color: #000;
-  color: #000;
+  border-color: #000 !important;
+  color: #000 !important;
 }
 .Cipr[data-mode="result"] .Cipr__title {
   margin-bottom: 20px;
