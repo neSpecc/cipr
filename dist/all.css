@@ -294,7 +294,7 @@
   border-color: #f22966;
 }
 .Cipr__options--disabled .Cipr__option--error ~ .Cipr__message a {
-  border-bottom-color: #f22966;
+  border-bottom-color: #f22966 !important;
 }
 .Cipr__options--disabled .Cipr__option--error ~ .Cipr__message a:hover {
   color: #f22966 !important;
@@ -335,7 +335,7 @@
 .Cipr__message a {
   color: inherit !important;
   font-weight: 700;
-  border-bottom: 2px solid #00fafa;
+  border-bottom: 2px solid #00fafa !important;
   padding-bottom: 2px;
 }
 .Cipr__message a:hover {
@@ -631,7 +631,8 @@
 }
 .Cipr[data-mode="result"] .Cipr__button {
   width: 210px;
-  border-color: #00fafa;
+  border: 5px solid #00fafa !important;
+  color: #000 !important;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;

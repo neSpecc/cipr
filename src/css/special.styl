@@ -214,7 +214,7 @@ $colors = {
 
                     ~ .Cipr__message
                         a
-                            border-bottom-color: $colors.pink
+                            border-bottom-color: $colors.pink !important
 
                             &:hover
                                 color: $colors.pink !important
@@ -249,7 +249,7 @@ $colors = {
         a
             color: inherit !important
             font-weight: 700
-            border-bottom: 2px solid $colors.accent
+            border-bottom: 2px solid $colors.accent !important
             padding-bottom: 2px
 
             &:hover
@@ -509,7 +509,8 @@ $colors = {
 
             &__button
                 width: 210px
-                border-color: $colors.accent
+                border: 5px solid $colors.accent !important
+                color: $colors.black !important
                 display: flex
                 align-items: center
                 justify-content: center
