@@ -675,6 +675,8 @@
 .Cipr--compact {
   overflow: hidden;
   border: 0;
+  background-color: #fff;
+  z-index: 1;
 }
 @media (min-width: 680px) {
   .Cipr--compact {
