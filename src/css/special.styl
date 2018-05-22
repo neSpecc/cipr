@@ -67,7 +67,8 @@ $colors = {
         background-repeat: no-repeat
         background-size: contain
         position: absolute
-        top: -60px
+        // top: -60px
+        bottom: 0
         right: -315px
         z-index: -1
         transform-origin: 50% 50%
@@ -194,6 +195,9 @@ $colors = {
 
         @media $mq.mobile
             padding-right: 50px
+
+        @media $mq.tablet
+            margin-bottom: 80px
 
         &--disabled
             pointer-events: none
@@ -539,10 +543,11 @@ $colors = {
 
     &--compact
         overflow: hidden
+        border: 0
 
         @media $mq.not_mobile
             max-width: 640px
-            min-height: 600px
+            min-height: 620px
 
             &:before
                 display: none
@@ -563,6 +568,9 @@ $colors = {
                 &__result
                     padding: 30px 40px
                     margin: 0 -40px 30px
+
+                &__options
+                    margin-bottom: 80px
 
             &[data-mode="start"]
                 .Cipr

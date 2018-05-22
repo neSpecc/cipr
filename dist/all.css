@@ -118,7 +118,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  top: -60px;
+  bottom: 0;
   right: -315px;
   z-index: -1;
   transform-origin: 50% 50%;
@@ -272,6 +272,11 @@
 @media (max-width: 679px) {
   .Cipr__options {
     padding-right: 50px;
+  }
+}
+@media (min-width: 680px) and (max-width: 1023px) {
+  .Cipr__options {
+    margin-bottom: 80px;
   }
 }
 .Cipr__options--disabled {
@@ -669,11 +674,12 @@
 }
 .Cipr--compact {
   overflow: hidden;
+  border: 0;
 }
 @media (min-width: 680px) {
   .Cipr--compact {
     max-width: 640px;
-    min-height: 600px;
+    min-height: 620px;
   }
   .Cipr--compact:before {
     display: none;
@@ -693,6 +699,9 @@
   .Cipr--compact .Cipr__result {
     padding: 30px 40px;
     margin: 0 -40px 30px;
+  }
+  .Cipr--compact .Cipr__options {
+    margin-bottom: 80px;
   }
   .Cipr--compact[data-mode="start"] .Cipr__content {
     max-width: 400px;
