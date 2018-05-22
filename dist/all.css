@@ -377,7 +377,7 @@
   box-sizing: border-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #5f849a;
+  background-color: #00b8db;
   background-repeat: no-repeat;
   background-position: 55% 50%;
   background-size: auto 100%;
@@ -402,7 +402,7 @@
 }
 .Cipr__resultPoints {
   font-size: 16px;
-  color: #97b8cc;
+  color: #39d9f7;
   margin-bottom: 20px;
 }
 .Cipr__resultContent {
