@@ -2415,8 +2415,8 @@ exports.default = {
             message: 'Неверно. Её с сентября 2017 года <a href="https://motherboard.vice.com/en_us/article/599n7n/placenta-on-a-chip-techn-will-let-scientists-research-neonatal-diseases-without-using-human-fetuses" target="_blank">разрабатывают</a> учёные из Florida Atlantic University, чтобы изучать болезни, не задействуя реальные ткани. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
         }, {
             id: 3,
-            text: 'Компьютерный анастезиолог',
-            message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анастезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
+            text: 'Компьютерный анестезиолог',
+            message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анестезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
         }]
     }],
     results: [{
