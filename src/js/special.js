@@ -3,6 +3,30 @@
  */
 require('../css/special.styl');
 
+/**
+ * @typedef {object} question
+ * @description Object represented single question data
+ * @property {string} text
+ * @property {option[]} options
+ */
+
+/**
+ * @typedef {object} option
+ * @description Available answer item
+ * @property {number} id
+ * @property {string} text
+ * @property {string} message
+ * @property {boolean} isCorrect
+ * @property {string} img
+ * @property {string} imgWrong
+ * @property {string} imgCorrect
+ * @property {string} imgDisabled
+ */
+
+
+
+
+
 const CONFIG = require('./config');
 
 import * as Analytics from './lib/analytics';
@@ -41,7 +65,7 @@ const CSS = {
     state: {
         active: 'l-active'
     },
-    main: 'Cipr'
+    main: 'Cipr',
 };
 
 const EL = {};
@@ -56,6 +80,25 @@ class Special extends BaseSpecial {
 
         this.css = params.css;
         this.setDefaultValues();
+
+        /**
+        * Timer for the progress
+        * @type {null|TimeoutId}
+        */
+        this.timer = null;
+
+        /**
+        * Timer value
+        * @type {number}
+        * @private
+        */
+        this._timerValue = 0;
+
+        /**
+        * Timer holder
+        * @type {Element|null}
+        */
+        this.timerWrapper = null;
     }
 
     init(params = {}, data = {}) {
@@ -76,6 +119,8 @@ class Special extends BaseSpecial {
         this.activeCorrectId = null;
         this.messages = {};
         this.isPending = false;
+        this.stopTimer();
+        this.timer = null;
     }
 
     makeGeneralLayout() {
@@ -101,10 +146,13 @@ class Special extends BaseSpecial {
 
         this.makeHeader();
 
+        this.timerWrapper = makeElement('div', Bem.set(CSS.main, 'timer'));
+
         this.content.appendChild(this.mainText);
         this.content.appendChild(this.mainOptions);
         this.content.appendChild(this.mainActions);
         this.container.appendChild(this.content);
+        this.container.appendChild(this.timerWrapper);
 
         this.makeIntro();
 
@@ -174,7 +222,7 @@ class Special extends BaseSpecial {
     }
 
     makeActionButton(text, func) {
-        let button = makeElement('button', Bem.set(CSS.main, 'button'), {
+        let button = makeElement('div', Bem.set(CSS.main, 'button'), {
             type: 'button',
             data: {
                 click: func
@@ -189,12 +237,16 @@ class Special extends BaseSpecial {
     start() {
         this.updateMode('progress');
         this.makeQuestion(this.activeIndex);
+        this.restartTimer();
 
         Analytics.sendEvent('Start button', 'Click');
     }
 
     makeQuestion() {
-        let data = Data.questions[this.activeIndex];
+      /**
+       * @type {question}
+       */
+      let data = Data.questions[this.activeIndex];
 
         if (data) {
             removeChildren(this.mainOptions);
@@ -204,7 +256,7 @@ class Special extends BaseSpecial {
             this.mainOptions.classList.remove(Bem.set(CSS.main, 'options', 'disabled'));
 
             this.updateCounter();
-            this.mainText.innerHTML = `<div>${data.text}</div>`;
+            this.mainText.innerHTML = `${Data.title}`;
 
             this.makeQuestionOptions(data.options);
 
@@ -216,6 +268,9 @@ class Special extends BaseSpecial {
         }
     }
 
+    /**
+    * @param {option[]} options
+    */
     makeQuestionOptions(options) {
 
         shuffle(options);
@@ -228,7 +283,20 @@ class Special extends BaseSpecial {
                 }
             });
 
-            item.textContent = option.text;
+            let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
+                src: `/src/assets/${option.img}`,
+                data: {
+                    id: option.id
+                }
+            });
+
+            let label = makeElement('div', [], {
+                textContent: option.text
+            });
+
+            item.appendChild(image);
+            item.appendChild(label);
+
 
             this.mainOptions.appendChild(item);
 
@@ -242,13 +310,42 @@ class Special extends BaseSpecial {
     }
 
     submitAnswer(button) {
-
         if (!this.isPending) {
             let id = parseInt(button.dataset.id),
                 data = null;
 
             this.isPending = true;
             this.mainOptions.classList.add(Bem.set(CSS.main, 'options', 'disabled'));
+
+            let images = this.content.querySelectorAll('.' + Bem.set(CSS.main, 'option-image'));
+
+            /**
+            * @type {question}
+            */
+            let currentQuestion = Data.questions[this.activeIndex];
+
+            Array.from(images).forEach( (img, index) => {
+                let imageId = parseInt(img.dataset.id);
+
+                // clicked image
+                if (id === imageId){
+                    if (id === this.activeCorrectId){
+                      img.src = '/src/assets/' + currentQuestion.options[index].imgCorrect;
+                    } else {
+                      img.src = '/src/assets/' + currentQuestion.options[index].imgWrong;
+                    }
+                // second image
+                } else {
+                  img.src = '/src/assets/' + currentQuestion.options[index].imgDisabled;
+                }
+
+                let messageOverlay = makeElement('div', Bem.set(CSS.main, 'option-overlay'), {
+                  innerHTML: '<i></i> ' +  currentQuestion.options[index].message
+                });
+
+                img.parentNode.appendChild(messageOverlay);
+
+            });
 
             if (id === this.activeCorrectId) {
                 this.userPoints++;
@@ -257,7 +354,7 @@ class Special extends BaseSpecial {
                 button.classList.add(Bem.set(CSS.main, 'option', 'error'));
             }
 
-            this.makeOptionMessage(id);
+            // this.makeOptionMessage(id);
 
             if (this.activeIndex >= this.totalLength - 1) {
                 let resultData = this.findResult();
@@ -285,8 +382,15 @@ class Special extends BaseSpecial {
     }
 
     findResult() {
+        console.log('findResult')
         let results = Data.results,
             finalResult = null;
+
+        let timeRemaining = this.timerValue;
+
+        console.log('timeRemaining', timeRemaining);
+
+        this.restartTimer()
 
         for (let result of results) {
             if (this.userPoints >= result.range[0] && this.userPoints <= result.range[1]) {
@@ -318,7 +422,7 @@ class Special extends BaseSpecial {
 
         result.style.backgroundImage = `url(${data.cover})`;
 
-        this.mainText.innerHTML = Data.outro;
+        this.mainText.innerHTML = `<div class="${Bem.set(CSS.main, 'text-body')}">${Data.outro}</div>`;
         removeChildren(this.mainOptions);
         removeChildren(this.mainActions);
 
@@ -345,6 +449,62 @@ class Special extends BaseSpecial {
         Analytics.sendEvent(`Result ${this.userPoints} screen`, 'Hit');
     }
 
+    /**
+    * Format number to string like HH:MM:SS
+    * @param {number} time - timer count in 0.1s
+    * @return {string}
+    */
+    formatTime(time) {
+        var decileSec = parseInt(time, 10); // don't forget the second param
+
+        let sec = decileSec / 10;
+        let minLeft = sec / 60;
+        let fullMin = Math.floor(minLeft);
+        let secLeft = (decileSec - fullMin) % 600 / 10;
+        let fullSecLeft = Math.floor(secLeft);
+        let decileSecLeft = parseInt(String(secLeft).split('.')[1], 10) * 6;
+
+        if (isNaN(decileSecLeft)){
+          decileSecLeft = 0;
+        }
+
+        fullMin = fullMin < 10 ? `0${fullMin}`: fullMin;
+        fullSecLeft = fullSecLeft < 10 ? `0${fullSecLeft}`: fullSecLeft;
+        decileSecLeft = decileSecLeft < 10 ? `0${decileSecLeft}`: decileSecLeft;
+
+        return `${fullMin}:${fullSecLeft}:${decileSecLeft}`;
+
+    }
+
+    set timerValue (val){
+        this._timerValue += 1;
+        this.timerWrapper.textContent = this.formatTime(this._timerValue);
+    }
+
+    get timerValue (){
+        return this._timerValue;
+    }
+
+    /**
+     * Stop timer if it is running
+     */
+    stopTimer(){
+        if (this.timer){
+            window.clearInterval(this.timer);
+        }
+    }
+
+    /**
+    * Starts new timer for the game
+    */
+    restartTimer(){
+        this.stopTimer();
+
+        window.setInterval(() => {
+            this.timerValue++;
+        }, 100)
+    }
+
     updateMode(name) {
         this.mode = name;
         this.container.dataset.mode = this.mode;
@@ -360,6 +520,7 @@ class Special extends BaseSpecial {
         this.content.appendChild(this.mainActions);
 
         this.makeQuestion(0);
+        this.restartTimer();
 
         Analytics.sendEvent('Restart button', 'Click');
     }

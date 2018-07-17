@@ -84,17 +84,25 @@ export default class BaseSpecial {
             /** All other events, attached to elements */
         } else {
 
-            let action = event.target.dataset[eventName];
+            let el  = event.target;
 
-            if (action && this[action]) {
-                this[action](event.target, event);
+            /**
+            * Bubble click
+            */
+            while (el){
+              let action = el.dataset ? el.dataset[eventName] : null;
+
+              if (action && this[action]) {
+                this[action](el, event);
+              }
+
+              /** Send links clicks to analytics */
+              if (el.tagName && el.tagName.toLowerCase() === 'a') {
+                Analytics.sendEvent(el.href);
+              }
+
+              el = el.parentNode;
             }
-
-            /** Send links clicks to analytics */
-            if (event.target.tagName.toLowerCase() === 'a') {
-                Analytics.sendEvent(event.target.href);
-            }
-
         }
 
     }

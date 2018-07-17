@@ -7,17 +7,38 @@ $colors = {
     white: #ffffff,
     black: #000000,
     gray: #646464,
-    accent: #00FAFA,
+    accent: #00B856,
     pink: #F22966,
     gray: #CAE9E9
 }
+
+button(borderColor = #111, backgroundColor = transparent)
+    position relative
+    height: 56px
+    line-height 56px
+    text-align: center
+
+    &::before
+        content: ''
+        position: absolute;
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        border: 4px solid borderColor
+        background-color backgroundColor
+        transform: skewX(-10deg)
+
+contentZone()
+    max-width: 580px
+    margin 0 auto
 
 .Cipr
     width: 100%
     max-width: 1060px
     margin: 0 auto
     min-height: 580px
-    // background-color: $colors.white
+    background-color: $colors.white
     color: $colors.black
     font-size: 16px
     line-height: 1.5em
@@ -33,7 +54,6 @@ $colors = {
         font-size: 18px
         min-height: 560px
         margin: auto
-        border: 7px solid $colors.accent
         padding: 0 0 60px
 
     @media $mq.tablet
@@ -45,20 +65,6 @@ $colors = {
 
     @media $mq.iphone5
         min-height: 560px
-
-    &:before
-        @media $mq.desktop
-            content: ''
-            width: 720px
-            height: 472px
-            background-image: url('https://leonardo.osnova.io/48be3c81-8ce7-f2a2-0a30-98f01f51fcdb/')
-            background-repeat: no-repeat
-            background-size: 100% auto
-            position: absolute
-            top: 50px
-            right: -120px
-            z-index: -1
-            transition: transform 0.3s ease-in-out
 
     &__heart
         width: 484px
@@ -116,15 +122,10 @@ $colors = {
         fill: currentColor
 
     &__header
+        contentZone()
         display: flex
         align-items: center
-        padding: 15px
-
-        @media $mq.not_mobile
-            padding: 35px 70px
-
-        @media $mq.tablet
-            padding: 35px 40px
+        padding: 30px 0
 
         a
             border: 0 !important
@@ -145,18 +146,11 @@ $colors = {
                 border-color: $colors.accent
 
     &__content
+        contentZone()
         box-sizing: content-box
         flex: 1
         display: flex
         flex-direction: column
-        max-width: 520px
-        padding: 0 15px
-
-        @media $mq.not_mobile
-            padding: 0 70px
-
-        @media $mq.tablet
-            padding: 0 40px
 
     &__text
         margin-bottom: 20px
@@ -190,7 +184,7 @@ $colors = {
     &__options
         margin-bottom: 10px
         display: flex
-        flex-direction: column
+        flex-direction: row
         align-items: flex-start
 
         @media $mq.mobile
@@ -203,7 +197,7 @@ $colors = {
             pointer-events: none
 
             .Cipr__option
-                display: none
+                //display: none
 
                 &--success,
                 &--error
@@ -222,18 +216,41 @@ $colors = {
     &__option
         position: relative
         cursor: pointer
-        border: 2px solid $colors.accent
         display: flex
         align-items: center
-        padding: 10px 15px
         margin-bottom: 10px
-        animation: cipr_appear 0.3s ease-in-out
+        animation: cipr_appear 0.15s ease-in
+        flex-direction column
+        font-weight: 500
+        font-size: 16px
 
-        @media $mq.not_mobile
-            padding: 10px 25px
+        &:not(:last-of-type){
+          margin-right 25px
+        }
 
-            &:hover
-                border-color: $colors.black
+        &-image {
+            max-height 220px
+            margin-bottom: 15px
+        }
+
+        &-overlay {
+            position: absolute
+            font-size: 30px
+            font-weight: 900
+            top: 43%
+            transform translateY(-50%)
+            width 100%
+            text-align: center
+            color #fff
+
+            i {
+                display: block
+                margin: 0 auto 15px
+                width: 48px
+                height: 30px
+                background: url("data:image/svg+xml,%3Csvg width='49' height='31' viewBox='0 0 49 31' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M28.82 23.268a1.387 1.387 0 0 0-.156-.527L17.46 1.6a1.463 1.463 0 0 0-1.753-.688 1.42 1.42 0 0 0-.953 1.602l4.366 23.442c.034.186.106.353.205.505.042.2.093.4.162.6.704 2.005 2.627 3.357 4.786 3.357a5.11 5.11 0 0 0 1.642-.27 4.994 4.994 0 0 0 2.903-2.517 4.859 4.859 0 0 0 .001-4.363zm-4.546-20.82c-.798 0-1.445.635-1.445 1.419 0 .783.647 1.42 1.445 1.42 11.521 0 20.892 9.209 20.892 20.527 0 .783.65 1.42 1.447 1.42.8 0 1.446-.637 1.446-1.42 0-12.886-10.67-23.366-23.785-23.366zM9.328 7.636C3.712 12.099.49 18.724.49 25.814c0 .783.647 1.42 1.446 1.42.8 0 1.447-.637 1.447-1.42 0-6.228 2.83-12.048 7.764-15.969a1.403 1.403 0 0 0 .215-1.997 1.466 1.466 0 0 0-2.034-.212z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E") no-repeat;
+            }
+        }
 
     &__message
         margin-top: 10px
@@ -266,37 +283,39 @@ $colors = {
             margin-top: auto
 
     &__button
+        button($colors.accent)
         display: block
         font-size: 20px
         font-weight: 700
-        margin: 0
+        margin: 0 auto
         padding: 0
         cursor: pointer
         outline: 0
         background-color: transparent
-        border: 5px solid transparent
+        border: 0
         height: 56px
         animation: cipr_appear 0.3s ease-in-out
-
-        &:hover
-            @media $mq.not_mobile
-                color: $colors.accent
+        color: #000
 
         svg
             display: inline-block
             vertical-align: middle
             margin-left: 15px
             margin-top: -4px
+            transition transform 100ms ease
+
+        &:hover
+            svg
+                transform translateX(5px)
 
     &__result
         box-sizing: border-box
         display: flex
-        background-color: #00b8db
+        background-color: #fff
         // background-image: url('https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/')
         background-repeat: no-repeat
-        background-position: 55% 50%
-        background-size: auto 100%
-        color: $colors.white
+        background-position: 75% 50%;
+        background-size: auto 215px;
         margin: 0 -15px 15px
         padding: 20px 15px
         height: 320px
@@ -313,7 +332,7 @@ $colors = {
 
     &__resultPoints
         font-size: 16px
-        color: #39D9F7
+        color: #751083;
         margin-bottom: 20px
 
     &__resultContent
@@ -332,20 +351,26 @@ $colors = {
         display: flex
         align-items: center
         cursor: pointer
-        color: #00FAFA
+        color: $colors.accent
         margin-top: auto
 
         svg
             margin-left: 8px
             pointer-events: none
 
-        &:hover
-            @media $mq.not_mobile
-                color: $colors.white
+    &__timer
+        position: absolute
+        display: inline-block
+        top: 30px
+        right: 30px
+        background #751083
+        color: #fff
+        font-size: 16px
+        font-weight: 900
+        padding 5px;
 
-                svg path
-                    @media $mq.not_mobile
-                        fill: $colors.white
+        &:empty
+            display: none
 
     .likely--custom
         display: flex
@@ -356,16 +381,18 @@ $colors = {
 
         .likely
             &__widget
+                button($colors.accent, $colors.accent)
                 height: 50px
                 min-width: 60px
-                border: 1px solid #00FAFA
-                background-color: transparent
-                border-radius: 2px
                 margin-right: 10px
                 display: flex
                 align-items: center
                 justify-content: center
-                color: #00FAFA
+                color: #fff
+                background transparent !important
+
+                &::before
+                    box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
 
                 &:last-child
                     margin-right: 0
@@ -374,13 +401,10 @@ $colors = {
                     @media $mq.not_mobile
                         padding: 0 20px
 
-                &:hover
-                    @media $mq.not_mobile
-                        border-color: $colors.white
-                        color: $colors.white
-
-                        svg
-                            fill: $colors.white
+            &__button,
+            &__icon,
+            &__counter
+                z-index 1
 
             &__button
                 @media $mq.mobile
@@ -393,7 +417,7 @@ $colors = {
                     display: block
                     width: 24px
                     height: @width
-                    fill: $colors.accent
+                    fill: #fff
 
                 &--vkontakte
                     svg
@@ -406,18 +430,19 @@ $colors = {
                         margin-left: -8px
 
     &[data-mode="start"]
+        &.Cipr
+            background-image url("https://leonardo-direct.osnova.io/0c4dbda8-0c91-ff73-78a7-f5a963e1f404/")
+            background-repeat no-repeat
+            background-position center 70%
+            background-size contain
+
         .Cipr
             &__counter
                 display: none
 
-            &__content
-                max-width: 270px
-
-                @media $mq.not_mobile
-                    max-width: 400px
-
-                @media $mq.desktop
-                    max-width: 460px
+            &__header
+                a
+                    margin-left: auto
 
             &__text
                 div
@@ -474,6 +499,10 @@ $colors = {
 
             &__button
                 height: auto
+                color: $colors.accent
+
+                &::before
+                    display: none
 
     &[data-mode="result"]
         @media $mq.not_mobile
@@ -500,7 +529,20 @@ $colors = {
                 @media $mq.tablet
                     padding: 0 40px
 
-            &__text,
+            &__text
+                background #751083;
+                color #fff
+                font-size: 20px
+                line-height: 1.5em
+                font-weight: 500
+                padding: 20px 30px;
+                display flex;
+
+                &-body
+                    margin-right: 30px
+                    p
+                        margin 10px 0
+
             &__resultContent
                 @media $mq.not_mobile
                     max-width: 580px
@@ -509,19 +551,11 @@ $colors = {
 
             &__button
                 width: 210px
-                border: 5px solid $colors.accent !important
-                color: $colors.black !important
                 display: flex
                 align-items: center
                 justify-content: center
-                margin: 20px auto 0
-
-                @media $mq.not_mobile
-                    margin-top: 30px
-
-                &:hover
-                    border-color: $colors.black !important
-                    color: $colors.black !important
+                margin: 0 auto auto
+                color: #fff
 
             &__title
                 margin-bottom: 20px

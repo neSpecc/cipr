@@ -27,7 +27,7 @@ if (isProduction) {
 } else {
     plugins.push(...[
         new BrowserSyncPlugin({
-            port: 3000,
+            port: 3040,
             server: {
                 baseDir: './'
             },
