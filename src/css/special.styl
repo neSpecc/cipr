@@ -30,6 +30,7 @@ button(borderColor = #111, backgroundColor = transparent)
         transform: skewX(-10deg)
 
 contentZone()
+    flex-basis 100%
     max-width: 580px
     margin 0 auto
 
@@ -43,8 +44,7 @@ contentZone()
     font-size: 16px
     line-height: 1.5em
     display: flex
-    flex-direction: column
-    padding: 0 0 30px
+    flex-flow: row wrap
     position: relative
     // z-index: 1
     overflow: hidden
@@ -54,7 +54,6 @@ contentZone()
         font-size: 18px
         min-height: 560px
         margin: auto
-        padding: 0 0 60px
 
     @media $mq.tablet
         max-width: 640px
@@ -66,57 +65,6 @@ contentZone()
     @media $mq.iphone5
         min-height: 560px
 
-    &__heart
-        width: 484px
-        height: 666px
-        background-image: url('https://leonardo.osnova.io/f5f4be9d-bd07-2bb1-5e23-8d43d08db800/')
-        background-repeat: no-repeat
-        background-size: contain
-        position: absolute
-        // top: -60px
-        bottom: 0
-        right: -315px
-        z-index: -1
-        transform-origin: 50% 50%
-        transform: rotate(40deg)
-        transition: transform 0.5s ease-in-out
-
-        @media $mq.desktop
-            display: none
-
-        @media $mq.mobile
-            transform: rotate(40deg) scale(0.75)
-            top: 20px
-            right: auto
-            left: 150px
-
-        &:before
-            content: ''
-            width: 434px
-            height: 348px
-            background-image: url('https://leonardo.osnova.io/3b659861-ba88-bafd-302d-53a42cce4848/')
-            background-repeat: no-repeat
-            background-size: contain
-            transform: rotate(-95deg)
-            position: absolute
-            top: 370px
-            left: -220px
-            transition: transform 0.5s ease-in-out
-
-        span
-            content: ''
-            width: 111px
-            height: 111px
-            background-image: url('https://leonardo.osnova.io/cb8e42cd-99db-02a0-5f4f-8a26c191d7f7/')
-            background-repeat: no-repeat
-            background-size: contain
-            position: absolute
-            z-index: 1
-            bottom: 160px
-            left: 158px
-            transform: rotate(-40deg)
-            animation: cipr_blink 3s infinite ease-in-out
-
     svg
         pointer-events: none
         fill: currentColor
@@ -124,7 +72,6 @@ contentZone()
     &__header
         contentZone()
         display: flex
-        align-items: center
         padding: 30px 0
 
         a
@@ -146,9 +93,9 @@ contentZone()
                 border-color: $colors.accent
 
     &__content
+        position: relative
         contentZone()
         box-sizing: content-box
-        flex: 1
         display: flex
         flex-direction: column
 
@@ -182,16 +129,12 @@ contentZone()
             border: 0 !important
 
     &__options
-        margin-bottom: 10px
         display: flex
         flex-direction: row
         align-items: flex-start
 
         @media $mq.mobile
             padding-right: 50px
-
-        @media $mq.tablet
-            margin-bottom: 80px
 
         &--disabled
             pointer-events: none
@@ -281,13 +224,14 @@ contentZone()
 
         @media $mq.not_mobile
             margin-top: auto
+            margin-bottom: 30px
 
     &__button
         button($colors.accent)
         display: block
         font-size: 20px
         font-weight: 700
-        margin: 0 auto
+        margin: 30px 0 0 0
         padding: 0
         cursor: pointer
         outline: 0
@@ -311,27 +255,18 @@ contentZone()
     &__result
         box-sizing: border-box
         display: flex
-        background-color: #fff
-        // background-image: url('https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/')
         background-repeat: no-repeat
         background-position: 75% 50%;
         background-size: auto 215px;
-        margin: 0 -15px 15px
-        padding: 20px 15px
+        padding: 30px 0;
         height: 320px
 
         @media $mq.not_mobile
-            padding: 30px
-            margin: 0 -30px 30px
             height: 413px
-            background-position: 50% 50%
-
-        @media $mq.tablet
-            padding: 30px 40px
-            margin: 0 -40px 30px
 
     &__resultPoints
-        font-size: 16px
+        font-size: 22px
+        font-weight: 900
         color: #751083;
         margin-bottom: 20px
 
@@ -353,24 +288,33 @@ contentZone()
         cursor: pointer
         color: $colors.accent
         margin-top: auto
+        font-size: 16px
+        font-weight: 700
 
         svg
             margin-left: 8px
             pointer-events: none
 
     &__timer
+        button(#751083, #751083)
         position: absolute
         display: inline-block
         top: 30px
         right: 30px
-        background #751083
         color: #fff
         font-size: 16px
         font-weight: 900
-        padding 5px;
+        padding 10px;
+        height: auto
+        line-height: initial
+
+        &-content
+            z-index: 1
+            position: relative
 
         &:empty
-            display: none
+            &::before
+                display: none
 
     .likely--custom
         display: flex
@@ -390,9 +334,18 @@ contentZone()
                 justify-content: center
                 color: #fff
                 background transparent !important
+                transition transform 100ms ease;
+                will-change: transform
 
                 &::before
+                    transition box-shadow 100ms ease;
                     box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
+
+                &:hover
+                    transform translateY(3px)
+
+                    &::before
+                        box-shadow: 0 4px 14px 0 rgba(121, 54, 68, 0.23);
 
                 &:last-child
                     margin-right: 0
@@ -437,7 +390,8 @@ contentZone()
             background-size contain
 
         .Cipr
-            &__counter
+            &__counter,
+            &__timer
                 display: none
 
             &__header
@@ -468,9 +422,12 @@ contentZone()
                     display: none
 
     &[data-mode="progress"]
-        &:before
-            transform-origin: 50% 50%
-            transform: translateX(70px) rotate(-5deg)
+        &.Cipr {
+            background-image url('/src/assets/progress-bg.png');
+            background-size auto 100%
+            background-position center center
+            background-repeat no-repeat
+        }
 
         .Cipr
             &__heart
@@ -483,65 +440,71 @@ contentZone()
                     transform: translate(15px, -110px) rotate(-75deg) scale(0.85)
 
             &__header
-                a
-                    display: none
+                display: none
+
+            &__content
+                padding 30px 0
 
             &__counter
                 width: 64px
 
             &__text
-                font-size: 22px
+                font-size: 28px
                 line-height: 1.4em
-                font-weight: 700
+                font-weight: 900
+                margin-bottom: 50px
 
-                @media $mq.not_mobile
+                @media $mq.mobile
                     font-size: 22px
 
             &__button
                 height: auto
                 color: $colors.accent
+                margin: 0 auto;
 
                 &::before
                     display: none
 
     &[data-mode="result"]
-        @media $mq.not_mobile
-            padding-bottom: 40px
-
-        &:before
-            display: none
+        &.Cipr {
+            background-image url('/src/assets/progress-bg.png');
+            background-size auto 100%
+            background-position center center
+            background-repeat no-repeat
+        }
 
         .Cipr
-            &__heart
+            &__heart,
+            &__timer
                 display: none
 
             &__header
                 display: none
 
             &__content
-                padding: 0 15px
                 max-width: none
 
                 @media $mq.not_mobile
                     box-sizing: content-box
-                    padding: 0 30px
 
-                @media $mq.tablet
-                    padding: 0 40px
 
             &__text
                 background #751083;
                 color #fff
-                font-size: 20px
-                line-height: 1.5em
                 font-weight: 500
                 padding: 20px 30px;
-                display flex;
+
+                &-content
+                    contentZone()
+                    display flex;
 
                 &-body
                     margin-right: 30px
-                    p
-                        margin 10px 0
+                    font-size: 20px
+                    line-height: 1.5em
+
+                    p:not(:last-of-type)
+                        margin-bottom 10px
 
             &__resultContent
                 @media $mq.not_mobile
@@ -550,11 +513,13 @@ contentZone()
                     margin-right: auto
 
             &__button
-                width: 210px
+                button($colors.accent)
+                padding: 0 20px;
                 display: flex
                 align-items: center
                 justify-content: center
-                margin: 0 auto auto
+                margin: 0 0 auto
+                font-size: 18px
                 color: #fff
 
             &__title
@@ -562,7 +527,8 @@ contentZone()
                 max-width: 320px
 
                 @media $mq.not_mobile
-                    font-size: 34px
+                    font-size: 30px
+                    font-weight: 900
                     margin-bottom: 30px
 
             &__text
@@ -601,10 +567,6 @@ contentZone()
 
                 &__title
                     font-size: 32px
-
-                &__result
-                    padding: 30px 40px
-                    margin: 0 -40px 30px
 
                 &__options
                     margin-bottom: 80px

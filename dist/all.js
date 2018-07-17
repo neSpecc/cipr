@@ -883,6 +883,7 @@ var Special = function (_BaseSpecial) {
         * @type {Element|null}
         */
         _this.timerWrapper = null;
+        _this.timerContent = null;
         return _this;
     }
 
@@ -945,12 +946,14 @@ var Special = function (_BaseSpecial) {
             this.makeHeader();
 
             this.timerWrapper = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer'));
+            this.timerContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer-content'));
 
             this.content.appendChild(this.mainText);
             this.content.appendChild(this.mainOptions);
             this.content.appendChild(this.mainActions);
             this.container.appendChild(this.content);
-            this.container.appendChild(this.timerWrapper);
+            this.timerWrapper.appendChild(this.timerContent);
+            this.content.appendChild(this.timerWrapper);
 
             this.makeIntro();
 
@@ -1188,18 +1191,26 @@ var Special = function (_BaseSpecial) {
 
             this.mainOptions.appendChild(message);
         }
+
+        /**
+         * @typedef {object} result
+         * @property {array} range - [1, 3]
+         * @property {string} title - 'Вы белка'
+         * @property {string} message - 'Вы набрали 2 очков за 15 секунд'
+         * @property {string} image  - 'adad.png'
+         */
+
+        /**
+         * @return {result}
+         */
+
     }, {
         key: 'findResult',
         value: function findResult() {
-            console.log('findResult');
             var results = _data2.default.results,
                 finalResult = null;
 
-            var timeRemaining = this.timerValue;
-
-            console.log('timeRemaining', timeRemaining);
-
-            this.restartTimer();
+            var secondsWasted = Math.floor(this.timerValue / 10);
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -1229,12 +1240,19 @@ var Special = function (_BaseSpecial) {
                 }
             }
 
+            finalResult.message = '\u042F \u0443\u0433\u0430\u0434\u0430\u043B ' + (0, _helper.declineWord)(this.userPoints, ['пару', 'пары', 'пар']) + ' \u0437\u0430 ' + (0, _helper.declineWord)(secondsWasted, ['секунду', 'секунды', 'секунд']);
+
             return finalResult;
         }
     }, {
         key: 'makeResult',
         value: function makeResult() {
+
+            /**
+             * @type {result}
+             */
             var data = this.findResult();
+            this.stopTimer();
 
             var result = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'result')),
                 resultContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultContent')),
@@ -1243,27 +1261,20 @@ var Special = function (_BaseSpecial) {
                 data: {
                     click: 'restart'
                 }
-            }),
-                button = (0, _dom.makeElement)('a', _bem2.default.set(CSS.main, 'button'), {
-                target: '_blank',
-                href: _data2.default.promoUrl
             });
 
             this.updateMode('result');
 
             result.style.backgroundImage = 'url(' + data.cover + ')';
 
-            this.mainText.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>';
+            this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">' + _data2.default.CTAText + '</a>\n            </div>\n        ';
             (0, _dom.removeChildren)(this.mainOptions);
             (0, _dom.removeChildren)(this.mainActions);
 
-            resultContent.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'resultPoints') + '">' + this.userPoints + ' \u0438\u0437 ' + this.totalLength + ' \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445 \u043E\u0442\u0432\u0435\u0442\u043E\u0432</div>\n            <div class="' + _bem2.default.set(CSS.main, 'title') + '">' + data.title + '</div>';
+            resultContent.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'resultPoints') + '">' + data.message + '</div>\n            <div class="' + _bem2.default.set(CSS.main, 'title') + '">' + data.title + '</div>';
             result.appendChild(resultContent);
             resultContent.appendChild(resultActions);
             (0, _dom.prepend)(this.content, result);
-
-            button.innerHTML = 'Купить билет';
-            this.mainText.appendChild(button);
 
             Share.make(resultActions, {
                 url: CONFIG.share.url + '/' + this.userPoints,
@@ -1317,6 +1328,7 @@ var Special = function (_BaseSpecial) {
         value: function stopTimer() {
             if (this.timer) {
                 window.clearInterval(this.timer);
+                this._timerValue = 0;
             }
         }
 
@@ -1331,7 +1343,7 @@ var Special = function (_BaseSpecial) {
 
             this.stopTimer();
 
-            window.setInterval(function () {
+            this.timer = window.setInterval(function () {
                 _this7.timerValue++;
             }, 100);
         }
@@ -1361,7 +1373,7 @@ var Special = function (_BaseSpecial) {
         key: 'timerValue',
         set: function set(val) {
             this._timerValue += 1;
-            this.timerWrapper.textContent = this.formatTime(this._timerValue);
+            this.timerContent.textContent = this.formatTime(this._timerValue);
         },
         get: function get() {
             return this._timerValue;
@@ -2436,6 +2448,7 @@ exports.default = {
     intro: 'Скоростной тест на скорость',
     outro: '<p>\u041D\u0435\u0432\u0430\u0436\u043D\u043E, \u043A\u0442\u043E \u0431\u044B\u0441\u0442\u0440\u0435\u0435 \u0438\u0437 \u044D\u0442\u0438\u0445 \u0434\u0432\u0443\u0445. \u0412\u0430\u0436\u043D\u043E, \u0447\u0442\u043E\u0431\u044B \u0431\u044B\u0441\u0442\u0440\u044B\u043C \u0431\u044B\u043B \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442.</p> \n            <p>\u041C\u0435\u0433\u0430\u0444\u043E\u043D \u2014 \u0441\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 4G+ \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438. \u041F\u043E\u0431\u0435\u0434\u0438\u0442\u0435\u043B\u044C \u043F\u0440\u0435\u043C\u0438\u0438 Speedtest Awards 2017.</p>\n    ',
     promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
+    CTAText: 'Подключить',
     questions: [{
         text: '',
         options: [{

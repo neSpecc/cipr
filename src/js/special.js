@@ -53,7 +53,8 @@ import {
 
 import {
     preloadImages,
-    scrollToElement
+    scrollToElement,
+    declineWord
 } from './lib/helper';
 
 /**
@@ -99,6 +100,7 @@ class Special extends BaseSpecial {
         * @type {Element|null}
         */
         this.timerWrapper = null;
+        this.timerContent = null;
     }
 
     init(params = {}, data = {}) {
@@ -147,12 +149,14 @@ class Special extends BaseSpecial {
         this.makeHeader();
 
         this.timerWrapper = makeElement('div', Bem.set(CSS.main, 'timer'));
+        this.timerContent = makeElement('div', Bem.set(CSS.main, 'timer-content'));
 
         this.content.appendChild(this.mainText);
         this.content.appendChild(this.mainOptions);
         this.content.appendChild(this.mainActions);
         this.container.appendChild(this.content);
-        this.container.appendChild(this.timerWrapper);
+        this.timerWrapper.appendChild(this.timerContent);
+        this.content.appendChild(this.timerWrapper);
 
         this.makeIntro();
 
@@ -381,16 +385,22 @@ class Special extends BaseSpecial {
         this.mainOptions.appendChild(message);
     }
 
+    /**
+     * @typedef {object} result
+     * @property {array} range - [1, 3]
+     * @property {string} title - 'Вы белка'
+     * @property {string} message - 'Вы набрали 2 очков за 15 секунд'
+     * @property {string} image  - 'adad.png'
+     */
+
+    /**
+     * @return {result}
+     */
     findResult() {
-        console.log('findResult')
         let results = Data.results,
             finalResult = null;
 
-        let timeRemaining = this.timerValue;
-
-        console.log('timeRemaining', timeRemaining);
-
-        this.restartTimer()
+        let secondsWasted = Math.floor(this.timerValue / 10);
 
         for (let result of results) {
             if (this.userPoints >= result.range[0] && this.userPoints <= result.range[1]) {
@@ -399,11 +409,18 @@ class Special extends BaseSpecial {
             }
         }
 
+        finalResult.message =`Я угадал ${declineWord(this.userPoints, ['пару','пары','пар'])} за ${declineWord(secondsWasted, ['секунду', 'секунды', 'секунд'])}`;
+
         return finalResult;
     }
 
     makeResult() {
+
+        /**
+         * @type {result}
+         */
         let data = this.findResult();
+        this.stopTimer();
 
         let result = makeElement('div', Bem.set(CSS.main, 'result')),
             resultContent = makeElement('div', Bem.set(CSS.main, 'resultContent')),
@@ -412,28 +429,27 @@ class Special extends BaseSpecial {
                 data: {
                     click: 'restart'
                 }
-            }),
-            button = makeElement('a', Bem.set(CSS.main, 'button'), {
-                target: '_blank',
-                href: Data.promoUrl
             });
 
         this.updateMode('result');
 
         result.style.backgroundImage = `url(${data.cover})`;
 
-        this.mainText.innerHTML = `<div class="${Bem.set(CSS.main, 'text-body')}">${Data.outro}</div>`;
+        this.mainText.innerHTML = `
+            <div class="${Bem.set(CSS.main, 'text-content')}">
+                <div class="${Bem.set(CSS.main, 'text-body')}">${Data.outro}</div>\
+                <a class="${Bem.set(CSS.main, 'button')}" href="${Data.promoUrl}" target="_blank">${Data.CTAText}</a>
+            </div>
+        `;
         removeChildren(this.mainOptions);
         removeChildren(this.mainActions);
 
-        resultContent.innerHTML = `<div class="${Bem.set(CSS.main, 'resultPoints')}">${this.userPoints} из ${this.totalLength} правильных ответов</div>
+        resultContent.innerHTML = `<div class="${Bem.set(CSS.main, 'resultPoints')}">${data.message}</div>
             <div class="${Bem.set(CSS.main, 'title')}">${data.title}</div>`;
         result.appendChild(resultContent);
         resultContent.appendChild(resultActions);
         prepend(this.content, result);
 
-        button.innerHTML = 'Купить билет';
-        this.mainText.appendChild(button);
 
         Share.make(resultActions, {
             url: `${CONFIG.share.url}/${this.userPoints}`,
@@ -478,7 +494,7 @@ class Special extends BaseSpecial {
 
     set timerValue (val){
         this._timerValue += 1;
-        this.timerWrapper.textContent = this.formatTime(this._timerValue);
+        this.timerContent.textContent = this.formatTime(this._timerValue);
     }
 
     get timerValue (){
@@ -491,6 +507,7 @@ class Special extends BaseSpecial {
     stopTimer(){
         if (this.timer){
             window.clearInterval(this.timer);
+            this._timerValue = 0;
         }
     }
 
@@ -500,7 +517,7 @@ class Special extends BaseSpecial {
     restartTimer(){
         this.stopTimer();
 
-        window.setInterval(() => {
+        this.timer = window.setInterval(() => {
             this.timerValue++;
         }, 100)
     }

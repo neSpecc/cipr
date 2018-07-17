@@ -5,6 +5,7 @@ export default {
             <p>Мегафон — самый быстрый 4G+ интернет в России. Победитель премии Speedtest Awards 2017.</p>
     `,
     promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
+    CTAText: 'Подключить',
     questions: [
         {
             text: '',
