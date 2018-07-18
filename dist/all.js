@@ -501,8 +501,8 @@ var sendEvent = exports.sendEvent = function sendEvent(label) {
 
 
 module.exports = {
-    name: 'CiprTest',
-    analyticsCategory: 'Cipr Test',
+    name: 'MegafonTest',
+    analyticsCategory: 'Megafon Test',
     sendPageview: false,
     listenedEvents: ['click']
 };
@@ -1360,6 +1360,7 @@ var Special = function (_BaseSpecial) {
             this.updateMode('progress');
 
             (0, _dom.removeChildren)(this.content);
+            this.content.appendChild(this.timerWrapper);
             this.content.appendChild(this.mainText);
             this.content.appendChild(this.mainOptions);
             this.content.appendChild(this.mainActions);

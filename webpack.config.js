@@ -28,10 +28,11 @@ if (isProduction) {
     plugins.push(...[
         new BrowserSyncPlugin({
             port: 3040,
+            host: '0.0.0.0',
             server: {
                 baseDir: './'
             },
-            https: true,
+            https: false,
             ghostMode: false,
             notify: false,
             scrollProportionally: false,

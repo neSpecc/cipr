@@ -532,6 +532,7 @@ class Special extends BaseSpecial {
         this.updateMode('progress');
 
         removeChildren(this.content);
+        this.content.appendChild(this.timerWrapper);
         this.content.appendChild(this.mainText);
         this.content.appendChild(this.mainOptions);
         this.content.appendChild(this.mainActions);
