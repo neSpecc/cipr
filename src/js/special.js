@@ -66,7 +66,7 @@ const CSS = {
     state: {
         active: 'l-active'
     },
-    main: 'Cipr',
+    main: 'MegafonSpeed',
 };
 
 const EL = {};
@@ -80,6 +80,8 @@ class Special extends BaseSpecial {
         super();
 
         this.css = params.css;
+        this.staticURL = params.staticURL;
+
         this.setDefaultValues();
 
         /**
@@ -267,6 +269,10 @@ class Special extends BaseSpecial {
             if (isMobile()) scrollToElement(this.container);
 
             Analytics.sendEvent(`Question ${this.activeIndex + 1} screen`, 'Hit');
+
+            if (Data.questions[this.activeIndex + 1]){
+                preloadImages(Data.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
+            }
         } else {
             throw new Error('Missing question data');
         }
@@ -288,7 +294,7 @@ class Special extends BaseSpecial {
             });
 
             let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
-                src: `/src/assets/${option.img}`,
+                src: this.staticURL + option.img,
                 data: {
                     id: option.id
                 }
@@ -309,6 +315,12 @@ class Special extends BaseSpecial {
             }
 
             this.messages[option.id] = option.message;
+
+            preloadImages([
+                this.staticURL + option.imgCorrect,
+                this.staticURL + option.imgWrong,
+                this.staticURL + option.imgDisabled
+            ]);
         });
 
     }
@@ -334,13 +346,13 @@ class Special extends BaseSpecial {
                 // clicked image
                 if (id === imageId){
                     if (id === this.activeCorrectId){
-                      img.src = '/src/assets/' + currentQuestion.options[index].imgCorrect;
+                      img.src = this.staticURL + currentQuestion.options[index].imgCorrect;
                     } else {
-                      img.src = '/src/assets/' + currentQuestion.options[index].imgWrong;
+                      img.src = this.staticURL + currentQuestion.options[index].imgWrong;
                     }
                 // second image
                 } else {
-                  img.src = '/src/assets/' + currentQuestion.options[index].imgDisabled;
+                  img.src = this.staticURL + currentQuestion.options[index].imgDisabled;
                 }
 
                 let messageOverlay = makeElement('div', Bem.set(CSS.main, 'option-overlay'), {
@@ -366,7 +378,7 @@ class Special extends BaseSpecial {
                 this.makeActionButton('Результат', 'makeResult');
 
                 preloadImages([
-                    this.findResult().cover
+                    this.staticURL + this.findResult().cover
                 ]);
             } else {
                 this.makeActionButton('Продолжить', 'makeQuestion');
@@ -433,7 +445,7 @@ class Special extends BaseSpecial {
 
         this.updateMode('result');
 
-        result.style.backgroundImage = `url(${data.cover})`;
+        result.style.backgroundImage = `url(${this.staticURL + data.cover})`;
 
         this.mainText.innerHTML = `
             <div class="${Bem.set(CSS.main, 'text-content')}">

@@ -37,11 +37,12 @@ contentZone()
     @media $mq.mobile
         padding 0 15px
 
-.Cipr
+.MegafonSpeed
     width: 100%
     max-width: 1060px
     margin: 0 auto
     background-color: $colors.white
+    font-family Roboto, Helvetica, Arial
     color: $colors.black
     font-size: 16px
     line-height: 1.5em
@@ -137,7 +138,7 @@ contentZone()
         &--disabled
             pointer-events: none
 
-            .Cipr__option
+            .MegafonSpeed__option
                 //display: none
 
                 &--success,
@@ -147,7 +148,7 @@ contentZone()
                 &--error
                     border-color: $colors.pink
 
-                    ~ .Cipr__message
+                    ~ .MegafonSpeed__message
                         a
                             border-bottom-color: $colors.pink !important
 
@@ -406,7 +407,7 @@ contentZone()
                         margin-left: -8px
 
     &[data-mode="start"]
-        &.Cipr
+        &.MegafonSpeed
             background-image url("https://leonardo-direct.osnova.io/0c4dbda8-0c91-ff73-78a7-f5a963e1f404/")
             background-repeat no-repeat
             background-position center 70%
@@ -415,7 +416,7 @@ contentZone()
             @media $mq.mobile
                 background-size: auto 60%;
 
-        .Cipr
+        .MegafonSpeed
             &__counter,
             &__timer
                 display: none
@@ -448,14 +449,14 @@ contentZone()
                     display: none
 
     &[data-mode="progress"]
-        &.Cipr {
-            background-image url('/src/assets/progress-bg.png');
+        &.MegafonSpeed {
+            background-image url('https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/');
             background-size auto 100%
             background-position center center
             background-repeat no-repeat
         }
 
-        .Cipr
+        .MegafonSpeed
             &__heart
                 transform: rotate(73deg) scale(1.49) translate(320px, 140px)
 
@@ -493,14 +494,14 @@ contentZone()
                     display: none
 
     &[data-mode="result"]
-        &.Cipr {
-            background-image url('/src/assets/progress-bg.png');
+        &.MegafonSpeed {
+            background-image url('https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/');
             background-size auto 100%
             background-position center center
             background-repeat no-repeat
         }
 
-        .Cipr
+        .MegafonSpeed
             &__heart,
             &__timer
                 display: none
@@ -597,7 +598,7 @@ contentZone()
             &:before
                 display: none
 
-            .Cipr
+            .MegafonSpeed
                 &__heart
                     display: block
 
@@ -614,11 +615,11 @@ contentZone()
                     margin-bottom: 80px
 
             &[data-mode="start"]
-                .Cipr
+                .MegafonSpeed
                     &__content
                         max-width: 400px
 
             &[data-mode="result"]
-                .Cipr
+                .MegafonSpeed
                     &__content
                         padding: 0 40px

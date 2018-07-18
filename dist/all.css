@@ -54,11 +54,12 @@
     opacity: 0;
   }
 }
-.Cipr {
+.MegafonSpeed {
   width: 100%;
   max-width: 1060px;
   margin: 0 auto;
   background-color: #fff;
+  font-family: Roboto, Helvetica, Arial;
   color: #000;
   font-size: 16px;
   line-height: 1.5em;
@@ -71,26 +72,26 @@
   outline: 0;
 }
 @media (min-width: 680px) {
-  .Cipr {
+  .MegafonSpeed {
     font-size: 18px;
     margin: auto;
   }
 }
 @media (min-width: 680px) and (max-width: 1023px) {
-  .Cipr {
+  .MegafonSpeed {
     max-width: 640px;
   }
 }
 @media (min-width: 1024px) {
-  .Cipr {
+  .MegafonSpeed {
     overflow: visible;
   }
 }
-.Cipr svg {
+.MegafonSpeed svg {
   pointer-events: none;
   fill: currentColor;
 }
-.Cipr__header {
+.MegafonSpeed__header {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   max-width: 580px;
@@ -100,25 +101,25 @@
   padding: 30px 0;
 }
 @media (max-width: 679px) {
-  .Cipr__header {
+  .MegafonSpeed__header {
     padding: 0 15px;
   }
 }
 @media (max-width: 679px) {
-  .Cipr__header {
+  .MegafonSpeed__header {
     padding-top: 15px;
   }
 }
-.Cipr__header a {
+.MegafonSpeed__header a {
   border: 0 !important;
   color: inherit !important;
 }
-.Cipr__counter {
+.MegafonSpeed__counter {
   display: -ms-flexbox;
   display: flex;
   animation: cipr_appear 0.3s ease-in-out;
 }
-.Cipr__counter span {
+.MegafonSpeed__counter span {
   width: 10px;
   height: 10px;
   border: 2px solid #cae9e9;
@@ -126,10 +127,10 @@
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
-.Cipr__counter span.active {
+.MegafonSpeed__counter span.active {
   border-color: #00b856;
 }
-.Cipr__content {
+.MegafonSpeed__content {
   position: relative;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
@@ -143,44 +144,44 @@
   min-height: 500px;
 }
 @media (max-width: 679px) {
-  .Cipr__content {
+  .MegafonSpeed__content {
     padding: 0 15px;
   }
 }
-.Cipr__text {
+.MegafonSpeed__text {
   margin-bottom: 20px;
 }
-.Cipr__text div {
+.MegafonSpeed__text div {
   animation: cipr_appear 0.3s ease-in-out;
 }
-.Cipr__text span {
+.MegafonSpeed__text span {
   display: block;
   height: 1em;
 }
-.Cipr__text strong {
+.MegafonSpeed__text strong {
   font-weight: 700;
 }
-.Cipr__title {
+.MegafonSpeed__title {
   font-size: 28px;
   line-height: 1.3em;
   font-weight: 700;
   margin-bottom: 10px;
 }
 @media (min-width: 680px) and (max-width: 1023px) {
-  .Cipr__title {
+  .MegafonSpeed__title {
     font-size: 32px;
   }
 }
 @media (min-width: 1024px) {
-  .Cipr__title {
+  .MegafonSpeed__title {
     font-size: 38px;
   }
 }
-.Cipr__title a {
+.MegafonSpeed__title a {
   color: inherit !important;
   border: 0 !important;
 }
-.Cipr__options {
+.MegafonSpeed__options {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
@@ -188,24 +189,24 @@
   -ms-flex-align: start;
       align-items: flex-start;
 }
-.Cipr__options--disabled {
+.MegafonSpeed__options--disabled {
   pointer-events: none;
 }
-.Cipr__options--disabled .Cipr__option--success,
-.Cipr__options--disabled .Cipr__option--error {
+.MegafonSpeed__options--disabled .MegafonSpeed__option--success,
+.MegafonSpeed__options--disabled .MegafonSpeed__option--error {
   display: -ms-flexbox;
   display: flex;
 }
-.Cipr__options--disabled .Cipr__option--error {
+.MegafonSpeed__options--disabled .MegafonSpeed__option--error {
   border-color: #f22966;
 }
-.Cipr__options--disabled .Cipr__option--error ~ .Cipr__message a {
+.MegafonSpeed__options--disabled .MegafonSpeed__option--error ~ .MegafonSpeed__message a {
   border-bottom-color: #f22966 !important;
 }
-.Cipr__options--disabled .Cipr__option--error ~ .Cipr__message a:hover {
+.MegafonSpeed__options--disabled .MegafonSpeed__option--error ~ .MegafonSpeed__message a:hover {
   color: #f22966 !important;
 }
-.Cipr__option {
+.MegafonSpeed__option {
   position: relative;
   cursor: pointer;
   display: -ms-flexbox;
@@ -220,25 +221,25 @@
   font-size: 16px;
   text-align: center;
 }
-.Cipr__option:not(:last-of-type) {
+.MegafonSpeed__option:not(:last-of-type) {
   margin-right: 25px;
 }
 @media (max-width: 679px) {
-  .Cipr__option {
+  .MegafonSpeed__option {
     font-size: 14px;
     margin: 0 auto 10px;
   }
 }
-.Cipr__option-image {
+.MegafonSpeed__option-image {
   max-height: 220px;
   margin-bottom: 15px;
 }
 @media (max-width: 679px) {
-  .Cipr__option-image {
+  .MegafonSpeed__option-image {
     max-height: 100px;
   }
 }
-.Cipr__option-overlay {
+.MegafonSpeed__option-overlay {
   position: absolute;
   font-size: 30px;
   font-weight: 900;
@@ -249,12 +250,12 @@
   color: #fff;
 }
 @media (max-width: 679px) {
-  .Cipr__option-overlay {
+  .MegafonSpeed__option-overlay {
     font-size: 16px;
     top: 36%;
   }
 }
-.Cipr__option-overlay i {
+.MegafonSpeed__option-overlay i {
   display: block;
   margin: 0 auto 15px;
   width: 48px;
@@ -262,46 +263,46 @@
   background: url("data:image/svg+xml,%3Csvg width='49' height='31' viewBox='0 0 49 31' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M28.82 23.268a1.387 1.387 0 0 0-.156-.527L17.46 1.6a1.463 1.463 0 0 0-1.753-.688 1.42 1.42 0 0 0-.953 1.602l4.366 23.442c.034.186.106.353.205.505.042.2.093.4.162.6.704 2.005 2.627 3.357 4.786 3.357a5.11 5.11 0 0 0 1.642-.27 4.994 4.994 0 0 0 2.903-2.517 4.859 4.859 0 0 0 .001-4.363zm-4.546-20.82c-.798 0-1.445.635-1.445 1.419 0 .783.647 1.42 1.445 1.42 11.521 0 20.892 9.209 20.892 20.527 0 .783.65 1.42 1.447 1.42.8 0 1.446-.637 1.446-1.42 0-12.886-10.67-23.366-23.785-23.366zM9.328 7.636C3.712 12.099.49 18.724.49 25.814c0 .783.647 1.42 1.446 1.42.8 0 1.447-.637 1.447-1.42 0-6.228 2.83-12.048 7.764-15.969a1.403 1.403 0 0 0 .215-1.997 1.466 1.466 0 0 0-2.034-.212z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E") no-repeat;
 }
 @media (max-width: 679px) {
-  .Cipr__option-overlay i {
+  .MegafonSpeed__option-overlay i {
     width: 34px;
     height: 20px;
     background-size: auto 20px;
     margin-bottom: 5px;
   }
 }
-.Cipr__message {
+.MegafonSpeed__message {
   margin-top: 10px;
   pointer-events: auto;
   animation: cipr_appear 0.3s ease-in-out;
   max-width: 480px;
 }
 @media (min-width: 680px) {
-  .Cipr__message {
+  .MegafonSpeed__message {
     font-size: 16px;
     line-height: 1.5em;
     margin-top: 15px;
   }
 }
-.Cipr__message a {
+.MegafonSpeed__message a {
   color: inherit !important;
   font-weight: 700;
   border-bottom: 2px solid #00b856 !important;
   padding-bottom: 2px;
 }
-.Cipr__message a:hover {
+.MegafonSpeed__message a:hover {
   color: #00b856 !important;
 }
-.Cipr__message span {
+.MegafonSpeed__message span {
   display: block;
   height: 1em;
 }
-.Cipr__actions {
+.MegafonSpeed__actions {
   display: -ms-flexbox;
   display: flex;
   margin-top: auto;
   margin-bottom: 30px;
 }
-.Cipr__button {
+.MegafonSpeed__button {
   position: relative;
   height: 56px;
   line-height: 56px;
@@ -319,7 +320,7 @@
   animation: cipr_appear 0.3s ease-in-out;
   color: #000;
 }
-.Cipr__button::before {
+.MegafonSpeed__button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -330,17 +331,17 @@
   background-color: transparent;
   transform: skewX(-10deg);
 }
-.Cipr__button svg {
+.MegafonSpeed__button svg {
   display: inline-block;
   vertical-align: middle;
   margin-left: 15px;
   margin-top: -4px;
   transition: transform 100ms ease;
 }
-.Cipr__button:hover svg {
+.MegafonSpeed__button:hover svg {
   transform: translateX(5px);
 }
-.Cipr__result {
+.MegafonSpeed__result {
   box-sizing: border-box;
   display: -ms-flexbox;
   display: flex;
@@ -351,22 +352,22 @@
   height: 320px;
 }
 @media (min-width: 680px) {
-  .Cipr__result {
+  .MegafonSpeed__result {
     height: 413px;
   }
 }
-.Cipr__resultPoints {
+.MegafonSpeed__resultPoints {
   font-size: 22px;
   font-weight: 900;
   color: #751083;
   margin-bottom: 20px;
 }
 @media (max-width: 679px) {
-  .Cipr__resultPoints {
+  .MegafonSpeed__resultPoints {
     font-size: 16px;
   }
 }
-.Cipr__resultContent {
+.MegafonSpeed__resultContent {
   -ms-flex: 1;
       flex: 1;
   display: -ms-flexbox;
@@ -376,7 +377,7 @@
   position: relative;
   animation: cipr_appear 0.3s ease-in-out;
 }
-.Cipr__resultActions {
+.MegafonSpeed__resultActions {
   -ms-flex: 1;
       flex: 1;
   display: -ms-flexbox;
@@ -384,7 +385,7 @@
   -ms-flex-direction: column;
       flex-direction: column;
 }
-.Cipr__restartButton {
+.MegafonSpeed__restartButton {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -396,15 +397,15 @@
   font-weight: 700;
 }
 @media (max-width: 679px) {
-  .Cipr__restartButton {
+  .MegafonSpeed__restartButton {
     margin-top: 15px;
   }
 }
-.Cipr__restartButton svg {
+.MegafonSpeed__restartButton svg {
   margin-left: 8px;
   pointer-events: none;
 }
-.Cipr__timer {
+.MegafonSpeed__timer {
   position: relative;
   height: 56px;
   line-height: 56px;
@@ -420,7 +421,7 @@
   height: auto;
   line-height: initial;
 }
-.Cipr__timer::before {
+.MegafonSpeed__timer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -432,31 +433,31 @@
   transform: skewX(-10deg);
 }
 @media (max-width: 679px) {
-  .Cipr__timer {
+  .MegafonSpeed__timer {
     top: 15px;
     right: 15px;
     font-size: 13px;
     padding: 6px;
   }
 }
-.Cipr__timer-content {
+.MegafonSpeed__timer-content {
   z-index: 1;
   position: relative;
 }
-.Cipr__timer:empty::before {
+.MegafonSpeed__timer:empty::before {
   display: none;
 }
-.Cipr .likely--custom {
+.MegafonSpeed .likely--custom {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
 }
 @media (min-width: 680px) {
-  .Cipr .likely--custom {
+  .MegafonSpeed .likely--custom {
     margin-bottom: 60px;
   }
 }
-.Cipr .likely--custom .likely__widget {
+.MegafonSpeed .likely--custom .likely__widget {
   position: relative;
   height: 56px;
   line-height: 56px;
@@ -475,7 +476,7 @@
   transition: transform 100ms ease;
   will-change: transform;
 }
-.Cipr .likely--custom .likely__widget::before {
+.MegafonSpeed .likely--custom .likely__widget::before {
   content: '';
   position: absolute;
   top: 0;
@@ -486,176 +487,176 @@
   background-color: #00b856;
   transform: skewX(-10deg);
 }
-.Cipr .likely--custom .likely__widget::before {
+.MegafonSpeed .likely--custom .likely__widget::before {
   transition: box-shadow 100ms ease;
   box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
 }
-.Cipr .likely--custom .likely__widget:hover {
+.MegafonSpeed .likely--custom .likely__widget:hover {
   transform: translateY(3px);
 }
-.Cipr .likely--custom .likely__widget:hover::before {
+.MegafonSpeed .likely--custom .likely__widget:hover::before {
   box-shadow: 0 4px 14px 0 rgba(121,54,68,0.23);
 }
-.Cipr .likely--custom .likely__widget:last-child {
+.MegafonSpeed .likely--custom .likely__widget:last-child {
   margin-right: 0;
 }
 @media (min-width: 680px) {
-  .Cipr .likely--custom .likely__widget--facebook {
+  .MegafonSpeed .likely--custom .likely__widget--facebook {
     padding: 0 20px;
   }
 }
-.Cipr .likely--custom .likely__button,
-.Cipr .likely--custom .likely__icon,
-.Cipr .likely--custom .likely__counter {
+.MegafonSpeed .likely--custom .likely__button,
+.MegafonSpeed .likely--custom .likely__icon,
+.MegafonSpeed .likely--custom .likely__counter {
   z-index: 1;
 }
 @media (max-width: 679px) {
-  .Cipr .likely--custom .likely__button {
+  .MegafonSpeed .likely--custom .likely__button {
     display: none;
   }
 }
-.Cipr .likely--custom .likely__icon {
+.MegafonSpeed .likely--custom .likely__icon {
   background-color: transparent;
 }
-.Cipr .likely--custom .likely__icon svg {
+.MegafonSpeed .likely--custom .likely__icon svg {
   display: block;
   width: 24px;
   height: 24px;
   fill: #fff;
 }
-.Cipr .likely--custom .likely__icon--vkontakte svg {
+.MegafonSpeed .likely--custom .likely__icon--vkontakte svg {
   width: 28px;
   height: 28px;
 }
 @media (min-width: 680px) {
-  .Cipr .likely--custom .likely__icon--facebook {
+  .MegafonSpeed .likely--custom .likely__icon--facebook {
     margin-right: 6px;
     margin-left: -8px;
   }
 }
-.Cipr[data-mode="start"].Cipr {
+.MegafonSpeed[data-mode="start"].MegafonSpeed {
   background-image: url("https://leonardo-direct.osnova.io/0c4dbda8-0c91-ff73-78a7-f5a963e1f404/");
   background-repeat: no-repeat;
   background-position: center 70%;
   background-size: contain;
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="start"].Cipr {
+  .MegafonSpeed[data-mode="start"].MegafonSpeed {
     background-size: auto 60%;
   }
 }
-.Cipr[data-mode="start"] .Cipr__counter,
-.Cipr[data-mode="start"] .Cipr__timer {
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__counter,
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__timer {
   display: none;
 }
-.Cipr[data-mode="start"] .Cipr__header a {
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__header a {
   margin-left: auto;
 }
-.Cipr[data-mode="start"] .Cipr__text div {
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__text div {
   animation: none;
 }
 @media (min-width: 680px) {
-  .Cipr[data-mode="start"] .Cipr__text {
+  .MegafonSpeed[data-mode="start"] .MegafonSpeed__text {
     font-size: 18px;
     line-height: 1.5em;
   }
 }
-.Cipr[data-mode="start"] .Cipr__actions {
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__actions {
   -ms-flex-direction: row;
       flex-direction: row;
 }
-.Cipr[data-mode="start"] .Cipr__button {
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__button {
   border-color: #00b856;
   width: 146px;
   animation: none;
 }
-.Cipr[data-mode="start"] .Cipr__button:hover {
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__button:hover {
   border-color: #000;
   color: #000 !important;
 }
-.Cipr[data-mode="start"] .Cipr__button svg {
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__button svg {
   display: none;
 }
-.Cipr[data-mode="progress"].Cipr {
-  background-image: url("/src/assets/progress-bg.png");
+.MegafonSpeed[data-mode="progress"].MegafonSpeed {
+  background-image: url("https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/");
   background-size: auto 100%;
   background-position: center center;
   background-repeat: no-repeat;
 }
-.Cipr[data-mode="progress"] .Cipr__heart {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__heart {
   transform: rotate(73deg) scale(1.49) translate(320px, 140px);
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="progress"] .Cipr__heart {
+  .MegafonSpeed[data-mode="progress"] .MegafonSpeed__heart {
     transform: rotate(20deg) scale(0.75) translate(100px, -200px);
   }
 }
-.Cipr[data-mode="progress"] .Cipr__heart:before {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__heart:before {
   transform: translate(15px, -110px) rotate(-75deg) scale(0.85);
 }
-.Cipr[data-mode="progress"] .Cipr__header {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__header {
   display: none;
 }
-.Cipr[data-mode="progress"] .Cipr__content {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__content {
   padding-top: 30px;
 }
-.Cipr[data-mode="progress"] .Cipr__counter {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__counter {
   width: 64px;
 }
-.Cipr[data-mode="progress"] .Cipr__text {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__text {
   font-size: 28px;
   line-height: 1.4em;
   font-weight: 900;
   margin-bottom: 50px;
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="progress"] .Cipr__text {
+  .MegafonSpeed[data-mode="progress"] .MegafonSpeed__text {
     font-size: 22px;
     padding-right: 90px;
   }
 }
-.Cipr[data-mode="progress"] .Cipr__button {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__button {
   height: auto;
   color: #00b856;
   margin: 0 auto;
 }
-.Cipr[data-mode="progress"] .Cipr__button::before {
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__button::before {
   display: none;
 }
-.Cipr[data-mode="result"].Cipr {
-  background-image: url("/src/assets/progress-bg.png");
+.MegafonSpeed[data-mode="result"].MegafonSpeed {
+  background-image: url("https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/");
   background-size: auto 100%;
   background-position: center center;
   background-repeat: no-repeat;
 }
-.Cipr[data-mode="result"] .Cipr__heart,
-.Cipr[data-mode="result"] .Cipr__timer {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__heart,
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__timer {
   display: none;
 }
-.Cipr[data-mode="result"] .Cipr__header {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__header {
   display: none;
 }
-.Cipr[data-mode="result"] .Cipr__content {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__content {
   max-width: none;
 }
 @media (min-width: 680px) {
-  .Cipr[data-mode="result"] .Cipr__content {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__content {
     box-sizing: content-box;
   }
 }
-.Cipr[data-mode="result"] .Cipr__text {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__text {
   background: #751083;
   color: #fff;
   font-weight: 500;
   padding: 20px 30px;
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="result"] .Cipr__text {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__text {
     margin: 0 -15px;
     padding: 15px;
   }
 }
-.Cipr[data-mode="result"] .Cipr__text-content {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__text-content {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   max-width: 580px;
@@ -664,41 +665,41 @@
   display: flex;
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="result"] .Cipr__text-content {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__text-content {
     padding: 0 15px;
   }
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="result"] .Cipr__text-content {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__text-content {
     padding-left: 0 !important;
     padding-right: 0 !important;
     -ms-flex-direction: column;
         flex-direction: column;
   }
 }
-.Cipr[data-mode="result"] .Cipr__text-body {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__text-body {
   margin-right: 30px;
   font-size: 20px;
   line-height: 1.5em;
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="result"] .Cipr__text-body {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__text-body {
     font-size: 15px;
     margin-left: 0;
     padding-bottom: 15px;
   }
 }
-.Cipr[data-mode="result"] .Cipr__text-body p:not(:last-of-type) {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__text-body p:not(:last-of-type) {
   margin-bottom: 10px;
 }
 @media (min-width: 680px) {
-  .Cipr[data-mode="result"] .Cipr__resultContent {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__resultContent {
     max-width: 580px;
     margin-left: auto;
     margin-right: auto;
   }
 }
-.Cipr[data-mode="result"] .Cipr__button {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__button {
   position: relative;
   height: 56px;
   line-height: 56px;
@@ -714,7 +715,7 @@
   font-size: 18px;
   color: #fff;
 }
-.Cipr[data-mode="result"] .Cipr__button::before {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -725,64 +726,64 @@
   background-color: transparent;
   transform: skewX(-10deg);
 }
-.Cipr[data-mode="result"] .Cipr__title {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__title {
   max-width: 320px;
   font-size: 30px;
   font-weight: 900;
   margin-bottom: 30px;
 }
 @media (max-width: 679px) {
-  .Cipr[data-mode="result"] .Cipr__title {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__title {
     margin-bottom: 15px;
     font-size: 23px;
   }
 }
-.Cipr[data-mode="result"] .Cipr__text {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__text {
   margin-bottom: 0;
 }
 @media (min-width: 680px) {
-  .Cipr[data-mode="result"] .Cipr__text {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__text {
     font-size: 16px;
     line-height: 1.5em;
   }
 }
-.Cipr[data-mode="result"] .Cipr__options,
-.Cipr[data-mode="result"] .Cipr__actions {
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__options,
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__actions {
   display: none;
 }
-.Cipr--compact {
+.MegafonSpeed--compact {
   overflow: hidden;
   border: 0;
   background-color: #fff;
   z-index: 1;
 }
 @media (min-width: 680px) {
-  .Cipr--compact {
+  .MegafonSpeed--compact {
     max-width: 640px;
     min-height: 620px;
   }
-  .Cipr--compact:before {
+  .MegafonSpeed--compact:before {
     display: none;
   }
-  .Cipr--compact .Cipr__heart {
+  .MegafonSpeed--compact .MegafonSpeed__heart {
     display: block;
   }
-  .Cipr--compact .Cipr__header {
+  .MegafonSpeed--compact .MegafonSpeed__header {
     padding: 35px 40px;
   }
-  .Cipr--compact .Cipr__content {
+  .MegafonSpeed--compact .MegafonSpeed__content {
     padding: 0 40px;
   }
-  .Cipr--compact .Cipr__title {
+  .MegafonSpeed--compact .MegafonSpeed__title {
     font-size: 32px;
   }
-  .Cipr--compact .Cipr__options {
+  .MegafonSpeed--compact .MegafonSpeed__options {
     margin-bottom: 80px;
   }
-  .Cipr--compact[data-mode="start"] .Cipr__content {
+  .MegafonSpeed--compact[data-mode="start"] .MegafonSpeed__content {
     max-width: 400px;
   }
-  .Cipr--compact[data-mode="result"] .Cipr__content {
+  .MegafonSpeed--compact[data-mode="result"] .MegafonSpeed__content {
     padding: 0 40px;
   }
 }

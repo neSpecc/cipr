@@ -1,6 +1,6 @@
 module.exports = {
-    name: 'MegafonTest',
-    analyticsCategory: 'Megafon Test',
+    name: 'MegafonSpeed',
+    analyticsCategory: 'MegafonSpeed',
     sendPageview: false,
     listenedEvents: [
         'click',

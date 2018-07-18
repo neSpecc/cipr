@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["CiprTest"] = factory();
+		exports["MegafonSpeed"] = factory();
 	else
-		root["CiprTest"] = factory();
+		root["MegafonSpeed"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -501,8 +501,8 @@ var sendEvent = exports.sendEvent = function sendEvent(label) {
 
 
 module.exports = {
-    name: 'MegafonTest',
-    analyticsCategory: 'Megafon Test',
+    name: 'MegafonSpeed',
+    analyticsCategory: 'MegafonSpeed',
     sendPageview: false,
     listenedEvents: ['click']
 };
@@ -845,7 +845,7 @@ var CSS = {
     state: {
         active: 'l-active'
     },
-    main: 'Cipr'
+    main: 'MegafonSpeed'
 };
 
 var EL = {};
@@ -863,6 +863,8 @@ var Special = function (_BaseSpecial) {
         var _this = _possibleConstructorReturn(this, (Special.__proto__ || Object.getPrototypeOf(Special)).call(this));
 
         _this.css = params.css;
+        _this.staticURL = params.staticURL;
+
         _this.setDefaultValues();
 
         /**
@@ -1052,6 +1054,8 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'makeQuestion',
         value: function makeQuestion() {
+            var _this5 = this;
+
             /**
              * @type {question}
              */
@@ -1072,6 +1076,12 @@ var Special = function (_BaseSpecial) {
                 if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
 
                 Analytics.sendEvent('Question ' + (this.activeIndex + 1) + ' screen', 'Hit');
+
+                if (_data2.default.questions[this.activeIndex + 1]) {
+                    (0, _helper.preloadImages)(_data2.default.questions[this.activeIndex + 1].options.map(function (option) {
+                        return _this5.staticURL + option.img;
+                    }));
+                }
             } else {
                 throw new Error('Missing question data');
             }
@@ -1084,7 +1094,7 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'makeQuestionOptions',
         value: function makeQuestionOptions(options) {
-            var _this5 = this;
+            var _this6 = this;
 
             (0, _array.shuffle)(options);
 
@@ -1097,7 +1107,7 @@ var Special = function (_BaseSpecial) {
                 });
 
                 var image = (0, _dom.makeElement)('img', _bem2.default.set(CSS.main, 'option-image'), {
-                    src: '/src/assets/' + option.img,
+                    src: _this6.staticURL + option.img,
                     data: {
                         id: option.id
                     }
@@ -1110,19 +1120,21 @@ var Special = function (_BaseSpecial) {
                 item.appendChild(image);
                 item.appendChild(label);
 
-                _this5.mainOptions.appendChild(item);
+                _this6.mainOptions.appendChild(item);
 
                 if (option.isCorrect) {
-                    _this5.activeCorrectId = option.id;
+                    _this6.activeCorrectId = option.id;
                 }
 
-                _this5.messages[option.id] = option.message;
+                _this6.messages[option.id] = option.message;
+
+                (0, _helper.preloadImages)([_this6.staticURL + option.imgCorrect, _this6.staticURL + option.imgWrong, _this6.staticURL + option.imgDisabled]);
             });
         }
     }, {
         key: 'submitAnswer',
         value: function submitAnswer(button) {
-            var _this6 = this;
+            var _this7 = this;
 
             if (!this.isPending) {
                 var id = parseInt(button.dataset.id),
@@ -1143,14 +1155,14 @@ var Special = function (_BaseSpecial) {
 
                     // clicked image
                     if (id === imageId) {
-                        if (id === _this6.activeCorrectId) {
-                            img.src = '/src/assets/' + currentQuestion.options[index].imgCorrect;
+                        if (id === _this7.activeCorrectId) {
+                            img.src = _this7.staticURL + currentQuestion.options[index].imgCorrect;
                         } else {
-                            img.src = '/src/assets/' + currentQuestion.options[index].imgWrong;
+                            img.src = _this7.staticURL + currentQuestion.options[index].imgWrong;
                         }
                         // second image
                     } else {
-                        img.src = '/src/assets/' + currentQuestion.options[index].imgDisabled;
+                        img.src = _this7.staticURL + currentQuestion.options[index].imgDisabled;
                     }
 
                     var messageOverlay = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option-overlay'), {
@@ -1174,7 +1186,7 @@ var Special = function (_BaseSpecial) {
 
                     this.makeActionButton('Результат', 'makeResult');
 
-                    (0, _helper.preloadImages)([this.findResult().cover]);
+                    (0, _helper.preloadImages)([this.staticURL + this.findResult().cover]);
                 } else {
                     this.makeActionButton('Продолжить', 'makeQuestion');
                 }
@@ -1265,7 +1277,7 @@ var Special = function (_BaseSpecial) {
 
             this.updateMode('result');
 
-            result.style.backgroundImage = 'url(' + data.cover + ')';
+            result.style.backgroundImage = 'url(' + (this.staticURL + data.cover) + ')';
 
             this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">' + _data2.default.CTAText + '</a>\n            </div>\n        ';
             (0, _dom.removeChildren)(this.mainOptions);
@@ -1339,12 +1351,12 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'restartTimer',
         value: function restartTimer() {
-            var _this7 = this;
+            var _this8 = this;
 
             this.stopTimer();
 
             this.timer = window.setInterval(function () {
-                _this7.timerValue++;
+                _this8.timerValue++;
             }, 100);
         }
     }, {
@@ -2454,19 +2466,19 @@ exports.default = {
         text: '',
         options: [{
             id: 0,
-            img: 'sokol.png',
-            imgWrong: 'sokol-red.png',
-            imgCorrect: 'sokol-green.png',
-            imgDisabled: 'sokol-disabled.png',
+            img: 'https://leonardo.osnova.io/8d3eda6a-2de2-91a6-2a5a-9a5cc5ea23d1',
+            imgWrong: 'https://leonardo.osnova.io/31528754-0c71-fa1d-1366-f0b407f3494c',
+            imgCorrect: 'https://leonardo.osnova.io/c83d80a4-e5ef-ddd5-4d0a-cf188b2af80d',
+            imgDisabled: 'https://leonardo.osnova.io/fb9ed063-0fb3-d257-da73-2dd89d9fbae8',
             text: 'Сокол сапсан',
             message: '322 км/ч',
             isCorrect: true
         }, {
             id: 1,
-            img: 'train.png',
-            imgWrong: 'train-red.png',
-            imgCorrect: 'train-green.png',
-            imgDisabled: 'train-disabled.png',
+            img: 'https://leonardo.osnova.io/4083b606-0190-4d93-dba3-77786cefe110',
+            imgWrong: 'https://leonardo.osnova.io/2b56977b-4061-bf2a-e407-1c6ae271ddc2',
+            imgCorrect: 'https://leonardo.osnova.io/dd371c6f-f031-aeda-3e6c-2ca2a391da31',
+            imgDisabled: 'https://leonardo.osnova.io/71a1bccb-8f87-aa55-eb9e-07de6afe334f',
             text: 'Поезд «Сапсан»',
             message: '250 км/ч'
         }]
@@ -2474,19 +2486,19 @@ exports.default = {
         text: '',
         options: [{
             id: 0,
-            img: 'sokol.png',
-            imgWrong: 'sokol-red.png',
-            imgCorrect: 'sokol-green.png',
-            imgDisabled: 'sokol-disabled.png',
+            img: 'https://leonardo.osnova.io/8d3eda6a-2de2-91a6-2a5a-9a5cc5ea23d1',
+            imgWrong: 'https://leonardo.osnova.io/31528754-0c71-fa1d-1366-f0b407f3494c',
+            imgCorrect: 'https://leonardo.osnova.io/c83d80a4-e5ef-ddd5-4d0a-cf188b2af80d',
+            imgDisabled: 'https://leonardo.osnova.io/fb9ed063-0fb3-d257-da73-2dd89d9fbae8',
             text: 'Сокол сапсан',
             message: '322 км/ч',
             isCorrect: true
         }, {
             id: 1,
-            img: 'train.png',
-            imgWrong: 'train-red.png',
-            imgCorrect: 'train-green.png',
-            imgDisabled: 'train-disabled.png',
+            img: 'https://leonardo.osnova.io/4083b606-0190-4d93-dba3-77786cefe110',
+            imgWrong: 'https://leonardo.osnova.io/2b56977b-4061-bf2a-e407-1c6ae271ddc2',
+            imgCorrect: 'https://leonardo.osnova.io/dd371c6f-f031-aeda-3e6c-2ca2a391da31',
+            imgDisabled: 'https://leonardo.osnova.io/71a1bccb-8f87-aa55-eb9e-07de6afe334f',
             text: 'Поезд «Сапсан»',
             message: '250 км/ч'
         }]
@@ -2494,19 +2506,19 @@ exports.default = {
     results: [{
         range: [0, 15],
         title: 'Быстрее, чем улитка проползает один сантиметр пути',
-        cover: '/src/assets/result-1.png'
+        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
     }, {
         range: [15, 20],
         title: 'Свет преодолел бы несколько миллионов километров',
-        cover: '/src/assets/result-1.png'
+        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
     }, {
         range: [20, 30],
         title: 'Комар успел бы 10 000 раз взмахнуть крыльями',
-        cover: '/src/assets/result-1.png'
+        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
     }, {
         range: [30, 99999],
         title: 'Сын маминой подруги успел бы прославиться',
-        cover: '/src/assets/result-1.png'
+        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
     }]
 };
 

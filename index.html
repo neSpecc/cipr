@@ -64,6 +64,7 @@
             background-color: #eee;
             overflow-x: hidden;
             overflow-y: auto;
+
         }
 
         @media (min-width: 680px){
@@ -92,8 +93,9 @@
         container.parentNode.replaceChild(newContainer, container);
 
         s.onload = function () {
-            var special = new CiprTest({
+            var special = new MegafonSpeed({
                 css: './dist/all.css?' + ver,
+                staticURL: './src/assets/'
             });
             special.init({
                 container: newContainer,
