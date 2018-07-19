@@ -5,7 +5,6 @@
  * @param {Object} attributes - object with html attributes
  */
 export const makeElement = (tagName, classNames = [], attributes = []) => {
-
     tagName = tagName.toLowerCase();
 
     let element = document.createElement(tagName);
@@ -19,23 +18,18 @@ export const makeElement = (tagName, classNames = [], attributes = []) => {
     }
 
     for (let attr in attributes) {
-
         if (attr === 'data') {
-
             let dataAttributes = attributes[attr];
 
             for (let attr in dataAttributes) {
                 element.dataset[attr] = dataAttributes[attr];
             }
-
         } else {
             element[attr] = attributes[attr];
         }
-
     }
 
     return element;
-
 };
 
 /**
@@ -43,18 +37,17 @@ export const makeElement = (tagName, classNames = [], attributes = []) => {
  * @param {Object} obj
  */
 export const cacheElements = (obj) => {
-
     let newObj = {},
         attr = 'view',
         elements = document.querySelectorAll(`[data-${attr}]`);
 
     Array.prototype.forEach.call(elements, el => {
         let name = el.dataset[attr];
+
         newObj[name] = el;
     });
 
     Object.assign(obj, newObj);
-
 };
 
 /**
@@ -62,7 +55,6 @@ export const cacheElements = (obj) => {
  * @param {Element} element
  */
 export const getSiblings = (element) => {
-
     let siblings = [],
         sibling = element.parentNode.firstChild;
 
@@ -72,7 +64,6 @@ export const getSiblings = (element) => {
     }
 
     return siblings;
-
 };
 
 /**
@@ -80,11 +71,9 @@ export const getSiblings = (element) => {
  * @param {Element} parent
  */
 export const removeChildren = (parent) => {
-
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
-
 };
 
 /**
@@ -98,15 +87,20 @@ export const removeElement = (element) => {
 };
 
 export const htmlStringToNode = (html) => {
-
     let el = document.createElement('div');
 
     el.innerHTML = html;
 
     return el.firstChild;
-
 };
 
 export const prepend = (parent, el) => {
     parent.insertBefore(el, parent.firstChild);
+};
+
+/**
+ * Replace one element with another
+ */
+export const replace = (target, another) => {
+    target.parentNode.replaceChild(another, target);
 };

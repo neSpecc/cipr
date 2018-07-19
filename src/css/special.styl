@@ -12,7 +12,7 @@ $colors = {
     gray: #CAE9E9
 }
 
-button(borderColor = #111, backgroundColor = transparent)
+button(borderColor = #111, backgroundColor = transparent, hoverBackground = #00B856, hoverColor = #fff)
     position relative
     height: 56px
     line-height 56px
@@ -28,6 +28,22 @@ button(borderColor = #111, backgroundColor = transparent)
         border: 4px solid borderColor
         background-color backgroundColor
         transform: skewX(-10deg)
+        transition transform 50ms ease-in;
+        will-change transform
+
+    &-content
+        position: relative
+        z-index: 2
+        height: auto
+        display: inline
+
+    &:hover
+        color hoverColor
+
+        &::before
+            transform: skewX(-15deg)
+            background-color hoverBackground
+            border-color hoverBackground
 
 contentZone()
     flex-basis 100%
@@ -298,7 +314,7 @@ contentZone()
         flex-direction: column
 
     &__restartButton
-        display: flex
+        display: inline-flex
         align-items: center
         cursor: pointer
         color: $colors.accent
@@ -312,6 +328,11 @@ contentZone()
         svg
             margin-left: 8px
             pointer-events: none
+            transition transform 150ms ease-in
+
+        &:hover
+            svg
+                transform rotate(360deg)
 
     &__timer
         button(#751083, #751083)
@@ -440,10 +461,6 @@ contentZone()
                 border-color: $colors.accent
                 width: 146px
                 animation: none
-
-                &:hover
-                    border-color: $colors.black
-                    color: $colors.black !important
 
                 svg
                     display: none

@@ -453,13 +453,11 @@ var CONSOLE_STYLE = 'color: #E87E04';
  * Send pageview event via GTM
  */
 var sendPageView = exports.sendPageView = function sendPageView() {
-
     if (true) {
         console.log('Analytics: %cPage — View', CONSOLE_STYLE);
     }
 
     if (window.dataLayer !== undefined) {
-
         window.dataLayer.push({
             event: 'Page — View',
             post_details: {},
@@ -479,13 +477,11 @@ var sendPageView = exports.sendPageView = function sendPageView() {
 var sendEvent = exports.sendEvent = function sendEvent(label) {
     var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Click';
 
-
     if (true) {
         console.log('Analytics: %c' + Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action, CONSOLE_STYLE);
     }
 
     if (window.dataLayer !== undefined && Config.analyticsCategory) {
-
         window.dataLayer.push({
             event: 'data_event',
             data_description: Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action
@@ -638,7 +634,6 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
     var classNames = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-
     tagName = tagName.toLowerCase();
 
     var element = document.createElement(tagName);
@@ -652,9 +647,7 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
     }
 
     for (var attr in attributes) {
-
         if (attr === 'data') {
-
             var dataAttributes = attributes[attr];
 
             for (var _attr in dataAttributes) {
@@ -673,13 +666,13 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
  * @param {Object} obj
  */
 var cacheElements = exports.cacheElements = function cacheElements(obj) {
-
     var newObj = {},
         attr = 'view',
         elements = document.querySelectorAll('[data-' + attr + ']');
 
     Array.prototype.forEach.call(elements, function (el) {
         var name = el.dataset[attr];
+
         newObj[name] = el;
     });
 
@@ -691,7 +684,6 @@ var cacheElements = exports.cacheElements = function cacheElements(obj) {
  * @param {Element} element
  */
 var getSiblings = exports.getSiblings = function getSiblings(element) {
-
     var siblings = [],
         sibling = element.parentNode.firstChild;
 
@@ -708,7 +700,6 @@ var getSiblings = exports.getSiblings = function getSiblings(element) {
  * @param {Element} parent
  */
 var removeChildren = exports.removeChildren = function removeChildren(parent) {
-
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
@@ -725,7 +716,6 @@ var removeElement = exports.removeElement = function removeElement(element) {
 };
 
 var htmlStringToNode = exports.htmlStringToNode = function htmlStringToNode(html) {
-
     var el = document.createElement('div');
 
     el.innerHTML = html;
@@ -735,6 +725,13 @@ var htmlStringToNode = exports.htmlStringToNode = function htmlStringToNode(html
 
 var prepend = exports.prepend = function prepend(parent, el) {
     parent.insertBefore(el, parent.firstChild);
+};
+
+/**
+ * Replace one element with another
+ */
+var replace = exports.replace = function replace(target, another) {
+    target.parentNode.replaceChild(another, target);
 };
 
 /***/ }),
@@ -779,25 +776,25 @@ var _base = __webpack_require__(29);
 
 var _base2 = _interopRequireDefault(_base);
 
-var _data = __webpack_require__(30);
+var _data = __webpack_require__(31);
 
 var _data2 = _interopRequireDefault(_data);
 
-var _svg = __webpack_require__(31);
+var _svg = __webpack_require__(32);
 
 var _svg2 = _interopRequireDefault(_svg);
 
-var _bem = __webpack_require__(32);
+var _bem = __webpack_require__(33);
 
 var _bem2 = _interopRequireDefault(_bem);
 
 var _dom = __webpack_require__(7);
 
-var _check = __webpack_require__(33);
+var _check = __webpack_require__(34);
 
-var _array = __webpack_require__(34);
+var _array = __webpack_require__(35);
 
-var _helper = __webpack_require__(35);
+var _helper = __webpack_require__(36);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -812,7 +809,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Dependencies
  */
-__webpack_require__(36);
+__webpack_require__(37);
 
 /**
  * @typedef {object} question
@@ -966,6 +963,10 @@ var Special = function (_BaseSpecial) {
 
             Analytics.sendEvent('Start screen', 'Load');
 
+            this.preloader.load(_data2.default.questions[0].options.map(function (option) {
+                return _this3.staticURL + option.img;
+            }));
+
             // this.makeResult();
 
             // this.activeIndex = 8;
@@ -1006,8 +1007,9 @@ var Special = function (_BaseSpecial) {
             var _this4 = this;
 
             if (this.counter.children.length === 0) {
-                _data2.default.questions.forEach(function (i) {
+                _data2.default.questions.forEach(function () {
                     var bullet = (0, _dom.makeElement)('span');
+
                     _this4.counter.appendChild(bullet);
                 });
             }
@@ -1038,7 +1040,7 @@ var Special = function (_BaseSpecial) {
                 }
             });
 
-            button.innerHTML = text + _svg2.default.next;
+            button.innerHTML = '<span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                                ' + (text + _svg2.default.next) + '\n                            </span>';
 
             this.mainActions.appendChild(button);
         }
@@ -1057,8 +1059,8 @@ var Special = function (_BaseSpecial) {
             var _this5 = this;
 
             /**
-             * @type {question}
-             */
+            * @type {question}
+            */
             var data = _data2.default.questions[this.activeIndex];
 
             if (data) {
@@ -1078,7 +1080,7 @@ var Special = function (_BaseSpecial) {
                 Analytics.sendEvent('Question ' + (this.activeIndex + 1) + ' screen', 'Hit');
 
                 if (_data2.default.questions[this.activeIndex + 1]) {
-                    (0, _helper.preloadImages)(_data2.default.questions[this.activeIndex + 1].options.map(function (option) {
+                    this.preloader.load(_data2.default.questions[this.activeIndex + 1].options.map(function (option) {
                         return _this5.staticURL + option.img;
                     }));
                 }
@@ -1105,19 +1107,26 @@ var Special = function (_BaseSpecial) {
                         id: option.id
                     }
                 });
+                //
+                // let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
+                //     src: this.staticURL + option.img,
+                //     data: {
+                //         id: option.id
+                //     }
+                // });
 
-                var image = (0, _dom.makeElement)('img', _bem2.default.set(CSS.main, 'option-image'), {
-                    src: _this6.staticURL + option.img,
-                    data: {
-                        id: option.id
-                    }
-                });
+                var imageCached = _this6.preloader.get(_this6.staticURL + option.img);
+
+                imageCached.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+                imageCached.dataset.id = option.id;
+
+                console.log('image cached', imageCached);
 
                 var label = (0, _dom.makeElement)('div', [], {
                     textContent: option.text
                 });
 
-                item.appendChild(image);
+                item.appendChild(imageCached);
                 item.appendChild(label);
 
                 _this6.mainOptions.appendChild(item);
@@ -1128,7 +1137,7 @@ var Special = function (_BaseSpecial) {
 
                 _this6.messages[option.id] = option.message;
 
-                (0, _helper.preloadImages)([_this6.staticURL + option.imgCorrect, _this6.staticURL + option.imgWrong, _this6.staticURL + option.imgDisabled]);
+                _this6.preloader.load([_this6.staticURL + option.imgCorrect, _this6.staticURL + option.imgWrong, _this6.staticURL + option.imgDisabled]);
             });
         }
     }, {
@@ -1151,25 +1160,36 @@ var Special = function (_BaseSpecial) {
                 var currentQuestion = _data2.default.questions[this.activeIndex];
 
                 Array.from(images).forEach(function (img, index) {
-                    var imageId = parseInt(img.dataset.id);
+                    var imageId = parseInt(img.dataset.id),
+                        imageWrapper = img.parentNode;
 
                     // clicked image
                     if (id === imageId) {
+                        var clickedImage = void 0;
+
                         if (id === _this7.activeCorrectId) {
-                            img.src = _this7.staticURL + currentQuestion.options[index].imgCorrect;
+                            clickedImage = _this7.preloader.get(_this7.staticURL + currentQuestion.options[index].imgCorrect);
                         } else {
-                            img.src = _this7.staticURL + currentQuestion.options[index].imgWrong;
+                            clickedImage = _this7.preloader.get(_this7.staticURL + currentQuestion.options[index].imgWrong);
                         }
+
+                        clickedImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+
+                        (0, _dom.replace)(img, clickedImage);
+
                         // second image
                     } else {
-                        img.src = _this7.staticURL + currentQuestion.options[index].imgDisabled;
+                        var secondImage = _this7.preloader.get(_this7.staticURL + currentQuestion.options[index].imgDisabled);
+
+                        secondImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+                        (0, _dom.replace)(img, secondImage);
                     }
 
                     var messageOverlay = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option-overlay'), {
                         innerHTML: '<i></i> ' + currentQuestion.options[index].message
                     });
 
-                    img.parentNode.appendChild(messageOverlay);
+                    imageWrapper.appendChild(messageOverlay);
                 });
 
                 if (id === this.activeCorrectId) {
@@ -1186,7 +1206,7 @@ var Special = function (_BaseSpecial) {
 
                     this.makeActionButton('Результат', 'makeResult');
 
-                    (0, _helper.preloadImages)([this.staticURL + this.findResult().cover]);
+                    this.preloader.load([this.staticURL + this.findResult().cover]);
                 } else {
                     this.makeActionButton('Продолжить', 'makeQuestion');
                 }
@@ -1259,11 +1279,11 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'makeResult',
         value: function makeResult() {
-
             /**
              * @type {result}
              */
             var data = this.findResult();
+
             this.stopTimer();
 
             var result = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'result')),
@@ -1279,7 +1299,7 @@ var Special = function (_BaseSpecial) {
 
             result.style.backgroundImage = 'url(' + (this.staticURL + data.cover) + ')';
 
-            this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">' + _data2.default.CTAText + '</a>\n            </div>\n        ';
+            this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">\n                    <span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                        ' + _data2.default.CTAText + '\n                    </span>\n                </a>\n            </div>\n        ';
             (0, _dom.removeChildren)(this.mainOptions);
             (0, _dom.removeChildren)(this.mainActions);
 
@@ -1444,12 +1464,10 @@ var init = exports.init = function init() {
 var make = exports.make = function make(parentContainer) {
     var set = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-
     var likelyContainer = (0, _dom.makeElement)('div', [CSS.likely, CSS.likelyCustom]),
         socials = ['facebook', 'vkontakte', 'twitter'];
 
     socials.forEach(function (social) {
-
         var button = (0, _dom.makeElement)('div', social);
 
         if (social === 'facebook') button.textContent = 'Поделиться';
@@ -2318,6 +2336,12 @@ var _analytics = __webpack_require__(3);
 
 var Analytics = _interopRequireWildcard(_analytics);
 
+var _preloader = __webpack_require__(30);
+
+var _preloader2 = _interopRequireDefault(_preloader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2340,6 +2364,12 @@ var BaseSpecial = function () {
         this.keyCodes = {
             enter: 13
         };
+
+        /**
+         * Construct image preloader module
+         * @type {Preloader}
+         */
+        this.preloader = new _preloader2.default();
     }
 
     /**
@@ -2364,9 +2394,7 @@ var BaseSpecial = function () {
     }, {
         key: 'loadStyles',
         value: function loadStyles(path) {
-
             return new Promise(function (resolve, reject) {
-
                 var link = document.createElement('link');
 
                 link.rel = 'stylesheet';
@@ -2405,10 +2433,8 @@ var BaseSpecial = function () {
     }, {
         key: 'defaultEventHandler',
         value: function defaultEventHandler(event, eventName) {
-
             /** Keydown event */
             if (eventName === 'keydown' && this.params.listenedKeys.length > 0) {
-
                 this.params.listenedKeys.forEach(function (key) {
                     if (event.keyCode === key.code) {
                         key.action(event);
@@ -2417,7 +2443,6 @@ var BaseSpecial = function () {
 
                 /** All other events, attached to elements */
             } else {
-
                 var el = event.target;
 
                 /**
@@ -2448,6 +2473,115 @@ exports.default = BaseSpecial;
 
 /***/ }),
 /* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Image Preloader module
+ *
+ * Loads Image and stores in own cache
+ *
+ * @usage preloader.load(url)
+ * @usage preloader.load([url1, url2])
+ * @usage preloader.get(url) -> Image
+ *
+ */
+
+var Preloader = function () {
+    function Preloader() {
+        _classCallCheck(this, Preloader);
+
+        /**
+         * Internal cache
+         * @type {{src: Image}}
+         */
+        this.images = {};
+    }
+
+    /**
+     * Loads Image
+     * @param {string|string[]} urls - one or several URL to prelaod
+     */
+
+
+    _createClass(Preloader, [{
+        key: 'load',
+        value: function load(urls) {
+            var _this = this;
+
+            console.log('Preloader: start to load', urls);
+            if (Array.isArray(urls)) {
+                urls.forEach(function (url) {
+                    _this.loadOne(url);
+                });
+            } else {
+                this.loadOne(urls);
+            }
+        }
+
+        /**
+         * Loads single image
+         * @param {string} url
+         */
+
+    }, {
+        key: 'loadOne',
+        value: function loadOne(url) {
+            if (this.images[url]) {
+                console.log('Preloader: already loaded %o', url);
+                return;
+            }
+
+            var image = new Image();
+
+            image.src = url;
+
+            console.time(url);
+
+            image.onload = function () {
+                console.timeEnd(url);
+            };
+
+            image.onerror = function () {
+                console.timeEnd(url);
+                console.warn('image [%o] was not loaded', url);
+            };
+
+            this.images[url] = image;
+        }
+
+        /**
+         * Return loaded image
+         */
+
+    }, {
+        key: 'get',
+        value: function get(url) {
+            if (!this.images[url]) {
+                this.loadOne(url);
+            }
+
+            return this.images[url];
+        }
+    }]);
+
+    return Preloader;
+}();
+
+exports.default = Preloader;
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2523,7 +2657,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2539,7 +2673,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2562,7 +2696,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2583,7 +2717,7 @@ var isMobile = exports.isMobile = function isMobile() {
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2600,7 +2734,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
  * @param {Array} array
  */
 var getMostFrequentValue = exports.getMostFrequentValue = function getMostFrequentValue(array) {
-
     var result = [].concat(_toConsumableArray(array));
 
     return result.sort(function (a, b) {
@@ -2617,7 +2750,6 @@ var getMostFrequentValue = exports.getMostFrequentValue = function getMostFreque
  * @param {Array} array
  */
 var shuffle = exports.shuffle = function shuffle(array) {
-
     var j = void 0,
         x = void 0,
         i = void 0;
@@ -2639,7 +2771,7 @@ var toArray = exports.toArray = function toArray(nodeList) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2656,10 +2788,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * @param {Array} urls - array of images urls
  */
 var preloadImages = exports.preloadImages = function preloadImages(urls) {
-
     urls.forEach(function (url) {
-
         var image = new Image();
+
         image.src = url;
     });
 };
@@ -2670,7 +2801,6 @@ var preloadImages = exports.preloadImages = function preloadImages(urls) {
  * @param {Array} words - array of 3 words
  */
 var declineWord = exports.declineWord = function declineWord(number, words) {
-
     var result = number + '&nbsp;';
 
     if (number % 10 == 1 && number % 100 != 11) {
@@ -2703,7 +2833,6 @@ var formatNumber = exports.formatNumber = function formatNumber(number) {
 var scrollToElement = exports.scrollToElement = function scrollToElement(element) {
     var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-
     var y = element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - offset;
 
     window.scroll(0, y);
@@ -2728,6 +2857,7 @@ var copyToClipboard = exports.copyToClipboard = function copyToClipboard(string,
 
     try {
         var copy = document.execCommand('copy');
+
         isSuccess = true;
     } catch (e) {}
 
@@ -2737,7 +2867,7 @@ var copyToClipboard = exports.copyToClipboard = function copyToClipboard(string,
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

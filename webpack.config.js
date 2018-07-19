@@ -32,7 +32,7 @@ if (isProduction) {
             server: {
                 baseDir: './'
             },
-            https: false,
+            https: true,
             ghostMode: false,
             notify: false,
             scrollProportionally: false,
@@ -55,7 +55,7 @@ module.exports = {
         rules: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
+                use: [{
                     loader: 'babel-loader',
                     options: {
                         cacheDirectory: true,
@@ -64,7 +64,9 @@ module.exports = {
                         ],
                         plugins: ['transform-object-assign']
                     }
-                }
+                }, {
+                    loader: 'eslint-loader?fix=true&esModules=true'
+                }]
             },
             {
                 test: /\.styl$/,

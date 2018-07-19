@@ -22,12 +22,10 @@ export const init = () => {
  * @param {Array} socials
  */
 export const make = (parentContainer, set = {}) => {
-
     let likelyContainer = makeElement('div', [CSS.likely, CSS.likelyCustom]),
         socials = ['facebook', 'vkontakte', 'twitter'];
 
     socials.forEach(social => {
-
         let button = makeElement('div', social);
 
         if (social === 'facebook') button.textContent = 'Поделиться';
@@ -37,7 +35,6 @@ export const make = (parentContainer, set = {}) => {
         });
 
         likelyContainer.appendChild(button);
-
     });
 
     parentContainer.appendChild(likelyContainer);
@@ -46,5 +43,4 @@ export const make = (parentContainer, set = {}) => {
     if (set.twitter) likelyContainer.dataset.twitter = set.twitter;
 
     init();
-
 };

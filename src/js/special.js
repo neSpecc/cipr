@@ -40,7 +40,7 @@ import {
     prepend,
     makeElement,
     removeChildren,
-    removeElement
+    replace,
 } from './lib/dom';
 
 import {
@@ -52,7 +52,6 @@ import {
 } from './lib/array';
 
 import {
-    preloadImages,
     scrollToElement,
     declineWord
 } from './lib/helper';
@@ -75,7 +74,6 @@ const EL = {};
  * Special constructor
  */
 class Special extends BaseSpecial {
-
     constructor(params) {
         super();
 
@@ -169,6 +167,8 @@ class Special extends BaseSpecial {
 
         Analytics.sendEvent('Start screen', 'Load');
 
+        this.preloader.load(Data.questions[0].options.map(option => this.staticURL + option.img));
+
         // this.makeResult();
 
         // this.activeIndex = 8;
@@ -204,8 +204,9 @@ class Special extends BaseSpecial {
 
     updateCounter() {
         if (this.counter.children.length === 0) {
-            Data.questions.forEach(i => {
+            Data.questions.forEach(() => {
                 let bullet = makeElement('span');
+
                 this.counter.appendChild(bullet);
             });
         }
@@ -219,7 +220,6 @@ class Special extends BaseSpecial {
                 bullet.classList.remove('active');
             }
         });
-
     }
 
     makeIntro() {
@@ -235,7 +235,9 @@ class Special extends BaseSpecial {
             }
         });
 
-        button.innerHTML = text + Svg.next;
+        button.innerHTML = `<span class="${Bem.set(CSS.main, 'button-content')}">
+                                ${text + Svg.next}
+                            </span>`;
 
         this.mainActions.appendChild(button);
     }
@@ -249,10 +251,10 @@ class Special extends BaseSpecial {
     }
 
     makeQuestion() {
-      /**
+        /**
        * @type {question}
        */
-      let data = Data.questions[this.activeIndex];
+        let data = Data.questions[this.activeIndex];
 
         if (data) {
             removeChildren(this.mainOptions);
@@ -270,8 +272,8 @@ class Special extends BaseSpecial {
 
             Analytics.sendEvent(`Question ${this.activeIndex + 1} screen`, 'Hit');
 
-            if (Data.questions[this.activeIndex + 1]){
-                preloadImages(Data.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
+            if (Data.questions[this.activeIndex + 1]) {
+                this.preloader.load(Data.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
             }
         } else {
             throw new Error('Missing question data');
@@ -282,7 +284,6 @@ class Special extends BaseSpecial {
     * @param {option[]} options
     */
     makeQuestionOptions(options) {
-
         shuffle(options);
 
         options.forEach(option => {
@@ -292,19 +293,26 @@ class Special extends BaseSpecial {
                     id: option.id
                 }
             });
+            //
+            // let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
+            //     src: this.staticURL + option.img,
+            //     data: {
+            //         id: option.id
+            //     }
+            // });
 
-            let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
-                src: this.staticURL + option.img,
-                data: {
-                    id: option.id
-                }
-            });
+            let imageCached = this.preloader.get(this.staticURL + option.img);
+
+            imageCached.classList.add(Bem.set(CSS.main, 'option-image'));
+            imageCached.dataset.id = option.id;
+
+            console.log('image cached', imageCached);
 
             let label = makeElement('div', [], {
                 textContent: option.text
             });
 
-            item.appendChild(image);
+            item.appendChild(imageCached);
             item.appendChild(label);
 
 
@@ -316,13 +324,12 @@ class Special extends BaseSpecial {
 
             this.messages[option.id] = option.message;
 
-            preloadImages([
+            this.preloader.load([
                 this.staticURL + option.imgCorrect,
                 this.staticURL + option.imgWrong,
                 this.staticURL + option.imgDisabled
             ]);
         });
-
     }
 
     submitAnswer(button) {
@@ -341,26 +348,36 @@ class Special extends BaseSpecial {
             let currentQuestion = Data.questions[this.activeIndex];
 
             Array.from(images).forEach( (img, index) => {
-                let imageId = parseInt(img.dataset.id);
+                let imageId = parseInt(img.dataset.id),
+                    imageWrapper = img.parentNode;
 
                 // clicked image
-                if (id === imageId){
-                    if (id === this.activeCorrectId){
-                      img.src = this.staticURL + currentQuestion.options[index].imgCorrect;
+                if (id === imageId) {
+                    let clickedImage;
+
+                    if (id === this.activeCorrectId) {
+                        clickedImage = this.preloader.get(this.staticURL + currentQuestion.options[index].imgCorrect);
                     } else {
-                      img.src = this.staticURL + currentQuestion.options[index].imgWrong;
+                        clickedImage = this.preloader.get(this.staticURL + currentQuestion.options[index].imgWrong);
                     }
+
+                    clickedImage.classList.add(Bem.set(CSS.main, 'option-image'));
+
+                    replace(img, clickedImage);
+
                 // second image
                 } else {
-                  img.src = this.staticURL + currentQuestion.options[index].imgDisabled;
+                    let secondImage = this.preloader.get(this.staticURL + currentQuestion.options[index].imgDisabled);
+
+                    secondImage.classList.add(Bem.set(CSS.main, 'option-image'));
+                    replace(img, secondImage);
                 }
 
                 let messageOverlay = makeElement('div', Bem.set(CSS.main, 'option-overlay'), {
-                  innerHTML: '<i></i> ' +  currentQuestion.options[index].message
+                    innerHTML: '<i></i> ' +  currentQuestion.options[index].message
                 });
 
-                img.parentNode.appendChild(messageOverlay);
-
+                imageWrapper.appendChild(messageOverlay);
             });
 
             if (id === this.activeCorrectId) {
@@ -377,7 +394,7 @@ class Special extends BaseSpecial {
 
                 this.makeActionButton('Результат', 'makeResult');
 
-                preloadImages([
+                this.preloader.load([
                     this.staticURL + this.findResult().cover
                 ]);
             } else {
@@ -386,7 +403,6 @@ class Special extends BaseSpecial {
 
             this.activeIndex++;
         }
-
     }
 
     makeOptionMessage(id) {
@@ -421,17 +437,17 @@ class Special extends BaseSpecial {
             }
         }
 
-        finalResult.message =`Я угадал ${declineWord(this.userPoints, ['пару','пары','пар'])} за ${declineWord(secondsWasted, ['секунду', 'секунды', 'секунд'])}`;
+        finalResult.message =`Я угадал ${declineWord(this.userPoints, ['пару', 'пары', 'пар'])} за ${declineWord(secondsWasted, ['секунду', 'секунды', 'секунд'])}`;
 
         return finalResult;
     }
 
     makeResult() {
-
         /**
          * @type {result}
          */
         let data = this.findResult();
+
         this.stopTimer();
 
         let result = makeElement('div', Bem.set(CSS.main, 'result')),
@@ -450,7 +466,11 @@ class Special extends BaseSpecial {
         this.mainText.innerHTML = `
             <div class="${Bem.set(CSS.main, 'text-content')}">
                 <div class="${Bem.set(CSS.main, 'text-body')}">${Data.outro}</div>\
-                <a class="${Bem.set(CSS.main, 'button')}" href="${Data.promoUrl}" target="_blank">${Data.CTAText}</a>
+                <a class="${Bem.set(CSS.main, 'button')}" href="${Data.promoUrl}" target="_blank">
+                    <span class="${Bem.set(CSS.main, 'button-content')}">
+                        ${Data.CTAText}
+                    </span>
+                </a>
             </div>
         `;
         removeChildren(this.mainOptions);
@@ -492,8 +512,8 @@ class Special extends BaseSpecial {
         let fullSecLeft = Math.floor(secLeft);
         let decileSecLeft = parseInt(String(secLeft).split('.')[1], 10) * 6;
 
-        if (isNaN(decileSecLeft)){
-          decileSecLeft = 0;
+        if (isNaN(decileSecLeft)) {
+            decileSecLeft = 0;
         }
 
         fullMin = fullMin < 10 ? `0${fullMin}`: fullMin;
@@ -501,23 +521,22 @@ class Special extends BaseSpecial {
         decileSecLeft = decileSecLeft < 10 ? `0${decileSecLeft}`: decileSecLeft;
 
         return `${fullMin}:${fullSecLeft}:${decileSecLeft}`;
-
     }
 
-    set timerValue (val){
+    set timerValue(val) {
         this._timerValue += 1;
         this.timerContent.textContent = this.formatTime(this._timerValue);
     }
 
-    get timerValue (){
+    get timerValue() {
         return this._timerValue;
     }
 
     /**
      * Stop timer if it is running
      */
-    stopTimer(){
-        if (this.timer){
+    stopTimer() {
+        if (this.timer) {
             window.clearInterval(this.timer);
             this._timerValue = 0;
         }
@@ -526,12 +545,12 @@ class Special extends BaseSpecial {
     /**
     * Starts new timer for the game
     */
-    restartTimer(){
+    restartTimer() {
         this.stopTimer();
 
         this.timer = window.setInterval(() => {
             this.timerValue++;
-        }, 100)
+        }, 100);
     }
 
     updateMode(name) {
@@ -554,7 +573,6 @@ class Special extends BaseSpecial {
 
         Analytics.sendEvent('Restart button', 'Click');
     }
-
 }
 
 module.exports = Special;

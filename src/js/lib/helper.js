@@ -3,14 +3,11 @@
  * @param {Array} urls - array of images urls
  */
 export const preloadImages = (urls) => {
-
     urls.forEach(url => {
-
         let image = new Image();
+
         image.src = url;
-
     });
-
 };
 
 /**
@@ -19,7 +16,6 @@ export const preloadImages = (urls) => {
  * @param {Array} words - array of 3 words
  */
 export const declineWord = (number, words) => {
-
     let result = number + '&nbsp;';
 
     if (number % 10 == 1 && number % 100 != 11) {
@@ -31,7 +27,6 @@ export const declineWord = (number, words) => {
     }
 
     return result;
-
 };
 
 /**
@@ -49,11 +44,9 @@ export const formatNumber = (number, string = '&nbsp;') => {
  * @param {Number} offset - offset from top
  */
 export const scrollToElement = (element, offset = 0) => {
-
     let y = element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - offset;
 
     window.scroll(0, y);
-
 };
 
 export const copyToClipboard = (string, callback) => {
@@ -75,6 +68,7 @@ export const copyToClipboard = (string, callback) => {
 
     try {
         let copy = document.execCommand('copy');
+
         isSuccess = true;
     } catch (e) { }
 

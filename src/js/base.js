@@ -1,12 +1,11 @@
 import * as Analytics from './lib/analytics';
+import Preloader from './lib/preloader';
 
 /**
  * Base special constructor with common methods
  */
 export default class BaseSpecial {
-
     constructor() {
-
         this.params = {
             container: 'body',
             analyticsCategory: null,
@@ -21,6 +20,11 @@ export default class BaseSpecial {
             enter: 13
         };
 
+        /**
+         * Construct image preloader module
+         * @type {Preloader}
+         */
+        this.preloader = new Preloader();
     }
 
     /**
@@ -38,9 +42,7 @@ export default class BaseSpecial {
      * @param {String} path
      */
     loadStyles(path) {
-
         return new Promise((resolve, reject) => {
-
             let link = document.createElement('link');
 
             link.rel = 'stylesheet';
@@ -49,20 +51,16 @@ export default class BaseSpecial {
             link.onload = () => resolve();
 
             document.body.appendChild(link);
-
         });
-
     }
 
     /**
      * Add event listeners to document
      */
     addEventListeners() {
-
         this.params.listenedEvents.forEach(eventName => {
             this.container.addEventListener(eventName, event => this.defaultEventHandler(event, eventName));
         });
-
     }
 
     /**
@@ -71,10 +69,8 @@ export default class BaseSpecial {
      * @param {String} eventName
      */
     defaultEventHandler(event, eventName) {
-
         /** Keydown event */
         if (eventName === 'keydown' && this.params.listenedKeys.length > 0) {
-
             this.params.listenedKeys.forEach(key => {
                 if (event.keyCode === key.code) {
                     key.action(event);
@@ -83,28 +79,25 @@ export default class BaseSpecial {
 
             /** All other events, attached to elements */
         } else {
-
             let el  = event.target;
 
             /**
             * Bubble click
             */
-            while (el){
-              let action = el.dataset ? el.dataset[eventName] : null;
+            while (el) {
+                let action = el.dataset ? el.dataset[eventName] : null;
 
-              if (action && this[action]) {
-                this[action](el, event);
-              }
+                if (action && this[action]) {
+                    this[action](el, event);
+                }
 
-              /** Send links clicks to analytics */
-              if (el.tagName && el.tagName.toLowerCase() === 'a') {
-                Analytics.sendEvent(el.href);
-              }
+                /** Send links clicks to analytics */
+                if (el.tagName && el.tagName.toLowerCase() === 'a') {
+                    Analytics.sendEvent(el.href);
+                }
 
-              el = el.parentNode;
+                el = el.parentNode;
             }
         }
-
     }
-
 }
