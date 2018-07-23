@@ -2730,32 +2730,27 @@ exports.default = {
             imgDisabled: '6-1-disabled.png',
             isCorrect: true
         }]
-    },
-    // {
-    //     text: '',
-    //     options: [
-    //         {
-    //             id: 0,
-    //             text: 'Комета Чурюмова-Герасименко',
-    //             message: '55 000 км/ч',
-    //             img: '7-0.png',
-    //             imgCorrect: '7-0-correct.png',
-    //             imgWrong: '7-0-wrong.png',
-    //             imgDisabled: '7-0-disabled.png'
-    //         },
-    //         {
-    //             id: 1,
-    //             text: '«Вояджер-1»',
-    //             message: '62 140 км/ч',
-    //             img: '7-1.png',
-    //             imgCorrect: '7-1-correct.png',
-    //             imgWrong: '7-1-wrong.png',
-    //             imgDisabled: '7-1-disabled.png',
-    //             isCorrect: true,
-    //         }
-    //     ]
-    // },
-    {
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Комета Чурюмова-Герасименко',
+            message: '55 000 км/ч',
+            img: '7-0.png',
+            imgCorrect: '7-0-correct.png',
+            imgWrong: '7-0-wrong.png',
+            imgDisabled: '7-0-disabled.png'
+        }, {
+            id: 1,
+            text: '«Вояджер-1»',
+            message: '62 140 км/ч',
+            img: '7-1.png',
+            imgCorrect: '7-1-correct.png',
+            imgWrong: '7-1-wrong.png',
+            imgDisabled: '7-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
         text: '',
         options: [{
             id: 0,
