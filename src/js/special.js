@@ -290,7 +290,8 @@ class Special extends BaseSpecial {
             let item = makeElement('div', Bem.set(CSS.main, 'option'), {
                 data: {
                     click: 'submitAnswer',
-                    id: option.id
+                    id: option.id,
+                    number: this.activeIndex
                 }
             });
             //
@@ -305,8 +306,6 @@ class Special extends BaseSpecial {
 
             imageCached.classList.add(Bem.set(CSS.main, 'option-image'));
             imageCached.dataset.id = option.id;
-
-            console.log('image cached', imageCached);
 
             let label = makeElement('div', [], {
                 textContent: option.text
@@ -431,7 +430,7 @@ class Special extends BaseSpecial {
         let secondsWasted = Math.floor(this.timerValue / 10);
 
         for (let result of results) {
-            if (this.userPoints >= result.range[0] && this.userPoints <= result.range[1]) {
+            if (secondsWasted >= result.range[0] && secondsWasted <= result.range[1]) {
                 finalResult = result;
                 break;
             }
@@ -440,6 +439,18 @@ class Special extends BaseSpecial {
         finalResult.message =`Я угадал ${declineWord(this.userPoints, ['пару', 'пары', 'пар'])} за ${declineWord(secondsWasted, ['секунду', 'секунды', 'секунд'])}`;
 
         return finalResult;
+    }
+
+    /**
+     * Format image URL: add static URL if need
+     * @param {string} url
+     */
+    imageUrl(url) {
+        if (url.substring(0, 4) === 'http') {
+            return url;
+        }
+
+        return this.staticURL + url;
     }
 
     makeResult() {
@@ -461,7 +472,7 @@ class Special extends BaseSpecial {
 
         this.updateMode('result');
 
-        result.style.backgroundImage = `url(${this.staticURL + data.cover})`;
+        result.style.backgroundImage = `url(${this.imageUrl(data.cover)})`;
 
         this.mainText.innerHTML = `
             <div class="${Bem.set(CSS.main, 'text-content')}">

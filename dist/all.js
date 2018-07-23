@@ -1104,7 +1104,8 @@ var Special = function (_BaseSpecial) {
                 var item = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option'), {
                     data: {
                         click: 'submitAnswer',
-                        id: option.id
+                        id: option.id,
+                        number: _this6.activeIndex
                     }
                 });
                 //
@@ -1119,8 +1120,6 @@ var Special = function (_BaseSpecial) {
 
                 imageCached.classList.add(_bem2.default.set(CSS.main, 'option-image'));
                 imageCached.dataset.id = option.id;
-
-                console.log('image cached', imageCached);
 
                 var label = (0, _dom.makeElement)('div', [], {
                     textContent: option.text
@@ -1252,7 +1251,7 @@ var Special = function (_BaseSpecial) {
                 for (var _iterator = results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var result = _step.value;
 
-                    if (this.userPoints >= result.range[0] && this.userPoints <= result.range[1]) {
+                    if (secondsWasted >= result.range[0] && secondsWasted <= result.range[1]) {
                         finalResult = result;
                         break;
                     }
@@ -1276,6 +1275,21 @@ var Special = function (_BaseSpecial) {
 
             return finalResult;
         }
+
+        /**
+         * Format image URL: add static URL if need
+         * @param {string} url
+         */
+
+    }, {
+        key: 'imageUrl',
+        value: function imageUrl(url) {
+            if (url.substring(0, 4) === 'http') {
+                return url;
+            }
+
+            return this.staticURL + url;
+        }
     }, {
         key: 'makeResult',
         value: function makeResult() {
@@ -1297,7 +1311,7 @@ var Special = function (_BaseSpecial) {
 
             this.updateMode('result');
 
-            result.style.backgroundImage = 'url(' + (this.staticURL + data.cover) + ')';
+            result.style.backgroundImage = 'url(' + this.imageUrl(data.cover) + ')';
 
             this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">\n                    <span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                        ' + _data2.default.CTAText + '\n                    </span>\n                </a>\n            </div>\n        ';
             (0, _dom.removeChildren)(this.mainOptions);
@@ -2592,49 +2606,294 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     title: 'Кто быстрее из этих двух',
-    intro: 'Скоростной тест на скорость',
-    outro: '<p>\u041D\u0435\u0432\u0430\u0436\u043D\u043E, \u043A\u0442\u043E \u0431\u044B\u0441\u0442\u0440\u0435\u0435 \u0438\u0437 \u044D\u0442\u0438\u0445 \u0434\u0432\u0443\u0445. \u0412\u0430\u0436\u043D\u043E, \u0447\u0442\u043E\u0431\u044B \u0431\u044B\u0441\u0442\u0440\u044B\u043C \u0431\u044B\u043B \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442.</p> \n            <p>\u041C\u0435\u0433\u0430\u0444\u043E\u043D \u2014 \u0441\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 4G+ \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438. \u041F\u043E\u0431\u0435\u0434\u0438\u0442\u0435\u043B\u044C \u043F\u0440\u0435\u043C\u0438\u0438 Speedtest Awards 2017.</p>\n    ',
+    intro: 'Скоростной тест на скорость.',
+    outro: '<p>\u0421\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u2014 \u0432 \u041C\u0435\u0433\u0430\u0444\u043E\u043D\u0435. \u0414\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u043C\u0438 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u043E\u0432 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u0432 Speedtest.</p> ',
     promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
     CTAText: 'Подключить',
     questions: [{
         text: '',
         options: [{
             id: 0,
-            img: 'https://leonardo.osnova.io/8d3eda6a-2de2-91a6-2a5a-9a5cc5ea23d1',
-            imgWrong: 'https://leonardo.osnova.io/31528754-0c71-fa1d-1366-f0b407f3494c',
-            imgCorrect: 'https://leonardo.osnova.io/c83d80a4-e5ef-ddd5-4d0a-cf188b2af80d',
-            imgDisabled: 'https://leonardo.osnova.io/fb9ed063-0fb3-d257-da73-2dd89d9fbae8',
             text: 'Сокол сапсан',
             message: '322 км/ч',
+            img: '1-0.png',
+            imgCorrect: '1-0-correct.png',
+            imgWrong: '1-0-wrong.png',
+            imgDisabled: '1-0-disabled.png',
             isCorrect: true
         }, {
             id: 1,
-            img: 'https://leonardo.osnova.io/4083b606-0190-4d93-dba3-77786cefe110',
-            imgWrong: 'https://leonardo.osnova.io/2b56977b-4061-bf2a-e407-1c6ae271ddc2',
-            imgCorrect: 'https://leonardo.osnova.io/dd371c6f-f031-aeda-3e6c-2ca2a391da31',
-            imgDisabled: 'https://leonardo.osnova.io/71a1bccb-8f87-aa55-eb9e-07de6afe334f',
             text: 'Поезд «Сапсан»',
-            message: '250 км/ч'
+            message: '250 км/ч',
+            img: '1-1.png',
+            imgCorrect: '1-1-correct.png',
+            imgWrong: '1-1-wrong.png',
+            imgDisabled: '1-1-disabled.png'
         }]
     }, {
         text: '',
         options: [{
             id: 0,
-            img: 'https://leonardo.osnova.io/8d3eda6a-2de2-91a6-2a5a-9a5cc5ea23d1',
-            imgWrong: 'https://leonardo.osnova.io/31528754-0c71-fa1d-1366-f0b407f3494c',
-            imgCorrect: 'https://leonardo.osnova.io/c83d80a4-e5ef-ddd5-4d0a-cf188b2af80d',
-            imgDisabled: 'https://leonardo.osnova.io/fb9ed063-0fb3-d257-da73-2dd89d9fbae8',
-            text: 'Сокол сапсан',
-            message: '322 км/ч',
+            text: 'Лионель Месси',
+            message: '35,8 км/ч',
+            img: '2-0.png',
+            imgCorrect: '2-0-correct.png',
+            imgWrong: '2-0-wrong.png',
+            imgDisabled: '2-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Криштиану Роналду',
+            message: '38,6 км/ч',
+            img: '2-1.png',
+            imgCorrect: '2-1-correct.png',
+            imgWrong: '2-1-wrong.png',
+            imgDisabled: '2-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Самолет F-111',
+            message: '3060 км/ч',
+            img: '3-0.png',
+            imgCorrect: '3-0-correct.png',
+            imgWrong: '3-0-wrong.png',
+            imgDisabled: '3-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Самолет МиГ-31',
+            message: '3464 км/ч',
+            img: '3-1.png',
+            imgCorrect: '3-1-correct.png',
+            imgWrong: '3-1-wrong.png',
+            imgDisabled: '3-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Hyperloop',
+            message: '1220 км/ч',
+            img: '4-0.png',
+            imgCorrect: '4-0-correct.png',
+            imgWrong: '4-0-wrong.png',
+            imgDisabled: '4-0-disabled.png',
             isCorrect: true
         }, {
             id: 1,
-            img: 'https://leonardo.osnova.io/4083b606-0190-4d93-dba3-77786cefe110',
-            imgWrong: 'https://leonardo.osnova.io/2b56977b-4061-bf2a-e407-1c6ae271ddc2',
-            imgCorrect: 'https://leonardo.osnova.io/dd371c6f-f031-aeda-3e6c-2ca2a391da31',
-            imgDisabled: 'https://leonardo.osnova.io/71a1bccb-8f87-aa55-eb9e-07de6afe334f',
-            text: 'Поезд «Сапсан»',
-            message: '250 км/ч'
+            text: 'Airbus A320',
+            message: '910 км/ч',
+            img: '4-1.png',
+            imgCorrect: '4-1-correct.png',
+            imgWrong: '4-1-wrong.png',
+            imgDisabled: '4-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Усейн Болт',
+            message: '44,72 км/ч',
+            img: '5-0.png',
+            imgCorrect: '5-0-correct.png',
+            imgWrong: '5-0-wrong.png',
+            imgDisabled: '5-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Заяц-русак',
+            message: '80 км/ч',
+            img: '5-1.png',
+            imgCorrect: '5-1-correct.png',
+            imgWrong: '5-1-wrong.png',
+            imgDisabled: '5-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Гепард',
+            message: '115 км/ч',
+            img: '6-0.png',
+            imgCorrect: '6-0-correct.png',
+            imgWrong: '6-0-wrong.png',
+            imgDisabled: '6-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Электрокар Lada Ellada',
+            message: '130 км/ч',
+            img: '6-1.png',
+            imgCorrect: '6-1-correct.png',
+            imgWrong: '6-1-wrong.png',
+            imgDisabled: '6-1-disabled.png',
+            isCorrect: true
+        }]
+    },
+    // {
+    //     text: '',
+    //     options: [
+    //         {
+    //             id: 0,
+    //             text: 'Комета Чурюмова-Герасименко',
+    //             message: '55 000 км/ч',
+    //             img: '7-0.png',
+    //             imgCorrect: '7-0-correct.png',
+    //             imgWrong: '7-0-wrong.png',
+    //             imgDisabled: '7-0-disabled.png'
+    //         },
+    //         {
+    //             id: 1,
+    //             text: '«Вояджер-1»',
+    //             message: '62 140 км/ч',
+    //             img: '7-1.png',
+    //             imgCorrect: '7-1-correct.png',
+    //             imgWrong: '7-1-wrong.png',
+    //             imgDisabled: '7-1-disabled.png',
+    //             isCorrect: true,
+    //         }
+    //     ]
+    // },
+    {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Волан',
+            message: '300 км/ч',
+            img: '8-0.png',
+            imgCorrect: '8-0-correct.png',
+            imgWrong: '8-0-wrong.png',
+            imgDisabled: '8-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Теннисный мяч',
+            message: '251 км/ч',
+            img: '8-1.png',
+            imgCorrect: '8-1-correct.png',
+            imgWrong: '8-1-wrong.png',
+            imgDisabled: '8-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Нервный импульс',
+            message: '450 км/ч',
+            img: '9-0.png',
+            imgCorrect: '9-0-correct.png',
+            imgWrong: '9-0-wrong.png',
+            imgDisabled: '9-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Радиосигнал',
+            message: '1 080 000 000 км/ч',
+            img: '9-1.png',
+            imgCorrect: '9-1-correct.png',
+            imgWrong: '9-1-wrong.png',
+            imgDisabled: '9-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Вишневый родстер Илона Маска в космосе',
+            message: '39 600 км/ч',
+            img: '10-0.png',
+            imgCorrect: '10-0-correct.png',
+            imgWrong: '10-0-wrong.png',
+            imgDisabled: '10-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Ракета-носитель «Протон»',
+            message: '25 855 км/ч',
+            img: '10-1.png',
+            imgCorrect: '10-1-correct.png',
+            imgWrong: '10-1-wrong.png',
+            imgDisabled: '10-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Московское метро',
+            message: '80 км/ч',
+            img: '11-0.png',
+            imgCorrect: '11-0-correct.png',
+            imgWrong: '11-0-wrong.png',
+            imgDisabled: '11-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Рыба парусник',
+            message: '120 км/ч',
+            img: '11-1.png',
+            imgCorrect: '11-1-correct.png',
+            imgWrong: '11-1-wrong.png',
+            imgDisabled: '11-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Робот Cheetah',
+            message: '45,5 км/ч',
+            img: '12-0.png',
+            imgCorrect: '12-0-correct.png',
+            imgWrong: '12-0-wrong.png',
+            imgDisabled: '12-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Ford Model T',
+            message: '72 км/час',
+            img: '12-1.png',
+            imgCorrect: '12-1-correct.png',
+            imgWrong: '12-1-wrong.png',
+            imgDisabled: '12-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Сварится целая картофелина в воде',
+            message: '20 минут',
+            img: '13-0.png',
+            imgCorrect: '13-0-correct.png',
+            imgWrong: '13-0-wrong.png',
+            imgDisabled: '13-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Tesla Model 3 проедет 125 км на максимальной скорости',
+            message: '30 минут',
+            img: '13-1.png',
+            imgCorrect: '13-1-correct.png',
+            imgWrong: '13-1-wrong.png',
+            imgDisabled: '13-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Американский таракан пробежит 30 метров',
+            message: '20 секунд',
+            img: '14-0.png',
+            imgCorrect: '14-0-correct.png',
+            imgWrong: '14-0-wrong.png',
+            imgDisabled: '14-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Включится iPhone 7',
+            message: '27,63 секунды',
+            img: '14-1.png',
+            imgCorrect: '14-1-correct.png',
+            imgWrong: '14-1-wrong.png',
+            imgDisabled: '14-1-disabled.png'
         }]
     }],
     results: [{
@@ -2644,15 +2903,15 @@ exports.default = {
     }, {
         range: [15, 20],
         title: 'Свет преодолел бы несколько миллионов километров',
-        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
+        cover: 'https://leonardo.osnova.io/8fdf384b-f601-3b70-feeb-3c21d1314d60'
     }, {
         range: [20, 30],
-        title: 'Комар успел бы 10 000 раз взмахнуть крыльями',
-        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
+        title: 'Комар успел бы 10&nbsp;000 раз взмахнуть крыльями',
+        cover: 'https://leonardo.osnova.io/71e24489-c193-5d34-aad8-c397b2a3f00d'
     }, {
         range: [30, 99999],
         title: 'Сын маминой подруги успел бы прославиться',
-        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
+        cover: 'https://leonardo.osnova.io/b3926ee9-050a-e5c1-78e5-44bd37e345c3'
     }]
 };
 

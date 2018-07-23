@@ -150,12 +150,25 @@ contentZone()
         display: flex
         flex-direction: row
         align-items: flex-start
+        justify-content space-around
+
 
         &--disabled
             pointer-events: none
 
             .MegafonSpeed__option
                 //display: none
+
+                &::before
+                    background-color #787378
+
+                &--success
+                    &::before
+                        background-color #31C276
+
+                &--error
+                    &::before
+                        background-color #EC7664
 
                 &--success,
                 &--error
@@ -171,6 +184,8 @@ contentZone()
                             &:hover
                                 color: $colors.pink !important
 
+
+
     &__option
         position: relative
         cursor: pointer
@@ -183,6 +198,18 @@ contentZone()
         font-size: 16px
         text-align: center
 
+        &::before
+            content: '';
+            background #F3F3F3
+            width: 218px
+            height: 218px
+            border-radius 50%
+            margin-bottom: 20px
+
+            @media $mq.mobile
+                width: 109px
+                height: 109px
+
         &:not(:last-of-type){
           margin-right 25px
         }
@@ -190,13 +217,190 @@ contentZone()
         @media $mq.mobile
             font-size: 14px
             margin: 0 auto 10px
+            line-height: 1.3em
 
         &-image
+            position: absolute
+            top: 50%
+            transform translateY(-60%)
             max-height 220px
             margin-bottom: 15px
 
             @media $mq.mobile
                 max-height 100px
+
+        &[data-number="0"][data-id="0"] &-image
+            max-height 180px
+
+            @media $mq.mobile
+                max-height 90px
+
+        &[data-number="0"][data-id="1"] &-image
+            max-height 115px
+
+            @media $mq.mobile
+                max-height: 57px
+
+        &[data-number="1"][data-id="0"] &-image
+            max-height 268px
+
+            @media $mq.mobile
+                max-height: 134px
+
+        &[data-number="1"][data-id="1"] &-image
+            max-height 233px
+
+            @media $mq.mobile
+                max-height: 116px
+
+        &[data-number="2"][data-id="0"] &-image
+            max-height 177px
+
+            @media $mq.mobile
+                max-height: 88px
+
+
+        &[data-number="2"][data-id="1"] &-image
+            max-height 177px
+
+            @media $mq.mobile
+                max-height: 88px
+
+        &[data-number="3"][data-id="0"] &-image
+            max-height 204px
+
+            @media $mq.mobile
+                max-height: 102px
+
+        &[data-number="3"][data-id="1"] &-image
+            max-height 107px
+
+            @media $mq.mobile
+                max-height: 53px
+
+        &[data-number="4"][data-id="0"] &-image
+            max-height 251px
+
+            @media $mq.mobile
+                max-height: 125px
+
+        &[data-number="4"][data-id="1"] &-image
+            max-height 190px
+
+            @media $mq.mobile
+                max-height: 95px
+
+        &[data-number="5"][data-id="0"] &-image
+            max-height 125px
+
+            @media $mq.mobile
+                max-height: 60px
+
+        &[data-number="5"][data-id="1"] &-image
+            max-height 113px
+
+            @media $mq.mobile
+                max-height: 57px
+
+        &[data-number="6"][data-id="0"] &-image
+            max-height 268px
+
+            @media $mq.mobile
+                max-height: 134px
+
+        &[data-number="6"][data-id="1"] &-image
+            max-height 180px
+
+            @media $mq.mobile
+                max-height: 90px
+
+        &[data-number="7"][data-id="0"] &-image
+            max-height 150px
+
+            @media $mq.mobile
+                max-height: 75px
+
+        &[data-number="7"][data-id="1"] &-image
+            max-height 177px
+
+            @media $mq.mobile
+                max-height: 88px
+
+        &[data-number="8"][data-id="0"] &-image
+            max-height 183px
+
+            @media $mq.mobile
+                max-height: 91px
+
+        &[data-number="8"][data-id="1"] &-image
+            max-height: 267px;
+            margin-top: -16px;
+
+            @media $mq.mobile
+                max-height: 133px
+                margin-top: -45px
+
+        &[data-number="9"][data-id="0"] &-image
+            max-height 193px
+
+            @media $mq.mobile
+                max-height: 96px
+
+        &[data-number="9"][data-id="1"] &-image
+            max-height 200px
+
+            @media $mq.mobile
+                max-height: 100px
+
+        &[data-number="10"][data-id="0"] &-image
+            max-height 225px
+
+            @media $mq.mobile
+                max-height: 112px
+
+        &[data-number="10"][data-id="1"] &-image
+            max-height 186px
+
+            @media $mq.mobile
+                max-height: 93px
+
+        &[data-number="11"][data-id="0"] &-image
+            max-height 176px
+
+            @media $mq.mobile
+                max-height: 88px
+                transform translateY(-90%);
+
+        &[data-number="11"][data-id="1"] &-image
+            max-height 166px
+
+            @media $mq.mobile
+                max-height: 83px
+                transform translateY(-90%);
+
+        &[data-number="12"][data-id="0"] &-image
+            max-height 146px
+
+            @media $mq.mobile
+                max-height: 73px
+
+        &[data-number="12"][data-id="1"] &-image
+            max-height 227px
+
+            @media $mq.mobile
+                max-height: 113px
+
+        &[data-number="13"][data-id="0"] &-image
+            max-height 252px
+
+            @media $mq.mobile
+                max-height: 126px
+
+        &[data-number="13"][data-id="1"] &-image
+            max-height 227px
+
+            @media $mq.mobile
+                max-height: 113px
 
         &-overlay
             position: absolute
@@ -284,13 +488,16 @@ contentZone()
         box-sizing: border-box
         display: flex
         background-repeat: no-repeat
-        background-position: 75% 50%;
-        background-size: auto 215px;
+        background-position: 95% 30%;
+        background-size: auto 115px;
         padding: 30px 0;
         height: 320px
 
         @media $mq.not_mobile
             height: 413px
+            background-position: 75% 50%;
+            background-size: auto 215px;
+
 
     &__resultPoints
         font-size: 22px
@@ -299,7 +506,8 @@ contentZone()
         margin-bottom: 20px
 
         @media $mq.mobile
-            font-size: 16px
+            font-size: 14px
+            margin-bottom: 10px
 
     &__resultContent
         flex: 1
@@ -385,12 +593,16 @@ contentZone()
                 &::before
                     transition box-shadow 100ms ease;
                     box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
+                    transform none
+                    border-radius 30px
 
                 &:hover
                     transform translateY(3px)
 
                     &::before
                         box-shadow: 0 4px 14px 0 rgba(121, 54, 68, 0.23);
+                        transform none
+
 
                 &:last-child
                     margin-right: 0
@@ -429,7 +641,7 @@ contentZone()
 
     &[data-mode="start"]
         &.MegafonSpeed
-            background-image url("https://leonardo-direct.osnova.io/0c4dbda8-0c91-ff73-78a7-f5a963e1f404/")
+            background-image url("https://leonardo.osnova.io/dc865026-1149-76c8-f1af-9701f08e2cbb")
             background-repeat no-repeat
             background-position center 70%
             background-size contain
@@ -467,7 +679,7 @@ contentZone()
 
     &[data-mode="progress"]
         &.MegafonSpeed {
-            background-image url('https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/');
+            background-image url('https://leonardo.osnova.io/9dd2376e-2c18-fe6b-485e-05489b09a360');
             background-size auto 100%
             background-position center center
             background-repeat no-repeat
@@ -589,7 +801,8 @@ contentZone()
 
                 @media $mq.mobile
                     margin-bottom: 15px
-                    font-size: 23px
+                    font-size: 20px
+                    padding-right: 100px
 
             &__text
                 margin-bottom: 0
