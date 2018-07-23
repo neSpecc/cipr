@@ -578,7 +578,7 @@ contentZone()
 
         .likely
             &__widget
-                button($colors.accent, $colors.accent)
+                button(#751083, #751083)
                 height: 50px
                 min-width: 60px
                 margin-right: 10px
@@ -593,15 +593,14 @@ contentZone()
                 &::before
                     transition box-shadow 100ms ease;
                     box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
-                    transform none
-                    border-radius 30px
 
                 &:hover
                     transform translateY(3px)
 
                     &::before
+                        border-color #751083
+                        background-color: #751083;
                         box-shadow: 0 4px 14px 0 rgba(121, 54, 68, 0.23);
-                        transform none
 
 
                 &:last-child
