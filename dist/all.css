@@ -365,11 +365,11 @@
   }
 }
 .MegafonSpeed__option[data-number="6"][data-id="0"] .MegafonSpeed__option-image {
-  max-height: 197px;
+  max-height: 140px;
 }
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="6"][data-id="0"] .MegafonSpeed__option-image {
-    max-height: 100px;
+    max-height: 70px;
   }
 }
 .MegafonSpeed__option[data-number="6"][data-id="1"] .MegafonSpeed__option-image {
@@ -397,21 +397,19 @@
   }
 }
 .MegafonSpeed__option[data-number="8"][data-id="0"] .MegafonSpeed__option-image {
-  max-height: 183px;
+  max-height: 150px;
 }
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="8"][data-id="0"] .MegafonSpeed__option-image {
-    max-height: 91px;
+    max-height: 75px;
   }
 }
 .MegafonSpeed__option[data-number="8"][data-id="1"] .MegafonSpeed__option-image {
-  max-height: 267px;
-  margin-top: -16px;
+  max-height: 180px;
 }
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="8"][data-id="1"] .MegafonSpeed__option-image {
-    max-height: 133px;
-    margin-top: -45px;
+    max-height: 90px;
   }
 }
 .MegafonSpeed__option[data-number="9"][data-id="0"] .MegafonSpeed__option-image {
@@ -428,6 +426,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="9"][data-id="1"] .MegafonSpeed__option-image {
     max-height: 100px;
+    transform: translateY(-90%);
   }
 }
 .MegafonSpeed__option[data-number="10"][data-id="0"] .MegafonSpeed__option-image {
@@ -473,7 +472,7 @@
   }
 }
 .MegafonSpeed__option[data-number="12"][data-id="1"] .MegafonSpeed__option-image {
-  max-height: 227px;
+  max-height: 130px;
 }
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="12"][data-id="1"] .MegafonSpeed__option-image {
@@ -630,6 +629,11 @@
     height: 413px;
     background-position: 75% 50%;
     background-size: auto 215px;
+  }
+}
+@media (max-width: 679px) {
+  .MegafonSpeed__result {
+    padding-top: 15px;
   }
 }
 .MegafonSpeed__resultPoints {
@@ -935,7 +939,6 @@
   display: none;
 }
 .MegafonSpeed[data-mode="result"].MegafonSpeed {
-  background-image: url("https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/");
   background-size: auto 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -945,6 +948,23 @@
   display: none;
 }
 .MegafonSpeed[data-mode="result"] .MegafonSpeed__header {
+  position: absolute;
+  right: 20%;
+  z-index: 2;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__header {
+    right: 0;
+    padding: 10px;
+  }
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__header svg {
+    height: 15px;
+    width: 80px;
+  }
+}
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__counter {
   display: none;
 }
 .MegafonSpeed[data-mode="result"] .MegafonSpeed__content {
@@ -1034,7 +1054,7 @@
   left: 0;
   right: 0;
   border: 4px solid #00b856;
-  background-color: transparent;
+  background-color: #00b856;
   transform: skewX(-10deg);
   transition: transform 50ms ease-in;
   will-change: transform;
@@ -1052,6 +1072,13 @@
   transform: skewX(-15deg);
   background-color: #00b856;
   border-color: #00b856;
+}
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__button::before {
+  border-radius: 30px;
+  transform: none;
+}
+.MegafonSpeed[data-mode="result"] .MegafonSpeed__button:hover::before {
+  transform: none;
 }
 .MegafonSpeed[data-mode="result"] .MegafonSpeed__title {
   max-width: 320px;

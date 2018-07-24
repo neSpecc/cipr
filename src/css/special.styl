@@ -303,10 +303,10 @@ contentZone()
                 max-height: 57px
 
         &[data-number="6"][data-id="0"] &-image
-            max-height 197px
+            max-height 140px
 
             @media $mq.mobile
-                max-height: 100px
+                max-height: 70px
 
         &[data-number="6"][data-id="1"] &-image
             max-height 180px
@@ -327,18 +327,16 @@ contentZone()
                 max-height: 88px
 
         &[data-number="8"][data-id="0"] &-image
-            max-height 183px
+            max-height 150px
 
             @media $mq.mobile
-                max-height: 91px
+                max-height: 75px
 
         &[data-number="8"][data-id="1"] &-image
-            max-height: 267px;
-            margin-top: -16px;
+            max-height: 180px;
 
             @media $mq.mobile
-                max-height: 133px
-                margin-top: -45px
+                max-height: 90px
 
         &[data-number="9"][data-id="0"] &-image
             max-height 193px
@@ -351,6 +349,7 @@ contentZone()
 
             @media $mq.mobile
                 max-height: 100px
+                transform translateY(-90%)
 
         &[data-number="10"][data-id="0"] &-image
             max-height 225px
@@ -385,7 +384,7 @@ contentZone()
                 max-height: 73px
 
         &[data-number="12"][data-id="1"] &-image
-            max-height 227px
+            max-height 130px
 
             @media $mq.mobile
                 max-height: 65px
@@ -498,6 +497,9 @@ contentZone()
             height: 413px
             background-position: 75% 50%;
             background-size: auto 215px;
+
+        @media $mq.mobile
+            padding-top: 15px
 
 
     &__resultPoints
@@ -724,7 +726,7 @@ contentZone()
 
     &[data-mode="result"]
         &.MegafonSpeed {
-            background-image url('https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/');
+            //background-image url('https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/');
             background-size auto 100%
             background-position center center
             background-repeat no-repeat
@@ -736,6 +738,21 @@ contentZone()
                 display: none
 
             &__header
+                position: absolute
+                right: 20%;
+                z-index: 2
+
+                @media $mq.mobile
+                    right: 0
+                    padding: 10px
+
+                svg
+                    @media $mq.mobile
+                        height: 15px
+                        width: 80px
+
+
+            &__counter
                 display: none
 
             &__content
@@ -784,7 +801,7 @@ contentZone()
                     margin-right: auto
 
             &__button
-                button($colors.accent)
+                button($colors.accent, $colors.accent)
                 padding: 0 20px;
                 display: flex
                 align-items: center
@@ -792,6 +809,14 @@ contentZone()
                 margin: 0 0 auto
                 font-size: 18px
                 color: #fff
+
+                &::before
+                    border-radius 30px
+                    transform none
+
+                &:hover
+                    &::before
+                        transform none
 
             &__title
                 max-width: 320px
