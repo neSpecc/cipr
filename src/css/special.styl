@@ -117,6 +117,9 @@ contentZone()
         flex-direction: column
         min-height 500px
 
+        @media $mq.mobile
+            min-height 90vh
+
     &__text
         margin-bottom: 20px
 
@@ -151,7 +154,6 @@ contentZone()
         flex-direction: row
         align-items: flex-start
         justify-content space-around
-
 
         &--disabled
             pointer-events: none
@@ -234,12 +236,14 @@ contentZone()
 
             @media $mq.mobile
                 max-height 90px
+                transform: translateY(-70%)
 
         &[data-number="0"][data-id="1"] &-image
             max-height 115px
 
             @media $mq.mobile
                 max-height: 57px
+                transform: translateY(-70%)
 
         &[data-number="1"][data-id="0"] &-image
             max-height 268px
@@ -258,7 +262,7 @@ contentZone()
 
             @media $mq.mobile
                 max-height: 88px
-
+                transform: translateY(-70%)
 
         &[data-number="2"][data-id="1"] &-image
             max-height 177px
@@ -307,6 +311,7 @@ contentZone()
 
             @media $mq.mobile
                 max-height: 70px
+                transform: translateY(-80%)
 
         &[data-number="6"][data-id="1"] &-image
             max-height 180px
@@ -318,7 +323,7 @@ contentZone()
             max-height 150px
 
             @media $mq.mobile
-                max-height: 75px
+                max-height: 115px
 
         &[data-number="7"][data-id="1"] &-image
             max-height 177px
@@ -343,12 +348,13 @@ contentZone()
 
             @media $mq.mobile
                 max-height: 96px
+                transform: translateY(-90%)
 
         &[data-number="9"][data-id="1"] &-image
             max-height 200px
 
             @media $mq.mobile
-                max-height: 100px
+                max-height: 130px
                 transform translateY(-90%)
 
         &[data-number="10"][data-id="0"] &-image
@@ -368,27 +374,26 @@ contentZone()
 
             @media $mq.mobile
                 max-height: 88px
-                transform translateY(-90%);
 
         &[data-number="11"][data-id="1"] &-image
             max-height 166px
 
             @media $mq.mobile
                 max-height: 83px
-                transform translateY(-90%);
 
         &[data-number="12"][data-id="0"] &-image
             max-height 146px
 
             @media $mq.mobile
                 max-height: 73px
+                transform translateY(-90%);
 
         &[data-number="12"][data-id="1"] &-image
             max-height 130px
 
             @media $mq.mobile
-                max-height: 65px
-                transform translateY(-90%);
+                max-height: 75px
+                transform translateY(-100%);
 
         &[data-number="13"][data-id="0"] &-image
             max-height 252px
@@ -401,6 +406,8 @@ contentZone()
 
             @media $mq.mobile
                 max-height: 113px
+                transform translateY(-75%);
+
 
         &-overlay
             position: absolute
@@ -458,6 +465,9 @@ contentZone()
         margin-top: auto
         margin-bottom: 30px
 
+        @media $mq.mobile
+            margin-bottom: 15px
+
     &__button
         button($colors.accent)
         display: block
@@ -491,7 +501,6 @@ contentZone()
         background-position: 95% 30%;
         background-size: auto 115px;
         padding: 30px 0;
-        height: 320px
 
         @media $mq.not_mobile
             height: 413px
@@ -499,7 +508,7 @@ contentZone()
             background-size: auto 215px;
 
         @media $mq.mobile
-            padding-top: 15px
+            padding: 15px 0
 
 
     &__resultPoints
@@ -534,7 +543,7 @@ contentZone()
         font-weight: 700
 
         @media $mq.mobile
-            margin-top: 15px
+            margin-top: 0
 
         svg
             margin-left: 8px
@@ -593,6 +602,11 @@ contentZone()
                 transition transform 100ms ease;
                 will-change: transform
 
+                @media $mq.mobile
+                    height: 40px
+                    line-height: 40px;
+                    min-width 50px
+
                 &::before
                     transition box-shadow 100ms ease;
                     box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
@@ -631,6 +645,10 @@ contentZone()
                     height: @width
                     fill: #fff
 
+                    @media $mq.mobile
+                        width 20px
+                        height: 20px
+
                 &--vkontakte
                     svg
                         width: 28px
@@ -649,12 +667,16 @@ contentZone()
             background-size contain
 
             @media $mq.mobile
-                background-size: auto 60%;
+                background-size: auto 90%;
 
         .MegafonSpeed
             &__counter,
             &__timer
                 display: none
+
+            &__content
+                @media $mq.mobile
+                    min-height: 87vh
 
             &__header
                 a
@@ -680,12 +702,15 @@ contentZone()
                     display: none
 
     &[data-mode="progress"]
-        &.MegafonSpeed {
+        &.MegafonSpeed
             background-image url('https://leonardo.osnova.io/9dd2376e-2c18-fe6b-485e-05489b09a360');
             background-size auto 100%
             background-position center center
             background-repeat no-repeat
-        }
+
+            @media $mq.mobile
+                background-size auto 100vh
+                background-position center 0
 
         .MegafonSpeed
             &__heart
@@ -703,6 +728,10 @@ contentZone()
             &__content
                 padding-top 30px
 
+                @media $mq.mobile
+                    padding-top: 15px
+                    min-height: 95vh
+
             &__counter
                 width: 64px
 
@@ -715,6 +744,7 @@ contentZone()
                 @media $mq.mobile
                     font-size: 22px
                     padding-right: 90px
+                    margin-bottom: 30px
 
             &__button
                 height: auto
@@ -825,6 +855,7 @@ contentZone()
                 margin-bottom: 30px
 
                 @media $mq.mobile
+                    max-width none
                     margin-bottom: 15px
                     font-size: 20px
                     padding-right: 100px

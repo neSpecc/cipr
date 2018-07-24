@@ -148,6 +148,11 @@
     padding: 0 15px;
   }
 }
+@media (max-width: 679px) {
+  .MegafonSpeed__content {
+    min-height: 90vh;
+  }
+}
 .MegafonSpeed__text {
   margin-bottom: 20px;
 }
@@ -274,6 +279,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="0"][data-id="0"] .MegafonSpeed__option-image {
     max-height: 90px;
+    transform: translateY(-70%);
   }
 }
 .MegafonSpeed__option[data-number="0"][data-id="1"] .MegafonSpeed__option-image {
@@ -282,6 +288,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="0"][data-id="1"] .MegafonSpeed__option-image {
     max-height: 57px;
+    transform: translateY(-70%);
   }
 }
 .MegafonSpeed__option[data-number="1"][data-id="0"] .MegafonSpeed__option-image {
@@ -306,6 +313,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="2"][data-id="0"] .MegafonSpeed__option-image {
     max-height: 88px;
+    transform: translateY(-70%);
   }
 }
 .MegafonSpeed__option[data-number="2"][data-id="1"] .MegafonSpeed__option-image {
@@ -370,6 +378,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="6"][data-id="0"] .MegafonSpeed__option-image {
     max-height: 70px;
+    transform: translateY(-80%);
   }
 }
 .MegafonSpeed__option[data-number="6"][data-id="1"] .MegafonSpeed__option-image {
@@ -385,7 +394,7 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="7"][data-id="0"] .MegafonSpeed__option-image {
-    max-height: 75px;
+    max-height: 115px;
   }
 }
 .MegafonSpeed__option[data-number="7"][data-id="1"] .MegafonSpeed__option-image {
@@ -418,6 +427,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="9"][data-id="0"] .MegafonSpeed__option-image {
     max-height: 96px;
+    transform: translateY(-90%);
   }
 }
 .MegafonSpeed__option[data-number="9"][data-id="1"] .MegafonSpeed__option-image {
@@ -425,7 +435,7 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="9"][data-id="1"] .MegafonSpeed__option-image {
-    max-height: 100px;
+    max-height: 130px;
     transform: translateY(-90%);
   }
 }
@@ -451,7 +461,6 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="11"][data-id="0"] .MegafonSpeed__option-image {
     max-height: 88px;
-    transform: translateY(-90%);
   }
 }
 .MegafonSpeed__option[data-number="11"][data-id="1"] .MegafonSpeed__option-image {
@@ -460,7 +469,6 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="11"][data-id="1"] .MegafonSpeed__option-image {
     max-height: 83px;
-    transform: translateY(-90%);
   }
 }
 .MegafonSpeed__option[data-number="12"][data-id="0"] .MegafonSpeed__option-image {
@@ -469,6 +477,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="12"][data-id="0"] .MegafonSpeed__option-image {
     max-height: 73px;
+    transform: translateY(-90%);
   }
 }
 .MegafonSpeed__option[data-number="12"][data-id="1"] .MegafonSpeed__option-image {
@@ -476,8 +485,8 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="12"][data-id="1"] .MegafonSpeed__option-image {
-    max-height: 65px;
-    transform: translateY(-90%);
+    max-height: 75px;
+    transform: translateY(-100%);
   }
 }
 .MegafonSpeed__option[data-number="13"][data-id="0"] .MegafonSpeed__option-image {
@@ -494,6 +503,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="13"][data-id="1"] .MegafonSpeed__option-image {
     max-height: 113px;
+    transform: translateY(-75%);
   }
 }
 .MegafonSpeed__option-overlay {
@@ -559,6 +569,11 @@
   margin-top: auto;
   margin-bottom: 30px;
 }
+@media (max-width: 679px) {
+  .MegafonSpeed__actions {
+    margin-bottom: 15px;
+  }
+}
 .MegafonSpeed__button {
   position: relative;
   height: 56px;
@@ -622,7 +637,6 @@
   background-position: 95% 30%;
   background-size: auto 115px;
   padding: 30px 0;
-  height: 320px;
 }
 @media (min-width: 680px) {
   .MegafonSpeed__result {
@@ -633,7 +647,7 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed__result {
-    padding-top: 15px;
+    padding: 15px 0;
   }
 }
 .MegafonSpeed__resultPoints {
@@ -679,7 +693,7 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed__restartButton {
-    margin-top: 15px;
+    margin-top: 0;
   }
 }
 .MegafonSpeed__restartButton svg {
@@ -804,6 +818,13 @@
   background-color: #00b856;
   border-color: #00b856;
 }
+@media (max-width: 679px) {
+  .MegafonSpeed .likely--custom .likely__widget {
+    height: 40px;
+    line-height: 40px;
+    min-width: 50px;
+  }
+}
 .MegafonSpeed .likely--custom .likely__widget::before {
   transition: box-shadow 100ms ease;
   box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
@@ -843,6 +864,12 @@
   height: 24px;
   fill: #fff;
 }
+@media (max-width: 679px) {
+  .MegafonSpeed .likely--custom .likely__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
 .MegafonSpeed .likely--custom .likely__icon--vkontakte svg {
   width: 28px;
   height: 28px;
@@ -861,12 +888,17 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed[data-mode="start"].MegafonSpeed {
-    background-size: auto 60%;
+    background-size: auto 90%;
   }
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__counter,
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__timer {
   display: none;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="start"] .MegafonSpeed__content {
+    min-height: 87vh;
+  }
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__header a {
   margin-left: auto;
@@ -898,6 +930,12 @@
   background-position: center center;
   background-repeat: no-repeat;
 }
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="progress"].MegafonSpeed {
+    background-size: auto 100vh;
+    background-position: center 0;
+  }
+}
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__heart {
   transform: rotate(73deg) scale(1.49) translate(320px, 140px);
 }
@@ -915,6 +953,12 @@
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__content {
   padding-top: 30px;
 }
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="progress"] .MegafonSpeed__content {
+    padding-top: 15px;
+    min-height: 95vh;
+  }
+}
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__counter {
   width: 64px;
 }
@@ -928,6 +972,7 @@
   .MegafonSpeed[data-mode="progress"] .MegafonSpeed__text {
     font-size: 22px;
     padding-right: 90px;
+    margin-bottom: 30px;
   }
 }
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__button {
@@ -1088,6 +1133,7 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed[data-mode="result"] .MegafonSpeed__title {
+    max-width: none;
     margin-bottom: 15px;
     font-size: 20px;
     padding-right: 100px;
