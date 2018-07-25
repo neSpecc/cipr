@@ -191,7 +191,7 @@ class Special extends BaseSpecial {
 
     makeHeader() {
         let header = makeElement('div', Bem.set(CSS.main, 'header'), {
-            innerHTML: `<a href="${Data.promoUrl}" target="_blank">${Svg.logo}</a>`
+            innerHTML: `<a href="${Data.logoUrl}" target="_blank">${Svg.logo}</a>`
         });
 
         this.counter = makeElement('div', Bem.set(CSS.main, 'counter'));
@@ -264,6 +264,7 @@ class Special extends BaseSpecial {
             this.isPending = false;
             this.mainOptions.classList.remove(Bem.set(CSS.main, 'options', 'disabled'));
 
+            this.restartTimer(false);
             this.updateCounter();
             this.mainText.innerHTML = `${Data.title}`;
 
@@ -336,6 +337,8 @@ class Special extends BaseSpecial {
         if (!this.isPending) {
             let id = parseInt(button.dataset.id),
                 data = null;
+
+            this.stopTimer(false);
 
             this.isPending = true;
             this.mainOptions.classList.add(Bem.set(CSS.main, 'options', 'disabled'));
@@ -498,7 +501,7 @@ class Special extends BaseSpecial {
 
 
         Share.make(resultActions, {
-            url: `${CONFIG.share.url}/${secondsWasted}`,
+            url: `${CONFIG.share.url}/${this.userPoints}/${secondsWasted}`,
             twitter: CONFIG.share.twitter
         });
 
@@ -548,19 +551,23 @@ class Special extends BaseSpecial {
 
     /**
      * Stop timer if it is running
+     * @param {boolean} clear - need to clear value
      */
-    stopTimer() {
+    stopTimer(clear = true) {
         if (this.timer) {
             window.clearInterval(this.timer);
-            this._timerValue = 0;
+            if (clear) {
+                this._timerValue = 0;
+            }
         }
     }
 
     /**
     * Starts new timer for the game
+    * @param {boolean} clear - need to clear value
     */
-    restartTimer() {
-        this.stopTimer();
+    restartTimer(clear) {
+        this.stopTimer(clear);
 
         this.timer = window.setInterval(() => {
             this.timerValue++;

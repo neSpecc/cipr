@@ -1,8 +1,9 @@
 export default {
-    title: 'Кто быстрее из этих двух',
+    title: 'Быстрее из этой пары',
     intro: 'Скоростной тест на скорость.',
     outro: `<p>Самый быстрый мобильный интернет — в&nbsp;МегаФоне. Доказано измерениями миллионов пользователей в Speedtest.</p> `,
-    promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
+    logoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__logo_cpm__&utm_content=&utm_term=',
+    promoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__button_cpm__&utm_content=&utm_term=',
     CTAText: 'Подключить',
     questions: [
         {

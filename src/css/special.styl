@@ -600,6 +600,7 @@ contentZone()
                 align-items: center
                 justify-content: center
                 color: #fff
+                font-weight: bold
                 background #751083 !important
                 transition transform 100ms ease;
                 will-change: transform
@@ -717,7 +718,7 @@ contentZone()
 
                 &:hover
                     &::before
-                        animation bounceIn 0.75s;
+                        animation bounceIn 0.45s;
                         animation-iteration-count 1
                         animation-fill-mode: forwards;
 
@@ -832,7 +833,7 @@ contentZone()
 
 
             &__text
-                background #751083;
+                background #00B856
                 color #fff
                 font-weight: 500
                 padding: 20px 30px;
@@ -870,14 +871,21 @@ contentZone()
                     margin-right: auto
 
             &__button
-                button($colors.accent, $colors.accent)
+                button(#751083, #751083)
                 padding: 0 25px;
                 display: flex
                 align-items: center
                 justify-content: center
                 margin: 0 0 auto
+                height: 50px
                 font-size: 18px
+                line-height: 50px
                 color: #fff
+
+                @media $mq.mobile
+                    font-size: 16px
+                    height: 40px
+                    line-height: 40px
 
                 &::before
                     border-radius 30px
@@ -885,6 +893,8 @@ contentZone()
 
                 &:hover
                     &::before
+                        border-color #751083
+                        background-color #751083
                         animation bounceIn 0.75s;
                         animation-iteration-count 1
                         animation-fill-mode: forwards;

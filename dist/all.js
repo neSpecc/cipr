@@ -991,7 +991,7 @@ var Special = function (_BaseSpecial) {
         key: 'makeHeader',
         value: function makeHeader() {
             var header = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'header'), {
-                innerHTML: '<a href="' + _data2.default.promoUrl + '" target="_blank">' + _svg2.default.logo + '</a>'
+                innerHTML: '<a href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>'
             });
 
             this.counter = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'counter'));
@@ -1069,6 +1069,7 @@ var Special = function (_BaseSpecial) {
                 this.isPending = false;
                 this.mainOptions.classList.remove(_bem2.default.set(CSS.main, 'options', 'disabled'));
 
+                this.restartTimer(false);
                 this.updateCounter();
                 this.mainText.innerHTML = '' + _data2.default.title;
 
@@ -1146,6 +1147,8 @@ var Special = function (_BaseSpecial) {
             if (!this.isPending) {
                 var id = parseInt(button.dataset.id),
                     data = null;
+
+                this.stopTimer(false);
 
                 this.isPending = true;
                 this.mainOptions.classList.add(_bem2.default.set(CSS.main, 'options', 'disabled'));
@@ -1324,7 +1327,7 @@ var Special = function (_BaseSpecial) {
             (0, _dom.prepend)(this.content, result);
 
             Share.make(resultActions, {
-                url: CONFIG.share.url + '/' + secondsWasted,
+                url: CONFIG.share.url + '/' + this.userPoints + '/' + secondsWasted,
                 twitter: CONFIG.share.twitter
             });
 
@@ -1371,24 +1374,30 @@ var Special = function (_BaseSpecial) {
 
         /**
          * Stop timer if it is running
+         * @param {boolean} clear - need to clear value
          */
         value: function stopTimer() {
+            var clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
             if (this.timer) {
                 window.clearInterval(this.timer);
-                this._timerValue = 0;
+                if (clear) {
+                    this._timerValue = 0;
+                }
             }
         }
 
         /**
         * Starts new timer for the game
+        * @param {boolean} clear - need to clear value
         */
 
     }, {
         key: 'restartTimer',
-        value: function restartTimer() {
+        value: function restartTimer(clear) {
             var _this7 = this;
 
-            this.stopTimer();
+            this.stopTimer(clear);
 
             this.timer = window.setInterval(function () {
                 _this7.timerValue++;
@@ -2606,10 +2615,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    title: 'Кто быстрее из этих двух',
+    title: 'Быстрее из этой пары',
     intro: 'Скоростной тест на скорость.',
     outro: '<p>\u0421\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u2014 \u0432&nbsp;\u041C\u0435\u0433\u0430\u0424\u043E\u043D\u0435. \u0414\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u043C\u0438 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u043E\u0432 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u0432 Speedtest.</p> ',
-    promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
+    logoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__logo_cpm__&utm_content=&utm_term=',
+    promoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__button_cpm__&utm_content=&utm_term=',
     CTAText: 'Подключить',
     questions: [{
         text: '',
