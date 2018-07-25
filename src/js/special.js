@@ -203,23 +203,24 @@ class Special extends BaseSpecial {
     }
 
     updateCounter() {
-        if (this.counter.children.length === 0) {
-            Data.questions.forEach(() => {
-                let bullet = makeElement('span');
-
-                this.counter.appendChild(bullet);
-            });
-        }
-
-        let bullets = toArray(this.counter.children);
-
-        bullets.forEach((bullet, i) => {
-            if (i <= this.activeIndex) {
-                bullet.classList.add('active');
-            } else {
-                bullet.classList.remove('active');
-            }
-        });
+        this.counter.textContent = `Вопрос ${this.activeIndex + 1} из ${Data.questions.length}`;
+        // if (this.counter.children.length === 0) {
+        //     Data.questions.forEach(() => {
+        //         let bullet = makeElement('span');
+        //
+        //         this.counter.appendChild(bullet);
+        //     });
+        // }
+        //
+        // let bullets = toArray(this.counter.children);
+        //
+        // bullets.forEach((bullet, i) => {
+        //     if (i <= this.activeIndex) {
+        //         bullet.classList.add('active');
+        //     } else {
+        //         bullet.classList.remove('active');
+        //     }
+        // });
     }
 
     makeIntro() {

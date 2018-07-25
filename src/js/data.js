@@ -351,17 +351,17 @@ export default {
         {
             range: [15, 20],
             title: 'Свет преодолел бы несколько миллионов километров',
-            cover: 'https://leonardo.osnova.io/8fdf384b-f601-3b70-feeb-3c21d1314d60'
+            cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
         },
         {
             range: [20, 30],
             title: 'Комар успел бы 10&nbsp;000 раз взмахнуть крыльями',
-            cover: 'https://leonardo.osnova.io/71e24489-c193-5d34-aad8-c397b2a3f00d'
+            cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
         },
         {
             range: [30, 99999],
             title: 'Сын маминой подруги успел бы прославиться',
-            cover: 'https://leonardo.osnova.io/b3926ee9-050a-e5c1-78e5-44bd37e345c3'
+            cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
         }
     ]
 };

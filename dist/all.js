@@ -1004,25 +1004,24 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'updateCounter',
         value: function updateCounter() {
-            var _this4 = this;
-
-            if (this.counter.children.length === 0) {
-                _data2.default.questions.forEach(function () {
-                    var bullet = (0, _dom.makeElement)('span');
-
-                    _this4.counter.appendChild(bullet);
-                });
-            }
-
-            var bullets = (0, _array.toArray)(this.counter.children);
-
-            bullets.forEach(function (bullet, i) {
-                if (i <= _this4.activeIndex) {
-                    bullet.classList.add('active');
-                } else {
-                    bullet.classList.remove('active');
-                }
-            });
+            this.counter.textContent = '\u0412\u043E\u043F\u0440\u043E\u0441 ' + (this.activeIndex + 1) + ' \u0438\u0437 ' + _data2.default.questions.length;
+            // if (this.counter.children.length === 0) {
+            //     Data.questions.forEach(() => {
+            //         let bullet = makeElement('span');
+            //
+            //         this.counter.appendChild(bullet);
+            //     });
+            // }
+            //
+            // let bullets = toArray(this.counter.children);
+            //
+            // bullets.forEach((bullet, i) => {
+            //     if (i <= this.activeIndex) {
+            //         bullet.classList.add('active');
+            //     } else {
+            //         bullet.classList.remove('active');
+            //     }
+            // });
         }
     }, {
         key: 'makeIntro',
@@ -1056,7 +1055,7 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'makeQuestion',
         value: function makeQuestion() {
-            var _this5 = this;
+            var _this4 = this;
 
             /**
             * @type {question}
@@ -1081,7 +1080,7 @@ var Special = function (_BaseSpecial) {
 
                 if (_data2.default.questions[this.activeIndex + 1]) {
                     this.preloader.load(_data2.default.questions[this.activeIndex + 1].options.map(function (option) {
-                        return _this5.staticURL + option.img;
+                        return _this4.staticURL + option.img;
                     }));
                 }
             } else {
@@ -1096,7 +1095,7 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'makeQuestionOptions',
         value: function makeQuestionOptions(options) {
-            var _this6 = this;
+            var _this5 = this;
 
             (0, _array.shuffle)(options);
 
@@ -1105,7 +1104,7 @@ var Special = function (_BaseSpecial) {
                     data: {
                         click: 'submitAnswer',
                         id: option.id,
-                        number: _this6.activeIndex
+                        number: _this5.activeIndex
                     }
                 });
                 //
@@ -1116,7 +1115,7 @@ var Special = function (_BaseSpecial) {
                 //     }
                 // });
 
-                var imageCached = _this6.preloader.get(_this6.staticURL + option.img);
+                var imageCached = _this5.preloader.get(_this5.staticURL + option.img);
 
                 imageCached.classList.add(_bem2.default.set(CSS.main, 'option-image'));
                 imageCached.dataset.id = option.id;
@@ -1128,21 +1127,21 @@ var Special = function (_BaseSpecial) {
                 item.appendChild(imageCached);
                 item.appendChild(label);
 
-                _this6.mainOptions.appendChild(item);
+                _this5.mainOptions.appendChild(item);
 
                 if (option.isCorrect) {
-                    _this6.activeCorrectId = option.id;
+                    _this5.activeCorrectId = option.id;
                 }
 
-                _this6.messages[option.id] = option.message;
+                _this5.messages[option.id] = option.message;
 
-                _this6.preloader.load([_this6.staticURL + option.imgCorrect, _this6.staticURL + option.imgWrong, _this6.staticURL + option.imgDisabled]);
+                _this5.preloader.load([_this5.staticURL + option.imgCorrect, _this5.staticURL + option.imgWrong, _this5.staticURL + option.imgDisabled]);
             });
         }
     }, {
         key: 'submitAnswer',
         value: function submitAnswer(button) {
-            var _this7 = this;
+            var _this6 = this;
 
             if (!this.isPending) {
                 var id = parseInt(button.dataset.id),
@@ -1166,10 +1165,10 @@ var Special = function (_BaseSpecial) {
                     if (id === imageId) {
                         var clickedImage = void 0;
 
-                        if (id === _this7.activeCorrectId) {
-                            clickedImage = _this7.preloader.get(_this7.staticURL + currentQuestion.options[index].imgCorrect);
+                        if (id === _this6.activeCorrectId) {
+                            clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgCorrect);
                         } else {
-                            clickedImage = _this7.preloader.get(_this7.staticURL + currentQuestion.options[index].imgWrong);
+                            clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgWrong);
                         }
 
                         clickedImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
@@ -1178,7 +1177,7 @@ var Special = function (_BaseSpecial) {
 
                         // second image
                     } else {
-                        var secondImage = _this7.preloader.get(_this7.staticURL + currentQuestion.options[index].imgDisabled);
+                        var secondImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgDisabled);
 
                         secondImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
                         (0, _dom.replace)(img, secondImage);
@@ -1385,12 +1384,12 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'restartTimer',
         value: function restartTimer() {
-            var _this8 = this;
+            var _this7 = this;
 
             this.stopTimer();
 
             this.timer = window.setInterval(function () {
-                _this8.timerValue++;
+                _this7.timerValue++;
             }, 100);
         }
     }, {
@@ -2898,15 +2897,15 @@ exports.default = {
     }, {
         range: [15, 20],
         title: 'Свет преодолел бы несколько миллионов километров',
-        cover: 'https://leonardo.osnova.io/8fdf384b-f601-3b70-feeb-3c21d1314d60'
+        cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
     }, {
         range: [20, 30],
         title: 'Комар успел бы 10&nbsp;000 раз взмахнуть крыльями',
-        cover: 'https://leonardo.osnova.io/71e24489-c193-5d34-aad8-c397b2a3f00d'
+        cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
     }, {
         range: [30, 99999],
         title: 'Сын маминой подруги успел бы прославиться',
-        cover: 'https://leonardo.osnova.io/b3926ee9-050a-e5c1-78e5-44bd37e345c3'
+        cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
     }]
 };
 

@@ -54,6 +54,29 @@
     opacity: 0;
   }
 }
+@keyframes bounceIn {
+  from, 20%, 40%, 60%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    transform: scale3d(0.8, 0.8, 0.8);
+  }
+  20% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  40% {
+    transform: scale3d(0.96, 0.96, 0.96);
+  }
+  60% {
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
 .MegafonSpeed {
   width: 100%;
   max-width: 1060px;
@@ -195,6 +218,11 @@
       align-items: flex-start;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed__options {
+    margin-top: auto;
+  }
 }
 .MegafonSpeed__options--disabled {
   pointer-events: none;
@@ -634,7 +662,7 @@
   display: -ms-flexbox;
   display: flex;
   background-repeat: no-repeat;
-  background-position: 95% 30%;
+  background-position: 95% 45%;
   background-size: auto 115px;
   padding: 30px 0;
 }
@@ -711,7 +739,7 @@
   text-align: center;
   position: absolute;
   display: inline-block;
-  top: 30px;
+  top: 10px;
   right: 30px;
   color: #fff;
   font-size: 16px;
@@ -884,11 +912,12 @@
   background-image: url("https://leonardo.osnova.io/dc865026-1149-76c8-f1af-9701f08e2cbb");
   background-repeat: no-repeat;
   background-position: center 70%;
-  background-size: contain;
+  background-size: cover;
 }
 @media (max-width: 679px) {
   .MegafonSpeed[data-mode="start"].MegafonSpeed {
     background-size: auto 90%;
+    background-position: 70% 50%;
   }
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__counter,
@@ -917,9 +946,21 @@
       flex-direction: row;
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__button {
-  border-color: #00b856;
   width: 146px;
-  animation: none;
+  color: #fff;
+  animation: bounceIn 0.75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__button::before {
+  background: #00b856;
+  border-radius: 30px;
+  transform: none;
+}
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__button:hover::before {
+  animation: bounceIn 0.75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__button svg {
   display: none;
@@ -948,19 +989,35 @@
   transform: translate(15px, -110px) rotate(-75deg) scale(0.85);
 }
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__header {
+  padding: 30px 0 0;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="progress"] .MegafonSpeed__header {
+    padding: 15px 15px 0;
+  }
+}
+.MegafonSpeed[data-mode="progress"] .MegafonSpeed__header a {
   display: none;
 }
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__content {
-  padding-top: 30px;
+  padding-top: 10px;
 }
 @media (max-width: 679px) {
   .MegafonSpeed[data-mode="progress"] .MegafonSpeed__content {
-    padding-top: 15px;
-    min-height: 95vh;
+    padding-top: 5px;
+    min-height: 91vh;
   }
 }
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__counter {
-  width: 64px;
+  color: #751083;
+  font-weight: 700;
+  font-size: 18px;
+  white-space: nowrap;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="progress"] .MegafonSpeed__counter {
+    font-size: 14px;
+  }
 }
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__text {
   font-size: 28px;
@@ -973,6 +1030,11 @@
     font-size: 22px;
     padding-right: 90px;
     margin-bottom: 30px;
+  }
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="progress"] .MegafonSpeed__actions {
+    min-height: 56px;
   }
 }
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__button {
@@ -1187,6 +1249,9 @@
   .MegafonSpeed--compact[data-mode="result"] .MegafonSpeed__content {
     padding: 0 40px;
   }
+}
+.entry_content--short .MegafonSpeed__content {
+  min-height: 360px !important;
 }
 
 /*# sourceMappingURL=all.css.map*/
