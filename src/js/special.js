@@ -460,6 +460,8 @@ class Special extends BaseSpecial {
          */
         let data = this.findResult();
 
+        let secondsWasted = Math.floor(this.timerValue / 10);
+
         this.stopTimer();
 
         let result = makeElement('div', Bem.set(CSS.main, 'result')),
@@ -496,7 +498,7 @@ class Special extends BaseSpecial {
 
 
         Share.make(resultActions, {
-            url: `${CONFIG.share.url}/${this.userPoints}`,
+            url: `${CONFIG.share.url}/${secondsWasted}`,
             twitter: CONFIG.share.twitter
         });
 

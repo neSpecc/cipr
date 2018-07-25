@@ -262,7 +262,7 @@
   -ms-flex-direction: column;
       flex-direction: column;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
 }
 .MegafonSpeed__option::before {
@@ -538,7 +538,7 @@
   position: absolute;
   font-size: 30px;
   font-weight: 900;
-  top: 43%;
+  top: 100px;
   transform: translateY(-50%);
   width: 100%;
   text-align: center;
@@ -547,7 +547,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option-overlay {
     font-size: 16px;
-    top: 36%;
+    top: 55px;
   }
 }
 .MegafonSpeed__option-overlay i {
@@ -733,47 +733,16 @@
   transform: rotate(360deg);
 }
 .MegafonSpeed__timer {
-  position: relative;
-  height: 56px;
-  line-height: 56px;
-  text-align: center;
   position: absolute;
   display: inline-block;
   top: 10px;
   right: 30px;
-  color: #fff;
-  font-size: 16px;
+  color: #751083;
+  font-size: 22px;
   font-weight: 900;
   padding: 10px;
   height: auto;
   line-height: initial;
-}
-.MegafonSpeed__timer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border: 4px solid #751083;
-  background-color: #751083;
-  transform: skewX(-10deg);
-  transition: transform 50ms ease-in;
-  will-change: transform;
-}
-.MegafonSpeed__timer-content {
-  position: relative;
-  z-index: 2;
-  height: auto;
-  display: inline;
-}
-.MegafonSpeed__timer:hover {
-  color: #fff;
-}
-.MegafonSpeed__timer:hover::before {
-  transform: skewX(-15deg);
-  background-color: #00b856;
-  border-color: #00b856;
 }
 @media (max-width: 679px) {
   .MegafonSpeed__timer {
@@ -801,12 +770,9 @@
   }
 }
 .MegafonSpeed .likely--custom .likely__widget {
-  position: relative;
-  height: 56px;
-  line-height: 56px;
-  text-align: center;
   height: 50px;
-  min-width: 60px;
+  min-width: 50px;
+  border-radius: 30px;
   margin-right: 10px;
   display: -ms-flexbox;
   display: flex;
@@ -815,42 +781,15 @@
   -ms-flex-pack: center;
       justify-content: center;
   color: #fff;
-  background: transparent !important;
+  background: #751083 !important;
   transition: transform 100ms ease;
   will-change: transform;
-}
-.MegafonSpeed .likely--custom .likely__widget::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border: 4px solid #751083;
-  background-color: #751083;
-  transform: skewX(-10deg);
-  transition: transform 50ms ease-in;
-  will-change: transform;
-}
-.MegafonSpeed .likely--custom .likely__widget-content {
-  position: relative;
-  z-index: 2;
-  height: auto;
-  display: inline;
-}
-.MegafonSpeed .likely--custom .likely__widget:hover {
-  color: #fff;
-}
-.MegafonSpeed .likely--custom .likely__widget:hover::before {
-  transform: skewX(-15deg);
-  background-color: #00b856;
-  border-color: #00b856;
 }
 @media (max-width: 679px) {
   .MegafonSpeed .likely--custom .likely__widget {
     height: 40px;
     line-height: 40px;
-    min-width: 50px;
+    min-width: 40px;
   }
 }
 .MegafonSpeed .likely--custom .likely__widget::before {
@@ -858,7 +797,9 @@
   box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
 }
 .MegafonSpeed .likely--custom .likely__widget:hover {
-  transform: translateY(3px);
+  animation: bounceIn 0.75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 .MegafonSpeed .likely--custom .likely__widget:hover::before {
   border-color: #751083;
@@ -888,8 +829,8 @@
 }
 .MegafonSpeed .likely--custom .likely__icon svg {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   fill: #fff;
 }
 @media (max-width: 679px) {
@@ -901,6 +842,12 @@
 .MegafonSpeed .likely--custom .likely__icon--vkontakte svg {
   width: 28px;
   height: 28px;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed .likely--custom .likely__icon--vkontakte svg {
+    width: 22px;
+    height: 22px;
+  }
 }
 @media (min-width: 680px) {
   .MegafonSpeed .likely--custom .likely__icon--facebook {
@@ -1142,7 +1089,7 @@
   height: 56px;
   line-height: 56px;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 25px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -1185,7 +1132,9 @@
   transform: none;
 }
 .MegafonSpeed[data-mode="result"] .MegafonSpeed__button:hover::before {
-  transform: none;
+  animation: bounceIn 0.75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 .MegafonSpeed[data-mode="result"] .MegafonSpeed__title {
   max-width: 320px;

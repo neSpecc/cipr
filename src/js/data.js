@@ -1,7 +1,7 @@
 export default {
     title: 'Кто быстрее из этих двух',
     intro: 'Скоростной тест на скорость.',
-    outro: `<p>Самый быстрый мобильный интернет — в МегаФоне. Доказано измерениями миллионов пользователей в Speedtest.</p> `,
+    outro: `<p>Самый быстрый мобильный интернет — в&nbsp;МегаФоне. Доказано измерениями миллионов пользователей в Speedtest.</p> `,
     promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
     CTAText: 'Подключить',
     questions: [

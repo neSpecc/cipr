@@ -1297,6 +1297,8 @@ var Special = function (_BaseSpecial) {
              */
             var data = this.findResult();
 
+            var secondsWasted = Math.floor(this.timerValue / 10);
+
             this.stopTimer();
 
             var result = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'result')),
@@ -1322,7 +1324,7 @@ var Special = function (_BaseSpecial) {
             (0, _dom.prepend)(this.content, result);
 
             Share.make(resultActions, {
-                url: CONFIG.share.url + '/' + this.userPoints,
+                url: CONFIG.share.url + '/' + secondsWasted,
                 twitter: CONFIG.share.twitter
             });
 
@@ -2606,7 +2608,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     title: 'Кто быстрее из этих двух',
     intro: 'Скоростной тест на скорость.',
-    outro: '<p>\u0421\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u2014 \u0432 \u041C\u0435\u0433\u0430\u0424\u043E\u043D\u0435. \u0414\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u043C\u0438 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u043E\u0432 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u0432 Speedtest.</p> ',
+    outro: '<p>\u0421\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u2014 \u0432&nbsp;\u041C\u0435\u0433\u0430\u0424\u043E\u043D\u0435. \u0414\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u043C\u0438 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u043E\u0432 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u0432 Speedtest.</p> ',
     promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
     CTAText: 'Подключить',
     questions: [{

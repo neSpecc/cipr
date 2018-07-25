@@ -200,7 +200,7 @@ contentZone()
         animation: cipr_appear 0.15s ease-in
         flex-direction column
         font-weight: 500
-        font-size: 16px
+        font-size: 18px
         text-align: center
 
         &::before
@@ -416,7 +416,7 @@ contentZone()
             position: absolute
             font-size: 30px
             font-weight: 900
-            top: 43%
+            top: 100px
             transform translateY(-50%)
             width 100%
             text-align: center
@@ -424,7 +424,7 @@ contentZone()
 
             @media $mq.mobile
                 font-size: 16px
-                top: 36%
+                top: 55px
 
             i
                 display: block
@@ -558,13 +558,12 @@ contentZone()
                 transform rotate(360deg)
 
     &__timer
-        button(#751083, #751083)
         position: absolute
         display: inline-block
         top: 10px
         right: 30px
-        color: #fff
-        font-size: 16px
+        color: #751083
+        font-size: 22px
         font-weight: 900
         padding 10px;
         height: auto
@@ -593,29 +592,31 @@ contentZone()
 
         .likely
             &__widget
-                button(#751083, #751083)
                 height: 50px
-                min-width: 60px
+                min-width 50px
+                border-radius 30px
                 margin-right: 10px
                 display: flex
                 align-items: center
                 justify-content: center
                 color: #fff
-                background transparent !important
+                background #751083 !important
                 transition transform 100ms ease;
                 will-change: transform
 
                 @media $mq.mobile
                     height: 40px
                     line-height: 40px;
-                    min-width 50px
+                    min-width 40px
 
                 &::before
                     transition box-shadow 100ms ease;
                     box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
 
                 &:hover
-                    transform translateY(3px)
+                    animation bounceIn 0.75s;
+                    animation-iteration-count 1
+                    animation-fill-mode: forwards;
 
                     &::before
                         border-color #751083
@@ -644,7 +645,7 @@ contentZone()
 
                 svg
                     display: block
-                    width: 24px
+                    width: 22px
                     height: @width
                     fill: #fff
 
@@ -656,6 +657,11 @@ contentZone()
                     svg
                         width: 28px
                         height: @width
+
+                        @media $mq.mobile
+                            width: 22px
+                            height: 22px
+
 
                 &--facebook
                     @media $mq.not_mobile
@@ -865,7 +871,7 @@ contentZone()
 
             &__button
                 button($colors.accent, $colors.accent)
-                padding: 0 20px;
+                padding: 0 25px;
                 display: flex
                 align-items: center
                 justify-content: center
@@ -879,7 +885,9 @@ contentZone()
 
                 &:hover
                     &::before
-                        transform none
+                        animation bounceIn 0.75s;
+                        animation-iteration-count 1
+                        animation-fill-mode: forwards;
 
             &__title
                 max-width: 320px
