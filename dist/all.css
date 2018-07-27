@@ -59,13 +59,10 @@
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
   0% {
-    transform: scale3d(0.95, 0.95, 0.95);
+    transform: scale3d(1, 1, 1);
   }
-  25% {
-    transform: scale3d(1.01, 1.01, 1.01);
-  }
-  50% {
-    transform: scale3d(0.96, 0.96, 0.96);
+  60% {
+    transform: scale3d(1.05, 1.05, 1.05);
   }
   to {
     transform: scale3d(1, 1, 1);
@@ -187,7 +184,7 @@
   font-size: 28px;
   line-height: 1.3em;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 @media (min-width: 680px) and (max-width: 1023px) {
   .MegafonSpeed__title {
@@ -215,7 +212,7 @@
 }
 @media (max-width: 679px) {
   .MegafonSpeed__options {
-    margin-top: auto;
+    margin: auto 0;
   }
 }
 .MegafonSpeed__options--disabled {
@@ -281,6 +278,7 @@
     font-size: 14px;
     margin: 0 auto 10px;
     line-height: 1.3em;
+    width: 50%;
   }
 }
 .MegafonSpeed__option-image {
@@ -319,6 +317,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="1"][data-id="0"] .MegafonSpeed__option-image {
     max-height: 134px;
+    transform: translateY(-70%);
   }
 }
 .MegafonSpeed__option[data-number="1"][data-id="1"] .MegafonSpeed__option-image {
@@ -327,6 +326,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed__option[data-number="1"][data-id="1"] .MegafonSpeed__option-image {
     max-height: 116px;
+    transform: translateY(-80%);
   }
 }
 .MegafonSpeed__option[data-number="2"][data-id="0"] .MegafonSpeed__option-image {
@@ -588,7 +588,7 @@
 .MegafonSpeed__actions {
   display: -ms-flexbox;
   display: flex;
-  margin-top: auto;
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 @media (max-width: 679px) {
@@ -677,6 +677,7 @@
   font-weight: 900;
   color: #751083;
   margin-bottom: 20px;
+  padding-left: 3px;
 }
 @media (max-width: 679px) {
   .MegafonSpeed__resultPoints {
@@ -787,19 +788,8 @@
     min-width: 40px;
   }
 }
-.MegafonSpeed .likely--custom .likely__widget::before {
-  transition: box-shadow 100ms ease;
-  box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
-}
 .MegafonSpeed .likely--custom .likely__widget:hover {
-  animation: bounceIn 0.75s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
-.MegafonSpeed .likely--custom .likely__widget:hover::before {
-  border-color: #751083;
-  background-color: #751083;
-  box-shadow: 0 4px 14px 0 rgba(121,54,68,0.23);
+  background-color: #00b856 !important;
 }
 .MegafonSpeed .likely--custom .likely__widget:last-child {
   margin-right: 0;
@@ -866,13 +856,33 @@
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__timer {
   display: none;
 }
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__content {
+  padding-top: 20px;
+}
 @media (max-width: 679px) {
   .MegafonSpeed[data-mode="start"] .MegafonSpeed__content {
-    min-height: 87vh;
+    min-height: 80vh;
+  }
+}
+.MegafonSpeed[data-mode="start"] .MegafonSpeed__header {
+  display: inline-block;
+  position: absolute;
+  right: 30px;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="start"] .MegafonSpeed__header {
+    right: 0;
+    top: 10px;
   }
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__header a {
   margin-left: auto;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="start"] .MegafonSpeed__title {
+    font-size: 22px;
+    padding-right: 100px;
+  }
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__text div {
   animation: none;
@@ -884,15 +894,21 @@
   }
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__actions {
+  margin-top: auto;
   -ms-flex-direction: row;
       flex-direction: row;
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__button {
   width: 146px;
   color: #fff;
-  animation: bounceIn 0.75s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="start"] .MegafonSpeed__button {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+  }
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__button::before {
   background: #00b856;
@@ -900,9 +916,7 @@
   transform: none;
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__button:hover::before {
-  animation: bounceIn 0.45s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  transform: scale(1.02);
 }
 .MegafonSpeed[data-mode="start"] .MegafonSpeed__button svg {
   display: none;
@@ -947,7 +961,7 @@
 @media (max-width: 679px) {
   .MegafonSpeed[data-mode="progress"] .MegafonSpeed__content {
     padding-top: 5px;
-    min-height: 91vh;
+    min-height: 80vh;
   }
 }
 .MegafonSpeed[data-mode="progress"] .MegafonSpeed__counter {
@@ -1018,6 +1032,11 @@
 }
 .MegafonSpeed[data-mode="result"] .MegafonSpeed__content {
   max-width: none;
+}
+@media (max-width: 679px) {
+  .MegafonSpeed[data-mode="result"] .MegafonSpeed__content {
+    min-height: 100vh;
+  }
 }
 @media (min-width: 680px) {
   .MegafonSpeed[data-mode="result"] .MegafonSpeed__content {
@@ -1091,7 +1110,7 @@
       align-items: center;
   -ms-flex-pack: center;
       justify-content: center;
-  margin: 0 0 auto;
+  margin: auto 0;
   height: 50px;
   font-size: 18px;
   line-height: 50px;

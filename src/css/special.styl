@@ -137,7 +137,7 @@ contentZone()
         font-size: 28px
         line-height: 1.3em
         font-weight: 700
-        margin-bottom: 10px
+        margin-bottom: 5px
 
         @media $mq.tablet
             font-size: 32px
@@ -156,7 +156,7 @@ contentZone()
         justify-content space-around
 
         @media $mq.mobile
-            margin-top: auto
+            margin: auto 0
 
         &--disabled
             pointer-events: none
@@ -223,6 +223,7 @@ contentZone()
             font-size: 14px
             margin: 0 auto 10px
             line-height: 1.3em
+            width 50%
 
         &-image
             position: absolute
@@ -253,12 +254,14 @@ contentZone()
 
             @media $mq.mobile
                 max-height: 134px
+                transform: translateY(-70%)
 
         &[data-number="1"][data-id="1"] &-image
             max-height 233px
 
             @media $mq.mobile
                 max-height: 116px
+                transform: translateY(-80%)
 
         &[data-number="2"][data-id="0"] &-image
             max-height 177px
@@ -465,7 +468,7 @@ contentZone()
 
     &__actions
         display: flex
-        margin-top: auto
+        margin-top: 20px
         margin-bottom: 30px
 
         @media $mq.mobile
@@ -519,10 +522,12 @@ contentZone()
         font-weight: 900
         color: #751083;
         margin-bottom: 20px
+        padding-left: 3px
 
         @media $mq.mobile
             font-size: 14px
             margin-bottom: 10px
+
 
     &__resultContent
         flex: 1
@@ -610,20 +615,8 @@ contentZone()
                     line-height: 40px;
                     min-width 40px
 
-                &::before
-                    transition box-shadow 100ms ease;
-                    box-shadow: 0 15px 22px 0 rgba(121,54,68,0.23);
-
                 &:hover
-                    animation bounceIn 0.75s;
-                    animation-iteration-count 1
-                    animation-fill-mode: forwards;
-
-                    &::before
-                        border-color #751083
-                        background-color: #751083;
-                        box-shadow: 0 4px 14px 0 rgba(121, 54, 68, 0.23);
-
+                    background-color: #00B856 !important
 
                 &:last-child
                     margin-right: 0
@@ -663,7 +656,6 @@ contentZone()
                             width: 22px
                             height: 22px
 
-
                 &--facebook
                     @media $mq.not_mobile
                         margin-right: 6px
@@ -686,12 +678,27 @@ contentZone()
                 display: none
 
             &__content
+                padding-top: 20px
+
                 @media $mq.mobile
-                    min-height: 87vh
+                    min-height: 80vh
 
             &__header
+                display: inline-block
+                position: absolute
+                right: 30px
+
+                @media $mq.mobile
+                    right: 0
+                    top: 10px
+
                 a
                     margin-left: auto
+
+            &__title
+                @media $mq.mobile
+                    font-size: 22px
+                    padding-right: 100px
 
             &__text
                 div
@@ -702,14 +709,18 @@ contentZone()
                     line-height: 1.5em
 
             &__actions
+                margin-top: auto
                 flex-direction: row
 
             &__button
                 width: 146px
                 color: #fff
-                animation bounceIn 0.75s;
-                animation-iteration-count 1
-                animation-fill-mode: forwards;
+
+                @media $mq.mobile
+                    width 100px
+                    height: 40px
+                    line-height: 40px
+                    font-size: 16px
 
                 &::before
                     background: $colors.accent
@@ -718,9 +729,7 @@ contentZone()
 
                 &:hover
                     &::before
-                        animation bounceIn 0.45s;
-                        animation-iteration-count 1
-                        animation-fill-mode: forwards;
+                        transform scale(1.02)
 
                 svg
                     display: none
@@ -760,7 +769,7 @@ contentZone()
 
                 @media $mq.mobile
                     padding-top 5px
-                    min-height: 91vh
+                    min-height: 80vh
 
             &__counter
                 color: #751083
@@ -828,6 +837,9 @@ contentZone()
             &__content
                 max-width: none
 
+                @media $mq.mobile
+                    min-height 100vh
+
                 @media $mq.not_mobile
                     box-sizing: content-box
 
@@ -876,7 +888,7 @@ contentZone()
                 display: flex
                 align-items: center
                 justify-content: center
-                margin: 0 0 auto
+                margin: auto 0
                 height: 50px
                 font-size: 18px
                 line-height: 50px

@@ -1071,7 +1071,7 @@ var Special = function (_BaseSpecial) {
 
                 this.restartTimer(false);
                 this.updateCounter();
-                this.mainText.innerHTML = '' + _data2.default.title;
+                this.mainText.innerHTML = '' + _data2.default.task;
 
                 this.makeQuestionOptions(data.options);
 
@@ -1122,7 +1122,7 @@ var Special = function (_BaseSpecial) {
                 imageCached.dataset.id = option.id;
 
                 var label = (0, _dom.makeElement)('div', [], {
-                    textContent: option.text
+                    innerHTML: option.text
                 });
 
                 item.appendChild(imageCached);
@@ -2615,9 +2615,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    title: 'Быстрее из этой пары',
+    title: 'Кто быстрее',
+    task: 'Из этой пары быстрее...',
     intro: 'Скоростной тест на скорость.',
-    outro: '<p>\u0421\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u2014 \u0432&nbsp;\u041C\u0435\u0433\u0430\u0424\u043E\u043D\u0435. \u0414\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u043C\u0438 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u043E\u0432 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u0432 Speedtest.</p> ',
+    outro: '<p>\u0421\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u2014 \u0432&nbsp;\u041C\u0435\u0433\u0430\u0424\u043E\u043D\u0435. \u0414\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u043C\u0438 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u043E\u0432 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u0432&nbsp;Speedtest.</p> ',
     logoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__logo_cpm__&utm_content=&utm_term=',
     promoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__button_cpm__&utm_content=&utm_term=',
     CTAText: 'Подключить',
@@ -2805,7 +2806,7 @@ exports.default = {
         text: '',
         options: [{
             id: 0,
-            text: 'Вишневый родстер Илона Маска в космосе',
+            text: 'Вишневый родстер Илона&nbsp;Маска в&nbsp;космосе',
             message: '39 600 км/ч',
             img: '10-0.png',
             imgCorrect: '10-0-correct.png',
@@ -2825,7 +2826,7 @@ exports.default = {
         text: '',
         options: [{
             id: 0,
-            text: 'Московское метро',
+            text: 'Поезд московского метро',
             message: '80 км/ч',
             img: '11-0.png',
             imgCorrect: '11-0-correct.png',
@@ -2833,7 +2834,7 @@ exports.default = {
             imgDisabled: '11-0-disabled.png'
         }, {
             id: 1,
-            text: 'Рыба парусник',
+            text: 'Рыба Парусник',
             message: '120 км/ч',
             img: '11-1.png',
             imgCorrect: '11-1-correct.png',
@@ -2865,7 +2866,7 @@ exports.default = {
         text: '',
         options: [{
             id: 0,
-            text: 'Сварится целая картофелина в воде',
+            text: 'Сварится целая картофелина в&nbsp;воде',
             message: '20 минут',
             img: '13-0.png',
             imgCorrect: '13-0-correct.png',
@@ -2874,7 +2875,7 @@ exports.default = {
             isCorrect: true
         }, {
             id: 1,
-            text: 'Tesla Model 3 проедет 125 км на максимальной скорости',
+            text: 'Tesla Model 3 проедет 125&nbsp;км на&nbsp;максимальной скорости',
             message: '30 минут',
             img: '13-1.png',
             imgCorrect: '13-1-correct.png',
@@ -2885,7 +2886,7 @@ exports.default = {
         text: '',
         options: [{
             id: 0,
-            text: 'Американский таракан пробежит 30 метров',
+            text: 'Американский таракан пробежит 30&nbsp;метров',
             message: '20 секунд',
             img: '14-0.png',
             imgCorrect: '14-0-correct.png',
@@ -2894,7 +2895,7 @@ exports.default = {
             isCorrect: true
         }, {
             id: 1,
-            text: 'Включится iPhone 7',
+            text: 'Включится iPhone&nbsp;7',
             message: '27,63 секунды',
             img: '14-1.png',
             imgCorrect: '14-1-correct.png',
@@ -2904,19 +2905,19 @@ exports.default = {
     }],
     results: [{
         range: [0, 15],
-        title: 'Быстрее, чем улитка проползает один сантиметр пути',
-        cover: 'https://leonardo.osnova.io/e50da61b-bd58-efa3-bb72-6417edc69115'
+        title: 'А улитка не&nbsp;успела проползти и&nbsp;сантиметра пути',
+        cover: 'https://leonardo.osnova.io/83c4905f-bb75-919c-b4c4-4a8e87f944a8'
     }, {
         range: [15, 20],
-        title: 'Свет преодолел бы несколько миллионов километров',
+        title: 'Свет преодолел&nbsp;бы несколько миллионов километров',
         cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
     }, {
         range: [20, 30],
-        title: 'Комар успел бы 10&nbsp;000 раз взмахнуть крыльями',
+        title: 'А комар успел 10&nbsp;тысяч раз взмахнуть крыльями',
         cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
     }, {
         range: [30, 99999],
-        title: 'Сын маминой подруги успел бы прославиться',
+        title: 'За это время сын маминой подруги успел&nbsp;бы прославиться',
         cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
     }]
 };

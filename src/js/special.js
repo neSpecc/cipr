@@ -266,7 +266,7 @@ class Special extends BaseSpecial {
 
             this.restartTimer(false);
             this.updateCounter();
-            this.mainText.innerHTML = `${Data.title}`;
+            this.mainText.innerHTML = `${Data.task}`;
 
             this.makeQuestionOptions(data.options);
 
@@ -310,7 +310,7 @@ class Special extends BaseSpecial {
             imageCached.dataset.id = option.id;
 
             let label = makeElement('div', [], {
-                textContent: option.text
+                innerHTML: option.text
             });
 
             item.appendChild(imageCached);
