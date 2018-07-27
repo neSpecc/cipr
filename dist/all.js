@@ -2795,7 +2795,7 @@ exports.default = {
         }, {
             id: 1,
             text: 'Радиосигнал',
-            message: '1 080 000 000 км/ч',
+            message: '1 080 000 000<br>км/ч',
             img: '9-1.png',
             imgCorrect: '9-1-correct.png',
             imgWrong: '9-1-wrong.png',
@@ -2887,7 +2887,7 @@ exports.default = {
         options: [{
             id: 0,
             text: 'Американский таракан пробежит 30&nbsp;метров',
-            message: '20 секунд',
+            message: '20 сек',
             img: '14-0.png',
             imgCorrect: '14-0-correct.png',
             imgWrong: '14-0-wrong.png',
@@ -2896,7 +2896,7 @@ exports.default = {
         }, {
             id: 1,
             text: 'Включится iPhone&nbsp;7',
-            message: '27,63 секунды',
+            message: '27,63 сек',
             img: '14-1.png',
             imgCorrect: '14-1-correct.png',
             imgWrong: '14-1-wrong.png',
