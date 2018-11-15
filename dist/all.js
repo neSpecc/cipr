@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["CiprTest"] = factory();
+		exports["MegafonSpeed"] = factory();
 	else
-		root["CiprTest"] = factory();
+		root["MegafonSpeed"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -453,13 +453,11 @@ var CONSOLE_STYLE = 'color: #E87E04';
  * Send pageview event via GTM
  */
 var sendPageView = exports.sendPageView = function sendPageView() {
-
     if (true) {
         console.log('Analytics: %cPage — View', CONSOLE_STYLE);
     }
 
     if (window.dataLayer !== undefined) {
-
         window.dataLayer.push({
             event: 'Page — View',
             post_details: {},
@@ -479,13 +477,11 @@ var sendPageView = exports.sendPageView = function sendPageView() {
 var sendEvent = exports.sendEvent = function sendEvent(label) {
     var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Click';
 
-
     if (true) {
         console.log('Analytics: %c' + Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action, CONSOLE_STYLE);
     }
 
     if (window.dataLayer !== undefined && Config.analyticsCategory) {
-
         window.dataLayer.push({
             event: 'data_event',
             data_description: Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action
@@ -501,8 +497,8 @@ var sendEvent = exports.sendEvent = function sendEvent(label) {
 
 
 module.exports = {
-    name: 'CiprTest',
-    analyticsCategory: 'Cipr Test',
+    name: 'MegafonSpeed',
+    analyticsCategory: 'MegafonSpeed',
     sendPageview: false,
     listenedEvents: ['click']
 };
@@ -638,7 +634,6 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
     var classNames = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-
     tagName = tagName.toLowerCase();
 
     var element = document.createElement(tagName);
@@ -652,9 +647,7 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
     }
 
     for (var attr in attributes) {
-
         if (attr === 'data') {
-
             var dataAttributes = attributes[attr];
 
             for (var _attr in dataAttributes) {
@@ -673,13 +666,13 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
  * @param {Object} obj
  */
 var cacheElements = exports.cacheElements = function cacheElements(obj) {
-
     var newObj = {},
         attr = 'view',
         elements = document.querySelectorAll('[data-' + attr + ']');
 
     Array.prototype.forEach.call(elements, function (el) {
         var name = el.dataset[attr];
+
         newObj[name] = el;
     });
 
@@ -691,7 +684,6 @@ var cacheElements = exports.cacheElements = function cacheElements(obj) {
  * @param {Element} element
  */
 var getSiblings = exports.getSiblings = function getSiblings(element) {
-
     var siblings = [],
         sibling = element.parentNode.firstChild;
 
@@ -708,7 +700,6 @@ var getSiblings = exports.getSiblings = function getSiblings(element) {
  * @param {Element} parent
  */
 var removeChildren = exports.removeChildren = function removeChildren(parent) {
-
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
@@ -725,7 +716,6 @@ var removeElement = exports.removeElement = function removeElement(element) {
 };
 
 var htmlStringToNode = exports.htmlStringToNode = function htmlStringToNode(html) {
-
     var el = document.createElement('div');
 
     el.innerHTML = html;
@@ -735,6 +725,13 @@ var htmlStringToNode = exports.htmlStringToNode = function htmlStringToNode(html
 
 var prepend = exports.prepend = function prepend(parent, el) {
     parent.insertBefore(el, parent.firstChild);
+};
+
+/**
+ * Replace one element with another
+ */
+var replace = exports.replace = function replace(target, another) {
+    target.parentNode.replaceChild(another, target);
 };
 
 /***/ }),
@@ -779,25 +776,25 @@ var _base = __webpack_require__(29);
 
 var _base2 = _interopRequireDefault(_base);
 
-var _data = __webpack_require__(30);
+var _data = __webpack_require__(31);
 
 var _data2 = _interopRequireDefault(_data);
 
-var _svg = __webpack_require__(31);
+var _svg = __webpack_require__(32);
 
 var _svg2 = _interopRequireDefault(_svg);
 
-var _bem = __webpack_require__(32);
+var _bem = __webpack_require__(33);
 
 var _bem2 = _interopRequireDefault(_bem);
 
 var _dom = __webpack_require__(7);
 
-var _check = __webpack_require__(33);
+var _check = __webpack_require__(34);
 
-var _array = __webpack_require__(34);
+var _array = __webpack_require__(35);
 
-var _helper = __webpack_require__(35);
+var _helper = __webpack_require__(36);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -812,7 +809,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Dependencies
  */
-__webpack_require__(36);
+__webpack_require__(37);
+
+/**
+ * @typedef {object} question
+ * @description Object represented single question data
+ * @property {string} text
+ * @property {option[]} options
+ */
+
+/**
+ * @typedef {object} option
+ * @description Available answer item
+ * @property {number} id
+ * @property {string} text
+ * @property {string} message
+ * @property {boolean} isCorrect
+ * @property {string} img
+ * @property {string} imgWrong
+ * @property {string} imgCorrect
+ * @property {string} imgDisabled
+ */
 
 var CONFIG = __webpack_require__(4);
 
@@ -825,7 +842,7 @@ var CSS = {
     state: {
         active: 'l-active'
     },
-    main: 'Cipr'
+    main: 'MegafonSpeed'
 };
 
 var EL = {};
@@ -843,7 +860,29 @@ var Special = function (_BaseSpecial) {
         var _this = _possibleConstructorReturn(this, (Special.__proto__ || Object.getPrototypeOf(Special)).call(this));
 
         _this.css = params.css;
+        _this.staticURL = params.staticURL;
+
         _this.setDefaultValues();
+
+        /**
+        * Timer for the progress
+        * @type {null|TimeoutId}
+        */
+        _this.timer = null;
+
+        /**
+        * Timer value
+        * @type {number}
+        * @private
+        */
+        _this._timerValue = 0;
+
+        /**
+        * Timer holder
+        * @type {Element|null}
+        */
+        _this.timerWrapper = null;
+        _this.timerContent = null;
         return _this;
     }
 
@@ -875,6 +914,8 @@ var Special = function (_BaseSpecial) {
             this.activeCorrectId = null;
             this.messages = {};
             this.isPending = false;
+            this.stopTimer();
+            this.timer = null;
         }
     }, {
         key: 'makeGeneralLayout',
@@ -903,10 +944,15 @@ var Special = function (_BaseSpecial) {
 
             this.makeHeader();
 
+            this.timerWrapper = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer'));
+            this.timerContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer-content'));
+
             this.content.appendChild(this.mainText);
             this.content.appendChild(this.mainOptions);
             this.content.appendChild(this.mainActions);
             this.container.appendChild(this.content);
+            this.timerWrapper.appendChild(this.timerContent);
+            this.content.appendChild(this.timerWrapper);
 
             this.makeIntro();
 
@@ -916,6 +962,10 @@ var Special = function (_BaseSpecial) {
             });
 
             Analytics.sendEvent('Start screen', 'Load');
+
+            this.preloader.load(_data2.default.questions[0].options.map(function (option) {
+                return _this3.staticURL + option.img;
+            }));
 
             // this.makeResult();
 
@@ -941,7 +991,7 @@ var Special = function (_BaseSpecial) {
         key: 'makeHeader',
         value: function makeHeader() {
             var header = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'header'), {
-                innerHTML: '<a href="' + _data2.default.promoUrl + '" target="_blank">' + _svg2.default.logo + '</a>'
+                innerHTML: '<a href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>'
             });
 
             this.counter = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'counter'));
@@ -954,24 +1004,24 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'updateCounter',
         value: function updateCounter() {
-            var _this4 = this;
-
-            if (this.counter.children.length === 0) {
-                _data2.default.questions.forEach(function (i) {
-                    var bullet = (0, _dom.makeElement)('span');
-                    _this4.counter.appendChild(bullet);
-                });
-            }
-
-            var bullets = (0, _array.toArray)(this.counter.children);
-
-            bullets.forEach(function (bullet, i) {
-                if (i <= _this4.activeIndex) {
-                    bullet.classList.add('active');
-                } else {
-                    bullet.classList.remove('active');
-                }
-            });
+            this.counter.textContent = '\u0412\u043E\u043F\u0440\u043E\u0441 ' + (this.activeIndex + 1) + ' \u0438\u0437 ' + _data2.default.questions.length;
+            // if (this.counter.children.length === 0) {
+            //     Data.questions.forEach(() => {
+            //         let bullet = makeElement('span');
+            //
+            //         this.counter.appendChild(bullet);
+            //     });
+            // }
+            //
+            // let bullets = toArray(this.counter.children);
+            //
+            // bullets.forEach((bullet, i) => {
+            //     if (i <= this.activeIndex) {
+            //         bullet.classList.add('active');
+            //     } else {
+            //         bullet.classList.remove('active');
+            //     }
+            // });
         }
     }, {
         key: 'makeIntro',
@@ -982,14 +1032,14 @@ var Special = function (_BaseSpecial) {
     }, {
         key: 'makeActionButton',
         value: function makeActionButton(text, func) {
-            var button = (0, _dom.makeElement)('button', _bem2.default.set(CSS.main, 'button'), {
+            var button = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'button'), {
                 type: 'button',
                 data: {
                     click: func
                 }
             });
 
-            button.innerHTML = text + _svg2.default.next;
+            button.innerHTML = '<span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                                ' + (text + _svg2.default.next) + '\n                            </span>';
 
             this.mainActions.appendChild(button);
         }
@@ -998,12 +1048,18 @@ var Special = function (_BaseSpecial) {
         value: function start() {
             this.updateMode('progress');
             this.makeQuestion(this.activeIndex);
+            this.restartTimer();
 
             Analytics.sendEvent('Start button', 'Click');
         }
     }, {
         key: 'makeQuestion',
         value: function makeQuestion() {
+            var _this4 = this;
+
+            /**
+            * @type {question}
+            */
             var data = _data2.default.questions[this.activeIndex];
 
             if (data) {
@@ -1013,18 +1069,30 @@ var Special = function (_BaseSpecial) {
                 this.isPending = false;
                 this.mainOptions.classList.remove(_bem2.default.set(CSS.main, 'options', 'disabled'));
 
+                this.restartTimer(false);
                 this.updateCounter();
-                this.mainText.innerHTML = '<div>' + data.text + '</div>';
+                this.mainText.innerHTML = '' + _data2.default.task;
 
                 this.makeQuestionOptions(data.options);
 
                 if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
 
                 Analytics.sendEvent('Question ' + (this.activeIndex + 1) + ' screen', 'Hit');
+
+                if (_data2.default.questions[this.activeIndex + 1]) {
+                    this.preloader.load(_data2.default.questions[this.activeIndex + 1].options.map(function (option) {
+                        return _this4.staticURL + option.img;
+                    }));
+                }
             } else {
                 throw new Error('Missing question data');
             }
         }
+
+        /**
+        * @param {option[]} options
+        */
+
     }, {
         key: 'makeQuestionOptions',
         value: function makeQuestionOptions(options) {
@@ -1036,11 +1104,29 @@ var Special = function (_BaseSpecial) {
                 var item = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option'), {
                     data: {
                         click: 'submitAnswer',
-                        id: option.id
+                        id: option.id,
+                        number: _this5.activeIndex
                     }
                 });
+                //
+                // let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
+                //     src: this.staticURL + option.img,
+                //     data: {
+                //         id: option.id
+                //     }
+                // });
 
-                item.textContent = option.text;
+                var imageCached = _this5.preloader.get(_this5.staticURL + option.img);
+
+                imageCached.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+                imageCached.dataset.id = option.id;
+
+                var label = (0, _dom.makeElement)('div', [], {
+                    innerHTML: option.text
+                });
+
+                item.appendChild(imageCached);
+                item.appendChild(label);
 
                 _this5.mainOptions.appendChild(item);
 
@@ -1049,18 +1135,63 @@ var Special = function (_BaseSpecial) {
                 }
 
                 _this5.messages[option.id] = option.message;
+
+                _this5.preloader.load([_this5.staticURL + option.imgCorrect, _this5.staticURL + option.imgWrong, _this5.staticURL + option.imgDisabled]);
             });
         }
     }, {
         key: 'submitAnswer',
         value: function submitAnswer(button) {
+            var _this6 = this;
 
             if (!this.isPending) {
                 var id = parseInt(button.dataset.id),
                     data = null;
 
+                this.stopTimer(false);
+
                 this.isPending = true;
                 this.mainOptions.classList.add(_bem2.default.set(CSS.main, 'options', 'disabled'));
+
+                var images = this.content.querySelectorAll('.' + _bem2.default.set(CSS.main, 'option-image'));
+
+                /**
+                * @type {question}
+                */
+                var currentQuestion = _data2.default.questions[this.activeIndex];
+
+                Array.from(images).forEach(function (img, index) {
+                    var imageId = parseInt(img.dataset.id),
+                        imageWrapper = img.parentNode;
+
+                    // clicked image
+                    if (id === imageId) {
+                        var clickedImage = void 0;
+
+                        if (id === _this6.activeCorrectId) {
+                            clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgCorrect);
+                        } else {
+                            clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgWrong);
+                        }
+
+                        clickedImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+
+                        (0, _dom.replace)(img, clickedImage);
+
+                        // second image
+                    } else {
+                        var secondImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgDisabled);
+
+                        secondImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+                        (0, _dom.replace)(img, secondImage);
+                    }
+
+                    var messageOverlay = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option-overlay'), {
+                        innerHTML: '<i></i> ' + currentQuestion.options[index].message
+                    });
+
+                    imageWrapper.appendChild(messageOverlay);
+                });
 
                 if (id === this.activeCorrectId) {
                     this.userPoints++;
@@ -1069,14 +1200,14 @@ var Special = function (_BaseSpecial) {
                     button.classList.add(_bem2.default.set(CSS.main, 'option', 'error'));
                 }
 
-                this.makeOptionMessage(id);
+                // this.makeOptionMessage(id);
 
                 if (this.activeIndex >= this.totalLength - 1) {
                     var resultData = this.findResult();
 
                     this.makeActionButton('Результат', 'makeResult');
 
-                    (0, _helper.preloadImages)([this.findResult().cover]);
+                    this.preloader.load([this.staticURL + this.findResult().cover]);
                 } else {
                     this.makeActionButton('Продолжить', 'makeQuestion');
                 }
@@ -1093,11 +1224,26 @@ var Special = function (_BaseSpecial) {
 
             this.mainOptions.appendChild(message);
         }
+
+        /**
+         * @typedef {object} result
+         * @property {array} range - [1, 3]
+         * @property {string} title - 'Вы белка'
+         * @property {string} message - 'Вы набрали 2 очков за 15 секунд'
+         * @property {string} image  - 'adad.png'
+         */
+
+        /**
+         * @return {result}
+         */
+
     }, {
         key: 'findResult',
         value: function findResult() {
             var results = _data2.default.results,
                 finalResult = null;
+
+            var secondsWasted = Math.floor(this.timerValue / 10);
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -1107,7 +1253,7 @@ var Special = function (_BaseSpecial) {
                 for (var _iterator = results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var result = _step.value;
 
-                    if (this.userPoints >= result.range[0] && this.userPoints <= result.range[1]) {
+                    if (secondsWasted >= result.range[0] && secondsWasted <= result.range[1]) {
                         finalResult = result;
                         break;
                     }
@@ -1127,12 +1273,36 @@ var Special = function (_BaseSpecial) {
                 }
             }
 
+            finalResult.message = '\u042F \u0443\u0433\u0430\u0434\u0430\u043B ' + (0, _helper.declineWord)(this.userPoints, ['пару', 'пары', 'пар']) + ' \u0437\u0430 ' + (0, _helper.declineWord)(secondsWasted, ['секунду', 'секунды', 'секунд']);
+
             return finalResult;
+        }
+
+        /**
+         * Format image URL: add static URL if need
+         * @param {string} url
+         */
+
+    }, {
+        key: 'imageUrl',
+        value: function imageUrl(url) {
+            if (url.substring(0, 4) === 'http') {
+                return url;
+            }
+
+            return this.staticURL + url;
         }
     }, {
         key: 'makeResult',
         value: function makeResult() {
+            /**
+             * @type {result}
+             */
             var data = this.findResult();
+
+            var secondsWasted = Math.floor(this.timerValue / 10);
+
+            this.stopTimer();
 
             var result = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'result')),
                 resultContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultContent')),
@@ -1141,30 +1311,23 @@ var Special = function (_BaseSpecial) {
                 data: {
                     click: 'restart'
                 }
-            }),
-                button = (0, _dom.makeElement)('a', _bem2.default.set(CSS.main, 'button'), {
-                target: '_blank',
-                href: _data2.default.promoUrl
             });
 
             this.updateMode('result');
 
-            result.style.backgroundImage = 'url(' + data.cover + ')';
+            result.style.backgroundImage = 'url(' + this.imageUrl(data.cover) + ')';
 
-            this.mainText.innerHTML = _data2.default.outro;
+            this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">\n                    <span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                        ' + _data2.default.CTAText + '\n                    </span>\n                </a>\n            </div>\n        ';
             (0, _dom.removeChildren)(this.mainOptions);
             (0, _dom.removeChildren)(this.mainActions);
 
-            resultContent.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'resultPoints') + '">' + this.userPoints + ' \u0438\u0437 ' + this.totalLength + ' \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445 \u043E\u0442\u0432\u0435\u0442\u043E\u0432</div>\n            <div class="' + _bem2.default.set(CSS.main, 'title') + '">' + data.title + '</div>';
+            resultContent.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'resultPoints') + '">' + data.message + '</div>\n            <div class="' + _bem2.default.set(CSS.main, 'title') + '">' + data.title + '</div>';
             result.appendChild(resultContent);
             resultContent.appendChild(resultActions);
             (0, _dom.prepend)(this.content, result);
 
-            button.innerHTML = 'Купить билет';
-            this.mainText.appendChild(button);
-
             Share.make(resultActions, {
-                url: CONFIG.share.url + '/' + this.userPoints,
+                url: CONFIG.share.url + '/' + this.userPoints + '/' + secondsWasted,
                 twitter: CONFIG.share.twitter
             });
 
@@ -1175,6 +1338,70 @@ var Special = function (_BaseSpecial) {
 
             Analytics.sendEvent('Result screen', 'Hit');
             Analytics.sendEvent('Result ' + this.userPoints + ' screen', 'Hit');
+        }
+
+        /**
+        * Format number to string like HH:MM:SS
+        * @param {number} time - timer count in 0.1s
+        * @return {string}
+        */
+
+    }, {
+        key: 'formatTime',
+        value: function formatTime(time) {
+            var decileSec = parseInt(time, 10); // don't forget the second param
+
+            var sec = decileSec / 10;
+            var minLeft = sec / 60;
+            var fullMin = Math.floor(minLeft);
+            var secLeft = (decileSec - fullMin) % 600 / 10;
+            var fullSecLeft = Math.floor(secLeft);
+            var decileSecLeft = parseInt(String(secLeft).split('.')[1], 10) * 6;
+
+            if (isNaN(decileSecLeft)) {
+                decileSecLeft = 0;
+            }
+
+            fullMin = fullMin < 10 ? '0' + fullMin : fullMin;
+            fullSecLeft = fullSecLeft < 10 ? '0' + fullSecLeft : fullSecLeft;
+            decileSecLeft = decileSecLeft < 10 ? '0' + decileSecLeft : decileSecLeft;
+
+            return fullMin + ':' + fullSecLeft + ':' + decileSecLeft;
+        }
+    }, {
+        key: 'stopTimer',
+
+
+        /**
+         * Stop timer if it is running
+         * @param {boolean} clear - need to clear value
+         */
+        value: function stopTimer() {
+            var clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+            if (this.timer) {
+                window.clearInterval(this.timer);
+                if (clear) {
+                    this._timerValue = 0;
+                }
+            }
+        }
+
+        /**
+        * Starts new timer for the game
+        * @param {boolean} clear - need to clear value
+        */
+
+    }, {
+        key: 'restartTimer',
+        value: function restartTimer(clear) {
+            var _this7 = this;
+
+            this.stopTimer(clear);
+
+            this.timer = window.setInterval(function () {
+                _this7.timerValue++;
+            }, 100);
         }
     }, {
         key: 'updateMode',
@@ -1189,13 +1416,24 @@ var Special = function (_BaseSpecial) {
             this.updateMode('progress');
 
             (0, _dom.removeChildren)(this.content);
+            this.content.appendChild(this.timerWrapper);
             this.content.appendChild(this.mainText);
             this.content.appendChild(this.mainOptions);
             this.content.appendChild(this.mainActions);
 
             this.makeQuestion(0);
+            this.restartTimer();
 
             Analytics.sendEvent('Restart button', 'Click');
+        }
+    }, {
+        key: 'timerValue',
+        set: function set(val) {
+            this._timerValue += 1;
+            this.timerContent.textContent = this.formatTime(this._timerValue);
+        },
+        get: function get() {
+            return this._timerValue;
         }
     }]);
 
@@ -1250,12 +1488,10 @@ var init = exports.init = function init() {
 var make = exports.make = function make(parentContainer) {
     var set = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-
     var likelyContainer = (0, _dom.makeElement)('div', [CSS.likely, CSS.likelyCustom]),
         socials = ['facebook', 'vkontakte', 'twitter'];
 
     socials.forEach(function (social) {
-
         var button = (0, _dom.makeElement)('div', social);
 
         if (social === 'facebook') button.textContent = 'Поделиться';
@@ -2124,6 +2360,12 @@ var _analytics = __webpack_require__(3);
 
 var Analytics = _interopRequireWildcard(_analytics);
 
+var _preloader = __webpack_require__(30);
+
+var _preloader2 = _interopRequireDefault(_preloader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2146,6 +2388,12 @@ var BaseSpecial = function () {
         this.keyCodes = {
             enter: 13
         };
+
+        /**
+         * Construct image preloader module
+         * @type {Preloader}
+         */
+        this.preloader = new _preloader2.default();
     }
 
     /**
@@ -2170,9 +2418,7 @@ var BaseSpecial = function () {
     }, {
         key: 'loadStyles',
         value: function loadStyles(path) {
-
             return new Promise(function (resolve, reject) {
-
                 var link = document.createElement('link');
 
                 link.rel = 'stylesheet';
@@ -2211,10 +2457,8 @@ var BaseSpecial = function () {
     }, {
         key: 'defaultEventHandler',
         value: function defaultEventHandler(event, eventName) {
-
             /** Keydown event */
             if (eventName === 'keydown' && this.params.listenedKeys.length > 0) {
-
                 this.params.listenedKeys.forEach(function (key) {
                     if (event.keyCode === key.code) {
                         key.action(event);
@@ -2223,16 +2467,24 @@ var BaseSpecial = function () {
 
                 /** All other events, attached to elements */
             } else {
+                var el = event.target;
 
-                var action = event.target.dataset[eventName];
+                /**
+                * Bubble click
+                */
+                while (el) {
+                    var action = el.dataset ? el.dataset[eventName] : null;
 
-                if (action && this[action]) {
-                    this[action](event.target, event);
-                }
+                    if (action && this[action]) {
+                        this[action](el, event);
+                    }
 
-                /** Send links clicks to analytics */
-                if (event.target.tagName.toLowerCase() === 'a') {
-                    Analytics.sendEvent(event.target.href);
+                    /** Send links clicks to analytics */
+                    if (el.tagName && el.tagName.toLowerCase() === 'a') {
+                        Analytics.sendEvent(el.href);
+                    }
+
+                    el = el.parentNode;
                 }
             }
         }
@@ -2253,186 +2505,104 @@ exports.default = BaseSpecial;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = {
-    title: 'Тест: Что вы знаете о&nbsp;«цифровой экономике»',
-    intro: 'Проверьте, готовы ли вы к&nbsp;будущему торговли.',
-    outro: '<div>\n    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 \u0426\u0418\u041F\u0420 \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435 \u043E \u0446\u0438\u0444\u0440\u043E\u0432\u043E\u0439 \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u043A\u0435 \u0433\u043B\u0430\u0432\u043D\u043E\u0435. <strong>\u0421&nbsp;6&nbsp;\u043F\u043E&nbsp;8&nbsp;\u0438\u044E\u043D\u044F</strong> \u0435\u0451 \u0431\u0443\u0434\u0443\u0442 \u043E\u0431\u0441\u0443\u0436\u0434\u0430\u0442\u044C \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u0438 \u0420\u043E\u0441\u0442\u0435\u0445\u0430, Samsung, \u0420\u043E\u0441\u0430\u0442\u043E\u043C\u0430, \u0420\u043E\u0441\u0442\u0435\u043B\u0435\u043A\u043E\u043C\u0430, \u0421\u043A\u043E\u043B\u043A\u043E\u0432\u043E \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043A\u0440\u0443\u043F\u043D\u044B\u0445 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0439.\n    <span></span>\n    \u0420\u0435\u0447\u044C \u043D\u0430 \u0426\u0418\u041F\u0420 \u043F\u043E\u0439\u0434\u0451\u0442 \u043E\u0431\u043E \u0432\u0441\u0451\u043C \u043E\u0442 \u0443\u043C\u043D\u044B\u0445 \u0433\u043E\u0440\u043E\u0434\u043E\u0432 \u0434\u043E \u0432\u043B\u0438\u044F\u043D\u0438\u044F \xAB\u0446\u0438\u0444\u0440\u043E\u0432\u043E\u0439 \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u043A\u0438\xBB \u043D\u0430 \u043F\u0440\u043E\u043C\u044B\u0448\u043B\u0435\u043D\u043D\u043E\u0441\u0442\u044C. \u041F\u0440\u043E\u0439\u0434\u0451\u0442 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u044F \u0432 \u0418\u043D\u043D\u043E\u043F\u043E\u043B\u0438\u0441\u0435 \u043D\u0435\u043F\u043E\u0434\u0430\u043B\u0451\u043A\u0443 \u043E\u0442 \u041A\u0430\u0437\u0430\u043D\u0438, \u0442\u0430\u043A \u0447\u0442\u043E \u043B\u0443\u0447\u0448\u0435 \u0441\u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043F\u043E\u0435\u0437\u0434\u043A\u0443 \u0437\u0430\u0440\u0430\u043D\u0435\u0435 \u2014 \u0441 \u043F\u0440\u043E\u043C\u043E\u043A\u043E\u0434\u043E\u043C <strong>CIPR5</strong> \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u043D\u044B\u0435 \u0431\u0438\u043B\u0435\u0442\u044B \u043D\u0430 \u0426\u0418\u041F\u0420 \u0431\u0443\u0434\u0443\u0442 \u0441\u0442\u043E\u0438\u0442\u044C <strong>5000</strong> \u0440\u0443\u0431\u043B\u0435\u0439 \u0432\u043C\u0435\u0441\u0442\u043E 30 000.\n    </div>',
-    promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
-    questions: [{
-        text: 'Начнём с простого: сколько сейчас стоит вся цифровая экономика?',
-        options: [{
-            id: 0,
-            text: '$3 трлн',
-            message: 'Верно! Это в два раза больше, чем ВВП России.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: '$400 млрд',
-            message: 'Маловато — на самом деле общая стоимость цифровой экономики составляет $3 трлн. Это в два раза больше, чем ВВП России.'
-        }, {
-            id: 2,
-            text: '$15,2 трлн',
-            message: 'Неверно. На самом деле цифровая экономика стоит $3 трлн. Что немало — это в два раза больше, чем ВВП России.'
-        }, {
-            id: 3,
-            text: '$947 млрд',
-            message: 'Маловато — на самом деле общая стоимость цифровой экономики составляет $3 трлн. Это в два раза больше, чем ВВП России.'
-        }]
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Image Preloader module
+ *
+ * Loads Image and stores in own cache
+ *
+ * @usage preloader.load(url)
+ * @usage preloader.load([url1, url2])
+ * @usage preloader.get(url) -> Image
+ *
+ */
+
+var Preloader = function () {
+    function Preloader() {
+        _classCallCheck(this, Preloader);
+
+        /**
+         * Internal cache
+         * @type {{src: Image}}
+         */
+        this.images = {};
+    }
+
+    /**
+     * Loads Image
+     * @param {string|string[]} urls - one or several URL to prelaod
+     */
+
+
+    _createClass(Preloader, [{
+        key: 'load',
+        value: function load(urls) {
+            var _this = this;
+
+            console.log('Preloader: start to load', urls);
+            if (Array.isArray(urls)) {
+                urls.forEach(function (url) {
+                    _this.loadOne(url);
+                });
+            } else {
+                this.loadOne(urls);
+            }
+        }
+
+        /**
+         * Loads single image
+         * @param {string} url
+         */
+
     }, {
-        text: 'Какой процент профессий может полностью исчезнуть из-за автоматизации?',
-        options: [{
-            id: 0,
-            text: '5%',
-            message: '\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E. \u0415\u0449\u0451 51% \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439 \u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0437\u043C\u0435\u043D\u0438\u0442\u0441\u044F</a> \u2014 \u043B\u044E\u0434\u0438 \u0438 \u0440\u043E\u0431\u043E\u0442\u044B \u0431\u0443\u0434\u0443\u0442 \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C \u0432\u043C\u0435\u0441\u0442\u0435.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: '51%',
-            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0421\u0442\u043E\u043B\u044C\u043A\u043E \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439 \u044D\u0432\u043E\u043B\u044E\u0446\u0438\u043E\u043D\u0438\u0440\u0443\u044E\u0442 \u0438\u0437-\u0437\u0430 \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0437\u0430\u0446\u0438\u0438, \u0430 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0441\u0447\u0435\u0437\u043D\u0435\u0442</a> \u0432\u0441\u0435\u0433\u043E 5%.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.'
-        }, {
-            id: 2,
-            text: '15%',
-            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u041D\u0430 \u0441\u0430\u043C\u043E\u043C \u0434\u0435\u043B\u0435 <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0441\u0447\u0435\u0437\u043D\u0435\u0442</a> \u0432\u0441\u0435\u0433\u043E 5% \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439, \u0438 \u0435\u0449\u0451 51% \u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u044D\u0432\u043E\u043B\u044E\u0446\u0438\u043E\u043D\u0438\u0440\u0443\u044E\u0442.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.'
-        }, {
-            id: 3,
-            text: '80%',
-            message: '\u041C\u043D\u043E\u0433\u043E\u0432\u0430\u0442\u043E. \u041D\u0430 \u0441\u0430\u043C\u043E\u043C \u0434\u0435\u043B\u0435 <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">\u0438\u0441\u0447\u0435\u0437\u043D\u0435\u0442</a> \u0432\u0441\u0435\u0433\u043E 5% \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0439, \u0438 \u0435\u0449\u0451 51% \u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u044D\u0432\u043E\u043B\u044E\u0446\u0438\u043E\u043D\u0438\u0440\u0443\u044E\u0442.\n                    <span></span>\n                    \u041D\u0430 \u043A\u043E\u043D\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0438 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u043D\u0430\u0441\u0442\u0443\u043F\u0438\u0442 \u0447\u0443\u0442\u044C \u0440\u0430\u043D\u044C\u0448\u0435 \u2014 \u0441\u043E-\u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u043E\u0434\u043D\u043E\u0439 \u0438\u0437 \u0441\u0435\u0441\u0441\u0438\u0439 \u0441\u0442\u0430\u043D\u0435\u0442 \u0430\u043D\u0434\u0440\u043E\u0438\u0434 \u0410\u043B\u0438\u0441\u0430.'
-        }]
+        key: 'loadOne',
+        value: function loadOne(url) {
+            if (this.images[url]) {
+                console.log('Preloader: already loaded %o', url);
+                return;
+            }
+
+            var image = new Image();
+
+            image.src = url;
+
+            console.time(url);
+
+            image.onload = function () {
+                console.timeEnd(url);
+            };
+
+            image.onerror = function () {
+                console.timeEnd(url);
+                console.warn('image [%o] was not loaded', url);
+            };
+
+            this.images[url] = image;
+        }
+
+        /**
+         * Return loaded image
+         */
+
     }, {
-        text: 'Аналитики Gartner ежегодно выпускают отчёты о технологических трендах. Из предсказаний ниже, три взяты из их отчёта, а одно мы придумали. Какое?',
-        options: [{
-            id: 0,
-            text: 'В 2021 году приложений и устройств с использованием ИИ станет в два раза больше, чем обычных',
-            message: 'Верно. Этот тренд мы придумали, хотя он и может стать правдой.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: 'В 2020 году обычные люди будут общаться с ботами чаще, чем с супругами',
-            message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
-        }, {
-            id: 2,
-            text: 'К 2022 году интернет вещей снизит расходы обычных людей и компаний на один триллион долларов в год',
-            message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
-        }, {
-            id: 3,
-            text: 'В 2020 году 100 миллионов человек будут покупать товары в дополненной реальности',
-            message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
-        }]
-    }, {
-        text: 'Мы живём в мире третьей индустриальной революции, но скоро должна произойти четвёртая. Выберите технологию, которая считается её частью.',
-        options: [{
-            id: 0,
-            text: 'Интернет вещей',
-            message: 'Правильно. Ещё к «Индустрии 4.0» относятся облачные вычисления и сети из глубоко интегрированных с интернетом машин под управлением искусственного интеллекта.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: 'Роботы на производстве',
-            message: 'Неверно. Это признак третьей индустриальной революции. К четвёртой относится интернет вещей.'
-        }, {
-            id: 2,
-            text: 'Промышленный термоядерный синтез',
-            message: 'Увы, до этого ещё далеко. К четвёртой относится интернет вещей.'
-        }, {
-            id: 3,
-            text: 'Механизация производства',
-            message: 'Неверно. Механизация производства — это паровые прялки времён первой индустриальной революции. К четвёртой относится интернет вещей.'
-        }]
-    }, {
-        text: 'Какая страна больше всех готова к цифровой экономике?',
-        options: [{
-            id: 0,
-            text: 'Сингапур',
-            message: 'Верно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, инфраструктура Сингапура подготовлена лучше всего. Россия — на 41 месте.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: 'Япония',
-            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
-        }, {
-            id: 2,
-            text: 'США',
-            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
-        }, {
-            id: 3,
-            text: 'Китай',
-            message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
-        }]
-    }, {
-        text: 'Выберите город, в котором широкомасштабно используется концепция интернета вещей.',
-        options: [{
-            id: 0,
-            text: 'Барселона',
-            message: '\u0412\u0435\u0440\u043D\u043E! \u0412 \u0438\u0441\u043F\u0430\u043D\u0441\u043A\u043E\u043C \u0433\u043E\u0440\u043E\u0434\u0435 \u0441 2012 \u0433\u043E\u0434\u0430 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442, \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0430\u0436\u0435 \u043F\u0430\u0440\u043A\u0438 \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u0432 \u0435\u0434\u0438\u043D\u0443\u044E \u0441\u0438\u0441\u0442\u0435\u043C\u0443 \u0441\u043E \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u0434\u0430\u0442\u0447\u0438\u043A\u043E\u0432.\n                    <span></span>\n                    \u041D\u0430 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \xAB\u0443\u043C\u043D\u044B\u043C\xBB \u0433\u043E\u0440\u043E\u0434\u0430\u043C \u043F\u043E\u0441\u0432\u044F\u0449\u0435\u043D\u043E \u0441\u0440\u0430\u0437\u0443 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439: \u0442\u0430\u043C \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438 \u043D\u0430 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B, \u0438 \u043A\u0430\u043A\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438 \u0441\u0430\u043C\u044B\u0439 \xAB\u0443\u043C\u043D\u044B\u0439\xBB.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: 'Сингапур',
-            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0412 \u0411\u0430\u0440\u0441\u0435\u043B\u043E\u043D\u0435 \u0441 2012 \u0433\u043E\u0434\u0430 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442, \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0430\u0436\u0435 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u043F\u0430\u0440\u043A\u0438 \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u0432 \u0435\u0434\u0438\u043D\u0443\u044E \u0441\u0438\u0441\u0442\u0435\u043C\u0443 \u0441\u043E \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u0434\u0430\u0442\u0447\u0438\u043A\u043E\u0432.\n                    <span></span>\n                    \u041D\u0430 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \xAB\u0443\u043C\u043D\u044B\u043C\xBB \u0433\u043E\u0440\u043E\u0434\u0430\u043C \u043F\u043E\u0441\u0432\u044F\u0449\u0435\u043D\u043E \u0441\u0440\u0430\u0437\u0443 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439: \u0442\u0430\u043C \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438 \u043D\u0430 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B \u0438 \u043A\u0430\u043A\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438 \u0441\u0430\u043C\u044B\u0439 \xAB\u0443\u043C\u043D\u044B\u0439\xBB.'
-        }, {
-            id: 2,
-            text: 'Нью-Йорк',
-            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0412 \u0411\u0430\u0440\u0441\u0435\u043B\u043E\u043D\u0435 \u0441 2012 \u0433\u043E\u0434\u0430 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442, \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0430\u0436\u0435 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u043F\u0430\u0440\u043A\u0438 \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u0432 \u0435\u0434\u0438\u043D\u0443\u044E \u0441\u0438\u0441\u0442\u0435\u043C\u0443 \u0441\u043E \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u0434\u0430\u0442\u0447\u0438\u043A\u043E\u0432.\n                    <span></span>\n                    \u041D\u0430 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \xAB\u0443\u043C\u043D\u044B\u043C\xBB \u0433\u043E\u0440\u043E\u0434\u0430\u043C \u043F\u043E\u0441\u0432\u044F\u0449\u0435\u043D\u043E \u0441\u0440\u0430\u0437\u0443 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439: \u0442\u0430\u043C \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438 \u043D\u0430 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B \u0438 \u043A\u0430\u043A\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438 \u0441\u0430\u043C\u044B\u0439 \xAB\u0443\u043C\u043D\u044B\u0439\xBB.'
-        }, {
-            id: 3,
-            text: 'Москва',
-            message: '\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0412 \u0411\u0430\u0440\u0441\u0435\u043B\u043E\u043D\u0435 \u0441 2012 \u0433\u043E\u0434\u0430 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442, \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0430\u0436\u0435 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u043F\u0430\u0440\u043A\u0438 \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u0432 \u0435\u0434\u0438\u043D\u0443\u044E \u0441\u0438\u0441\u0442\u0435\u043C\u0443 \u0441\u043E \u043C\u043D\u043E\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u0434\u0430\u0442\u0447\u0438\u043A\u043E\u0432.\n                    <span></span>\n                    \u041D\u0430 <a href="https://cipr.ru/" target="_blank">\u0426\u0418\u041F\u0420</a> \xAB\u0443\u043C\u043D\u044B\u043C\xBB \u0433\u043E\u0440\u043E\u0434\u0430\u043C \u043F\u043E\u0441\u0432\u044F\u0449\u0435\u043D\u043E \u0441\u0440\u0430\u0437\u0443 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432\u044B\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0439: \u0442\u0430\u043C \u0432\u044B \u0443\u0437\u043D\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438 \u043D\u0430 \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B \u0438 \u043A\u0430\u043A\u043E\u0439 \u0433\u043E\u0440\u043E\u0434 \u0432 \u0420\u043E\u0441\u0441\u0438\u0438 \u0441\u0430\u043C\u044B\u0439 \xAB\u0443\u043C\u043D\u044B\u0439\xBB.'
-        }]
-    }, {
-        text: 'Что такое «Эра индиго»?',
-        options: [{
-            id: 0,
-            text: 'Новый этап развития экономики — вместо природных ресурсов она основывается на идеях и инновациях',
-            message: 'Верно. Термин в 2016 году <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">ввёл</a> основатель «Альфа-групп» Михаил Фридман.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: 'Время, когда рождается много детей с выдающимися творческими способностями',
-            message: 'Неверно. На самом деле так <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">называется</a> этап развития экономики, когда вместо природных ресурсов она основывается на идеях и инновациях.'
-        }, {
-            id: 2,
-            text: 'Эпоха лидерства технологических корпораций',
-            message: 'Неверно. На самом деле так <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">называется</a> этап развития экономики, когда вместо природных ресурсов она основывается на идеях и инновациях.'
-        }, {
-            id: 3,
-            text: 'Пик глобализации — без государственных границ и с единой цифровой валютой',
-            message: 'Неверно. На самом деле так <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">называется</a> этап развития экономики, когда вместо природных ресурсов она основывается на идеях и инновациях.'
-        }]
-    }, {
-        text: 'Цифровые технологии уже меняют медицину и биотехнологии. Одно из изобретений ниже мы придумали — сможете определить, какое?',
-        options: [{
-            id: 0,
-            text: 'Робот-терапевт, способный ставить диагнозы самостоятельно.',
-            message: 'Верно. До этого нам ещё слишком далеко — пока что машины лучше всего показывают себя в хирургии. Робот daVinci, например, <a href="https://youtu.be/v1U2ruHU9iY" target="_blank">может</a> самостоятельно зашить виноградину.',
-            isCorrect: true
-        }, {
-            id: 1,
-            text: 'Операции на мозге в VR',
-            message: 'Такое <a href="http://www.wired.co.uk/article/vr-brain-surgery-nhs-london-watch-video-360" target="_blank">уже было</a> в сентябре 2017 года. Врачи из Barts Health NHS Trust записали в VR операцию по удалению аневризмы из мозга пациента, чтобы потом научить этому студентов-нейрохирургов. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
-        }, {
-            id: 2,
-            text: 'Копия плаценты в виде микрочипа',
-            message: 'Неверно. Её с сентября 2017 года <a href="https://motherboard.vice.com/en_us/article/599n7n/placenta-on-a-chip-techn-will-let-scientists-research-neonatal-diseases-without-using-human-fetuses" target="_blank">разрабатывают</a> учёные из Florida Atlantic University, чтобы изучать болезни, не задействуя реальные ткани. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
-        }, {
-            id: 3,
-            text: 'Компьютерный анестезиолог',
-            message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анестезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
-        }]
-    }],
-    results: [{
-        range: [0, 3],
-        title: 'Вы — экономический ретроград',
-        cover: 'https://leonardo.osnova.io/419f8530-09db-151a-53e1-7a37e4afed96/'
-    }, {
-        range: [4, 6],
-        title: 'Вы —<br> владелец «умного» холодильника',
-        cover: 'https://leonardo.osnova.io/08b5c830-654a-ac18-c8f9-3670148c57bb/'
-    }, {
-        range: [7, 8],
-        title: 'Вы —<br> «умный» холодильник',
-        cover: 'https://leonardo.osnova.io/e94e75f3-6364-47de-b60c-3fe0075fd047/'
-    }]
-};
+        key: 'get',
+        value: function get(url) {
+            if (!this.images[url]) {
+                this.loadOne(url);
+            }
+
+            return this.images[url];
+        }
+    }]);
+
+    return Preloader;
+}();
+
+exports.default = Preloader;
 
 /***/ }),
 /* 31 */
@@ -2445,13 +2615,331 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    logo: '<svg width="146" height="54" xmlns="http://www.w3.org/2000/svg"><g fill="#000" fill-rule="evenodd"><path d="M32.33 0h-3.153v12.617H3.944V0H.789v15.77h34.696v-3.153h-3.154zM142.726 6.309h-25.233V3.155h25.233v3.154zM114.339 0v15.77h3.153V9.463h28.388V0H114.34zM60.718 0L48.102 12.617h-6.309V0H38.64v15.77h10.767l12.65-12.616h4.97V15.77h3.155V0zM89.1 0H76.49v15.77h3.154V3.155H89.1zM95.41 0v3.154h9.466V15.77h3.154V0zM29.431 53.856l2.183-2.91v2.91h.62V49.91h-.541l-2.172 2.898V49.91h-.62v3.947h.53zm-5.862 0l2.184-2.91v2.91h.62V49.91h-.541l-2.172 2.898V49.91h-.62v3.947h.53zm-3.991.074c.445 0 .829-.108 1.156-.316v-.626c-.305.243-.683.361-1.129.361-.422 0-.772-.135-1.054-.411-.276-.277-.417-.632-.417-1.055a1.415 1.415 0 0 1 1.449-1.466c.39 0 .745.1 1.066.31V50.1a2.14 2.14 0 0 0-1.071-.265c-.598 0-1.094.192-1.489.58-.395.384-.592.874-.592 1.467 0 .592.197 1.083.592 1.472.4.383.897.575 1.489.575zm-5.302 0c.446 0 .83-.108 1.156-.316v-.626c-.304.243-.682.361-1.128.361-.423 0-.772-.135-1.054-.411-.277-.277-.418-.632-.418-1.055 0-.423.136-.773.412-1.05a1.416 1.416 0 0 1 1.038-.417c.39 0 .744.102 1.066.31v-.625a2.143 2.143 0 0 0-1.072-.265c-.597 0-1.094.192-1.488.58-.395.384-.592.874-.592 1.467 0 .592.197 1.083.592 1.472.4.383.896.575 1.488.575zm-4.883-.586c.382-.395.574-.88.574-1.461 0-.581-.192-1.066-.574-1.455-.384-.395-.864-.592-1.444-.592-.581 0-1.061.197-1.445.592-.377.389-.568.874-.568 1.455 0 .58.19 1.066.568 1.46.384.39.864.587 1.445.587.58 0 1.06-.198 1.444-.586zm-2.426-.412c-.265-.282-.395-.632-.395-1.05 0-.417.13-.767.395-1.043.265-.282.593-.423.982-.423s.716.141.981.423c.265.276.4.626.4 1.044 0 .417-.135.767-.4 1.05a1.31 1.31 0 0 1-.981.416 1.31 1.31 0 0 1-.982-.417zM1.41 50.478h1.027c.468 0 .744.21.744.587 0 .378-.276.593-.744.593H1.409v-1.18zm0 3.378v-1.63h1.077c.412 0 .734-.107.965-.326.236-.22.354-.502.354-.846 0-.339-.118-.615-.354-.824-.231-.213-.553-.32-.965-.32H.79v3.946h.62zM68.748 41.567c.57 0 .993-.36.999-.93h-.519c-.006.27-.192.462-.485.462-.294 0-.48-.185-.48-.462h-.518c.006.57.411.93 1.003.93zm-1.133 4.178l2.183-2.91v2.91h.62V41.8h-.541l-2.172 2.897V41.8h-.62v3.946h.53zm-3.454-.512c.383-.395.575-.88.575-1.461 0-.58-.192-1.066-.575-1.455-.384-.395-.863-.591-1.444-.591s-1.06.196-1.444.59c-.377.39-.569.875-.569 1.456s.192 1.066.57 1.461c.383.389.862.586 1.443.586.58 0 1.06-.197 1.444-.586zm-2.426-.412c-.264-.282-.394-.631-.394-1.049 0-.417.13-.767.394-1.043.266-.283.593-.423.982-.423.39 0 .716.14.982.423.265.276.4.626.4 1.043 0 .418-.135.767-.4 1.05a1.31 1.31 0 0 1-.982.416c-.39 0-.716-.14-.982-.417zm-6.056.924v-1.821h2.059v1.821h.62V41.8h-.62v1.556h-2.06v-1.556h-.62v3.946h.62zm-5.828 0v-1.821h2.059v1.821h.62V41.8h-.62v1.556H49.85v-1.556h-.62v3.946h.62zm-2.864 0v-.568h-2.26v-1.253h1.78v-.57h-1.78v-.986h2.187v-.57h-2.807v3.947h2.88zm-8.973-.011a.86.86 0 0 0 .242.028c.491 0 .813-.197.998-.648.186-.457.26-1.015.277-1.9l.016-.846h1.41v3.377h.62V41.8H38.95l-.017 1.353c-.017.721-.05 1.16-.158 1.522-.096.36-.276.519-.552.519a.726.726 0 0 1-.209-.023v.564zm-2.154.011V41.8h-.619v3.378h-1.473v-3.378h-.62v3.378h-1.472v-3.378h-.62v3.946h4.804zm-10.854-2.013h.852c.547 0 .88.271.88.728 0 .451-.322.717-.88.717h-.852v-1.445zm.885 2.013c.458 0 .813-.118 1.078-.354.264-.242.4-.553.4-.93 0-.385-.13-.695-.395-.937-.264-.243-.625-.36-1.083-.36h-.885v-1.365h-.62v3.946h1.505zm2.014 0h.62V41.8h-.62v3.946zm-9.231 0v-3l1.1 1.489h.36l1.1-1.488v3h.62v-3.947h-.62l-1.268 1.775-1.281-1.775h-.63v3.946h.619zm-3.544-.512c.382-.395.574-.88.574-1.461 0-.58-.192-1.066-.574-1.455-.384-.395-.863-.591-1.444-.591s-1.06.196-1.444.59c-.378.39-.57.875-.57 1.456s.192 1.066.57 1.461c.383.389.863.586 1.444.586.58 0 1.06-.197 1.444-.586zm-2.426-.412c-.265-.282-.395-.631-.395-1.049 0-.417.13-.767.395-1.043.266-.283.593-.423.982-.423s.716.14.981.423c.265.276.4.626.4 1.043 0 .418-.135.767-.4 1.05a1.31 1.31 0 0 1-.981.416c-.39 0-.716-.14-.982-.417zm-5.558-2.453h1.027c.468 0 .745.208.745.586s-.277.593-.745.593H7.146v-1.18zm0 3.377v-1.63h1.078c.412 0 .733-.106.964-.326.236-.22.355-.501.355-.846 0-.338-.119-.615-.355-.823-.231-.214-.552-.321-.964-.321H6.526v3.946h.62zm-5.737 0v-3.377h1.968v3.377h.62V41.8H.79v3.946h.62zM46.65 35.419c-.446 0-.712-.214-.712-.58 0-.362.266-.582.711-.582H47.8v1.162h-1.15zm-.965 2.216l1.19-1.67h.925v1.67h.62v-3.947h-1.8c-.812 0-1.307.445-1.307 1.122 0 .547.321.958.88 1.088l-1.258 1.737h.75zm-5.756 0l2.183-2.91v2.91h.62v-3.947h-.541l-2.172 2.898v-2.898h-.62v3.947h.53zm-5.162-3.378h1.027c.468 0 .745.208.745.587 0 .378-.277.592-.745.592h-1.027v-1.18zm0 3.378v-1.63h1.078c.412 0 .734-.107.964-.327.237-.22.356-.501.356-.845 0-.34-.119-.616-.356-.824-.23-.214-.552-.321-.964-.321h-1.697v3.947h.62zm-6.065-3.378h1.303v3.378h.62v-3.378h1.308v-.57h-3.23v.57zm-3.216 3.451c.445 0 .829-.107 1.156-.316v-.625c-.305.242-.682.36-1.128.36-.423 0-.773-.135-1.054-.41-.277-.278-.418-.633-.418-1.056a1.415 1.415 0 0 1 1.45-1.466c.389 0 .744.101 1.065.31v-.625a2.14 2.14 0 0 0-1.071-.265c-.598 0-1.094.191-1.489.58-.394.383-.591.874-.591 1.466 0 .593.197 1.083.591 1.472.4.383.897.575 1.489.575zm-6.458 0c.468 0 .846-.304 1.134-.919l1.454-3.101h-.665l-.97 2.137-1.167-2.137h-.699l1.545 2.797c-.124.26-.237.434-.344.519a.613.613 0 0 1-.395.124c-.163 0-.31-.034-.45-.096v.586c.129.062.315.09.557.09zm-5.865-.642a3.27 3.27 0 0 0 .411-1.151c.08-.446.119-.998.119-1.658h1.388v2.809h-1.918zm-.468 1.414v-.845h2.99v.845h.585v-1.414h-.57v-3.378h-2.61v.546c0 .728-.05 1.309-.147 1.732-.096.423-.248.79-.457 1.1h-.377v1.414h.586zm-5.425-.845v-1.822h2.06v1.822h.62v-3.947h-.62v1.556H7.27v-1.556h-.62v3.947h.62zm-5.951 0l2.183-2.91v2.91h.62v-3.947H3.58L1.41 36.586v-2.898h-.62v3.947h.53zM43.7 27.309c-.445 0-.71-.215-.71-.582 0-.36.265-.58.71-.58h1.152v1.162H43.7zm-.964 2.215l1.19-1.669h.926v1.669h.619v-3.947h-1.799c-.812 0-1.308.445-1.308 1.122 0 .548.322.959.88 1.088l-1.258 1.737h.75zm-4.797-3.185l.722 1.657h-1.443l.721-1.657zm-1.359 3.185l.423-.981h1.872l.428.98h.665l-1.725-3.968h-.597l-1.725 3.969h.66zm-5.238-3.378h1.066c.412 0 .655.175.655.508s-.243.514-.655.514h-1.066v-1.022zm0 1.568h1.208c.49 0 .772.22.772.61 0 .4-.293.63-.772.63h-1.208v-1.24zm1.32 1.81c.412 0 .734-.101.97-.304.242-.203.36-.473.36-.807 0-.58-.36-.964-.84-1.054.3-.113.525-.406.525-.812 0-.61-.457-.97-1.162-.97h-1.793v3.947h1.94zm-4.864-.513c.383-.394.574-.88.574-1.46s-.19-1.067-.574-1.456c-.384-.394-.863-.59-1.444-.59s-1.06.196-1.444.59c-.377.39-.57.875-.57 1.456 0 .58.193 1.066.57 1.46.383.39.863.586 1.444.586.58 0 1.06-.197 1.444-.586zm-2.425-.411c-.266-.283-.395-.632-.395-1.05 0-.417.13-.766.395-1.043.265-.282.592-.423.981-.423.39 0 .716.141.982.423.265.277.4.626.4 1.044 0 .417-.135.766-.4 1.049a1.31 1.31 0 0 1-.982.417 1.31 1.31 0 0 1-.981-.417zm-5.559-2.454h1.027c.468 0 .745.21.745.587 0 .378-.277.593-.745.593h-1.027v-1.18zm0 3.378v-1.63h1.078c.412 0 .734-.107.964-.326.237-.22.355-.502.355-.846 0-.339-.118-.615-.355-.823-.23-.215-.552-.322-.964-.322h-1.697v3.947h.62zm-4.871-3.158c.429.005.75.118.97.339.22.22.328.49.328.817 0 .328-.108.604-.327.824-.22.22-.542.327-.971.333v-2.313zm-.62 2.313c-.428-.006-.75-.113-.97-.333a1.136 1.136 0 0 1-.322-.824c0-.327.107-.597.322-.817.22-.22.542-.334.97-.339v2.313zm.62.98v-.434c1.32-.034 1.934-.845 1.934-1.703 0-.857-.614-1.668-1.934-1.702v-.372h-.62v.372c-1.32.034-1.928.856-1.928 1.708 0 .463.163.857.496 1.185.332.326.806.495 1.432.512v.434h.62zm-7.663-.135l2.183-2.91v2.91h.62v-3.947h-.541L7.37 28.475v-2.898h-.62v3.947h.53zm-2.741.846v-1.415h-.57v-3.378h-.62v3.378H1.41v-3.378H.79v3.947h3.163v.846h.587z"/></g></svg>',
+    title: 'Кто быстрее',
+    task: 'Из этой пары быстрее...',
+    intro: 'Скоростной тест на скорость.',
+    outro: '<p>\u0421\u0430\u043C\u044B\u0439 \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u2014 \u0432&nbsp;\u041C\u0435\u0433\u0430\u0424\u043E\u043D\u0435. \u0414\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u043C\u0438 \u043C\u0438\u043B\u043B\u0438\u043E\u043D\u043E\u0432 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 \u0432&nbsp;Speedtest.</p> ',
+    logoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__logo_cpm__&utm_content=&utm_term=',
+    promoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__button_cpm__&utm_content=&utm_term=',
+    CTAText: 'Подключить',
+    questions: [{
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Сокол сапсан',
+            message: '322 км/ч',
+            img: '1-0.png',
+            imgCorrect: '1-0-correct.png',
+            imgWrong: '1-0-wrong.png',
+            imgDisabled: '1-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Поезд «Сапсан»',
+            message: '250 км/ч',
+            img: '1-1.png',
+            imgCorrect: '1-1-correct.png',
+            imgWrong: '1-1-wrong.png',
+            imgDisabled: '1-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Лионель Месси',
+            message: '35,8 км/ч',
+            img: '2-0.png',
+            imgCorrect: '2-0-correct.png',
+            imgWrong: '2-0-wrong.png',
+            imgDisabled: '2-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Криштиану Роналду',
+            message: '38,6 км/ч',
+            img: '2-1.png',
+            imgCorrect: '2-1-correct.png',
+            imgWrong: '2-1-wrong.png',
+            imgDisabled: '2-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Самолет F-111',
+            message: '3060 км/ч',
+            img: '3-0.png',
+            imgCorrect: '3-0-correct.png',
+            imgWrong: '3-0-wrong.png',
+            imgDisabled: '3-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Самолет МиГ-31',
+            message: '3464 км/ч',
+            img: '3-1.png',
+            imgCorrect: '3-1-correct.png',
+            imgWrong: '3-1-wrong.png',
+            imgDisabled: '3-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Hyperloop',
+            message: '1220 км/ч',
+            img: '4-0.png',
+            imgCorrect: '4-0-correct.png',
+            imgWrong: '4-0-wrong.png',
+            imgDisabled: '4-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Airbus A320',
+            message: '910 км/ч',
+            img: '4-1.png',
+            imgCorrect: '4-1-correct.png',
+            imgWrong: '4-1-wrong.png',
+            imgDisabled: '4-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Усейн Болт',
+            message: '44,72 км/ч',
+            img: '5-0.png',
+            imgCorrect: '5-0-correct.png',
+            imgWrong: '5-0-wrong.png',
+            imgDisabled: '5-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Заяц-русак',
+            message: '80 км/ч',
+            img: '5-1.png',
+            imgCorrect: '5-1-correct.png',
+            imgWrong: '5-1-wrong.png',
+            imgDisabled: '5-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Гепард',
+            message: '115 км/ч',
+            img: '6-0.png',
+            imgCorrect: '6-0-correct.png',
+            imgWrong: '6-0-wrong.png',
+            imgDisabled: '6-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Электрокар Lada Ellada',
+            message: '130 км/ч',
+            img: '6-1.png',
+            imgCorrect: '6-1-correct.png',
+            imgWrong: '6-1-wrong.png',
+            imgDisabled: '6-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Комета Чурюмова-Герасименко',
+            message: '55 000 км/ч',
+            img: '7-0.png',
+            imgCorrect: '7-0-correct.png',
+            imgWrong: '7-0-wrong.png',
+            imgDisabled: '7-0-disabled.png'
+        }, {
+            id: 1,
+            text: '«Вояджер-1»',
+            message: '62 140 км/ч',
+            img: '7-1.png',
+            imgCorrect: '7-1-correct.png',
+            imgWrong: '7-1-wrong.png',
+            imgDisabled: '7-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Волан',
+            message: '300 км/ч',
+            img: '8-0.png',
+            imgCorrect: '8-0-correct.png',
+            imgWrong: '8-0-wrong.png',
+            imgDisabled: '8-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Теннисный мяч',
+            message: '251 км/ч',
+            img: '8-1.png',
+            imgCorrect: '8-1-correct.png',
+            imgWrong: '8-1-wrong.png',
+            imgDisabled: '8-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Нервный импульс',
+            message: '450 км/ч',
+            img: '9-0.png',
+            imgCorrect: '9-0-correct.png',
+            imgWrong: '9-0-wrong.png',
+            imgDisabled: '9-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Радиосигнал',
+            message: '1 080 000 000<br>км/ч',
+            img: '9-1.png',
+            imgCorrect: '9-1-correct.png',
+            imgWrong: '9-1-wrong.png',
+            imgDisabled: '9-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Вишневый родстер Илона&nbsp;Маска в&nbsp;космосе',
+            message: '39 600 км/ч',
+            img: '10-0.png',
+            imgCorrect: '10-0-correct.png',
+            imgWrong: '10-0-wrong.png',
+            imgDisabled: '10-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Ракета-носитель «Протон»',
+            message: '25 855 км/ч',
+            img: '10-1.png',
+            imgCorrect: '10-1-correct.png',
+            imgWrong: '10-1-wrong.png',
+            imgDisabled: '10-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Поезд московского метро',
+            message: '80 км/ч',
+            img: '11-0.png',
+            imgCorrect: '11-0-correct.png',
+            imgWrong: '11-0-wrong.png',
+            imgDisabled: '11-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Рыба Парусник',
+            message: '120 км/ч',
+            img: '11-1.png',
+            imgCorrect: '11-1-correct.png',
+            imgWrong: '11-1-wrong.png',
+            imgDisabled: '11-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Робот Cheetah',
+            message: '45,5 км/ч',
+            img: '12-0.png',
+            imgCorrect: '12-0-correct.png',
+            imgWrong: '12-0-wrong.png',
+            imgDisabled: '12-0-disabled.png'
+        }, {
+            id: 1,
+            text: 'Ford Model T',
+            message: '72 км/час',
+            img: '12-1.png',
+            imgCorrect: '12-1-correct.png',
+            imgWrong: '12-1-wrong.png',
+            imgDisabled: '12-1-disabled.png',
+            isCorrect: true
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Сварится целая картофелина в&nbsp;воде',
+            message: '20 минут',
+            img: '13-0.png',
+            imgCorrect: '13-0-correct.png',
+            imgWrong: '13-0-wrong.png',
+            imgDisabled: '13-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Tesla Model 3 проедет 125&nbsp;км на&nbsp;максимальной скорости',
+            message: '30 минут',
+            img: '13-1.png',
+            imgCorrect: '13-1-correct.png',
+            imgWrong: '13-1-wrong.png',
+            imgDisabled: '13-1-disabled.png'
+        }]
+    }, {
+        text: '',
+        options: [{
+            id: 0,
+            text: 'Американский таракан пробежит 30&nbsp;метров',
+            message: '20 сек',
+            img: '14-0.png',
+            imgCorrect: '14-0-correct.png',
+            imgWrong: '14-0-wrong.png',
+            imgDisabled: '14-0-disabled.png',
+            isCorrect: true
+        }, {
+            id: 1,
+            text: 'Включится iPhone&nbsp;7',
+            message: '27,63 сек',
+            img: '14-1.png',
+            imgCorrect: '14-1-correct.png',
+            imgWrong: '14-1-wrong.png',
+            imgDisabled: '14-1-disabled.png'
+        }]
+    }],
+    results: [{
+        range: [0, 15],
+        title: 'А улитка не&nbsp;успела проползти и&nbsp;сантиметра пути',
+        cover: 'https://leonardo.osnova.io/83c4905f-bb75-919c-b4c4-4a8e87f944a8'
+    }, {
+        range: [15, 20],
+        title: 'Свет преодолел&nbsp;бы несколько миллионов километров',
+        cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
+    }, {
+        range: [20, 30],
+        title: 'А комар успел 10&nbsp;тысяч раз взмахнуть крыльями',
+        cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
+    }, {
+        range: [30, 99999],
+        title: 'За это время сын маминой подруги успел&nbsp;бы прославиться',
+        cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
+    }]
+};
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    logo: '<svg width="100" height="18" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="#00B856" fill-rule="nonzero"><path d="M9.916.073V9.17c0 .425-.327.72-.72.72h-1.08c-.065 0-.098.065-.098.098v7.626c.262 0 .524.065.818.065 4.877 0 8.837-3.96 8.837-8.836 0-4.484-3.371-8.248-7.757-8.771zM9.72 13.687a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08.065.59-.458 1.08-1.08 1.08zm2.585 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08 0 .557-.425 1.08-1.08 1.08zm2.619 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.523-1.08 1.08-1.08.621 0 1.08.524 1.08 1.08a1.09 1.09 0 0 1-1.08 1.08z"/><path d="M8.836.04C3.96.04 0 4 0 8.876c0 4.288 2.978 7.79 6.97 8.608V9.53c0-.36.328-.655.655-.72h1.08c.066 0 .099-.065.099-.098L8.836.04zM7.135 7.306a1.09 1.09 0 0 1-1.08-1.08c0-.622.523-1.08 1.08-1.08.621 0 1.08.523 1.08 1.08 0 .556-.491 1.08-1.08 1.08z"/><g><path d="M97.298 4.851v3.338h-4.45V4.851h-2.259v8.836h2.258V10.12h4.451v3.567h2.193V4.851zM60.513 5.866c-.36-.786-1.08-1.211-1.8-1.211s-1.473.425-1.8 1.21l-3.568 7.855h2.357l.785-1.865h4.582l.786 1.865h2.356l-3.698-7.854zm-3.404 4.221l1.342-3.24c.065-.098.098-.098.164-.098.065 0 .163 0 .163.098l1.342 3.24h-3.01zM34.2 3.28c-1.047 0-1.702.556-2.193 1.67l-2.847 6.643-2.88-6.677c-.458-1.08-1.145-1.669-2.193-1.669-.982 0-1.963.655-1.963 2.193v8.215h2.192v-7.92l2.913 6.578c.36.949 1.047 1.505 1.931 1.505.95 0 1.57-.556 1.93-1.505l2.914-6.578v8.018h2.192V5.538C36.164 4 35.182 3.28 34.2 3.28zM40.058 11.822c-.098 0-.229-.098-.229-.23v-1.57h5.498v-1.8H39.83V6.88c0-.098.098-.229.23-.229h5.465V4.786h-6.546c-.785 0-1.309.621-1.309 1.309v6.185c0 .655.556 1.31 1.31 1.31h6.545v-1.866h-5.466v.098zM49.222 13.687V6.946c0-.099.098-.23.229-.23h5.465V4.851h-6.545c-.786 0-1.31.622-1.31 1.31v7.494l2.16.032zM89.15 9.302c0-3.076-1.343-4.516-4.68-4.516h-.786c-3.339 0-4.68 1.472-4.68 4.516 0 3.01 1.341 4.516 4.68 4.516h.72c3.403-.065 4.745-1.505 4.745-4.516zm-4.746 2.65h-.72c-1.8 0-2.553-.817-2.553-2.65 0-1.767.622-2.651 2.553-2.651h.72c1.865 0 2.552.884 2.552 2.65 0 1.8-.687 2.652-2.552 2.652zM72.884 3.476h-4.386c-3.273 0-4.582 1.67-4.582 4.517 0 .458.066.883.099 1.243.36 2.03 1.57 3.273 4.614 3.273h.982v1.146h2.193v-1.146h.949c3.076 0 4.287-1.243 4.614-3.273a7.1 7.1 0 0 0 .098-1.243c-.032-2.847-1.374-4.517-4.581-4.517zm-3.339 7.2h-.981c-1.506 0-2.03-.556-2.357-1.472-.098-.328-.098-.786-.098-1.244 0-1.865.884-2.65 2.127-2.65h1.342v5.366h-.033zm5.63-1.374c-.328.884-.884 1.473-2.357 1.473h-.982v-5.4h1.342c1.244 0 2.127.785 2.127 2.65-.032.491-.032.884-.13 1.277z"/></g></g></g></svg>',
     restart: '<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M17.475 1.102c-.305-.127-.566-.074-.782.157L15.239 2.7A8.682 8.682 0 0 0 12.505.95a8.427 8.427 0 0 0-3.18-.62 8.352 8.352 0 0 0-3.333.682 8.66 8.66 0 0 0-2.74 1.833 8.67 8.67 0 0 0-1.833 2.74 8.35 8.35 0 0 0-.682 3.332c0 1.163.227 2.273.682 3.332a8.673 8.673 0 0 0 1.833 2.74 8.672 8.672 0 0 0 2.74 1.833 8.352 8.352 0 0 0 3.332.682c1.282 0 2.501-.27 3.656-.811a8.383 8.383 0 0 0 2.952-2.286.364.364 0 0 0 .084-.252.309.309 0 0 0-.106-.229l-1.532-1.543a.43.43 0 0 0-.28-.1c-.119.014-.204.059-.257.134a5.61 5.61 0 0 1-2.001 1.644 5.64 5.64 0 0 1-2.516.58 5.57 5.57 0 0 1-2.22-.452 5.752 5.752 0 0 1-1.827-1.224 5.777 5.777 0 0 1-1.225-1.829A5.568 5.568 0 0 1 3.6 8.918c0-.775.15-1.515.452-2.22a5.756 5.756 0 0 1 1.225-1.827 5.76 5.76 0 0 1 1.828-1.225 5.57 5.57 0 0 1 2.22-.453c1.498 0 2.798.51 3.902 1.532l-1.544 1.543c-.23.224-.283.48-.156.771.127.298.346.448.66.448h5.009a.69.69 0 0 0 .503-.213.688.688 0 0 0 .212-.503V1.762c0-.313-.145-.533-.436-.66z" fill-rule="evenodd"/></svg>',
     next: '<svg width="26" height="20" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M15.376 0l-2.334 2.333L20.71 10l-7.667 7.667L15.376 20l10-10z" fill-rule="nonzero"/><path d="M.642 8.155h21.715v3.691H.642z"/></g></svg>'
 };
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2474,7 +2962,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2495,7 +2983,7 @@ var isMobile = exports.isMobile = function isMobile() {
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2512,7 +3000,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
  * @param {Array} array
  */
 var getMostFrequentValue = exports.getMostFrequentValue = function getMostFrequentValue(array) {
-
     var result = [].concat(_toConsumableArray(array));
 
     return result.sort(function (a, b) {
@@ -2529,7 +3016,6 @@ var getMostFrequentValue = exports.getMostFrequentValue = function getMostFreque
  * @param {Array} array
  */
 var shuffle = exports.shuffle = function shuffle(array) {
-
     var j = void 0,
         x = void 0,
         i = void 0;
@@ -2551,7 +3037,7 @@ var toArray = exports.toArray = function toArray(nodeList) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2568,10 +3054,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * @param {Array} urls - array of images urls
  */
 var preloadImages = exports.preloadImages = function preloadImages(urls) {
-
     urls.forEach(function (url) {
-
         var image = new Image();
+
         image.src = url;
     });
 };
@@ -2582,7 +3067,6 @@ var preloadImages = exports.preloadImages = function preloadImages(urls) {
  * @param {Array} words - array of 3 words
  */
 var declineWord = exports.declineWord = function declineWord(number, words) {
-
     var result = number + '&nbsp;';
 
     if (number % 10 == 1 && number % 100 != 11) {
@@ -2615,7 +3099,6 @@ var formatNumber = exports.formatNumber = function formatNumber(number) {
 var scrollToElement = exports.scrollToElement = function scrollToElement(element) {
     var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-
     var y = element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - offset;
 
     window.scroll(0, y);
@@ -2640,6 +3123,7 @@ var copyToClipboard = exports.copyToClipboard = function copyToClipboard(string,
 
     try {
         var copy = document.execCommand('copy');
+
         isSuccess = true;
     } catch (e) {}
 
@@ -2649,7 +3133,7 @@ var copyToClipboard = exports.copyToClipboard = function copyToClipboard(string,
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

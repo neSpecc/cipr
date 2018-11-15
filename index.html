@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 
-    <title>Тест: Что вы знаете о «цифровой экономике»</title>
+    <title>Кто быстрее — скоростной тест на скорость</title>
 
     <meta charset="utf-8">
     <meta name="referrer" content="always">
@@ -61,14 +61,16 @@
     </style>
     <style>
         body {
-            background-color: #fff;
+            background-color: #eee;
             overflow-x: hidden;
             overflow-y: auto;
+
         }
 
-        @media (min-width: 680px){
+        @media (max-width: 680px){
             body {
-                padding: 20px 0;
+                background-color: #fff;
+                padding: 0;
             }
         }
     </style>
@@ -92,8 +94,9 @@
         container.parentNode.replaceChild(newContainer, container);
 
         s.onload = function () {
-            var special = new CiprTest({
+            var special = new MegafonSpeed({
                 css: './dist/all.css?' + ver,
+                staticURL: '/src/assets/'
             });
             special.init({
                 container: newContainer,
@@ -108,7 +111,7 @@
 
         d.body.appendChild(s);
 
-    })(document, 6);
+    })(document, 7);
 </script>
 
 </body>

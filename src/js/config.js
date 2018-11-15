@@ -1,6 +1,6 @@
 module.exports = {
-    name: 'CiprTest',
-    analyticsCategory: 'Cipr Test',
+    name: 'MegafonSpeed',
+    analyticsCategory: 'MegafonSpeed',
     sendPageview: false,
     listenedEvents: [
         'click',

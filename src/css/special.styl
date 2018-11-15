@@ -7,23 +7,63 @@ $colors = {
     white: #ffffff,
     black: #000000,
     gray: #646464,
-    accent: #00FAFA,
+    accent: #00B856,
     pink: #F22966,
     gray: #CAE9E9
 }
 
-.Cipr
+button(borderColor = #111, backgroundColor = transparent, hoverBackground = #00B856, hoverColor = #fff)
+    position relative
+    height: 56px
+    line-height 56px
+    text-align: center
+
+    &::before
+        content: ''
+        position: absolute;
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        border: 4px solid borderColor
+        background-color backgroundColor
+        transform: skewX(-10deg)
+        transition transform 50ms ease-in;
+        will-change transform
+
+    &-content
+        position: relative
+        z-index: 2
+        height: auto
+        display: inline
+
+    &:hover
+        color hoverColor
+
+        &::before
+            transform: skewX(-15deg)
+            background-color hoverBackground
+            border-color hoverBackground
+
+contentZone()
+    flex-basis 100%
+    max-width: 580px
+    margin 0 auto
+
+    @media $mq.mobile
+        padding 0 15px
+
+.MegafonSpeed
     width: 100%
     max-width: 1060px
     margin: 0 auto
-    min-height: 580px
-    // background-color: $colors.white
+    background-color: $colors.white
+    font-family Roboto, Helvetica, Arial
     color: $colors.black
     font-size: 16px
     line-height: 1.5em
     display: flex
-    flex-direction: column
-    padding: 0 0 30px
+    flex-flow: row wrap
     position: relative
     // z-index: 1
     overflow: hidden
@@ -31,100 +71,25 @@ $colors = {
 
     @media $mq.not_mobile
         font-size: 18px
-        min-height: 560px
         margin: auto
-        border: 7px solid $colors.accent
-        padding: 0 0 60px
 
     @media $mq.tablet
         max-width: 640px
-        min-height: 600px
 
     @media $mq.desktop
         overflow: visible
-
-    @media $mq.iphone5
-        min-height: 560px
-
-    &:before
-        @media $mq.desktop
-            content: ''
-            width: 720px
-            height: 472px
-            background-image: url('https://leonardo.osnova.io/48be3c81-8ce7-f2a2-0a30-98f01f51fcdb/')
-            background-repeat: no-repeat
-            background-size: 100% auto
-            position: absolute
-            top: 50px
-            right: -120px
-            z-index: -1
-            transition: transform 0.3s ease-in-out
-
-    &__heart
-        width: 484px
-        height: 666px
-        background-image: url('https://leonardo.osnova.io/f5f4be9d-bd07-2bb1-5e23-8d43d08db800/')
-        background-repeat: no-repeat
-        background-size: contain
-        position: absolute
-        // top: -60px
-        bottom: 0
-        right: -315px
-        z-index: -1
-        transform-origin: 50% 50%
-        transform: rotate(40deg)
-        transition: transform 0.5s ease-in-out
-
-        @media $mq.desktop
-            display: none
-
-        @media $mq.mobile
-            transform: rotate(40deg) scale(0.75)
-            top: 20px
-            right: auto
-            left: 150px
-
-        &:before
-            content: ''
-            width: 434px
-            height: 348px
-            background-image: url('https://leonardo.osnova.io/3b659861-ba88-bafd-302d-53a42cce4848/')
-            background-repeat: no-repeat
-            background-size: contain
-            transform: rotate(-95deg)
-            position: absolute
-            top: 370px
-            left: -220px
-            transition: transform 0.5s ease-in-out
-
-        span
-            content: ''
-            width: 111px
-            height: 111px
-            background-image: url('https://leonardo.osnova.io/cb8e42cd-99db-02a0-5f4f-8a26c191d7f7/')
-            background-repeat: no-repeat
-            background-size: contain
-            position: absolute
-            z-index: 1
-            bottom: 160px
-            left: 158px
-            transform: rotate(-40deg)
-            animation: cipr_blink 3s infinite ease-in-out
 
     svg
         pointer-events: none
         fill: currentColor
 
     &__header
+        contentZone()
         display: flex
-        align-items: center
-        padding: 15px
+        padding: 30px 0
 
-        @media $mq.not_mobile
-            padding: 35px 70px
-
-        @media $mq.tablet
-            padding: 35px 40px
+        @media $mq.mobile
+            padding-top: 15px
 
         a
             border: 0 !important
@@ -145,18 +110,15 @@ $colors = {
                 border-color: $colors.accent
 
     &__content
+        position: relative
+        contentZone()
         box-sizing: content-box
-        flex: 1
         display: flex
         flex-direction: column
-        max-width: 520px
-        padding: 0 15px
+        min-height 500px
 
-        @media $mq.not_mobile
-            padding: 0 70px
-
-        @media $mq.tablet
-            padding: 0 40px
+        @media $mq.mobile
+            min-height 90vh
 
     &__text
         margin-bottom: 20px
@@ -175,7 +137,7 @@ $colors = {
         font-size: 28px
         line-height: 1.3em
         font-weight: 700
-        margin-bottom: 10px
+        margin-bottom: 5px
 
         @media $mq.tablet
             font-size: 32px
@@ -188,22 +150,30 @@ $colors = {
             border: 0 !important
 
     &__options
-        margin-bottom: 10px
         display: flex
-        flex-direction: column
+        flex-direction: row
         align-items: flex-start
+        justify-content space-around
 
         @media $mq.mobile
-            padding-right: 50px
-
-        @media $mq.tablet
-            margin-bottom: 80px
+            margin: auto 0
 
         &--disabled
             pointer-events: none
 
-            .Cipr__option
-                display: none
+            .MegafonSpeed__option
+                //display: none
+
+                &::before
+                    background-color #787378
+
+                &--success
+                    &::before
+                        background-color #31C276
+
+                &--error
+                    &::before
+                        background-color #EC7664
 
                 &--success,
                 &--error
@@ -212,28 +182,265 @@ $colors = {
                 &--error
                     border-color: $colors.pink
 
-                    ~ .Cipr__message
+                    ~ .MegafonSpeed__message
                         a
                             border-bottom-color: $colors.pink !important
 
                             &:hover
                                 color: $colors.pink !important
 
+
+
     &__option
         position: relative
         cursor: pointer
-        border: 2px solid $colors.accent
         display: flex
         align-items: center
-        padding: 10px 15px
         margin-bottom: 10px
-        animation: cipr_appear 0.3s ease-in-out
+        animation: cipr_appear 0.15s ease-in
+        flex-direction column
+        font-weight: 500
+        font-size: 18px
+        text-align: center
 
-        @media $mq.not_mobile
-            padding: 10px 25px
+        &::before
+            content: '';
+            background #F3F3F3
+            width: 218px
+            height: 218px
+            border-radius 50%
+            margin-bottom: 20px
 
-            &:hover
-                border-color: $colors.black
+            @media $mq.mobile
+                width: 109px
+                height: 109px
+
+        &:not(:last-of-type){
+          margin-right 25px
+        }
+
+        @media $mq.mobile
+            font-size: 14px
+            margin: 0 auto 10px
+            line-height: 1.3em
+            width 50%
+
+        &-image
+            position: absolute
+            top: 50%
+            transform translateY(-60%)
+            max-height 220px
+            margin-bottom: 15px
+
+            @media $mq.mobile
+                max-height 100px
+
+        &[data-number="0"][data-id="0"] &-image
+            max-height 180px
+
+            @media $mq.mobile
+                max-height 90px
+                transform: translateY(-70%)
+
+        &[data-number="0"][data-id="1"] &-image
+            max-height 115px
+
+            @media $mq.mobile
+                max-height: 57px
+                transform: translateY(-70%)
+
+        &[data-number="1"][data-id="0"] &-image
+            max-height 268px
+
+            @media $mq.mobile
+                max-height: 134px
+                transform: translateY(-70%)
+
+        &[data-number="1"][data-id="1"] &-image
+            max-height 233px
+
+            @media $mq.mobile
+                max-height: 116px
+                transform: translateY(-80%)
+
+        &[data-number="2"][data-id="0"] &-image
+            max-height 177px
+
+            @media $mq.mobile
+                max-height: 88px
+                transform: translateY(-70%)
+
+        &[data-number="2"][data-id="1"] &-image
+            max-height 177px
+
+            @media $mq.mobile
+                max-height: 88px
+
+        &[data-number="3"][data-id="0"] &-image
+            max-height 204px
+
+            @media $mq.mobile
+                max-height: 102px
+
+        &[data-number="3"][data-id="1"] &-image
+            max-height 107px
+
+            @media $mq.mobile
+                max-height: 53px
+
+        &[data-number="4"][data-id="0"] &-image
+            max-height 251px
+
+            @media $mq.mobile
+                max-height: 125px
+
+        &[data-number="4"][data-id="1"] &-image
+            max-height 190px
+
+            @media $mq.mobile
+                max-height: 95px
+
+        &[data-number="5"][data-id="0"] &-image
+            max-height 125px
+
+            @media $mq.mobile
+                max-height: 60px
+
+        &[data-number="5"][data-id="1"] &-image
+            max-height 113px
+
+            @media $mq.mobile
+                max-height: 57px
+
+        &[data-number="6"][data-id="0"] &-image
+            max-height 140px
+
+            @media $mq.mobile
+                max-height: 70px
+                transform: translateY(-80%)
+
+        &[data-number="6"][data-id="1"] &-image
+            max-height 180px
+
+            @media $mq.mobile
+                max-height: 90px
+
+        &[data-number="7"][data-id="0"] &-image
+            max-height 150px
+
+            @media $mq.mobile
+                max-height: 115px
+
+        &[data-number="7"][data-id="1"] &-image
+            max-height 177px
+
+            @media $mq.mobile
+                max-height: 88px
+
+        &[data-number="8"][data-id="0"] &-image
+            max-height 150px
+
+            @media $mq.mobile
+                max-height: 75px
+
+        &[data-number="8"][data-id="1"] &-image
+            max-height: 180px;
+
+            @media $mq.mobile
+                max-height: 90px
+
+        &[data-number="9"][data-id="0"] &-image
+            max-height 193px
+
+            @media $mq.mobile
+                max-height: 96px
+                transform: translateY(-90%)
+
+        &[data-number="9"][data-id="1"] &-image
+            max-height 200px
+
+            @media $mq.mobile
+                max-height: 130px
+                transform translateY(-90%)
+
+        &[data-number="10"][data-id="0"] &-image
+            max-height 225px
+
+            @media $mq.mobile
+                max-height: 112px
+
+        &[data-number="10"][data-id="1"] &-image
+            max-height 186px
+
+            @media $mq.mobile
+                max-height: 93px
+
+        &[data-number="11"][data-id="0"] &-image
+            max-height 176px
+
+            @media $mq.mobile
+                max-height: 88px
+
+        &[data-number="11"][data-id="1"] &-image
+            max-height 166px
+
+            @media $mq.mobile
+                max-height: 83px
+
+        &[data-number="12"][data-id="0"] &-image
+            max-height 146px
+
+            @media $mq.mobile
+                max-height: 73px
+                transform translateY(-90%);
+
+        &[data-number="12"][data-id="1"] &-image
+            max-height 130px
+
+            @media $mq.mobile
+                max-height: 75px
+                transform translateY(-100%);
+
+        &[data-number="13"][data-id="0"] &-image
+            max-height 252px
+
+            @media $mq.mobile
+                max-height: 126px
+
+        &[data-number="13"][data-id="1"] &-image
+            max-height 227px
+
+            @media $mq.mobile
+                max-height: 113px
+                transform translateY(-75%);
+
+
+        &-overlay
+            position: absolute
+            font-size: 30px
+            font-weight: 900
+            top: 100px
+            transform translateY(-50%)
+            width 100%
+            text-align: center
+            color #fff
+
+            @media $mq.mobile
+                font-size: 16px
+                top: 55px
+
+            i
+                display: block
+                margin: 0 auto 15px
+                width: 48px
+                height: 30px
+                background: url("data:image/svg+xml,%3Csvg width='49' height='31' viewBox='0 0 49 31' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M28.82 23.268a1.387 1.387 0 0 0-.156-.527L17.46 1.6a1.463 1.463 0 0 0-1.753-.688 1.42 1.42 0 0 0-.953 1.602l4.366 23.442c.034.186.106.353.205.505.042.2.093.4.162.6.704 2.005 2.627 3.357 4.786 3.357a5.11 5.11 0 0 0 1.642-.27 4.994 4.994 0 0 0 2.903-2.517 4.859 4.859 0 0 0 .001-4.363zm-4.546-20.82c-.798 0-1.445.635-1.445 1.419 0 .783.647 1.42 1.445 1.42 11.521 0 20.892 9.209 20.892 20.527 0 .783.65 1.42 1.447 1.42.8 0 1.446-.637 1.446-1.42 0-12.886-10.67-23.366-23.785-23.366zM9.328 7.636C3.712 12.099.49 18.724.49 25.814c0 .783.647 1.42 1.446 1.42.8 0 1.447-.637 1.447-1.42 0-6.228 2.83-12.048 7.764-15.969a1.403 1.403 0 0 0 .215-1.997 1.466 1.466 0 0 0-2.034-.212z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E") no-repeat;
+
+                @media $mq.mobile
+                    width: 34px
+                    height: 20px
+                    background-size auto 20px
+                    margin-bottom: 5px
 
     &__message
         margin-top: 10px
@@ -261,60 +468,66 @@ $colors = {
 
     &__actions
         display: flex
+        margin-top: 20px
+        margin-bottom: 30px
 
-        @media $mq.not_mobile
-            margin-top: auto
+        @media $mq.mobile
+            margin-bottom: 15px
 
     &__button
+        button($colors.accent)
         display: block
         font-size: 20px
         font-weight: 700
-        margin: 0
+        margin: 30px 0 0 0
         padding: 0
         cursor: pointer
         outline: 0
         background-color: transparent
-        border: 5px solid transparent
+        border: 0
         height: 56px
         animation: cipr_appear 0.3s ease-in-out
-
-        &:hover
-            @media $mq.not_mobile
-                color: $colors.accent
+        color: #000
 
         svg
             display: inline-block
             vertical-align: middle
             margin-left: 15px
             margin-top: -4px
+            transition transform 100ms ease
+
+        &:hover
+            svg
+                transform translateX(5px)
 
     &__result
         box-sizing: border-box
         display: flex
-        background-color: #00b8db
-        // background-image: url('https://leonardo.osnova.io/5999f84f-96fa-0f36-0b22-48a05ee2ed0f/')
         background-repeat: no-repeat
-        background-position: 55% 50%
-        background-size: auto 100%
-        color: $colors.white
-        margin: 0 -15px 15px
-        padding: 20px 15px
-        height: 320px
+        background-position: 95% 45%;
+        background-size: auto 115px;
+        padding: 30px 0;
 
         @media $mq.not_mobile
-            padding: 30px
-            margin: 0 -30px 30px
             height: 413px
-            background-position: 50% 50%
+            background-position: 75% 50%;
+            background-size: auto 215px;
 
-        @media $mq.tablet
-            padding: 30px 40px
-            margin: 0 -40px 30px
+        @media $mq.mobile
+            padding: 15px 0
+
 
     &__resultPoints
-        font-size: 16px
-        color: #39D9F7
+        font-size: 22px
+        font-weight: 900
+        color: #751083;
         margin-bottom: 20px
+        padding-left: 3px
+
+        @media $mq.mobile
+            font-size: 14px
+            margin-bottom: 10px
+
 
     &__resultContent
         flex: 1
@@ -329,23 +542,51 @@ $colors = {
         flex-direction: column
 
     &__restartButton
-        display: flex
+        display: inline-flex
         align-items: center
         cursor: pointer
-        color: #00FAFA
+        color: $colors.accent
         margin-top: auto
+        font-size: 16px
+        font-weight: 700
+
+        @media $mq.mobile
+            margin-top: 0
 
         svg
             margin-left: 8px
             pointer-events: none
+            transition transform 150ms ease-in
 
         &:hover
-            @media $mq.not_mobile
-                color: $colors.white
+            svg
+                transform rotate(360deg)
 
-                svg path
-                    @media $mq.not_mobile
-                        fill: $colors.white
+    &__timer
+        position: absolute
+        display: inline-block
+        top: 10px
+        right: 30px
+        color: #751083
+        font-size: 22px
+        font-weight: 900
+        padding 10px;
+        height: auto
+        line-height: initial
+
+        @media $mq.mobile
+            top: 15px
+            right: 15px
+            font-size: 13px
+            padding 6px
+
+        &-content
+            z-index: 1
+            position: relative
+
+        &:empty
+            &::before
+                display: none
 
     .likely--custom
         display: flex
@@ -357,15 +598,25 @@ $colors = {
         .likely
             &__widget
                 height: 50px
-                min-width: 60px
-                border: 1px solid #00FAFA
-                background-color: transparent
-                border-radius: 2px
+                min-width 50px
+                border-radius 30px
                 margin-right: 10px
                 display: flex
                 align-items: center
                 justify-content: center
-                color: #00FAFA
+                color: #fff
+                font-weight: bold
+                background #751083 !important
+                transition transform 100ms ease;
+                will-change: transform
+
+                @media $mq.mobile
+                    height: 40px
+                    line-height: 40px;
+                    min-width 40px
+
+                &:hover
+                    background-color: #00B856 !important
 
                 &:last-child
                     margin-right: 0
@@ -374,13 +625,10 @@ $colors = {
                     @media $mq.not_mobile
                         padding: 0 20px
 
-                &:hover
-                    @media $mq.not_mobile
-                        border-color: $colors.white
-                        color: $colors.white
-
-                        svg
-                            fill: $colors.white
+            &__button,
+            &__icon,
+            &__counter
+                z-index 1
 
             &__button
                 @media $mq.mobile
@@ -391,14 +639,22 @@ $colors = {
 
                 svg
                     display: block
-                    width: 24px
+                    width: 22px
                     height: @width
-                    fill: $colors.accent
+                    fill: #fff
+
+                    @media $mq.mobile
+                        width 20px
+                        height: 20px
 
                 &--vkontakte
                     svg
                         width: 28px
                         height: @width
+
+                        @media $mq.mobile
+                            width: 22px
+                            height: 22px
 
                 &--facebook
                     @media $mq.not_mobile
@@ -406,18 +662,43 @@ $colors = {
                         margin-left: -8px
 
     &[data-mode="start"]
-        .Cipr
-            &__counter
+        &.MegafonSpeed
+            background-image url("https://leonardo.osnova.io/dc865026-1149-76c8-f1af-9701f08e2cbb")
+            background-repeat no-repeat
+            background-position center 70%
+            background-size cover
+
+            @media $mq.mobile
+                background-size: auto 90%;
+                background-position 70% 50%
+
+        .MegafonSpeed
+            &__counter,
+            &__timer
                 display: none
 
             &__content
-                max-width: 270px
+                padding-top: 20px
 
-                @media $mq.not_mobile
-                    max-width: 400px
+                @media $mq.mobile
+                    min-height: 80vh
 
-                @media $mq.desktop
-                    max-width: 460px
+            &__header
+                display: inline-block
+                position: absolute
+                right: 30px
+
+                @media $mq.mobile
+                    right: 0
+                    top: 10px
+
+                a
+                    margin-left: auto
+
+            &__title
+                @media $mq.mobile
+                    font-size: 22px
+                    padding-right: 100px
 
             &__text
                 div
@@ -428,26 +709,43 @@ $colors = {
                     line-height: 1.5em
 
             &__actions
+                margin-top: auto
                 flex-direction: row
 
             &__button
-                border-color: $colors.accent
                 width: 146px
-                animation: none
+                color: #fff
+
+                @media $mq.mobile
+                    width 100px
+                    height: 40px
+                    line-height: 40px
+                    font-size: 16px
+
+                &::before
+                    background: $colors.accent
+                    border-radius 30px
+                    transform none
 
                 &:hover
-                    border-color: $colors.black
-                    color: $colors.black !important
+                    &::before
+                        transform scale(1.02)
 
                 svg
                     display: none
 
     &[data-mode="progress"]
-        &:before
-            transform-origin: 50% 50%
-            transform: translateX(70px) rotate(-5deg)
+        &.MegafonSpeed
+            background-image url('https://leonardo.osnova.io/9dd2376e-2c18-fe6b-485e-05489b09a360');
+            background-size auto 100%
+            background-position center center
+            background-repeat no-repeat
 
-        .Cipr
+            @media $mq.mobile
+                background-size auto 100vh
+                background-position center 0
+
+        .MegafonSpeed
             &__heart
                 transform: rotate(73deg) scale(1.49) translate(320px, 140px)
 
@@ -458,49 +756,126 @@ $colors = {
                     transform: translate(15px, -110px) rotate(-75deg) scale(0.85)
 
             &__header
+                padding 30px 0 0
+
+                @media $mq.mobile
+                    padding: 15px 15px 0
+
                 a
                     display: none
 
+            &__content
+                padding-top 10px
+
+                @media $mq.mobile
+                    padding-top 5px
+                    min-height: 80vh
+
             &__counter
-                width: 64px
+                color: #751083
+                font-weight: 700
+                font-size: 18px
+                white-space: nowrap
+
+                @media $mq.mobile
+                    font-size: 14px
 
             &__text
-                font-size: 22px
+                font-size: 28px
                 line-height: 1.4em
-                font-weight: 700
+                font-weight: 900
+                margin-bottom: 50px
 
-                @media $mq.not_mobile
+                @media $mq.mobile
                     font-size: 22px
+                    padding-right: 90px
+                    margin-bottom: 30px
+
+            &__actions
+                @media $mq.mobile
+                    min-height: 56px
 
             &__button
                 height: auto
+                color: $colors.accent
+                margin: 0 auto;
+
+                &::before
+                    display: none
 
     &[data-mode="result"]
-        @media $mq.not_mobile
-            padding-bottom: 40px
+        &.MegafonSpeed {
+            //background-image url('https://leonardo.osnova.io/ad5653d1-f8ef-ba6f-359d-97bccc3ffba1/');
+            background-size auto 100%
+            background-position center center
+            background-repeat no-repeat
+        }
 
-        &:before
-            display: none
-
-        .Cipr
-            &__heart
+        .MegafonSpeed
+            &__heart,
+            &__timer
                 display: none
 
             &__header
+                position: absolute
+                right: 20%;
+                z-index: 2
+
+                @media $mq.mobile
+                    right: 0
+                    padding: 10px
+
+                svg
+                    @media $mq.mobile
+                        height: 15px
+                        width: 80px
+
+
+            &__counter
                 display: none
 
             &__content
-                padding: 0 15px
                 max-width: none
+
+                @media $mq.mobile
+                    min-height 100vh
 
                 @media $mq.not_mobile
                     box-sizing: content-box
-                    padding: 0 30px
 
-                @media $mq.tablet
-                    padding: 0 40px
 
-            &__text,
+            &__text
+                background #00B856
+                color #fff
+                font-weight: 500
+                padding: 20px 30px;
+
+                @media $mq.mobile
+                    margin: 0 -15px
+                    padding: 15px
+
+                &-content
+                    contentZone()
+                    display flex;
+
+                    @media $mq.mobile
+                        padding-left 0 !important
+                        padding-right 0 !important
+                        flex-direction column
+
+                &-body
+                    margin-right: 30px
+                    font-size: 20px
+                    line-height: 1.5em
+
+                    @media $mq.mobile
+                        font-size: 15px
+                        margin-left: 0
+                        padding-bottom: 15px
+
+                    p:not(:last-of-type)
+                        margin-bottom 10px
+
             &__resultContent
                 @media $mq.not_mobile
                     max-width: 580px
@@ -508,28 +883,45 @@ $colors = {
                     margin-right: auto
 
             &__button
-                width: 210px
-                border: 5px solid $colors.accent !important
-                color: $colors.black !important
+                button(#751083, #751083)
+                padding: 0 25px;
                 display: flex
                 align-items: center
                 justify-content: center
-                margin: 20px auto 0
+                margin: auto 0
+                height: 50px
+                font-size: 18px
+                line-height: 50px
+                color: #fff
 
-                @media $mq.not_mobile
-                    margin-top: 30px
+                @media $mq.mobile
+                    font-size: 16px
+                    height: 40px
+                    line-height: 40px
+
+                &::before
+                    border-radius 30px
+                    transform none
 
                 &:hover
-                    border-color: $colors.black !important
-                    color: $colors.black !important
+                    &::before
+                        border-color #751083
+                        background-color #751083
+                        animation bounceIn 0.75s;
+                        animation-iteration-count 1
+                        animation-fill-mode: forwards;
 
             &__title
-                margin-bottom: 20px
                 max-width: 320px
+                font-size: 30px
+                font-weight: 900
+                margin-bottom: 30px
 
-                @media $mq.not_mobile
-                    font-size: 34px
-                    margin-bottom: 30px
+                @media $mq.mobile
+                    max-width none
+                    margin-bottom: 15px
+                    font-size: 20px
+                    padding-right: 100px
 
             &__text
                 margin-bottom: 0
@@ -555,7 +947,7 @@ $colors = {
             &:before
                 display: none
 
-            .Cipr
+            .MegafonSpeed
                 &__heart
                     display: block
 
@@ -568,19 +960,19 @@ $colors = {
                 &__title
                     font-size: 32px
 
-                &__result
-                    padding: 30px 40px
-                    margin: 0 -40px 30px
-
                 &__options
                     margin-bottom: 80px
 
             &[data-mode="start"]
-                .Cipr
+                .MegafonSpeed
                     &__content
                         max-width: 400px
 
             &[data-mode="result"]
-                .Cipr
+                .MegafonSpeed
                     &__content
                         padding: 0 40px
+
+.entry_content--short .MegafonSpeed
+    &__content
+        min-height 360px !important

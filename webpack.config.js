@@ -27,7 +27,8 @@ if (isProduction) {
 } else {
     plugins.push(...[
         new BrowserSyncPlugin({
-            port: 3000,
+            port: 3040,
+            host: '0.0.0.0',
             server: {
                 baseDir: './'
             },
@@ -54,7 +55,7 @@ module.exports = {
         rules: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
+                use: [{
                     loader: 'babel-loader',
                     options: {
                         cacheDirectory: true,
@@ -63,7 +64,9 @@ module.exports = {
                         ],
                         plugins: ['transform-object-assign']
                     }
-                }
+                }, {
+                    loader: 'eslint-loader?fix=true&esModules=true'
+                }]
             },
             {
                 test: /\.styl$/,

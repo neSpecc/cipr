@@ -1,253 +1,369 @@
 export default {
-    title: 'Тест: Что вы знаете о&nbsp;«цифровой экономике»',
-    intro: 'Проверьте, готовы ли вы к&nbsp;будущему торговли.',
-    outro: `<div>
-    На конференции ЦИПР вы узнаете о цифровой экономике главное. <strong>С&nbsp;6&nbsp;по&nbsp;8&nbsp;июня</strong> её будут обсуждать представители Ростеха, Samsung, Росатома, Ростелекома, Сколково и других крупных технологических компаний.
-    <span></span>
-    Речь на ЦИПР пойдёт обо всём от умных городов до влияния «цифровой экономики» на промышленность. Пройдёт конференция в Иннополисе неподалёку от Казани, так что лучше спланировать поездку заранее — с промокодом <strong>CIPR5</strong> стандартные билеты на ЦИПР будут стоить <strong>5000</strong> рублей вместо 30 000.
-    </div>`,
-    promoUrl: 'https://reg.cipr.ru/?utm_source=VC&utm_medium=banner&utm_campaign=test',
+    title: 'Кто быстрее',
+    task: 'Из этой пары быстрее...',
+    intro: 'Скоростной тест на скорость.',
+    outro: `<p>Самый быстрый мобильный интернет — в&nbsp;МегаФоне. Доказано измерениями миллионов пользователей в&nbsp;Speedtest.</p> `,
+    logoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__logo_cpm__&utm_content=&utm_term=',
+    promoUrl: 'http://moscow.megafon.ru/tariffs/vklyuchaysya/?utm_source=vc&utm_campaign=fed_flight_www-b2c_vc-special-project-jul-2018_rf&utm_medium=ag-media_media__button_cpm__&utm_content=&utm_term=',
+    CTAText: 'Подключить',
     questions: [
         {
-            text: 'Начнём с простого: сколько сейчас стоит вся цифровая экономика?',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: '$3 трлн',
-                    message: 'Верно! Это в два раза больше, чем ВВП России.',
-                    isCorrect: true
+                    text: 'Сокол сапсан',
+                    message: '322 км/ч',
+                    img: '1-0.png',
+                    imgCorrect: '1-0-correct.png',
+                    imgWrong: '1-0-wrong.png',
+                    imgDisabled: '1-0-disabled.png',
+                    isCorrect: true,
                 },
                 {
                     id: 1,
-                    text: '$400 млрд',
-                    message: 'Маловато — на самом деле общая стоимость цифровой экономики составляет $3 трлн. Это в два раза больше, чем ВВП России.'
-                },
-                {
-                    id: 2,
-                    text: '$15,2 трлн',
-                    message: 'Неверно. На самом деле цифровая экономика стоит $3 трлн. Что немало — это в два раза больше, чем ВВП России.',
-                },
-                {
-                    id: 3,
-                    text: '$947 млрд',
-                    message: 'Маловато — на самом деле общая стоимость цифровой экономики составляет $3 трлн. Это в два раза больше, чем ВВП России.',
+                    text: 'Поезд «Сапсан»',
+                    message: '250 км/ч',
+                    img: '1-1.png',
+                    imgCorrect: '1-1-correct.png',
+                    imgWrong: '1-1-wrong.png',
+                    imgDisabled: '1-1-disabled.png'
                 }
             ]
         },
         {
-            text: 'Какой процент профессий может полностью исчезнуть из-за автоматизации?',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: '5%',
-                    message: `Правильно. Ещё 51% профессий значительно <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">изменится</a> — люди и роботы будут работать вместе.
-                    <span></span>
-                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
-                    isCorrect: true
+                    text: 'Лионель Месси',
+                    message: '35,8 км/ч',
+                    img: '2-0.png',
+                    imgCorrect: '2-0-correct.png',
+                    imgWrong: '2-0-wrong.png',
+                    imgDisabled: '2-0-disabled.png'
                 },
                 {
                     id: 1,
-                    text: '51%',
-                    message: `Неверно. Столько профессий эволюционируют из-за автоматизации, а полностью <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5%.
-                    <span></span>
-                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
-                },
-                {
-                    id: 2,
-                    text: '15%',
-                    message: `Неверно. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5% профессий, и ещё 51% значительно эволюционируют.
-                    <span></span>
-                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
-                },
-                {
-                    id: 3,
-                    text: '80%',
-                    message: `Многовато. На самом деле <a href="https://finance.yahoo.com/news/51-of-all-job-tasks-could-be-automated-by-todays-technology-135331964.html?guccounter=1" target="_blank">исчезнет</a> всего 5% профессий, и ещё 51% значительно эволюционируют.
-                    <span></span>
-                    На конференции <a href="https://cipr.ru/" target="_blank">ЦИПР</a> будущее наступит чуть раньше — со-модератором одной из сессий станет андроид Алиса.`,
+                    text: 'Криштиану Роналду',
+                    message: '38,6 км/ч',
+                    img: '2-1.png',
+                    imgCorrect: '2-1-correct.png',
+                    imgWrong: '2-1-wrong.png',
+                    imgDisabled: '2-1-disabled.png',
+                    isCorrect: true,
                 }
             ]
         },
         {
-            text: 'Аналитики Gartner ежегодно выпускают отчёты о технологических трендах. Из предсказаний ниже, три взяты из их отчёта, а одно мы придумали. Какое?',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: 'В 2021 году приложений и устройств с использованием ИИ станет в два раза больше, чем обычных',
-                    message: 'Верно. Этот тренд мы придумали, хотя он и может стать правдой.',
-                    isCorrect: true
+                    text: 'Самолет F-111',
+                    message: '3060 км/ч',
+                    img: '3-0.png',
+                    imgCorrect: '3-0-correct.png',
+                    imgWrong: '3-0-wrong.png',
+                    imgDisabled: '3-0-disabled.png'
                 },
                 {
                     id: 1,
-                    text: 'В 2020 году обычные люди будут общаться с ботами чаще, чем с супругами',
-                    message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
-                },
-                {
-                    id: 2,
-                    text: 'К 2022 году интернет вещей снизит расходы обычных людей и компаний на один триллион долларов в год',
-                    message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
-                },
-                {
-                    id: 3,
-                    text: 'В 2020 году 100 миллионов человек будут покупать товары в дополненной реальности',
-                    message: 'Неверно, в <a href="https://www.gartner.com/binaries/content/assets/events/keywords/cio/ciode5/top_strategic_predictions_fo_315910.pdf" target="_blank">отчёте</a> Gartner есть и такой тренд. А придумали мы прогноз про то, что приложений и устройств с использованием ИИ станет в два раза больше, чем обычных.'
+                    text: 'Самолет МиГ-31',
+                    message: '3464 км/ч',
+                    img: '3-1.png',
+                    imgCorrect: '3-1-correct.png',
+                    imgWrong: '3-1-wrong.png',
+                    imgDisabled: '3-1-disabled.png',
+                    isCorrect: true,
                 }
             ]
         },
         {
-            text: 'Мы живём в мире третьей индустриальной революции, но скоро должна произойти четвёртая. Выберите технологию, которая считается её частью.',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: 'Интернет вещей',
-                    message: 'Правильно. Ещё к «Индустрии 4.0» относятся облачные вычисления и сети из глубоко интегрированных с интернетом машин под управлением искусственного интеллекта.',
-                    isCorrect: true
+                    text: 'Hyperloop',
+                    message: '1220 км/ч',
+                    img: '4-0.png',
+                    imgCorrect: '4-0-correct.png',
+                    imgWrong: '4-0-wrong.png',
+                    imgDisabled: '4-0-disabled.png',
+                    isCorrect: true,
                 },
                 {
                     id: 1,
-                    text: 'Роботы на производстве',
-                    message: 'Неверно. Это признак третьей индустриальной революции. К четвёртой относится интернет вещей.'
-                },
-                {
-                    id: 2,
-                    text: 'Промышленный термоядерный синтез',
-                    message: 'Увы, до этого ещё далеко. К четвёртой относится интернет вещей.',
-                },
-                {
-                    id: 3,
-                    text: 'Механизация производства',
-                    message: 'Неверно. Механизация производства — это паровые прялки времён первой индустриальной революции. К четвёртой относится интернет вещей.',
+                    text: 'Airbus A320',
+                    message: '910 км/ч',
+                    img: '4-1.png',
+                    imgCorrect: '4-1-correct.png',
+                    imgWrong: '4-1-wrong.png',
+                    imgDisabled: '4-1-disabled.png'
                 }
             ]
         },
         {
-            text: 'Какая страна больше всех готова к цифровой экономике?',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: 'Сингапур',
-                    message: 'Верно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, инфраструктура Сингапура подготовлена лучше всего. Россия — на 41 месте.',
-                    isCorrect: true
+                    text: 'Усейн Болт',
+                    message: '44,72 км/ч',
+                    img: '5-0.png',
+                    imgCorrect: '5-0-correct.png',
+                    imgWrong: '5-0-wrong.png',
+                    imgDisabled: '5-0-disabled.png'
                 },
                 {
                     id: 1,
-                    text: 'Япония',
-                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
-                },
-                {
-                    id: 2,
-                    text: 'США',
-                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
-                },
-                {
-                    id: 3,
-                    text: 'Китай',
-                    message: 'Неверно. По <a href="http://reports.weforum.org/global-information-technology-report-2016/networked-readiness-index/" target="_blank">мнению</a> Мирового экономического форума, лучше всего подготовлена инфраструктура Сингапура. Россия — на 41 месте.'
+                    text: 'Заяц-русак',
+                    message: '80 км/ч',
+                    img: '5-1.png',
+                    imgCorrect: '5-1-correct.png',
+                    imgWrong: '5-1-wrong.png',
+                    imgDisabled: '5-1-disabled.png',
+                    isCorrect: true,
                 }
             ]
         },
         {
-            text: 'Выберите город, в котором широкомасштабно используется концепция интернета вещей.',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: 'Барселона',
-                    message: `Верно! В испанском городе с 2012 года транспорт, освещение и даже парки связаны в единую систему со множеством датчиков.
-                    <span></span>
-                    На <a href="https://cipr.ru/" target="_blank">ЦИПР</a> «умным» городам посвящено сразу несколько выступлений: там вы узнаете, как аналитика данных помогает регулировать нагрузки на городские системы, и какой город в России самый «умный».`,
-                    isCorrect: true
+                    text: 'Гепард',
+                    message: '115 км/ч',
+                    img: '6-0.png',
+                    imgCorrect: '6-0-correct.png',
+                    imgWrong: '6-0-wrong.png',
+                    imgDisabled: '6-0-disabled.png'
                 },
                 {
                     id: 1,
-                    text: 'Сингапур',
-                    message: `Неверно. В Барселоне с 2012 года транспорт, освещение и даже городские парки связаны в единую систему со множеством датчиков.
-                    <span></span>
-                    На <a href="https://cipr.ru/" target="_blank">ЦИПР</a> «умным» городам посвящено сразу несколько выступлений: там вы узнаете, как аналитика данных помогает регулировать нагрузки на городские системы и какой город в России самый «умный».`
-                },
-                {
-                    id: 2,
-                    text: 'Нью-Йорк',
-                    message: `Неверно. В Барселоне с 2012 года транспорт, освещение и даже городские парки связаны в единую систему со множеством датчиков.
-                    <span></span>
-                    На <a href="https://cipr.ru/" target="_blank">ЦИПР</a> «умным» городам посвящено сразу несколько выступлений: там вы узнаете, как аналитика данных помогает регулировать нагрузки на городские системы и какой город в России самый «умный».`
-                },
-                {
-                    id: 3,
-                    text: 'Москва',
-                    message: `Неверно. В Барселоне с 2012 года транспорт, освещение и даже городские парки связаны в единую систему со множеством датчиков.
-                    <span></span>
-                    На <a href="https://cipr.ru/" target="_blank">ЦИПР</a> «умным» городам посвящено сразу несколько выступлений: там вы узнаете, как аналитика данных помогает регулировать нагрузки на городские системы и какой город в России самый «умный».`
+                    text: 'Электрокар Lada Ellada',
+                    message: '130 км/ч',
+                    img: '6-1.png',
+                    imgCorrect: '6-1-correct.png',
+                    imgWrong: '6-1-wrong.png',
+                    imgDisabled: '6-1-disabled.png',
+                    isCorrect: true,
                 }
             ]
         },
         {
-            text: 'Что такое «Эра индиго»?',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: 'Новый этап развития экономики — вместо природных ресурсов она основывается на идеях и инновациях',
-                    message: 'Верно. Термин в 2016 году <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">ввёл</a> основатель «Альфа-групп» Михаил Фридман.',
-                    isCorrect: true
+                    text: 'Комета Чурюмова-Герасименко',
+                    message: '55 000 км/ч',
+                    img: '7-0.png',
+                    imgCorrect: '7-0-correct.png',
+                    imgWrong: '7-0-wrong.png',
+                    imgDisabled: '7-0-disabled.png'
                 },
                 {
                     id: 1,
-                    text: 'Время, когда рождается много детей с выдающимися творческими способностями',
-                    message: 'Неверно. На самом деле так <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">называется</a> этап развития экономики, когда вместо природных ресурсов она основывается на идеях и инновациях.'
-                },
-                {
-                    id: 2,
-                    text: 'Эпоха лидерства технологических корпораций',
-                    message: 'Неверно. На самом деле так <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">называется</a> этап развития экономики, когда вместо природных ресурсов она основывается на идеях и инновациях.'
-                },
-                {
-                    id: 3,
-                    text: 'Пик глобализации — без государственных границ и с единой цифровой валютой',
-                    message: 'Неверно. На самом деле так <a href="https://www.realclearpolitics.com/articles/2016/04/29/indigo_era_a_tectonic_shift_is_reshaping_the_world_130434.html" target="_blank">называется</a> этап развития экономики, когда вместо природных ресурсов она основывается на идеях и инновациях.'
+                    text: '«Вояджер-1»',
+                    message: '62 140 км/ч',
+                    img: '7-1.png',
+                    imgCorrect: '7-1-correct.png',
+                    imgWrong: '7-1-wrong.png',
+                    imgDisabled: '7-1-disabled.png',
+                    isCorrect: true,
                 }
             ]
         },
         {
-            text: 'Цифровые технологии уже меняют медицину и биотехнологии. Одно из изобретений ниже мы придумали — сможете определить, какое?',
+            text: '',
             options: [
                 {
                     id: 0,
-                    text: 'Робот-терапевт, способный ставить диагнозы самостоятельно.',
-                    message: 'Верно. До этого нам ещё слишком далеко — пока что машины лучше всего показывают себя в хирургии. Робот daVinci, например, <a href="https://youtu.be/v1U2ruHU9iY" target="_blank">может</a> самостоятельно зашить виноградину.',
-                    isCorrect: true
+                    text: 'Волан',
+                    message: '300 км/ч',
+                    img: '8-0.png',
+                    imgCorrect: '8-0-correct.png',
+                    imgWrong: '8-0-wrong.png',
+                    imgDisabled: '8-0-disabled.png',
+                    isCorrect: true,
                 },
                 {
                     id: 1,
-                    text: 'Операции на мозге в VR',
-                    message: 'Такое <a href="http://www.wired.co.uk/article/vr-brain-surgery-nhs-london-watch-video-360" target="_blank">уже было</a> в сентябре 2017 года. Врачи из Barts Health NHS Trust записали в VR операцию по удалению аневризмы из мозга пациента, чтобы потом научить этому студентов-нейрохирургов. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
+                    text: 'Теннисный мяч',
+                    message: '251 км/ч',
+                    img: '8-1.png',
+                    imgCorrect: '8-1-correct.png',
+                    imgWrong: '8-1-wrong.png',
+                    imgDisabled: '8-1-disabled.png'
+                }
+            ]
+        },
+        {
+            text: '',
+            options: [
+                {
+                    id: 0,
+                    text: 'Нервный импульс',
+                    message: '450 км/ч',
+                    img: '9-0.png',
+                    imgCorrect: '9-0-correct.png',
+                    imgWrong: '9-0-wrong.png',
+                    imgDisabled: '9-0-disabled.png'
                 },
                 {
-                    id: 2,
-                    text: 'Копия плаценты в виде микрочипа',
-                    message: 'Неверно. Её с сентября 2017 года <a href="https://motherboard.vice.com/en_us/article/599n7n/placenta-on-a-chip-techn-will-let-scientists-research-neonatal-diseases-without-using-human-fetuses" target="_blank">разрабатывают</a> учёные из Florida Atlantic University, чтобы изучать болезни, не задействуя реальные ткани. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
+                    id: 1,
+                    text: 'Радиосигнал',
+                    message: '1 080 000 000<br>км/ч',
+                    img: '9-1.png',
+                    imgCorrect: '9-1-correct.png',
+                    imgWrong: '9-1-wrong.png',
+                    imgDisabled: '9-1-disabled.png',
+                    isCorrect: true,
+                }
+            ]
+        },
+        {
+            text: '',
+            options: [
+                {
+                    id: 0,
+                    text: 'Вишневый родстер Илона&nbsp;Маска в&nbsp;космосе',
+                    message: '39 600 км/ч',
+                    img: '10-0.png',
+                    imgCorrect: '10-0-correct.png',
+                    imgWrong: '10-0-wrong.png',
+                    imgDisabled: '10-0-disabled.png',
+                    isCorrect: true,
                 },
                 {
-                    id: 3,
-                    text: 'Компьютерный анестезиолог',
-                    message: 'Такой уже <a href="https://journals.lww.com/anesthesia-analgesia/fulltext/2017/02000/Failure_of_Sedasys___Destiny_or_Poor_Design_.43.aspx" target="_blank">существует</a>. Его зовут Sedasys — это компьютерная система, которая управляет анестезией во время операций на кишечнике. В комплекте идёт микронаушник, с помощью которого Sedasys может разбудить пациента, если потребуется. А придумали мы робота-терапевта, способного самостоятельно ставить диагнозы.'
+                    id: 1,
+                    text: 'Ракета-носитель «Протон»',
+                    message: '25 855 км/ч',
+                    img: '10-1.png',
+                    imgCorrect: '10-1-correct.png',
+                    imgWrong: '10-1-wrong.png',
+                    imgDisabled: '10-1-disabled.png'
+                }
+            ]
+        },
+        {
+            text: '',
+            options: [
+                {
+                    id: 0,
+                    text: 'Поезд московского метро',
+                    message: '80 км/ч',
+                    img: '11-0.png',
+                    imgCorrect: '11-0-correct.png',
+                    imgWrong: '11-0-wrong.png',
+                    imgDisabled: '11-0-disabled.png'
+                },
+                {
+                    id: 1,
+                    text: 'Рыба Парусник',
+                    message: '120 км/ч',
+                    img: '11-1.png',
+                    imgCorrect: '11-1-correct.png',
+                    imgWrong: '11-1-wrong.png',
+                    imgDisabled: '11-1-disabled.png',
+                    isCorrect: true,
+                }
+            ]
+        },
+        {
+            text: '',
+            options: [
+                {
+                    id: 0,
+                    text: 'Робот Cheetah',
+                    message: '45,5 км/ч',
+                    img: '12-0.png',
+                    imgCorrect: '12-0-correct.png',
+                    imgWrong: '12-0-wrong.png',
+                    imgDisabled: '12-0-disabled.png'
+                },
+                {
+                    id: 1,
+                    text: 'Ford Model T',
+                    message: '72 км/час',
+                    img: '12-1.png',
+                    imgCorrect: '12-1-correct.png',
+                    imgWrong: '12-1-wrong.png',
+                    imgDisabled: '12-1-disabled.png',
+                    isCorrect: true,
+                }
+            ]
+        },
+        {
+            text: '',
+            options: [
+                {
+                    id: 0,
+                    text: 'Сварится целая картофелина в&nbsp;воде',
+                    message: '20 минут',
+                    img: '13-0.png',
+                    imgCorrect: '13-0-correct.png',
+                    imgWrong: '13-0-wrong.png',
+                    imgDisabled: '13-0-disabled.png',
+                    isCorrect: true,
+                },
+                {
+                    id: 1,
+                    text: 'Tesla Model 3 проедет 125&nbsp;км на&nbsp;максимальной скорости',
+                    message: '30 минут',
+                    img: '13-1.png',
+                    imgCorrect: '13-1-correct.png',
+                    imgWrong: '13-1-wrong.png',
+                    imgDisabled: '13-1-disabled.png',
+                }
+            ]
+        },
+        {
+            text: '',
+            options: [
+                {
+                    id: 0,
+                    text: 'Американский таракан пробежит 30&nbsp;метров',
+                    message: '20 сек',
+                    img: '14-0.png',
+                    imgCorrect: '14-0-correct.png',
+                    imgWrong: '14-0-wrong.png',
+                    imgDisabled: '14-0-disabled.png',
+                    isCorrect: true,
+                },
+                {
+                    id: 1,
+                    text: 'Включится iPhone&nbsp;7',
+                    message: '27,63 сек',
+                    img: '14-1.png',
+                    imgCorrect: '14-1-correct.png',
+                    imgWrong: '14-1-wrong.png',
+                    imgDisabled: '14-1-disabled.png'
                 }
             ]
         }
     ],
     results: [
         {
-            range: [0, 3],
-            title: 'Вы — экономический ретроград',
-            cover: 'https://leonardo.osnova.io/419f8530-09db-151a-53e1-7a37e4afed96/'
+            range: [0, 15],
+            title: 'А улитка не&nbsp;успела проползти и&nbsp;сантиметра пути',
+            cover: 'https://leonardo.osnova.io/83c4905f-bb75-919c-b4c4-4a8e87f944a8'
         },
         {
-            range: [4, 6],
-            title: 'Вы —<br> владелец «умного» холодильника',
-            cover: 'https://leonardo.osnova.io/08b5c830-654a-ac18-c8f9-3670148c57bb/'
+            range: [15, 20],
+            title: 'Свет преодолел&nbsp;бы несколько миллионов километров',
+            cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
         },
         {
-            range: [7, 8],
-            title: 'Вы —<br> «умный» холодильник',
-            cover: 'https://leonardo.osnova.io/e94e75f3-6364-47de-b60c-3fe0075fd047/'
+            range: [20, 30],
+            title: 'А комар успел 10&nbsp;тысяч раз взмахнуть крыльями',
+            cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
+        },
+        {
+            range: [30, 99999],
+            title: 'За это время сын маминой подруги успел&nbsp;бы прославиться',
+            cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
         }
     ]
 };
