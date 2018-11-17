@@ -135,7 +135,8 @@ class Special extends BaseSpecial {
       actions: 'bf-special__actions',
 
       title: 'bf-special__title',
-      button: 'bf-special__button'
+      button: 'bf-special__button',
+      introText: 'bf-special__intro',
     };
   }
 
@@ -161,8 +162,8 @@ class Special extends BaseSpecial {
      */
     this.nodes.header = make('div', Special.CSS.header, {
       innerHTML: `
-        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--left" href="${DATA.logoUrl}" target="_blank">${Svg.logo}</a>
-        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--right" href="${DATA.logoUrl}" target="_blank">${Svg.logo}</a>
+        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--left" href="${DATA.logoUrl}" target="_blank"></a>
+        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--right" href="${DATA.logoUrl}" target="_blank"></a>
       `
     });
     this.nodes.headerCounter = make('div', Special.CSS.headerCounter);
@@ -173,13 +174,16 @@ class Special extends BaseSpecial {
     if (DATA.headerMenu) {
       this.nodes.headerMenu = make('div', Special.CSS.headerMenu);
       DATA.headerMenu.forEach((tab, index) => {
-        this.nodes.headerMenuButtons.push(make('span', Special.CSS.headerMenuButton, {
+        let button = make('span', Special.CSS.headerMenuButton, {
           textContent: tab,
           data: {
             click: 'tabClicked',
             index
           }
-        }));
+        });
+
+        this.nodes.headerMenuButtons.push(button);
+        this.nodes.headerMenu.appendChild(button);
       });
       this.nodes.header.appendChild(this.nodes.headerMenu);
     }
@@ -220,12 +224,7 @@ class Special extends BaseSpecial {
 
     Analytics.sendEvent('Start screen', 'Load');
 
-    this.preloader.load(DATA.questions[0].options.map(option => this.staticURL + option.img));
-
-    // this.makeResult();
-
-    // this.activeIndex = 8;
-    // this.start();
+    // this.preloader.load(DATA.questions[0].options.map(option => this.staticURL + option.img));
   }
 
 
@@ -246,7 +245,9 @@ class Special extends BaseSpecial {
           ${DATA.title}
         </a>
       </div>
-      ${DATA.intro}
+      <div class="${Special.CSS.introText}">
+        ${DATA.intro}
+      </div>
     `;
 
     this.makeActionButton('НАЧАТЬ ИГРУ', 'start');

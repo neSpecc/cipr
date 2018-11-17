@@ -940,7 +940,7 @@ var Special = function (_BaseSpecial) {
        * Header
        */
       this.nodes.header = (0, _dom.make)('div', Special.CSS.header, {
-        innerHTML: '\n        <a class="' + Special.CSS.headerLogo + ' ' + Special.CSS.headerLogo + '--left" href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>\n        <a class="' + Special.CSS.headerLogo + ' ' + Special.CSS.headerLogo + '--right" href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>\n      '
+        innerHTML: '\n        <a class="' + Special.CSS.headerLogo + ' ' + Special.CSS.headerLogo + '--left" href="' + _data2.default.logoUrl + '" target="_blank"></a>\n        <a class="' + Special.CSS.headerLogo + ' ' + Special.CSS.headerLogo + '--right" href="' + _data2.default.logoUrl + '" target="_blank"></a>\n      '
       });
       this.nodes.headerCounter = (0, _dom.make)('div', Special.CSS.headerCounter);
 
@@ -950,13 +950,16 @@ var Special = function (_BaseSpecial) {
       if (_data2.default.headerMenu) {
         this.nodes.headerMenu = (0, _dom.make)('div', Special.CSS.headerMenu);
         _data2.default.headerMenu.forEach(function (tab, index) {
-          _this3.nodes.headerMenuButtons.push((0, _dom.make)('span', Special.CSS.headerMenuButton, {
+          var button = (0, _dom.make)('span', Special.CSS.headerMenuButton, {
             textContent: tab,
             data: {
               click: 'tabClicked',
               index: index
             }
-          }));
+          });
+
+          _this3.nodes.headerMenuButtons.push(button);
+          _this3.nodes.headerMenu.appendChild(button);
         });
         this.nodes.header.appendChild(this.nodes.headerMenu);
       }
@@ -996,14 +999,7 @@ var Special = function (_BaseSpecial) {
 
       Analytics.sendEvent('Start screen', 'Load');
 
-      this.preloader.load(_data2.default.questions[0].options.map(function (option) {
-        return _this3.staticURL + option.img;
-      }));
-
-      // this.makeResult();
-
-      // this.activeIndex = 8;
-      // this.start();
+      // this.preloader.load(DATA.questions[0].options.map(option => this.staticURL + option.img));
     }
 
     /**
@@ -1023,7 +1019,7 @@ var Special = function (_BaseSpecial) {
   }, {
     key: 'makeIntro',
     value: function makeIntro() {
-      this.nodes.mainText.innerHTML = '\n      <div class="' + Special.CSS.title + '">\n        <a href="' + CONFIG.articleUrl + '">\n          ' + _data2.default.title + '\n        </a>\n      </div>\n      ' + _data2.default.intro + '\n    ';
+      this.nodes.mainText.innerHTML = '\n      <div class="' + Special.CSS.title + '">\n        <a href="' + CONFIG.articleUrl + '">\n          ' + _data2.default.title + '\n        </a>\n      </div>\n      <div class="' + Special.CSS.introText + '">\n        ' + _data2.default.intro + '\n      </div>\n    ';
 
       this.makeActionButton('НАЧАТЬ ИГРУ', 'start');
     }
@@ -1490,7 +1486,8 @@ var Special = function (_BaseSpecial) {
         actions: 'bf-special__actions',
 
         title: 'bf-special__title',
-        button: 'bf-special__button'
+        button: 'bf-special__button',
+        introText: 'bf-special__intro'
       };
     }
   }]);
@@ -2673,7 +2670,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  title: 'Дешифровка',
+  title: '\n    <span class="intro-logo"></span>\n    <br/>\n    \u2014 \u0414\u0415\u0428\u0418\u0424\u0420\u041E\u0412\u041A\u0410 \u2014\n  ',
   task: 'task',
   intro: '\n    \u041A \u0432\u044B\u0445\u043E\u0434\u0443 <b>Battlefield V</b> \u043C\u044B \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u0438\u043B\u0438 \u043A\u0432\u0435\u0441\u0442, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0432\u044B \u043F\u0440\u0438\u043C\u0435\u0440\u0438\u0442\u0435 \u043D\u0430 \u0441\u0435\u0431\u044F \u0440\u043E\u043B\u044C \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0430 \u0432\u0440\u0435\u043C\u0451\u043D \u0412\u0442\u043E\u0440\u043E\u0439 \u043C\u0438\u0440\u043E\u0432\u043E\u0439. \u0412\u0430\u0448\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043D\u0430\u0446\u0438\u0441\u0442\u043E\u0432 \u0438 \u043F\u0440\u0438\u043D\u044F\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E\u0435 \u0440\u0435\u0448\u0435\u043D\u0438\u0435, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043C\u043E\u0447\u044C \u0432\u044B\u0438\u0433\u0440\u0430\u0442\u044C \u0432\u043E\u0439\u043D\u0443.\n    <div class="intro-prizes">\n      <div class="intro-prizes__image"></div>\n      <div class="intro-prizes__text">\n        \u041A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u044B, \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0438\u0432\u0448\u0438\u0435 \u043D\u0430 \u0432\u0441\u0435 \u0441\u0435\u043C\u044C \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432, \u043F\u043E\u043B\u0443\u0447\u0430\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u043F\u043E\u0443\u0447\u0430\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435 \u043A\u0440\u0443\u0442\u044B\u0445 \u043F\u0440\u0438\u0437\u043E\u0432: <b>[\u041F\u0420\u0418\u0417\u042B]</b>\n      </div>\n    </div>\n  ',
   headerMenu: ['Конкурс', 'О Battlefield V', 'О NVIDIA RTX'],

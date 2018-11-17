@@ -14,40 +14,93 @@
     margin-right: 30px;
   }.intro-prizes__text {
     font-size: 16px;
-  }.bf-special {
+  }.intro-logo {
+  display: inline-block;
+  background: url('https://leonardo.osnova.io/bf4cb6ca-dec6-126c-f953-6da3dc4a3113') no-repeat;
+  width: 471px;
+  height: 86px;
+  background-size: cover;
+  margin-bottom: 10px;
+}.bf-special {
   --color-buttons-bg: #F68700;
   --color-buttons-text: #fff;
   --color-container-bg: rgba(37, 42, 92, 0.8);
+  --color-text-out-countainer: #252A5C;
 
   display: -ms-flexbox;
 
   display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
   width: 100%;
   height: 100%;
   background: url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat;
   font-family: 'Montserrat', sans-serif;
   padding: 40px;
-}.bf-special__container {
+}.bf-special__header {
+    display: -ms-flexbox;
+    display: flex;
+    color: var(--color-text-out-countainer);
+  }.bf-special__header-menu {
+      margin: 0 auto;
+      font-size: 20px;
+      font-weight: 600;
+    }.bf-special__header-menu-button {
+        display: inline-block;
+        margin: 0 15px;
+        padding: 15px 0;
+        cursor: pointer
+      }.bf-special__header-menu-button:hover {
+          box-shadow: 0 3px 0 0 var(--color-buttons-bg);
+        }.bf-special__header-logo {
+      position: absolute;
+      background-repeat: no-repeat;
+      background-size: cover;
+      top: 40px;
+    }.bf-special__header-logo--left {
+        left: 40px;
+        background-image: url('https://leonardo.osnova.io/2c4abde2-637a-6084-77d2-3eb38cacb527');
+        width: 163px;
+        height: 30px;
+      }.bf-special__header-logo--right {
+        right: 40px;
+        background-image: url('https://leonardo.osnova.io/50049094-f83e-46ed-1b3f-99edcea70960');
+        width: 82px;
+        height: 28px;
+      }.bf-special__container {
     max-width: 700px;
     margin: auto;
   }.bf-special__button {
     display: inline-block;
-    padding: 15px 30px;
+    padding: 25px 50px;
     background: var(--color-buttons-bg);
     color: var(--color-buttons-text);
-  }.bf-special__content {
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer
+  }.bf-special__button:hover {
+      background: var(--color-container-bg);
+    }.bf-special__content {
     background: var(--color-container-bg);
   }.bf-special__content b {
       font-weight: bold;
     }/**
  * Start scene
+ * ================================
  */.bf-special[data-mode="start"] .bf-special__content {
       background: transparent;
-    }.bf-special[data-mode="start"] .bf-special__content-text {
+      text-align: center;
+    }.bf-special[data-mode="start"] .bf-special__title {
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }.bf-special[data-mode="start"] .bf-special__intro {
       background: var(--color-container-bg);
       padding: 40px;
       font-size: 18px;
       line-height: 1.5em;
       color: #fff;
+      text-align: left;
+      margin: 30px 0;
     }
 /*# sourceMappingURL=all.css.map*/

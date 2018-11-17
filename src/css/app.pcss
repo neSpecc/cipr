@@ -5,13 +5,58 @@
   --color-buttons-bg: #F68700;
   --color-buttons-text: #fff;
   --color-container-bg: rgba(37, 42, 92, 0.8);
+  --color-text-out-countainer: #252A5C;
 
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background: url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat;
   font-family: 'Montserrat', sans-serif;
   padding: 40px;
+
+  &__header {
+    display: flex;
+    color: var(--color-text-out-countainer);
+
+    &-menu {
+      margin: 0 auto;
+      font-size: 20px;
+      font-weight: 600;
+
+      &-button {
+        display: inline-block;
+        margin: 0 15px;
+        padding: 15px 0;
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: 0 3px 0 0 var(--color-buttons-bg);
+        }
+      }
+    }
+
+    &-logo {
+      position: absolute;
+      background-repeat: no-repeat;
+      background-size: cover;
+      top: 40px;
+
+      &--left {
+        left: 40px;
+        background-image: url('https://leonardo.osnova.io/2c4abde2-637a-6084-77d2-3eb38cacb527');
+        width: 163px;
+        height: 30px;
+      }
+
+      &--right {
+        right: 40px;
+        background-image: url('https://leonardo.osnova.io/50049094-f83e-46ed-1b3f-99edcea70960');
+        width: 82px;
+        height: 28px;
+      }
+    }
+  }
 
   &__container {
     max-width: 700px;
@@ -20,9 +65,16 @@
 
   &__button {
     display: inline-block;
-    padding: 15px 30px;
+    padding: 25px 50px;
     background: var(--color-buttons-bg);
     color: var(--color-buttons-text);
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-container-bg);
+    }
   }
 
   &__content {
@@ -36,19 +88,29 @@
 
 /**
  * Start scene
+ * ================================
  */
 .bf-special {
   &[data-mode="start"] {
     ^&__content {
       background: transparent;
+      text-align: center;
     }
 
-    ^&__content-text {
+    ^&__title {
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }
+
+    ^&__intro {
       background: var(--color-container-bg);
       padding: 40px;
       font-size: 18px;
       line-height: 1.5em;
       color: #fff;
+      text-align: left;
+      margin: 30px 0;
     }
   }
 }
