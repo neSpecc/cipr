@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["MegafonSpeed"] = factory();
+		exports["SpeccSpecial"] = factory();
 	else
-		root["MegafonSpeed"] = factory();
+		root["SpeccSpecial"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -445,7 +445,7 @@ module.exports = utils;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var Config = __webpack_require__(4);
+var Config = __webpack_require__(5);
 
 var CONSOLE_STYLE = 'color: #E87E04';
 
@@ -493,20 +493,6 @@ var sendEvent = exports.sendEvent = function sendEvent(label) {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-module.exports = {
-  name: 'MegafonSpeed',
-  analyticsCategory: 'MegafonSpeed',
-  sendPageview: false,
-  listenedEvents: ['click']
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /**
  * Social network services
  */
@@ -537,6 +523,20 @@ utils.each(services, function (service, key) {
 });
 
 module.exports = services;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+  name: 'SpeccSpecial',
+  analyticsCategory: 'Battlefield V',
+  sendPageview: false,
+  listenedEvents: ['click']
+};
 
 /***/ }),
 /* 6 */
@@ -630,7 +630,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * @param {Array} classNames - array of classnames
  * @param {Object} attributes - object with html attributes
  */
-var makeElement = exports.makeElement = function makeElement(tagName) {
+var make = exports.make = function make(tagName) {
   var classNames = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
@@ -647,6 +647,9 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
   }
 
   for (var attr in attributes) {
+    /**
+     * @todo rename data to dataset
+     */
     if (attr === 'data') {
       var dataAttributes = attributes[attr];
 
@@ -831,7 +834,7 @@ __webpack_require__(37);
  * @property {string} imgDisabled
  */
 
-var CONFIG = __webpack_require__(4);
+var CONFIG = __webpack_require__(5);
 
 /**
  * Constants
@@ -839,13 +842,18 @@ var CONFIG = __webpack_require__(4);
 // const PATH = window.__PATH || '.';
 
 var CSS = {
-  state: {
-    active: 'l-active'
-  },
-  main: 'bf-special'
+  // state: {
+  //   active: 'l-active'
+  // },
+  // main: 'bf-special',
 };
 
-// const EL = {};
+/**
+ * @typedef {object} InitParams
+ * @property {Element} container - where to append
+ * @property {string} articleUrl - url of entry that has the app injected
+ * @property {{url, twitter}} share - sharing params
+ */
 
 /**
  * Special constructor
@@ -862,29 +870,28 @@ var Special = function (_BaseSpecial) {
     _this.css = params.css;
     _this.staticURL = params.staticURL;
 
+    _this.nodes = {
+      wrapper: null,
+      container: null,
+      header: null,
+      headerCounter: null,
+      headerMenu: null,
+      headerMenuButtons: [],
+      content: null,
+      mainText: null,
+      options: null,
+      actions: null
+    };
+
     _this.setDefaultValues();
-
-    /**
-        * Timer for the progress
-        * @type {null|TimeoutId}
-        */
-    _this.timer = null;
-
-    /**
-        * Timer value
-        * @type {number}
-        * @private
-        */
-    _this._timerValue = 0;
-
-    /**
-        * Timer holder
-        * @type {Element|null}
-        */
-    _this.timerWrapper = null;
-    _this.timerContent = null;
     return _this;
   }
+
+  /**
+   * App stated
+   * @param {InitParams} params
+   */
+
 
   _createClass(Special, [{
     key: 'init',
@@ -892,18 +899,165 @@ var Special = function (_BaseSpecial) {
       var _this2 = this;
 
       var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       _extends(CONFIG, params);
-      _extends(_data2.default, data);
 
+      /**
+       * Save init params to this.params of base class
+       */
       this.saveParams(CONFIG);
 
       if (this.css) {
         this.loadStyles(this.css).then(function () {
-          return _this2.makeGeneralLayout();
+          return _this2.render();
         });
       }
+    }
+  }, {
+    key: 'render',
+
+
+    /**
+     * Create base layout
+     *
+     * <wrapper>
+     *   <container>
+     *     <header>
+     *       <header-logo>
+     *       <header-counter>
+     *     </header>
+     *     <content>
+     *   </container>
+     * </wrapper>
+     */
+    value: function render() {
+      var _this3 = this;
+
+      this.nodes.wrapper = (0, _dom.make)('div', Special.CSS.wrapper);
+      this.nodes.container = (0, _dom.make)('div', Special.CSS.container);
+
+      /**
+       * Header
+       */
+      this.nodes.header = (0, _dom.make)('div', Special.CSS.header, {
+        innerHTML: '\n        <a class="' + Special.CSS.headerLogo + ' ' + Special.CSS.headerLogo + '--left" href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>\n        <a class="' + Special.CSS.headerLogo + ' ' + Special.CSS.headerLogo + '--right" href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>\n      '
+      });
+      this.nodes.headerCounter = (0, _dom.make)('div', Special.CSS.headerCounter);
+
+      /**
+       * Append Header menu if enabled
+       */
+      if (_data2.default.headerMenu) {
+        this.nodes.headerMenu = (0, _dom.make)('div', Special.CSS.headerMenu);
+        _data2.default.headerMenu.forEach(function (tab, index) {
+          _this3.nodes.headerMenuButtons.push((0, _dom.make)('span', Special.CSS.headerMenuButton, {
+            textContent: tab,
+            data: {
+              click: 'tabClicked',
+              index: index
+            }
+          }));
+        });
+        this.nodes.header.appendChild(this.nodes.headerMenu);
+      }
+
+      this.nodes.header.appendChild(this.nodes.headerCounter);
+      this.nodes.wrapper.appendChild(this.nodes.header);
+
+      /**
+       * Content
+       */
+      this.nodes.content = (0, _dom.make)('div', Special.CSS.content);
+
+      this.nodes.mainText = (0, _dom.make)('div', Special.CSS.mainText);
+      this.nodes.options = (0, _dom.make)('div', Special.CSS.options);
+      this.nodes.actions = (0, _dom.make)('div', Special.CSS.actions);
+
+      this.nodes.content.appendChild(this.nodes.mainText);
+      this.nodes.content.appendChild(this.nodes.options);
+      this.nodes.content.appendChild(this.nodes.actions);
+
+      this.nodes.container.appendChild(this.nodes.content);
+
+      /**
+       * Append all app to the initial container
+       */
+      this.nodes.wrapper.appendChild(this.nodes.container);
+      this.container.appendChild(this.nodes.wrapper);
+
+      this.makeIntro();
+
+      this.container.tabIndex = 1;
+      this.container.addEventListener('keydown', function (event) {
+        _this3.keydownHandler(event);
+      });
+
+      this.updateMode('start');
+
+      Analytics.sendEvent('Start screen', 'Load');
+
+      this.preloader.load(_data2.default.questions[0].options.map(function (option) {
+        return _this3.staticURL + option.img;
+      }));
+
+      // this.makeResult();
+
+      // this.activeIndex = 8;
+      // this.start();
+    }
+
+    /**
+     * Set current question number to the header counter
+     */
+
+  }, {
+    key: 'updateCounter',
+    value: function updateCounter() {
+      this.nodes.headerCounter.textContent = '\u0412\u043E\u043F\u0440\u043E\u0441 ' + (this.activeIndex + 1) + ' \u0438\u0437 ' + _data2.default.questions.length;
+    }
+
+    /**
+     * Creates start screen
+     */
+
+  }, {
+    key: 'makeIntro',
+    value: function makeIntro() {
+      this.nodes.mainText.innerHTML = '\n      <div class="' + Special.CSS.title + '">\n        <a href="' + CONFIG.articleUrl + '">\n          ' + _data2.default.title + '\n        </a>\n      </div>\n      ' + _data2.default.intro + '\n    ';
+
+      this.makeActionButton('НАЧАТЬ ИГРУ', 'start');
+    }
+
+    /**
+     * Creates a button
+     * @param {string} text - button's text
+     * @param {string} func - name of method that should be triggered by click
+     */
+
+  }, {
+    key: 'makeActionButton',
+    value: function makeActionButton(text, func) {
+      var button = (0, _dom.make)('div', Special.CSS.button, {
+        type: 'button',
+        data: {
+          click: func
+        }
+      });
+
+      button.textContent = text;
+      this.nodes.actions.appendChild(button);
+    }
+
+    /**
+     * Update game mode
+     * @param {string} name - mode name. For example: "start", "restuls"
+     */
+
+  }, {
+    key: 'updateMode',
+    value: function updateMode(name) {
+      this.mode = name;
+      this.nodes.wrapper.dataset.mode = this.mode;
     }
   }, {
     key: 'setDefaultValues',
@@ -916,61 +1070,6 @@ var Special = function (_BaseSpecial) {
       this.isPending = false;
       this.stopTimer();
       this.timer = null;
-    }
-  }, {
-    key: 'makeGeneralLayout',
-    value: function makeGeneralLayout() {
-      var _this3 = this;
-
-      var heart = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'heart'), {
-        innerHTML: '<span></span>'
-      });
-
-      this.container.appendChild(heart);
-
-      this.content = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'content'));
-
-      this.updateMode('start');
-
-      this.mainText = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'text'));
-      this.mainOptions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'options'));
-      this.mainActions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'actions'));
-
-      this.container.classList.add(CSS.main);
-
-      if (CONFIG.isCompact) {
-        this.container.classList.add(_bem2.default.set(CSS.main, null, 'compact'));
-      }
-
-      this.makeHeader();
-
-      this.timerWrapper = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer'));
-      this.timerContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer-content'));
-
-      this.content.appendChild(this.mainText);
-      this.content.appendChild(this.mainOptions);
-      this.content.appendChild(this.mainActions);
-      this.container.appendChild(this.content);
-      this.timerWrapper.appendChild(this.timerContent);
-      this.content.appendChild(this.timerWrapper);
-
-      this.makeIntro();
-
-      this.container.tabIndex = 1;
-      this.container.addEventListener('keydown', function (event) {
-        _this3.keydownHandler(event);
-      });
-
-      Analytics.sendEvent('Start screen', 'Load');
-
-      this.preloader.load(_data2.default.questions[0].options.map(function (option) {
-        return _this3.staticURL + option.img;
-      }));
-
-      // this.makeResult();
-
-      // this.activeIndex = 8;
-      // this.start();
     }
   }, {
     key: 'keydownHandler',
@@ -986,62 +1085,6 @@ var Special = function (_BaseSpecial) {
           }
         }
       }
-    }
-  }, {
-    key: 'makeHeader',
-    value: function makeHeader() {
-      var header = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'header'), {
-        innerHTML: '<a href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>'
-      });
-
-      this.counter = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'counter'));
-      header.appendChild(this.counter);
-
-      this.updateCounter();
-
-      this.container.appendChild(header);
-    }
-  }, {
-    key: 'updateCounter',
-    value: function updateCounter() {
-      this.counter.textContent = '\u0412\u043E\u043F\u0440\u043E\u0441 ' + (this.activeIndex + 1) + ' \u0438\u0437 ' + _data2.default.questions.length;
-      // if (this.counter.children.length === 0) {
-      //     Data.questions.forEach(() => {
-      //         let bullet = makeElement('span');
-      //
-      //         this.counter.appendChild(bullet);
-      //     });
-      // }
-      //
-      // let bullets = toArray(this.counter.children);
-      //
-      // bullets.forEach((bullet, i) => {
-      //     if (i <= this.activeIndex) {
-      //         bullet.classList.add('active');
-      //     } else {
-      //         bullet.classList.remove('active');
-      //     }
-      // });
-    }
-  }, {
-    key: 'makeIntro',
-    value: function makeIntro() {
-      this.mainText.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'title') + '"><a href="' + CONFIG.articleUrl + '">' + _data2.default.title + '</a></div>' + _data2.default.intro;
-      this.makeActionButton('Начать', 'start');
-    }
-  }, {
-    key: 'makeActionButton',
-    value: function makeActionButton(text, func) {
-      var button = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'button'), {
-        type: 'button',
-        data: {
-          click: func
-        }
-      });
-
-      button.innerHTML = '<span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                                ' + (text + _svg2.default.next) + '\n                            </span>';
-
-      this.mainActions.appendChild(button);
     }
   }, {
     key: 'start',
@@ -1101,7 +1144,7 @@ var Special = function (_BaseSpecial) {
       (0, _array.shuffle)(options);
 
       options.forEach(function (option) {
-        var item = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option'), {
+        var item = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'option'), {
           data: {
             click: 'submitAnswer',
             id: option.id,
@@ -1109,7 +1152,7 @@ var Special = function (_BaseSpecial) {
           }
         });
         //
-        // let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
+        // let image = make('img', Bem.set(CSS.main, 'option-image'), {
         //     src: this.staticURL + option.img,
         //     data: {
         //         id: option.id
@@ -1121,7 +1164,7 @@ var Special = function (_BaseSpecial) {
         imageCached.classList.add(_bem2.default.set(CSS.main, 'option-image'));
         imageCached.dataset.id = option.id;
 
-        var label = (0, _dom.makeElement)('div', [], {
+        var label = (0, _dom.make)('div', [], {
           innerHTML: option.text
         });
 
@@ -1185,7 +1228,7 @@ var Special = function (_BaseSpecial) {
             (0, _dom.replace)(img, secondImage);
           }
 
-          var messageOverlay = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option-overlay'), {
+          var messageOverlay = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'option-overlay'), {
             innerHTML: '<i></i> ' + currentQuestion.options[index].message
           });
 
@@ -1217,7 +1260,7 @@ var Special = function (_BaseSpecial) {
   }, {
     key: 'makeOptionMessage',
     value: function makeOptionMessage(id) {
-      var message = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'message'), {
+      var message = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'message'), {
         innerHTML: this.messages[id]
       });
 
@@ -1303,10 +1346,10 @@ var Special = function (_BaseSpecial) {
 
       this.stopTimer();
 
-      var result = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'result')),
-          resultContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultContent')),
-          resultActions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultActions')),
-          restartButton = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'restartButton'), {
+      var result = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'result')),
+          resultContent = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'resultContent')),
+          resultActions = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'resultActions')),
+          restartButton = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'restartButton'), {
         data: {
           click: 'restart'
         }
@@ -1403,12 +1446,6 @@ var Special = function (_BaseSpecial) {
       }, 100);
     }
   }, {
-    key: 'updateMode',
-    value: function updateMode(name) {
-      this.mode = name;
-      this.container.dataset.mode = this.mode;
-    }
-  }, {
     key: 'restart',
     value: function restart() {
       this.setDefaultValues();
@@ -1433,6 +1470,28 @@ var Special = function (_BaseSpecial) {
     },
     get: function get() {
       return this._timerValue;
+    }
+  }], [{
+    key: 'CSS',
+    get: function get() {
+      return {
+        wrapper: 'bf-special',
+        container: 'bf-special__container',
+
+        header: 'bf-special__header',
+        headerLogo: 'bf-special__header-logo',
+        headerCounter: 'bf-special__header-counter',
+        headerMenu: 'bf-special__header-menu',
+        headerMenuButton: 'bf-special__header-menu-button',
+
+        content: 'bf-special__content',
+        mainText: 'bf-special__content-text',
+        options: 'bf-special__options',
+        actions: 'bf-special__actions',
+
+        title: 'bf-special__title',
+        button: 'bf-special__button'
+      };
     }
   }]);
 
@@ -1572,7 +1631,7 @@ module.exports = likely;
 
 var Button = __webpack_require__(13);
 
-var services = __webpack_require__(5),
+var services = __webpack_require__(4),
     config   = __webpack_require__(0),
     utils = __webpack_require__(2),
     dom = __webpack_require__(1),
@@ -1724,7 +1783,7 @@ module.exports = Likely;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var services = __webpack_require__(5),
+var services = __webpack_require__(4),
     config = __webpack_require__(0),
     fetch = __webpack_require__(27),
     utils = __webpack_require__(2),
@@ -2260,7 +2319,7 @@ module.exports = {
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var services = __webpack_require__(5),
+var services = __webpack_require__(4),
     Factory  = __webpack_require__(28),
     utils    = __webpack_require__(2),
     dom      = __webpack_require__(1);
@@ -2614,9 +2673,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  title: 'Title',
+  title: 'Дешифровка',
   task: 'task',
-  intro: 'Вы – офицер британской разведки, но не из тех, что учиняют диверсии во вражеском тылу или внедряются в высшие эшелоны власти. Ваш отдел ежедневно изучает десятки и сотни перехваченных сообщений, среди которых как рутинные доклады о снабжении, так и детали судьбоносных операций. Конечно же, всё это зашифровано, и ваша задача — раскусить коды противника, чтобы добраться до сути.',
+  intro: '\n    \u041A \u0432\u044B\u0445\u043E\u0434\u0443 <b>Battlefield V</b> \u043C\u044B \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u0438\u043B\u0438 \u043A\u0432\u0435\u0441\u0442, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0432\u044B \u043F\u0440\u0438\u043C\u0435\u0440\u0438\u0442\u0435 \u043D\u0430 \u0441\u0435\u0431\u044F \u0440\u043E\u043B\u044C \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0430 \u0432\u0440\u0435\u043C\u0451\u043D \u0412\u0442\u043E\u0440\u043E\u0439 \u043C\u0438\u0440\u043E\u0432\u043E\u0439. \u0412\u0430\u0448\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043D\u0430\u0446\u0438\u0441\u0442\u043E\u0432 \u0438 \u043F\u0440\u0438\u043D\u044F\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E\u0435 \u0440\u0435\u0448\u0435\u043D\u0438\u0435, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043C\u043E\u0447\u044C \u0432\u044B\u0438\u0433\u0440\u0430\u0442\u044C \u0432\u043E\u0439\u043D\u0443.\n    <div class="intro-prizes">\n      <div class="intro-prizes__image"></div>\n      <div class="intro-prizes__text">\n        \u041A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u044B, \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0438\u0432\u0448\u0438\u0435 \u043D\u0430 \u0432\u0441\u0435 \u0441\u0435\u043C\u044C \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432, \u043F\u043E\u043B\u0443\u0447\u0430\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u043F\u043E\u0443\u0447\u0430\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435 \u043A\u0440\u0443\u0442\u044B\u0445 \u043F\u0440\u0438\u0437\u043E\u0432: <b>[\u041F\u0420\u0418\u0417\u042B]</b>\n      </div>\n    </div>\n  ',
+  headerMenu: ['Конкурс', 'О Battlefield V', 'О NVIDIA RTX'],
   outro: 'outro',
   logoUrl: '',
   promoUrl: '',

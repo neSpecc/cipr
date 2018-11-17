@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'MegafonSpeed',
-  analyticsCategory: 'MegafonSpeed',
+  name: 'SpeccSpecial',
+  analyticsCategory: 'Battlefield V',
   sendPageview: false,
   listenedEvents: [
     'click',

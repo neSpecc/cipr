@@ -33,12 +33,12 @@ import * as Analytics from './lib/analytics';
 import * as Share from './lib/share';
 import BaseSpecial from './base';
 
-import Data from './data';
+import DATA from './data';
 import Svg from './svg';
 import Bem from './bem';
 import {
   prepend,
-  makeElement,
+  make,
   removeChildren,
   replace,
 } from './lib/dom';
@@ -62,13 +62,18 @@ import {
 // const PATH = window.__PATH || '.';
 
 const CSS = {
-  state: {
-    active: 'l-active'
-  },
-  main: 'bf-special',
+  // state: {
+  //   active: 'l-active'
+  // },
+  // main: 'bf-special',
 };
 
-// const EL = {};
+/**
+ * @typedef {object} InitParams
+ * @property {Element} container - where to append
+ * @property {string} articleUrl - url of entry that has the app injected
+ * @property {{url, twitter}} share - sharing params
+ */
 
 /**
  * Special constructor
@@ -80,83 +85,129 @@ class Special extends BaseSpecial {
     this.css = params.css;
     this.staticURL = params.staticURL;
 
+    this.nodes = {
+      wrapper: null,
+      container: null,
+      header: null,
+      headerCounter: null,
+      headerMenu: null,
+      headerMenuButtons: [],
+      content: null,
+      mainText: null,
+      options: null,
+      actions: null,
+    };
+
     this.setDefaultValues();
-
-    /**
-        * Timer for the progress
-        * @type {null|TimeoutId}
-        */
-    this.timer = null;
-
-    /**
-        * Timer value
-        * @type {number}
-        * @private
-        */
-    this._timerValue = 0;
-
-    /**
-        * Timer holder
-        * @type {Element|null}
-        */
-    this.timerWrapper = null;
-    this.timerContent = null;
   }
 
-  init(params = {}, data = {}) {
+  /**
+   * App stated
+   * @param {InitParams} params
+   */
+  init(params = {}) {
     Object.assign(CONFIG, params);
-    Object.assign(Data, data);
 
+    /**
+     * Save init params to this.params of base class
+     */
     this.saveParams(CONFIG);
 
     if (this.css) {
-      this.loadStyles(this.css).then(() => this.makeGeneralLayout());
+      this.loadStyles(this.css).then(() => this.render());
     }
   }
 
-  setDefaultValues() {
-    this.activeIndex = 0;
-    this.totalLength = Data.questions.length;
-    this.userPoints = 0;
-    this.activeCorrectId = null;
-    this.messages = {};
-    this.isPending = false;
-    this.stopTimer();
-    this.timer = null;
+  static get CSS() {
+    return {
+      wrapper: 'bf-special',
+      container: 'bf-special__container',
+
+      header: 'bf-special__header',
+      headerLogo: 'bf-special__header-logo',
+      headerCounter: 'bf-special__header-counter',
+      headerMenu: 'bf-special__header-menu',
+      headerMenuButton: 'bf-special__header-menu-button',
+
+      content: 'bf-special__content',
+      mainText: 'bf-special__content-text',
+      options: 'bf-special__options',
+      actions: 'bf-special__actions',
+
+      title: 'bf-special__title',
+      button: 'bf-special__button'
+    };
   }
 
-  makeGeneralLayout() {
-    let heart = makeElement('div', Bem.set(CSS.main, 'heart'), {
-      innerHTML: '<span></span>'
+  /**
+   * Create base layout
+   *
+   * <wrapper>
+   *   <container>
+   *     <header>
+   *       <header-logo>
+   *       <header-counter>
+   *     </header>
+   *     <content>
+   *   </container>
+   * </wrapper>
+   */
+  render() {
+    this.nodes.wrapper = make('div', Special.CSS.wrapper);
+    this.nodes.container = make('div', Special.CSS.container);
+
+    /**
+     * Header
+     */
+    this.nodes.header = make('div', Special.CSS.header, {
+      innerHTML: `
+        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--left" href="${DATA.logoUrl}" target="_blank">${Svg.logo}</a>
+        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--right" href="${DATA.logoUrl}" target="_blank">${Svg.logo}</a>
+      `
     });
+    this.nodes.headerCounter = make('div', Special.CSS.headerCounter);
 
-    this.container.appendChild(heart);
-
-    this.content = makeElement('div', Bem.set(CSS.main, 'content'));
-
-    this.updateMode('start');
-
-    this.mainText = makeElement('div', Bem.set(CSS.main, 'text'));
-    this.mainOptions = makeElement('div', Bem.set(CSS.main, 'options'));
-    this.mainActions = makeElement('div', Bem.set(CSS.main, 'actions'));
-
-    this.container.classList.add(CSS.main);
-
-    if (CONFIG.isCompact) {
-      this.container.classList.add(Bem.set(CSS.main, null, 'compact'));
+    /**
+     * Append Header menu if enabled
+     */
+    if (DATA.headerMenu) {
+      this.nodes.headerMenu = make('div', Special.CSS.headerMenu);
+      DATA.headerMenu.forEach((tab, index) => {
+        this.nodes.headerMenuButtons.push(make('span', Special.CSS.headerMenuButton, {
+          textContent: tab,
+          data: {
+            click: 'tabClicked',
+            index
+          }
+        }));
+      });
+      this.nodes.header.appendChild(this.nodes.headerMenu);
     }
 
-    this.makeHeader();
+    this.nodes.header.appendChild(this.nodes.headerCounter);
+    this.nodes.wrapper.appendChild(this.nodes.header);
 
-    this.timerWrapper = makeElement('div', Bem.set(CSS.main, 'timer'));
-    this.timerContent = makeElement('div', Bem.set(CSS.main, 'timer-content'));
 
-    this.content.appendChild(this.mainText);
-    this.content.appendChild(this.mainOptions);
-    this.content.appendChild(this.mainActions);
-    this.container.appendChild(this.content);
-    this.timerWrapper.appendChild(this.timerContent);
-    this.content.appendChild(this.timerWrapper);
+    /**
+     * Content
+     */
+    this.nodes.content = make('div', Special.CSS.content);
+
+    this.nodes.mainText = make('div', Special.CSS.mainText);
+    this.nodes.options = make('div', Special.CSS.options);
+    this.nodes.actions = make('div', Special.CSS.actions);
+
+    this.nodes.content.appendChild(this.nodes.mainText);
+    this.nodes.content.appendChild(this.nodes.options);
+    this.nodes.content.appendChild(this.nodes.actions);
+
+    this.nodes.container.appendChild(this.nodes.content);
+
+    /**
+     * Append all app to the initial container
+     */
+    this.nodes.wrapper.appendChild(this.nodes.container);
+    this.container.appendChild(this.nodes.wrapper);
 
     this.makeIntro();
 
@@ -165,14 +216,94 @@ class Special extends BaseSpecial {
       this.keydownHandler(event);
     });
 
+    this.updateMode('start');
+
     Analytics.sendEvent('Start screen', 'Load');
 
-    this.preloader.load(Data.questions[0].options.map(option => this.staticURL + option.img));
+    this.preloader.load(DATA.questions[0].options.map(option => this.staticURL + option.img));
 
     // this.makeResult();
 
     // this.activeIndex = 8;
     // this.start();
+  }
+
+
+  /**
+   * Set current question number to the header counter
+   */
+  updateCounter() {
+    this.nodes.headerCounter.textContent = `Вопрос ${this.activeIndex + 1} из ${DATA.questions.length}`;
+  }
+
+  /**
+   * Creates start screen
+   */
+  makeIntro() {
+    this.nodes.mainText.innerHTML = `
+      <div class="${Special.CSS.title}">
+        <a href="${CONFIG.articleUrl}">
+          ${DATA.title}
+        </a>
+      </div>
+      ${DATA.intro}
+    `;
+
+    this.makeActionButton('НАЧАТЬ ИГРУ', 'start');
+  }
+
+  /**
+   * Creates a button
+   * @param {string} text - button's text
+   * @param {string} func - name of method that should be triggered by click
+   */
+  makeActionButton(text, func) {
+    let button = make('div', Special.CSS.button, {
+      type: 'button',
+      data: {
+        click: func
+      }
+    });
+
+    button.textContent = text;
+    this.nodes.actions.appendChild(button);
+  }
+
+  /**
+   * Update game mode
+   * @param {string} name - mode name. For example: "start", "restuls"
+   */
+  updateMode(name) {
+    this.mode = name;
+    this.nodes.wrapper.dataset.mode = this.mode;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  setDefaultValues() {
+    this.activeIndex = 0;
+    this.totalLength = DATA.questions.length;
+    this.userPoints = 0;
+    this.activeCorrectId = null;
+    this.messages = {};
+    this.isPending = false;
+    this.stopTimer();
+    this.timer = null;
   }
 
   keydownHandler(event) {
@@ -189,60 +320,6 @@ class Special extends BaseSpecial {
     }
   }
 
-  makeHeader() {
-    let header = makeElement('div', Bem.set(CSS.main, 'header'), {
-      innerHTML: `<a href="${Data.logoUrl}" target="_blank">${Svg.logo}</a>`
-    });
-
-    this.counter = makeElement('div', Bem.set(CSS.main, 'counter'));
-    header.appendChild(this.counter);
-
-    this.updateCounter();
-
-    this.container.appendChild(header);
-  }
-
-  updateCounter() {
-    this.counter.textContent = `Вопрос ${this.activeIndex + 1} из ${Data.questions.length}`;
-    // if (this.counter.children.length === 0) {
-    //     Data.questions.forEach(() => {
-    //         let bullet = makeElement('span');
-    //
-    //         this.counter.appendChild(bullet);
-    //     });
-    // }
-    //
-    // let bullets = toArray(this.counter.children);
-    //
-    // bullets.forEach((bullet, i) => {
-    //     if (i <= this.activeIndex) {
-    //         bullet.classList.add('active');
-    //     } else {
-    //         bullet.classList.remove('active');
-    //     }
-    // });
-  }
-
-  makeIntro() {
-    this.mainText.innerHTML = `<div class="${Bem.set(CSS.main, 'title')}"><a href="${CONFIG.articleUrl}">${Data.title}</a></div>${Data.intro}`;
-    this.makeActionButton('Начать', 'start');
-  }
-
-  makeActionButton(text, func) {
-    let button = makeElement('div', Bem.set(CSS.main, 'button'), {
-      type: 'button',
-      data: {
-        click: func
-      }
-    });
-
-    button.innerHTML = `<span class="${Bem.set(CSS.main, 'button-content')}">
-                                ${text + Svg.next}
-                            </span>`;
-
-    this.mainActions.appendChild(button);
-  }
-
   start() {
     this.updateMode('progress');
     this.makeQuestion(this.activeIndex);
@@ -255,7 +332,7 @@ class Special extends BaseSpecial {
     /**
        * @type {question}
        */
-    let data = Data.questions[this.activeIndex];
+    let data = DATA.questions[this.activeIndex];
 
     if (data) {
       removeChildren(this.mainOptions);
@@ -266,7 +343,7 @@ class Special extends BaseSpecial {
 
       this.restartTimer(false);
       this.updateCounter();
-      this.mainText.innerHTML = `${Data.task}`;
+      this.mainText.innerHTML = `${DATA.task}`;
 
       this.makeQuestionOptions(data.options);
 
@@ -274,8 +351,8 @@ class Special extends BaseSpecial {
 
       Analytics.sendEvent(`Question ${this.activeIndex + 1} screen`, 'Hit');
 
-      if (Data.questions[this.activeIndex + 1]) {
-        this.preloader.load(Data.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
+      if (DATA.questions[this.activeIndex + 1]) {
+        this.preloader.load(DATA.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
       }
     } else {
       throw new Error('Missing question data');
@@ -289,7 +366,7 @@ class Special extends BaseSpecial {
     shuffle(options);
 
     options.forEach(option => {
-      let item = makeElement('div', Bem.set(CSS.main, 'option'), {
+      let item = make('div', Bem.set(CSS.main, 'option'), {
         data: {
           click: 'submitAnswer',
           id: option.id,
@@ -297,7 +374,7 @@ class Special extends BaseSpecial {
         }
       });
       //
-      // let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
+      // let image = make('img', Bem.set(CSS.main, 'option-image'), {
       //     src: this.staticURL + option.img,
       //     data: {
       //         id: option.id
@@ -309,7 +386,7 @@ class Special extends BaseSpecial {
       imageCached.classList.add(Bem.set(CSS.main, 'option-image'));
       imageCached.dataset.id = option.id;
 
-      let label = makeElement('div', [], {
+      let label = make('div', [], {
         innerHTML: option.text
       });
 
@@ -347,7 +424,7 @@ class Special extends BaseSpecial {
       /**
             * @type {question}
             */
-      let currentQuestion = Data.questions[this.activeIndex];
+      let currentQuestion = DATA.questions[this.activeIndex];
 
       Array.from(images).forEach( (img, index) => {
         let imageId = parseInt(img.dataset.id),
@@ -375,7 +452,7 @@ class Special extends BaseSpecial {
           replace(img, secondImage);
         }
 
-        let messageOverlay = makeElement('div', Bem.set(CSS.main, 'option-overlay'), {
+        let messageOverlay = make('div', Bem.set(CSS.main, 'option-overlay'), {
           innerHTML: '<i></i> ' +  currentQuestion.options[index].message
         });
 
@@ -408,7 +485,7 @@ class Special extends BaseSpecial {
   }
 
   makeOptionMessage(id) {
-    let message = makeElement('div', Bem.set(CSS.main, 'message'), {
+    let message = make('div', Bem.set(CSS.main, 'message'), {
       innerHTML: this.messages[id]
     });
 
@@ -427,7 +504,7 @@ class Special extends BaseSpecial {
      * @return {result}
      */
   findResult() {
-    let results = Data.results,
+    let results = DATA.results,
       finalResult = null;
 
     let secondsWasted = Math.floor(this.timerValue / 10);
@@ -466,10 +543,10 @@ class Special extends BaseSpecial {
 
     this.stopTimer();
 
-    let result = makeElement('div', Bem.set(CSS.main, 'result')),
-      resultContent = makeElement('div', Bem.set(CSS.main, 'resultContent')),
-      resultActions = makeElement('div', Bem.set(CSS.main, 'resultActions')),
-      restartButton = makeElement('div', Bem.set(CSS.main, 'restartButton'), {
+    let result = make('div', Bem.set(CSS.main, 'result')),
+      resultContent = make('div', Bem.set(CSS.main, 'resultContent')),
+      resultActions = make('div', Bem.set(CSS.main, 'resultActions')),
+      restartButton = make('div', Bem.set(CSS.main, 'restartButton'), {
         data: {
           click: 'restart'
         }
@@ -481,10 +558,10 @@ class Special extends BaseSpecial {
 
     this.mainText.innerHTML = `
             <div class="${Bem.set(CSS.main, 'text-content')}">
-                <div class="${Bem.set(CSS.main, 'text-body')}">${Data.outro}</div>\
-                <a class="${Bem.set(CSS.main, 'button')}" href="${Data.promoUrl}" target="_blank">
+                <div class="${Bem.set(CSS.main, 'text-body')}">${DATA.outro}</div>\
+                <a class="${Bem.set(CSS.main, 'button')}" href="${DATA.promoUrl}" target="_blank">
                     <span class="${Bem.set(CSS.main, 'button-content')}">
-                        ${Data.CTAText}
+                        ${DATA.CTAText}
                     </span>
                 </a>
             </div>
@@ -571,11 +648,6 @@ class Special extends BaseSpecial {
     this.timer = window.setInterval(() => {
       this.timerValue++;
     }, 100);
-  }
-
-  updateMode(name) {
-    this.mode = name;
-    this.container.dataset.mode = this.mode;
   }
 
   restart() {

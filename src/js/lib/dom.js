@@ -4,7 +4,7 @@
  * @param {Array} classNames - array of classnames
  * @param {Object} attributes - object with html attributes
  */
-export const makeElement = (tagName, classNames = [], attributes = []) => {
+export const make = function make(tagName, classNames = [], attributes = []) {
   tagName = tagName.toLowerCase();
 
   let element = document.createElement(tagName);
@@ -18,6 +18,9 @@ export const makeElement = (tagName, classNames = [], attributes = []) => {
   }
 
   for (let attr in attributes) {
+    /**
+     * @todo rename data to dataset
+     */
     if (attr === 'data') {
       let dataAttributes = attributes[attr];
 

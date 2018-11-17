@@ -2,13 +2,15 @@
 <html lang="ru">
 <head>
 
-    <title>Кто быстрее — скоростной тест на скорость</title>
+    <title>Battlefield</title>
 
     <meta charset="utf-8">
     <meta name="referrer" content="always">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://s38736.cdn.ngenix.net/static/build/vc.ru/all.min.css?da608eee">
+
+
 
     <style>
         @font-face {
@@ -64,7 +66,6 @@
             background-color: #eee;
             overflow-x: hidden;
             overflow-y: auto;
-
         }
 
         @media (max-width: 680px){
@@ -73,13 +74,21 @@
                 padding: 0;
             }
         }
+
+        #app {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
     </style>
 
 </head>
 
 <body>
 
-<div id="cipr_test"></div>
+<div id="app"></div>
 
 <script>
     (function (d, ver) {
@@ -88,19 +97,18 @@
         s.src = './dist/all.js?' + ver;
         s.async = true;
 
-        var container = document.getElementById('cipr_test'),
+        var container = document.getElementById('app'),
             newContainer = container.cloneNode();
 
         container.parentNode.replaceChild(newContainer, container);
 
         s.onload = function () {
-            var special = new MegafonSpeed({
+            var special = new SpeccSpecial({
                 css: './dist/all.css?' + ver,
                 staticURL: '/src/assets/'
             });
             special.init({
                 container: newContainer,
-                isCompact: false,
                 articleUrl: '/11111',
                 share: {
                     url: 'https://vc.ru/share/url',
