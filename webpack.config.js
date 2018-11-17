@@ -68,18 +68,43 @@ module.exports = {
                     loader: 'eslint-loader?fix=true&esModules=true'
                 }]
             },
+            // {
+            //     test: /\.styl$/,
+            //     exclude: /node_modules/,
+            //     use: ExtractTextPlugin.extract({
+            //         fallback: 'style-loader',
+            //         use: [{
+            //                 loader: 'css-loader',
+            //                 options: {
+            //                     url: false,
+            //                     minimize: isProduction
+            //                 }
+            //             },
+            //             {
+            //                 loader: 'postcss-loader',
+            //                 options: {
+            //                     ident: 'postcss',
+            //                     sourceMap: true
+            //                 }
+            //             },
+            //             {
+            //                 loader: 'stylus-loader'
+            //             }
+            //         ]
+            //     })
+            // },
             {
-                test: /\.styl$/,
+                test: /\.pcss/,
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [{
-                            loader: 'css-loader',
-                            options: {
-                                url: false,
-                                minimize: isProduction
-                            }
-                        },
+                        loader: 'css-loader',
+                        options: {
+                            url: false,
+                            minimize: isProduction
+                        }
+                    },
                         {
                             loader: 'postcss-loader',
                             options: {
@@ -87,9 +112,6 @@ module.exports = {
                                 sourceMap: true
                             }
                         },
-                        {
-                            loader: 'stylus-loader'
-                        }
                     ]
                 })
             },

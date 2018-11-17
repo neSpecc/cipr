@@ -65,7 +65,7 @@ const CSS = {
     state: {
         active: 'l-active'
     },
-    main: 'MegafonSpeed',
+    main: 'bf-special',
 };
 
 const EL = {};
