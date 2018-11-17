@@ -1,19 +1,19 @@
 import Likely from 'cmtt-likely';
 import {
-    makeElement
+  makeElement
 } from './dom';
 import * as Analytics from './analytics';
 
 const CSS = {
-    likely: 'likely',
-    likelyCustom: 'likely--custom',
-    state: {
-        hidden: 'l-hidden'
-    }
+  likely: 'likely',
+  likelyCustom: 'likely--custom',
+  state: {
+    hidden: 'l-hidden'
+  }
 };
 
 export const init = () => {
-    Likely.initate();
+  Likely.initate();
 };
 
 /**
@@ -22,25 +22,25 @@ export const init = () => {
  * @param {Array} socials
  */
 export const make = (parentContainer, set = {}) => {
-    let likelyContainer = makeElement('div', [CSS.likely, CSS.likelyCustom]),
-        socials = ['facebook', 'vkontakte', 'twitter'];
+  let likelyContainer = makeElement('div', [CSS.likely, CSS.likelyCustom]),
+    socials = ['facebook', 'vkontakte', 'twitter'];
 
-    socials.forEach(social => {
-        let button = makeElement('div', social);
+  socials.forEach(social => {
+    let button = makeElement('div', social);
 
-        if (social === 'facebook') button.textContent = 'Поделиться';
+    if (social === 'facebook') button.textContent = 'Поделиться';
 
-        button.addEventListener('click', () => {
-            Analytics.sendEvent(`Share ${social}`);
-        });
-
-        likelyContainer.appendChild(button);
+    button.addEventListener('click', () => {
+      Analytics.sendEvent(`Share ${social}`);
     });
 
-    parentContainer.appendChild(likelyContainer);
+    likelyContainer.appendChild(button);
+  });
 
-    if (set.url) likelyContainer.dataset.url = set.url;
-    if (set.twitter) likelyContainer.dataset.twitter = set.twitter;
+  parentContainer.appendChild(likelyContainer);
 
-    init();
+  if (set.url) likelyContainer.dataset.url = set.url;
+  if (set.twitter) likelyContainer.dataset.twitter = set.twitter;
+
+  init();
 };

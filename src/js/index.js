@@ -2,7 +2,7 @@
  * Entry point
  */
 const Special = require('./special.js');
-const Config = require('./config.js');
+// const Config = require('./config.js');
 
 // let special = new Special();
 

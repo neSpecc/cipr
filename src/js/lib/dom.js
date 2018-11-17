@@ -5,31 +5,31 @@
  * @param {Object} attributes - object with html attributes
  */
 export const makeElement = (tagName, classNames = [], attributes = []) => {
-    tagName = tagName.toLowerCase();
+  tagName = tagName.toLowerCase();
 
-    let element = document.createElement(tagName);
+  let element = document.createElement(tagName);
 
-    if (typeof classNames === 'object') {
-        classNames.forEach(className => {
-            element.classList.add(className);
-        });
+  if (typeof classNames === 'object') {
+    classNames.forEach(className => {
+      element.classList.add(className);
+    });
+  } else {
+    element.classList.add(classNames);
+  }
+
+  for (let attr in attributes) {
+    if (attr === 'data') {
+      let dataAttributes = attributes[attr];
+
+      for (let key in dataAttributes) {
+        element.dataset[key] = dataAttributes[key];
+      }
     } else {
-        element.classList.add(classNames);
+      element[attr] = attributes[attr];
     }
+  }
 
-    for (let attr in attributes) {
-        if (attr === 'data') {
-            let dataAttributes = attributes[attr];
-
-            for (let attr in dataAttributes) {
-                element.dataset[attr] = dataAttributes[attr];
-            }
-        } else {
-            element[attr] = attributes[attr];
-        }
-    }
-
-    return element;
+  return element;
 };
 
 /**
@@ -37,17 +37,17 @@ export const makeElement = (tagName, classNames = [], attributes = []) => {
  * @param {Object} obj
  */
 export const cacheElements = (obj) => {
-    let newObj = {},
-        attr = 'view',
-        elements = document.querySelectorAll(`[data-${attr}]`);
+  let newObj = {},
+    attr = 'view',
+    elements = document.querySelectorAll(`[data-${attr}]`);
 
-    Array.prototype.forEach.call(elements, el => {
-        let name = el.dataset[attr];
+  Array.prototype.forEach.call(elements, el => {
+    let name = el.dataset[attr];
 
-        newObj[name] = el;
-    });
+    newObj[name] = el;
+  });
 
-    Object.assign(obj, newObj);
+  Object.assign(obj, newObj);
 };
 
 /**
@@ -55,15 +55,15 @@ export const cacheElements = (obj) => {
  * @param {Element} element
  */
 export const getSiblings = (element) => {
-    let siblings = [],
-        sibling = element.parentNode.firstChild;
+  let siblings = [],
+    sibling = element.parentNode.firstChild;
 
-    for (; sibling; sibling = sibling.nextSibling) {
-        if (sibling.nodeType !== 1 || sibling === element) continue;
-        siblings.push(sibling);
-    }
+  for (; sibling; sibling = sibling.nextSibling) {
+    if (sibling.nodeType !== 1 || sibling === element) continue;
+    siblings.push(sibling);
+  }
 
-    return siblings;
+  return siblings;
 };
 
 /**
@@ -71,9 +71,9 @@ export const getSiblings = (element) => {
  * @param {Element} parent
  */
 export const removeChildren = (parent) => {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 };
 
 /**
@@ -81,26 +81,26 @@ export const removeChildren = (parent) => {
  * @param {Element} element
  */
 export const removeElement = (element) => {
-    if (element) {
-        element.parentNode.removeChild(element);
-    }
+  if (element) {
+    element.parentNode.removeChild(element);
+  }
 };
 
 export const htmlStringToNode = (html) => {
-    let el = document.createElement('div');
+  let el = document.createElement('div');
 
-    el.innerHTML = html;
+  el.innerHTML = html;
 
-    return el.firstChild;
+  return el.firstChild;
 };
 
 export const prepend = (parent, el) => {
-    parent.insertBefore(el, parent.firstChild);
+  parent.insertBefore(el, parent.firstChild);
 };
 
 /**
  * Replace one element with another
  */
 export const replace = (target, another) => {
-    target.parentNode.replaceChild(another, target);
+  target.parentNode.replaceChild(another, target);
 };

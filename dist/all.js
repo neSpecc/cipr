@@ -443,7 +443,7 @@ module.exports = utils;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 var Config = __webpack_require__(4);
 
@@ -453,20 +453,20 @@ var CONSOLE_STYLE = 'color: #E87E04';
  * Send pageview event via GTM
  */
 var sendPageView = exports.sendPageView = function sendPageView() {
-    if (true) {
-        console.log('Analytics: %cPage — View', CONSOLE_STYLE);
-    }
+  if (true) {
+    console.log('Analytics: %cPage — View', CONSOLE_STYLE);
+  }
 
-    if (window.dataLayer !== undefined) {
-        window.dataLayer.push({
-            event: 'Page — View',
-            post_details: {},
-            section: 'special',
-            tags: [],
-            title: document.title,
-            url: window.location.pathname
-        });
-    }
+  if (window.dataLayer !== undefined) {
+    window.dataLayer.push({
+      event: 'Page — View',
+      'post_details': {},
+      section: 'special',
+      tags: [],
+      title: document.title,
+      url: window.location.pathname
+    });
+  }
 };
 
 /**
@@ -475,18 +475,18 @@ var sendPageView = exports.sendPageView = function sendPageView() {
  * @param {String} action - event action ("Click" by default)
  */
 var sendEvent = exports.sendEvent = function sendEvent(label) {
-    var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Click';
+  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Click';
 
-    if (true) {
-        console.log('Analytics: %c' + Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action, CONSOLE_STYLE);
-    }
+  if (true) {
+    console.log('Analytics: %c' + Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action, CONSOLE_STYLE);
+  }
 
-    if (window.dataLayer !== undefined && Config.analyticsCategory) {
-        window.dataLayer.push({
-            event: 'data_event',
-            data_description: Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action
-        });
-    }
+  if (window.dataLayer !== undefined && Config.analyticsCategory) {
+    window.dataLayer.push({
+      event: 'data_event',
+      'data_description': Config.analyticsCategory + ' \u2014 ' + label + ' \u2014 ' + action
+    });
+  }
 };
 
 /***/ }),
@@ -497,10 +497,10 @@ var sendEvent = exports.sendEvent = function sendEvent(label) {
 
 
 module.exports = {
-    name: 'MegafonSpeed',
-    analyticsCategory: 'MegafonSpeed',
-    sendPageview: false,
-    listenedEvents: ['click']
+  name: 'MegafonSpeed',
+  analyticsCategory: 'MegafonSpeed',
+  sendPageview: false,
+  listenedEvents: ['click']
 };
 
 /***/ }),
@@ -617,7 +617,7 @@ module.exports = storage;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -631,34 +631,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * @param {Object} attributes - object with html attributes
  */
 var makeElement = exports.makeElement = function makeElement(tagName) {
-    var classNames = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-    var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+  var classNames = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-    tagName = tagName.toLowerCase();
+  tagName = tagName.toLowerCase();
 
-    var element = document.createElement(tagName);
+  var element = document.createElement(tagName);
 
-    if ((typeof classNames === 'undefined' ? 'undefined' : _typeof(classNames)) === 'object') {
-        classNames.forEach(function (className) {
-            element.classList.add(className);
-        });
+  if ((typeof classNames === 'undefined' ? 'undefined' : _typeof(classNames)) === 'object') {
+    classNames.forEach(function (className) {
+      element.classList.add(className);
+    });
+  } else {
+    element.classList.add(classNames);
+  }
+
+  for (var attr in attributes) {
+    if (attr === 'data') {
+      var dataAttributes = attributes[attr];
+
+      for (var key in dataAttributes) {
+        element.dataset[key] = dataAttributes[key];
+      }
     } else {
-        element.classList.add(classNames);
+      element[attr] = attributes[attr];
     }
+  }
 
-    for (var attr in attributes) {
-        if (attr === 'data') {
-            var dataAttributes = attributes[attr];
-
-            for (var _attr in dataAttributes) {
-                element.dataset[_attr] = dataAttributes[_attr];
-            }
-        } else {
-            element[attr] = attributes[attr];
-        }
-    }
-
-    return element;
+  return element;
 };
 
 /**
@@ -666,17 +666,17 @@ var makeElement = exports.makeElement = function makeElement(tagName) {
  * @param {Object} obj
  */
 var cacheElements = exports.cacheElements = function cacheElements(obj) {
-    var newObj = {},
-        attr = 'view',
-        elements = document.querySelectorAll('[data-' + attr + ']');
+  var newObj = {},
+      attr = 'view',
+      elements = document.querySelectorAll('[data-' + attr + ']');
 
-    Array.prototype.forEach.call(elements, function (el) {
-        var name = el.dataset[attr];
+  Array.prototype.forEach.call(elements, function (el) {
+    var name = el.dataset[attr];
 
-        newObj[name] = el;
-    });
+    newObj[name] = el;
+  });
 
-    _extends(obj, newObj);
+  _extends(obj, newObj);
 };
 
 /**
@@ -684,15 +684,15 @@ var cacheElements = exports.cacheElements = function cacheElements(obj) {
  * @param {Element} element
  */
 var getSiblings = exports.getSiblings = function getSiblings(element) {
-    var siblings = [],
-        sibling = element.parentNode.firstChild;
+  var siblings = [],
+      sibling = element.parentNode.firstChild;
 
-    for (; sibling; sibling = sibling.nextSibling) {
-        if (sibling.nodeType !== 1 || sibling === element) continue;
-        siblings.push(sibling);
-    }
+  for (; sibling; sibling = sibling.nextSibling) {
+    if (sibling.nodeType !== 1 || sibling === element) continue;
+    siblings.push(sibling);
+  }
 
-    return siblings;
+  return siblings;
 };
 
 /**
@@ -700,9 +700,9 @@ var getSiblings = exports.getSiblings = function getSiblings(element) {
  * @param {Element} parent
  */
 var removeChildren = exports.removeChildren = function removeChildren(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 };
 
 /**
@@ -710,28 +710,28 @@ var removeChildren = exports.removeChildren = function removeChildren(parent) {
  * @param {Element} element
  */
 var removeElement = exports.removeElement = function removeElement(element) {
-    if (element) {
-        element.parentNode.removeChild(element);
-    }
+  if (element) {
+    element.parentNode.removeChild(element);
+  }
 };
 
 var htmlStringToNode = exports.htmlStringToNode = function htmlStringToNode(html) {
-    var el = document.createElement('div');
+  var el = document.createElement('div');
 
-    el.innerHTML = html;
+  el.innerHTML = html;
 
-    return el.firstChild;
+  return el.firstChild;
 };
 
 var prepend = exports.prepend = function prepend(parent, el) {
-    parent.insertBefore(el, parent.firstChild);
+  parent.insertBefore(el, parent.firstChild);
 };
 
 /**
  * Replace one element with another
  */
 var replace = exports.replace = function replace(target, another) {
-    target.parentNode.replaceChild(another, target);
+  target.parentNode.replaceChild(another, target);
 };
 
 /***/ }),
@@ -745,7 +745,7 @@ var replace = exports.replace = function replace(target, another) {
  * Entry point
  */
 var Special = __webpack_require__(9);
-var Config = __webpack_require__(4);
+// const Config = require('./config.js');
 
 // let special = new Special();
 
@@ -836,608 +836,607 @@ var CONFIG = __webpack_require__(4);
 /**
  * Constants
  */
-var PATH = window.__PATH || '.';
+// const PATH = window.__PATH || '.';
 
 var CSS = {
-    state: {
-        active: 'l-active'
-    },
-    main: 'bf-special'
+  state: {
+    active: 'l-active'
+  },
+  main: 'bf-special'
 };
 
-var EL = {};
+// const EL = {};
 
 /**
  * Special constructor
  */
 
 var Special = function (_BaseSpecial) {
-    _inherits(Special, _BaseSpecial);
+  _inherits(Special, _BaseSpecial);
 
-    function Special(params) {
-        _classCallCheck(this, Special);
+  function Special(params) {
+    _classCallCheck(this, Special);
 
-        var _this = _possibleConstructorReturn(this, (Special.__proto__ || Object.getPrototypeOf(Special)).call(this));
+    var _this = _possibleConstructorReturn(this, (Special.__proto__ || Object.getPrototypeOf(Special)).call(this));
 
-        _this.css = params.css;
-        _this.staticURL = params.staticURL;
+    _this.css = params.css;
+    _this.staticURL = params.staticURL;
 
-        _this.setDefaultValues();
+    _this.setDefaultValues();
 
-        /**
+    /**
         * Timer for the progress
         * @type {null|TimeoutId}
         */
-        _this.timer = null;
+    _this.timer = null;
 
-        /**
+    /**
         * Timer value
         * @type {number}
         * @private
         */
-        _this._timerValue = 0;
+    _this._timerValue = 0;
 
-        /**
+    /**
         * Timer holder
         * @type {Element|null}
         */
-        _this.timerWrapper = null;
-        _this.timerContent = null;
-        return _this;
+    _this.timerWrapper = null;
+    _this.timerContent = null;
+    return _this;
+  }
+
+  _createClass(Special, [{
+    key: 'init',
+    value: function init() {
+      var _this2 = this;
+
+      var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+      _extends(CONFIG, params);
+      _extends(_data2.default, data);
+
+      this.saveParams(CONFIG);
+
+      if (this.css) {
+        this.loadStyles(this.css).then(function () {
+          return _this2.makeGeneralLayout();
+        });
+      }
+    }
+  }, {
+    key: 'setDefaultValues',
+    value: function setDefaultValues() {
+      this.activeIndex = 0;
+      this.totalLength = _data2.default.questions.length;
+      this.userPoints = 0;
+      this.activeCorrectId = null;
+      this.messages = {};
+      this.isPending = false;
+      this.stopTimer();
+      this.timer = null;
+    }
+  }, {
+    key: 'makeGeneralLayout',
+    value: function makeGeneralLayout() {
+      var _this3 = this;
+
+      var heart = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'heart'), {
+        innerHTML: '<span></span>'
+      });
+
+      this.container.appendChild(heart);
+
+      this.content = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'content'));
+
+      this.updateMode('start');
+
+      this.mainText = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'text'));
+      this.mainOptions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'options'));
+      this.mainActions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'actions'));
+
+      this.container.classList.add(CSS.main);
+
+      if (CONFIG.isCompact) {
+        this.container.classList.add(_bem2.default.set(CSS.main, null, 'compact'));
+      }
+
+      this.makeHeader();
+
+      this.timerWrapper = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer'));
+      this.timerContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer-content'));
+
+      this.content.appendChild(this.mainText);
+      this.content.appendChild(this.mainOptions);
+      this.content.appendChild(this.mainActions);
+      this.container.appendChild(this.content);
+      this.timerWrapper.appendChild(this.timerContent);
+      this.content.appendChild(this.timerWrapper);
+
+      this.makeIntro();
+
+      this.container.tabIndex = 1;
+      this.container.addEventListener('keydown', function (event) {
+        _this3.keydownHandler(event);
+      });
+
+      Analytics.sendEvent('Start screen', 'Load');
+
+      this.preloader.load(_data2.default.questions[0].options.map(function (option) {
+        return _this3.staticURL + option.img;
+      }));
+
+      // this.makeResult();
+
+      // this.activeIndex = 8;
+      // this.start();
+    }
+  }, {
+    key: 'keydownHandler',
+    value: function keydownHandler(event) {
+      if (event.target === this.container && event.keyCode === this.keyCodes.enter) {
+        if (this.mode === 'start') {
+          this.start();
+        } else if (this.mode === 'progress' && this.isPending) {
+          if (this.activeIndex >= this.totalLength) {
+            this.makeResult();
+          } else {
+            this.makeQuestion();
+          }
+        }
+      }
+    }
+  }, {
+    key: 'makeHeader',
+    value: function makeHeader() {
+      var header = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'header'), {
+        innerHTML: '<a href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>'
+      });
+
+      this.counter = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'counter'));
+      header.appendChild(this.counter);
+
+      this.updateCounter();
+
+      this.container.appendChild(header);
+    }
+  }, {
+    key: 'updateCounter',
+    value: function updateCounter() {
+      this.counter.textContent = '\u0412\u043E\u043F\u0440\u043E\u0441 ' + (this.activeIndex + 1) + ' \u0438\u0437 ' + _data2.default.questions.length;
+      // if (this.counter.children.length === 0) {
+      //     Data.questions.forEach(() => {
+      //         let bullet = makeElement('span');
+      //
+      //         this.counter.appendChild(bullet);
+      //     });
+      // }
+      //
+      // let bullets = toArray(this.counter.children);
+      //
+      // bullets.forEach((bullet, i) => {
+      //     if (i <= this.activeIndex) {
+      //         bullet.classList.add('active');
+      //     } else {
+      //         bullet.classList.remove('active');
+      //     }
+      // });
+    }
+  }, {
+    key: 'makeIntro',
+    value: function makeIntro() {
+      this.mainText.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'title') + '"><a href="' + CONFIG.articleUrl + '">' + _data2.default.title + '</a></div>' + _data2.default.intro;
+      this.makeActionButton('Начать', 'start');
+    }
+  }, {
+    key: 'makeActionButton',
+    value: function makeActionButton(text, func) {
+      var button = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'button'), {
+        type: 'button',
+        data: {
+          click: func
+        }
+      });
+
+      button.innerHTML = '<span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                                ' + (text + _svg2.default.next) + '\n                            </span>';
+
+      this.mainActions.appendChild(button);
+    }
+  }, {
+    key: 'start',
+    value: function start() {
+      this.updateMode('progress');
+      this.makeQuestion(this.activeIndex);
+      this.restartTimer();
+
+      Analytics.sendEvent('Start button', 'Click');
+    }
+  }, {
+    key: 'makeQuestion',
+    value: function makeQuestion() {
+      var _this4 = this;
+
+      /**
+         * @type {question}
+         */
+      var data = _data2.default.questions[this.activeIndex];
+
+      if (data) {
+        (0, _dom.removeChildren)(this.mainOptions);
+        (0, _dom.removeChildren)(this.mainActions);
+
+        this.isPending = false;
+        this.mainOptions.classList.remove(_bem2.default.set(CSS.main, 'options', 'disabled'));
+
+        this.restartTimer(false);
+        this.updateCounter();
+        this.mainText.innerHTML = '' + _data2.default.task;
+
+        this.makeQuestionOptions(data.options);
+
+        if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
+
+        Analytics.sendEvent('Question ' + (this.activeIndex + 1) + ' screen', 'Hit');
+
+        if (_data2.default.questions[this.activeIndex + 1]) {
+          this.preloader.load(_data2.default.questions[this.activeIndex + 1].options.map(function (option) {
+            return _this4.staticURL + option.img;
+          }));
+        }
+      } else {
+        throw new Error('Missing question data');
+      }
     }
 
-    _createClass(Special, [{
-        key: 'init',
-        value: function init() {
-            var _this2 = this;
+    /**
+      * @param {option[]} options
+      */
 
-            var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-            var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  }, {
+    key: 'makeQuestionOptions',
+    value: function makeQuestionOptions(options) {
+      var _this5 = this;
 
-            _extends(CONFIG, params);
-            _extends(_data2.default, data);
+      (0, _array.shuffle)(options);
 
-            this.saveParams(CONFIG);
+      options.forEach(function (option) {
+        var item = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option'), {
+          data: {
+            click: 'submitAnswer',
+            id: option.id,
+            number: _this5.activeIndex
+          }
+        });
+        //
+        // let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
+        //     src: this.staticURL + option.img,
+        //     data: {
+        //         id: option.id
+        //     }
+        // });
 
-            if (this.css) {
-                this.loadStyles(this.css).then(function () {
-                    return _this2.makeGeneralLayout();
-                });
-            }
+        var imageCached = _this5.preloader.get(_this5.staticURL + option.img);
+
+        imageCached.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+        imageCached.dataset.id = option.id;
+
+        var label = (0, _dom.makeElement)('div', [], {
+          innerHTML: option.text
+        });
+
+        item.appendChild(imageCached);
+        item.appendChild(label);
+
+        _this5.mainOptions.appendChild(item);
+
+        if (option.isCorrect) {
+          _this5.activeCorrectId = option.id;
         }
-    }, {
-        key: 'setDefaultValues',
-        value: function setDefaultValues() {
-            this.activeIndex = 0;
-            this.totalLength = _data2.default.questions.length;
-            this.userPoints = 0;
-            this.activeCorrectId = null;
-            this.messages = {};
-            this.isPending = false;
-            this.stopTimer();
-            this.timer = null;
-        }
-    }, {
-        key: 'makeGeneralLayout',
-        value: function makeGeneralLayout() {
-            var _this3 = this;
 
-            var heart = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'heart'), {
-                innerHTML: '<span></span>'
-            });
+        _this5.messages[option.id] = option.message;
 
-            this.container.appendChild(heart);
+        _this5.preloader.load([_this5.staticURL + option.imgCorrect, _this5.staticURL + option.imgWrong, _this5.staticURL + option.imgDisabled]);
+      });
+    }
+  }, {
+    key: 'submitAnswer',
+    value: function submitAnswer(button) {
+      var _this6 = this;
 
-            this.content = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'content'));
+      if (!this.isPending) {
+        var id = parseInt(button.dataset.id);
 
-            this.updateMode('start');
+        this.stopTimer(false);
 
-            this.mainText = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'text'));
-            this.mainOptions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'options'));
-            this.mainActions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'actions'));
+        this.isPending = true;
+        this.mainOptions.classList.add(_bem2.default.set(CSS.main, 'options', 'disabled'));
 
-            this.container.classList.add(CSS.main);
+        var images = this.content.querySelectorAll('.' + _bem2.default.set(CSS.main, 'option-image'));
 
-            if (CONFIG.isCompact) {
-                this.container.classList.add(_bem2.default.set(CSS.main, null, 'compact'));
-            }
+        /**
+              * @type {question}
+              */
+        var currentQuestion = _data2.default.questions[this.activeIndex];
 
-            this.makeHeader();
+        Array.from(images).forEach(function (img, index) {
+          var imageId = parseInt(img.dataset.id),
+              imageWrapper = img.parentNode;
 
-            this.timerWrapper = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer'));
-            this.timerContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'timer-content'));
+          // clicked image
+          if (id === imageId) {
+            var clickedImage = void 0;
 
-            this.content.appendChild(this.mainText);
-            this.content.appendChild(this.mainOptions);
-            this.content.appendChild(this.mainActions);
-            this.container.appendChild(this.content);
-            this.timerWrapper.appendChild(this.timerContent);
-            this.content.appendChild(this.timerWrapper);
-
-            this.makeIntro();
-
-            this.container.tabIndex = 1;
-            this.container.addEventListener('keydown', function (event) {
-                _this3.keydownHandler(event);
-            });
-
-            Analytics.sendEvent('Start screen', 'Load');
-
-            this.preloader.load(_data2.default.questions[0].options.map(function (option) {
-                return _this3.staticURL + option.img;
-            }));
-
-            // this.makeResult();
-
-            // this.activeIndex = 8;
-            // this.start();
-        }
-    }, {
-        key: 'keydownHandler',
-        value: function keydownHandler(event) {
-            if (event.target === this.container && event.keyCode === this.keyCodes.enter) {
-                if (this.mode === 'start') {
-                    this.start();
-                } else if (this.mode === 'progress' && this.isPending) {
-                    if (this.activeIndex >= this.totalLength) {
-                        this.makeResult();
-                    } else {
-                        this.makeQuestion();
-                    }
-                }
-            }
-        }
-    }, {
-        key: 'makeHeader',
-        value: function makeHeader() {
-            var header = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'header'), {
-                innerHTML: '<a href="' + _data2.default.logoUrl + '" target="_blank">' + _svg2.default.logo + '</a>'
-            });
-
-            this.counter = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'counter'));
-            header.appendChild(this.counter);
-
-            this.updateCounter();
-
-            this.container.appendChild(header);
-        }
-    }, {
-        key: 'updateCounter',
-        value: function updateCounter() {
-            this.counter.textContent = '\u0412\u043E\u043F\u0440\u043E\u0441 ' + (this.activeIndex + 1) + ' \u0438\u0437 ' + _data2.default.questions.length;
-            // if (this.counter.children.length === 0) {
-            //     Data.questions.forEach(() => {
-            //         let bullet = makeElement('span');
-            //
-            //         this.counter.appendChild(bullet);
-            //     });
-            // }
-            //
-            // let bullets = toArray(this.counter.children);
-            //
-            // bullets.forEach((bullet, i) => {
-            //     if (i <= this.activeIndex) {
-            //         bullet.classList.add('active');
-            //     } else {
-            //         bullet.classList.remove('active');
-            //     }
-            // });
-        }
-    }, {
-        key: 'makeIntro',
-        value: function makeIntro() {
-            this.mainText.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'title') + '"><a href="' + CONFIG.articleUrl + '">' + _data2.default.title + '</a></div>' + _data2.default.intro;
-            this.makeActionButton('Начать', 'start');
-        }
-    }, {
-        key: 'makeActionButton',
-        value: function makeActionButton(text, func) {
-            var button = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'button'), {
-                type: 'button',
-                data: {
-                    click: func
-                }
-            });
-
-            button.innerHTML = '<span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                                ' + (text + _svg2.default.next) + '\n                            </span>';
-
-            this.mainActions.appendChild(button);
-        }
-    }, {
-        key: 'start',
-        value: function start() {
-            this.updateMode('progress');
-            this.makeQuestion(this.activeIndex);
-            this.restartTimer();
-
-            Analytics.sendEvent('Start button', 'Click');
-        }
-    }, {
-        key: 'makeQuestion',
-        value: function makeQuestion() {
-            var _this4 = this;
-
-            /**
-            * @type {question}
-            */
-            var data = _data2.default.questions[this.activeIndex];
-
-            if (data) {
-                (0, _dom.removeChildren)(this.mainOptions);
-                (0, _dom.removeChildren)(this.mainActions);
-
-                this.isPending = false;
-                this.mainOptions.classList.remove(_bem2.default.set(CSS.main, 'options', 'disabled'));
-
-                this.restartTimer(false);
-                this.updateCounter();
-                this.mainText.innerHTML = '' + _data2.default.task;
-
-                this.makeQuestionOptions(data.options);
-
-                if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
-
-                Analytics.sendEvent('Question ' + (this.activeIndex + 1) + ' screen', 'Hit');
-
-                if (_data2.default.questions[this.activeIndex + 1]) {
-                    this.preloader.load(_data2.default.questions[this.activeIndex + 1].options.map(function (option) {
-                        return _this4.staticURL + option.img;
-                    }));
-                }
+            if (id === _this6.activeCorrectId) {
+              clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgCorrect);
             } else {
-                throw new Error('Missing question data');
-            }
-        }
-
-        /**
-        * @param {option[]} options
-        */
-
-    }, {
-        key: 'makeQuestionOptions',
-        value: function makeQuestionOptions(options) {
-            var _this5 = this;
-
-            (0, _array.shuffle)(options);
-
-            options.forEach(function (option) {
-                var item = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option'), {
-                    data: {
-                        click: 'submitAnswer',
-                        id: option.id,
-                        number: _this5.activeIndex
-                    }
-                });
-                //
-                // let image = makeElement('img', Bem.set(CSS.main, 'option-image'), {
-                //     src: this.staticURL + option.img,
-                //     data: {
-                //         id: option.id
-                //     }
-                // });
-
-                var imageCached = _this5.preloader.get(_this5.staticURL + option.img);
-
-                imageCached.classList.add(_bem2.default.set(CSS.main, 'option-image'));
-                imageCached.dataset.id = option.id;
-
-                var label = (0, _dom.makeElement)('div', [], {
-                    innerHTML: option.text
-                });
-
-                item.appendChild(imageCached);
-                item.appendChild(label);
-
-                _this5.mainOptions.appendChild(item);
-
-                if (option.isCorrect) {
-                    _this5.activeCorrectId = option.id;
-                }
-
-                _this5.messages[option.id] = option.message;
-
-                _this5.preloader.load([_this5.staticURL + option.imgCorrect, _this5.staticURL + option.imgWrong, _this5.staticURL + option.imgDisabled]);
-            });
-        }
-    }, {
-        key: 'submitAnswer',
-        value: function submitAnswer(button) {
-            var _this6 = this;
-
-            if (!this.isPending) {
-                var id = parseInt(button.dataset.id),
-                    data = null;
-
-                this.stopTimer(false);
-
-                this.isPending = true;
-                this.mainOptions.classList.add(_bem2.default.set(CSS.main, 'options', 'disabled'));
-
-                var images = this.content.querySelectorAll('.' + _bem2.default.set(CSS.main, 'option-image'));
-
-                /**
-                * @type {question}
-                */
-                var currentQuestion = _data2.default.questions[this.activeIndex];
-
-                Array.from(images).forEach(function (img, index) {
-                    var imageId = parseInt(img.dataset.id),
-                        imageWrapper = img.parentNode;
-
-                    // clicked image
-                    if (id === imageId) {
-                        var clickedImage = void 0;
-
-                        if (id === _this6.activeCorrectId) {
-                            clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgCorrect);
-                        } else {
-                            clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgWrong);
-                        }
-
-                        clickedImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
-
-                        (0, _dom.replace)(img, clickedImage);
-
-                        // second image
-                    } else {
-                        var secondImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgDisabled);
-
-                        secondImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
-                        (0, _dom.replace)(img, secondImage);
-                    }
-
-                    var messageOverlay = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option-overlay'), {
-                        innerHTML: '<i></i> ' + currentQuestion.options[index].message
-                    });
-
-                    imageWrapper.appendChild(messageOverlay);
-                });
-
-                if (id === this.activeCorrectId) {
-                    this.userPoints++;
-                    button.classList.add(_bem2.default.set(CSS.main, 'option', 'success'));
-                } else {
-                    button.classList.add(_bem2.default.set(CSS.main, 'option', 'error'));
-                }
-
-                // this.makeOptionMessage(id);
-
-                if (this.activeIndex >= this.totalLength - 1) {
-                    var resultData = this.findResult();
-
-                    this.makeActionButton('Результат', 'makeResult');
-
-                    this.preloader.load([this.staticURL + this.findResult().cover]);
-                } else {
-                    this.makeActionButton('Продолжить', 'makeQuestion');
-                }
-
-                this.activeIndex++;
-            }
-        }
-    }, {
-        key: 'makeOptionMessage',
-        value: function makeOptionMessage(id) {
-            var message = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'message'), {
-                innerHTML: this.messages[id]
-            });
-
-            this.mainOptions.appendChild(message);
-        }
-
-        /**
-         * @typedef {object} result
-         * @property {array} range - [1, 3]
-         * @property {string} title - 'Вы белка'
-         * @property {string} message - 'Вы набрали 2 очков за 15 секунд'
-         * @property {string} image  - 'adad.png'
-         */
-
-        /**
-         * @return {result}
-         */
-
-    }, {
-        key: 'findResult',
-        value: function findResult() {
-            var results = _data2.default.results,
-                finalResult = null;
-
-            var secondsWasted = Math.floor(this.timerValue / 10);
-
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var result = _step.value;
-
-                    if (secondsWasted >= result.range[0] && secondsWasted <= result.range[1]) {
-                        finalResult = result;
-                        break;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
+              clickedImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgWrong);
             }
 
-            finalResult.message = '\u042F \u0443\u0433\u0430\u0434\u0430\u043B ' + (0, _helper.declineWord)(this.userPoints, ['пару', 'пары', 'пар']) + ' \u0437\u0430 ' + (0, _helper.declineWord)(secondsWasted, ['секунду', 'секунды', 'секунд']);
+            clickedImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
 
-            return finalResult;
+            (0, _dom.replace)(img, clickedImage);
+
+            // second image
+          } else {
+            var secondImage = _this6.preloader.get(_this6.staticURL + currentQuestion.options[index].imgDisabled);
+
+            secondImage.classList.add(_bem2.default.set(CSS.main, 'option-image'));
+            (0, _dom.replace)(img, secondImage);
+          }
+
+          var messageOverlay = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'option-overlay'), {
+            innerHTML: '<i></i> ' + currentQuestion.options[index].message
+          });
+
+          imageWrapper.appendChild(messageOverlay);
+        });
+
+        if (id === this.activeCorrectId) {
+          this.userPoints++;
+          button.classList.add(_bem2.default.set(CSS.main, 'option', 'success'));
+        } else {
+          button.classList.add(_bem2.default.set(CSS.main, 'option', 'error'));
         }
 
-        /**
-         * Format image URL: add static URL if need
-         * @param {string} url
-         */
+        // this.makeOptionMessage(id);
 
-    }, {
-        key: 'imageUrl',
-        value: function imageUrl(url) {
-            if (url.substring(0, 4) === 'http') {
-                return url;
-            }
+        if (this.activeIndex >= this.totalLength - 1) {
+          this.findResult();
 
-            return this.staticURL + url;
-        }
-    }, {
-        key: 'makeResult',
-        value: function makeResult() {
-            /**
-             * @type {result}
-             */
-            var data = this.findResult();
+          this.makeActionButton('Результат', 'makeResult');
 
-            var secondsWasted = Math.floor(this.timerValue / 10);
-
-            this.stopTimer();
-
-            var result = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'result')),
-                resultContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultContent')),
-                resultActions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultActions')),
-                restartButton = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'restartButton'), {
-                data: {
-                    click: 'restart'
-                }
-            });
-
-            this.updateMode('result');
-
-            result.style.backgroundImage = 'url(' + this.imageUrl(data.cover) + ')';
-
-            this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">\n                    <span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                        ' + _data2.default.CTAText + '\n                    </span>\n                </a>\n            </div>\n        ';
-            (0, _dom.removeChildren)(this.mainOptions);
-            (0, _dom.removeChildren)(this.mainActions);
-
-            resultContent.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'resultPoints') + '">' + data.message + '</div>\n            <div class="' + _bem2.default.set(CSS.main, 'title') + '">' + data.title + '</div>';
-            result.appendChild(resultContent);
-            resultContent.appendChild(resultActions);
-            (0, _dom.prepend)(this.content, result);
-
-            Share.make(resultActions, {
-                url: CONFIG.share.url + '/' + this.userPoints + '/' + secondsWasted,
-                twitter: CONFIG.share.twitter
-            });
-
-            restartButton.innerHTML = 'Пройти ещё раз' + _svg2.default.restart;
-            resultActions.appendChild(restartButton);
-
-            if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
-
-            Analytics.sendEvent('Result screen', 'Hit');
-            Analytics.sendEvent('Result ' + this.userPoints + ' screen', 'Hit');
+          this.preloader.load([this.staticURL + this.findResult().cover]);
+        } else {
+          this.makeActionButton('Продолжить', 'makeQuestion');
         }
 
-        /**
-        * Format number to string like HH:MM:SS
-        * @param {number} time - timer count in 0.1s
-        * @return {string}
-        */
+        this.activeIndex++;
+      }
+    }
+  }, {
+    key: 'makeOptionMessage',
+    value: function makeOptionMessage(id) {
+      var message = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'message'), {
+        innerHTML: this.messages[id]
+      });
 
-    }, {
-        key: 'formatTime',
-        value: function formatTime(time) {
-            var decileSec = parseInt(time, 10); // don't forget the second param
+      this.mainOptions.appendChild(message);
+    }
 
-            var sec = decileSec / 10;
-            var minLeft = sec / 60;
-            var fullMin = Math.floor(minLeft);
-            var secLeft = (decileSec - fullMin) % 600 / 10;
-            var fullSecLeft = Math.floor(secLeft);
-            var decileSecLeft = parseInt(String(secLeft).split('.')[1], 10) * 6;
+    /**
+       * @typedef {object} result
+       * @property {array} range - [1, 3]
+       * @property {string} title - 'Вы белка'
+       * @property {string} message - 'Вы набрали 2 очков за 15 секунд'
+       * @property {string} image  - 'adad.png'
+       */
 
-            if (isNaN(decileSecLeft)) {
-                decileSecLeft = 0;
-            }
+    /**
+       * @return {result}
+       */
 
-            fullMin = fullMin < 10 ? '0' + fullMin : fullMin;
-            fullSecLeft = fullSecLeft < 10 ? '0' + fullSecLeft : fullSecLeft;
-            decileSecLeft = decileSecLeft < 10 ? '0' + decileSecLeft : decileSecLeft;
+  }, {
+    key: 'findResult',
+    value: function findResult() {
+      var results = _data2.default.results,
+          finalResult = null;
 
-            return fullMin + ':' + fullSecLeft + ':' + decileSecLeft;
+      var secondsWasted = Math.floor(this.timerValue / 10);
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var result = _step.value;
+
+          if (secondsWasted >= result.range[0] && secondsWasted <= result.range[1]) {
+            finalResult = result;
+            break;
+          }
         }
-    }, {
-        key: 'stopTimer',
-
-
-        /**
-         * Stop timer if it is running
-         * @param {boolean} clear - need to clear value
-         */
-        value: function stopTimer() {
-            var clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-            if (this.timer) {
-                window.clearInterval(this.timer);
-                if (clear) {
-                    this._timerValue = 0;
-                }
-            }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
         }
+      }
 
-        /**
-        * Starts new timer for the game
-        * @param {boolean} clear - need to clear value
-        */
+      finalResult.message = '\u042F \u0443\u0433\u0430\u0434\u0430\u043B ' + (0, _helper.declineWord)(this.userPoints, ['пару', 'пары', 'пар']) + ' \u0437\u0430 ' + (0, _helper.declineWord)(secondsWasted, ['секунду', 'секунды', 'секунд']);
 
-    }, {
-        key: 'restartTimer',
-        value: function restartTimer(clear) {
-            var _this7 = this;
+      return finalResult;
+    }
 
-            this.stopTimer(clear);
+    /**
+       * Format image URL: add static URL if need
+       * @param {string} url
+       */
 
-            this.timer = window.setInterval(function () {
-                _this7.timerValue++;
-            }, 100);
+  }, {
+    key: 'imageUrl',
+    value: function imageUrl(url) {
+      if (url.substring(0, 4) === 'http') {
+        return url;
+      }
+
+      return this.staticURL + url;
+    }
+  }, {
+    key: 'makeResult',
+    value: function makeResult() {
+      /**
+           * @type {result}
+           */
+      var data = this.findResult();
+
+      var secondsWasted = Math.floor(this.timerValue / 10);
+
+      this.stopTimer();
+
+      var result = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'result')),
+          resultContent = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultContent')),
+          resultActions = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'resultActions')),
+          restartButton = (0, _dom.makeElement)('div', _bem2.default.set(CSS.main, 'restartButton'), {
+        data: {
+          click: 'restart'
         }
-    }, {
-        key: 'updateMode',
-        value: function updateMode(name) {
-            this.mode = name;
-            this.container.dataset.mode = this.mode;
+      });
+
+      this.updateMode('result');
+
+      result.style.backgroundImage = 'url(' + this.imageUrl(data.cover) + ')';
+
+      this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">\n                    <span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                        ' + _data2.default.CTAText + '\n                    </span>\n                </a>\n            </div>\n        ';
+      (0, _dom.removeChildren)(this.mainOptions);
+      (0, _dom.removeChildren)(this.mainActions);
+
+      resultContent.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'resultPoints') + '">' + data.message + '</div>\n            <div class="' + _bem2.default.set(CSS.main, 'title') + '">' + data.title + '</div>';
+      result.appendChild(resultContent);
+      resultContent.appendChild(resultActions);
+      (0, _dom.prepend)(this.content, result);
+
+      Share.make(resultActions, {
+        url: CONFIG.share.url + '/' + this.userPoints + '/' + secondsWasted,
+        twitter: CONFIG.share.twitter
+      });
+
+      restartButton.innerHTML = 'Пройти ещё раз' + _svg2.default.restart;
+      resultActions.appendChild(restartButton);
+
+      if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
+
+      Analytics.sendEvent('Result screen', 'Hit');
+      Analytics.sendEvent('Result ' + this.userPoints + ' screen', 'Hit');
+    }
+
+    /**
+      * Format number to string like HH:MM:SS
+      * @param {number} time - timer count in 0.1s
+      * @return {string}
+      */
+
+  }, {
+    key: 'formatTime',
+    value: function formatTime(time) {
+      var decileSec = parseInt(time, 10); // don't forget the second param
+
+      var sec = decileSec / 10;
+      var minLeft = sec / 60;
+      var fullMin = Math.floor(minLeft);
+      var secLeft = (decileSec - fullMin) % 600 / 10;
+      var fullSecLeft = Math.floor(secLeft);
+      var decileSecLeft = parseInt(String(secLeft).split('.')[1], 10) * 6;
+
+      if (isNaN(decileSecLeft)) {
+        decileSecLeft = 0;
+      }
+
+      fullMin = fullMin < 10 ? '0' + fullMin : fullMin;
+      fullSecLeft = fullSecLeft < 10 ? '0' + fullSecLeft : fullSecLeft;
+      decileSecLeft = decileSecLeft < 10 ? '0' + decileSecLeft : decileSecLeft;
+
+      return fullMin + ':' + fullSecLeft + ':' + decileSecLeft;
+    }
+  }, {
+    key: 'stopTimer',
+
+
+    /**
+       * Stop timer if it is running
+       * @param {boolean} clear - need to clear value
+       */
+    value: function stopTimer() {
+      var clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+      if (this.timer) {
+        window.clearInterval(this.timer);
+        if (clear) {
+          this._timerValue = 0;
         }
-    }, {
-        key: 'restart',
-        value: function restart() {
-            this.setDefaultValues();
-            this.updateMode('progress');
+      }
+    }
 
-            (0, _dom.removeChildren)(this.content);
-            this.content.appendChild(this.timerWrapper);
-            this.content.appendChild(this.mainText);
-            this.content.appendChild(this.mainOptions);
-            this.content.appendChild(this.mainActions);
+    /**
+      * Starts new timer for the game
+      * @param {boolean} clear - need to clear value
+      */
 
-            this.makeQuestion(0);
-            this.restartTimer();
+  }, {
+    key: 'restartTimer',
+    value: function restartTimer(clear) {
+      var _this7 = this;
 
-            Analytics.sendEvent('Restart button', 'Click');
-        }
-    }, {
-        key: 'timerValue',
-        set: function set(val) {
-            this._timerValue += 1;
-            this.timerContent.textContent = this.formatTime(this._timerValue);
-        },
-        get: function get() {
-            return this._timerValue;
-        }
-    }]);
+      this.stopTimer(clear);
 
-    return Special;
+      this.timer = window.setInterval(function () {
+        _this7.timerValue++;
+      }, 100);
+    }
+  }, {
+    key: 'updateMode',
+    value: function updateMode(name) {
+      this.mode = name;
+      this.container.dataset.mode = this.mode;
+    }
+  }, {
+    key: 'restart',
+    value: function restart() {
+      this.setDefaultValues();
+      this.updateMode('progress');
+
+      (0, _dom.removeChildren)(this.content);
+      this.content.appendChild(this.timerWrapper);
+      this.content.appendChild(this.mainText);
+      this.content.appendChild(this.mainOptions);
+      this.content.appendChild(this.mainActions);
+
+      this.makeQuestion(0);
+      this.restartTimer();
+
+      Analytics.sendEvent('Restart button', 'Click');
+    }
+  }, {
+    key: 'timerValue',
+    set: function set(val) {
+      this._timerValue += 1;
+      this.timerContent.textContent = this.formatTime(this._timerValue);
+    },
+    get: function get() {
+      return this._timerValue;
+    }
+  }]);
+
+  return Special;
 }(_base2.default);
 
 module.exports = Special;
@@ -1450,7 +1449,7 @@ module.exports = Special;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.make = exports.init = undefined;
 
@@ -1469,15 +1468,15 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var CSS = {
-    likely: 'likely',
-    likelyCustom: 'likely--custom',
-    state: {
-        hidden: 'l-hidden'
-    }
+  likely: 'likely',
+  likelyCustom: 'likely--custom',
+  state: {
+    hidden: 'l-hidden'
+  }
 };
 
 var init = exports.init = function init() {
-    _cmttLikely2.default.initate();
+  _cmttLikely2.default.initate();
 };
 
 /**
@@ -1486,29 +1485,29 @@ var init = exports.init = function init() {
  * @param {Array} socials
  */
 var make = exports.make = function make(parentContainer) {
-    var set = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var set = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var likelyContainer = (0, _dom.makeElement)('div', [CSS.likely, CSS.likelyCustom]),
-        socials = ['facebook', 'vkontakte', 'twitter'];
+  var likelyContainer = (0, _dom.makeElement)('div', [CSS.likely, CSS.likelyCustom]),
+      socials = ['facebook', 'vkontakte', 'twitter'];
 
-    socials.forEach(function (social) {
-        var button = (0, _dom.makeElement)('div', social);
+  socials.forEach(function (social) {
+    var button = (0, _dom.makeElement)('div', social);
 
-        if (social === 'facebook') button.textContent = 'Поделиться';
+    if (social === 'facebook') button.textContent = 'Поделиться';
 
-        button.addEventListener('click', function () {
-            Analytics.sendEvent('Share ' + social);
-        });
-
-        likelyContainer.appendChild(button);
+    button.addEventListener('click', function () {
+      Analytics.sendEvent('Share ' + social);
     });
 
-    parentContainer.appendChild(likelyContainer);
+    likelyContainer.appendChild(button);
+  });
 
-    if (set.url) likelyContainer.dataset.url = set.url;
-    if (set.twitter) likelyContainer.dataset.twitter = set.twitter;
+  parentContainer.appendChild(likelyContainer);
 
-    init();
+  if (set.url) likelyContainer.dataset.url = set.url;
+  if (set.twitter) likelyContainer.dataset.twitter = set.twitter;
+
+  init();
 };
 
 /***/ }),
@@ -2349,7 +2348,7 @@ module.exports = function (value) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2374,123 +2373,123 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Base special constructor with common methods
  */
 var BaseSpecial = function () {
-    function BaseSpecial() {
-        _classCallCheck(this, BaseSpecial);
+  function BaseSpecial() {
+    _classCallCheck(this, BaseSpecial);
 
-        this.params = {
-            container: 'body',
-            analyticsCategory: null,
-            sendPageview: false,
-            listenedEvents: ['click'],
-            listenedKeys: []
-        };
+    this.params = {
+      container: 'body',
+      analyticsCategory: null,
+      sendPageview: false,
+      listenedEvents: ['click'],
+      listenedKeys: []
+    };
 
-        this.keyCodes = {
-            enter: 13
-        };
+    this.keyCodes = {
+      enter: 13
+    };
 
-        /**
+    /**
          * Construct image preloader module
          * @type {Preloader}
          */
-        this.preloader = new _preloader2.default();
-    }
+    this.preloader = new _preloader2.default();
+  }
 
-    /**
+  /**
      * Save custom params
      * @param {Object} params - params object with custom values
      */
 
 
-    _createClass(BaseSpecial, [{
-        key: 'saveParams',
-        value: function saveParams(params) {
-            _extends(this.params, params);
-            this.container = this.params.container;
-            this.addEventListeners();
-        }
+  _createClass(BaseSpecial, [{
+    key: 'saveParams',
+    value: function saveParams(params) {
+      _extends(this.params, params);
+      this.container = this.params.container;
+      this.addEventListeners();
+    }
+
+    /**
+       * Load css file
+       * @param {String} path
+       */
+
+  }, {
+    key: 'loadStyles',
+    value: function loadStyles(path) {
+      return new Promise(function (resolve) {
+        var link = document.createElement('link');
+
+        link.rel = 'stylesheet';
+        link.href = path;
+
+        link.onload = function () {
+          return resolve();
+        };
+
+        document.body.appendChild(link);
+      });
+    }
+
+    /**
+       * Add event listeners to document
+       */
+
+  }, {
+    key: 'addEventListeners',
+    value: function addEventListeners() {
+      var _this = this;
+
+      this.params.listenedEvents.forEach(function (eventName) {
+        _this.container.addEventListener(eventName, function (event) {
+          return _this.defaultEventHandler(event, eventName);
+        });
+      });
+    }
+
+    /**
+       * Default events handler
+       * @param {Object} event
+       * @param {String} eventName
+       */
+
+  }, {
+    key: 'defaultEventHandler',
+    value: function defaultEventHandler(event, eventName) {
+      /** Keydown event */
+      if (eventName === 'keydown' && this.params.listenedKeys.length > 0) {
+        this.params.listenedKeys.forEach(function (key) {
+          if (event.keyCode === key.code) {
+            key.action(event);
+          }
+        });
+
+        /** All other events, attached to elements */
+      } else {
+        var el = event.target;
 
         /**
-         * Load css file
-         * @param {String} path
-         */
+              * Bubble click
+              */
+        while (el) {
+          var action = el.dataset ? el.dataset[eventName] : null;
 
-    }, {
-        key: 'loadStyles',
-        value: function loadStyles(path) {
-            return new Promise(function (resolve, reject) {
-                var link = document.createElement('link');
+          if (action && this[action]) {
+            this[action](el, event);
+          }
 
-                link.rel = 'stylesheet';
-                link.href = path;
+          /** Send links clicks to analytics */
+          if (el.tagName && el.tagName.toLowerCase() === 'a') {
+            Analytics.sendEvent(el.href);
+          }
 
-                link.onload = function () {
-                    return resolve();
-                };
-
-                document.body.appendChild(link);
-            });
+          el = el.parentNode;
         }
+      }
+    }
+  }]);
 
-        /**
-         * Add event listeners to document
-         */
-
-    }, {
-        key: 'addEventListeners',
-        value: function addEventListeners() {
-            var _this = this;
-
-            this.params.listenedEvents.forEach(function (eventName) {
-                _this.container.addEventListener(eventName, function (event) {
-                    return _this.defaultEventHandler(event, eventName);
-                });
-            });
-        }
-
-        /**
-         * Default events handler
-         * @param {Object} event
-         * @param {String} eventName
-         */
-
-    }, {
-        key: 'defaultEventHandler',
-        value: function defaultEventHandler(event, eventName) {
-            /** Keydown event */
-            if (eventName === 'keydown' && this.params.listenedKeys.length > 0) {
-                this.params.listenedKeys.forEach(function (key) {
-                    if (event.keyCode === key.code) {
-                        key.action(event);
-                    }
-                });
-
-                /** All other events, attached to elements */
-            } else {
-                var el = event.target;
-
-                /**
-                * Bubble click
-                */
-                while (el) {
-                    var action = el.dataset ? el.dataset[eventName] : null;
-
-                    if (action && this[action]) {
-                        this[action](el, event);
-                    }
-
-                    /** Send links clicks to analytics */
-                    if (el.tagName && el.tagName.toLowerCase() === 'a') {
-                        Analytics.sendEvent(el.href);
-                    }
-
-                    el = el.parentNode;
-                }
-            }
-        }
-    }]);
-
-    return BaseSpecial;
+  return BaseSpecial;
 }();
 
 exports.default = BaseSpecial;
@@ -2503,7 +2502,7 @@ exports.default = BaseSpecial;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2522,84 +2521,84 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var Preloader = function () {
-    function Preloader() {
-        _classCallCheck(this, Preloader);
+  function Preloader() {
+    _classCallCheck(this, Preloader);
 
-        /**
+    /**
          * Internal cache
          * @type {{src: Image}}
          */
-        this.images = {};
-    }
+    this.images = {};
+  }
 
-    /**
+  /**
      * Loads Image
      * @param {string|string[]} urls - one or several URL to prelaod
      */
 
 
-    _createClass(Preloader, [{
-        key: 'load',
-        value: function load(urls) {
-            var _this = this;
+  _createClass(Preloader, [{
+    key: 'load',
+    value: function load(urls) {
+      var _this = this;
 
-            console.log('Preloader: start to load', urls);
-            if (Array.isArray(urls)) {
-                urls.forEach(function (url) {
-                    _this.loadOne(url);
-                });
-            } else {
-                this.loadOne(urls);
-            }
-        }
+      console.log('Preloader: start to load', urls);
+      if (Array.isArray(urls)) {
+        urls.forEach(function (url) {
+          _this.loadOne(url);
+        });
+      } else {
+        this.loadOne(urls);
+      }
+    }
 
-        /**
-         * Loads single image
-         * @param {string} url
-         */
+    /**
+       * Loads single image
+       * @param {string} url
+       */
 
-    }, {
-        key: 'loadOne',
-        value: function loadOne(url) {
-            if (this.images[url]) {
-                console.log('Preloader: already loaded %o', url);
-                return;
-            }
+  }, {
+    key: 'loadOne',
+    value: function loadOne(url) {
+      if (this.images[url]) {
+        console.log('Preloader: already loaded %o', url);
+        return;
+      }
 
-            var image = new Image();
+      var image = new Image();
 
-            image.src = url;
+      image.src = url;
 
-            console.time(url);
+      console.time(url);
 
-            image.onload = function () {
-                console.timeEnd(url);
-            };
+      image.onload = function () {
+        console.timeEnd(url);
+      };
 
-            image.onerror = function () {
-                console.timeEnd(url);
-                console.warn('image [%o] was not loaded', url);
-            };
+      image.onerror = function () {
+        console.timeEnd(url);
+        console.warn('image [%o] was not loaded', url);
+      };
 
-            this.images[url] = image;
-        }
+      this.images[url] = image;
+    }
 
-        /**
-         * Return loaded image
-         */
+    /**
+       * Return loaded image
+       */
 
-    }, {
-        key: 'get',
-        value: function get(url) {
-            if (!this.images[url]) {
-                this.loadOne(url);
-            }
+  }, {
+    key: 'get',
+    value: function get(url) {
+      if (!this.images[url]) {
+        this.loadOne(url);
+      }
 
-            return this.images[url];
-        }
-    }]);
+      return this.images[url];
+    }
+  }]);
 
-    return Preloader;
+  return Preloader;
 }();
 
 exports.default = Preloader;
@@ -2612,53 +2611,53 @@ exports.default = Preloader;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = {
-    title: 'Title',
-    task: 'task',
-    intro: 'Вы – офицер британской разведки, но не из тех, что учиняют диверсии во вражеском тылу или внедряются в высшие эшелоны власти. Ваш отдел ежедневно изучает десятки и сотни перехваченных сообщений, среди которых как рутинные доклады о снабжении, так и детали судьбоносных операций. Конечно же, всё это зашифровано, и ваша задача — раскусить коды противника, чтобы добраться до сути.',
-    outro: 'outro',
-    logoUrl: '',
-    promoUrl: '',
-    CTAText: 'Подключить',
-    questions: [{
-        text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
-        options: [{
-            text: 'Отряд утерян',
-            message: 'Увы, это не те слова. В конце передачи нацисты обычно писали «Хайль Гитлер».',
-            isCorrect: false
-        }, {
-            text: 'Хайль Гитлер',
-            message: 'Верно! Нацисты завершали этими словами почти все свои словесные передачи, так их и раскрыли.',
-            isCorrect: true
-        }, {
-            text: 'Слышу конвой',
-            message: 'Если бы речь шла только о подводном флоте, а так – нет. В конце передачи нацисты обычно писали «Хайль Гитлер».\n',
-            isCorrect: false
-        }, {
-            text: 'Взять живыми',
-            message: 'Совсем не то! В конце передачи нацисты обычно писали «Хайль Гитлер».\n',
-            isCorrect: false
-        }]
-    }],
-    results: [{
-        range: [0, 15],
-        title: 'А улитка не&nbsp;успела проползти и&nbsp;сантиметра пути',
-        cover: 'https://leonardo.osnova.io/83c4905f-bb75-919c-b4c4-4a8e87f944a8'
+  title: 'Title',
+  task: 'task',
+  intro: 'Вы – офицер британской разведки, но не из тех, что учиняют диверсии во вражеском тылу или внедряются в высшие эшелоны власти. Ваш отдел ежедневно изучает десятки и сотни перехваченных сообщений, среди которых как рутинные доклады о снабжении, так и детали судьбоносных операций. Конечно же, всё это зашифровано, и ваша задача — раскусить коды противника, чтобы добраться до сути.',
+  outro: 'outro',
+  logoUrl: '',
+  promoUrl: '',
+  CTAText: 'Подключить',
+  questions: [{
+    text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
+    options: [{
+      text: 'Отряд утерян',
+      message: 'Увы, это не те слова. В конце передачи нацисты обычно писали «Хайль Гитлер».',
+      isCorrect: false
     }, {
-        range: [15, 20],
-        title: 'Свет преодолел&nbsp;бы несколько миллионов километров',
-        cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
+      text: 'Хайль Гитлер',
+      message: 'Верно! Нацисты завершали этими словами почти все свои словесные передачи, так их и раскрыли.',
+      isCorrect: true
     }, {
-        range: [20, 30],
-        title: 'А комар успел 10&nbsp;тысяч раз взмахнуть крыльями',
-        cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
+      text: 'Слышу конвой',
+      message: 'Если бы речь шла только о подводном флоте, а так – нет. В конце передачи нацисты обычно писали «Хайль Гитлер».\n',
+      isCorrect: false
     }, {
-        range: [30, 99999],
-        title: 'За это время сын маминой подруги успел&nbsp;бы прославиться',
-        cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
+      text: 'Взять живыми',
+      message: 'Совсем не то! В конце передачи нацисты обычно писали «Хайль Гитлер».\n',
+      isCorrect: false
     }]
+  }],
+  results: [{
+    range: [0, 15],
+    title: 'А улитка не&nbsp;успела проползти и&nbsp;сантиметра пути',
+    cover: 'https://leonardo.osnova.io/83c4905f-bb75-919c-b4c4-4a8e87f944a8'
+  }, {
+    range: [15, 20],
+    title: 'Свет преодолел&nbsp;бы несколько миллионов километров',
+    cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
+  }, {
+    range: [20, 30],
+    title: 'А комар успел 10&nbsp;тысяч раз взмахнуть крыльями',
+    cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
+  }, {
+    range: [30, 99999],
+    title: 'За это время сын маминой подруги успел&nbsp;бы прославиться',
+    cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
+  }]
 };
 
 /***/ }),
@@ -2669,12 +2668,12 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = {
-    logo: '<svg width="100" height="18" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="#00B856" fill-rule="nonzero"><path d="M9.916.073V9.17c0 .425-.327.72-.72.72h-1.08c-.065 0-.098.065-.098.098v7.626c.262 0 .524.065.818.065 4.877 0 8.837-3.96 8.837-8.836 0-4.484-3.371-8.248-7.757-8.771zM9.72 13.687a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08.065.59-.458 1.08-1.08 1.08zm2.585 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08 0 .557-.425 1.08-1.08 1.08zm2.619 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.523-1.08 1.08-1.08.621 0 1.08.524 1.08 1.08a1.09 1.09 0 0 1-1.08 1.08z"/><path d="M8.836.04C3.96.04 0 4 0 8.876c0 4.288 2.978 7.79 6.97 8.608V9.53c0-.36.328-.655.655-.72h1.08c.066 0 .099-.065.099-.098L8.836.04zM7.135 7.306a1.09 1.09 0 0 1-1.08-1.08c0-.622.523-1.08 1.08-1.08.621 0 1.08.523 1.08 1.08 0 .556-.491 1.08-1.08 1.08z"/><g><path d="M97.298 4.851v3.338h-4.45V4.851h-2.259v8.836h2.258V10.12h4.451v3.567h2.193V4.851zM60.513 5.866c-.36-.786-1.08-1.211-1.8-1.211s-1.473.425-1.8 1.21l-3.568 7.855h2.357l.785-1.865h4.582l.786 1.865h2.356l-3.698-7.854zm-3.404 4.221l1.342-3.24c.065-.098.098-.098.164-.098.065 0 .163 0 .163.098l1.342 3.24h-3.01zM34.2 3.28c-1.047 0-1.702.556-2.193 1.67l-2.847 6.643-2.88-6.677c-.458-1.08-1.145-1.669-2.193-1.669-.982 0-1.963.655-1.963 2.193v8.215h2.192v-7.92l2.913 6.578c.36.949 1.047 1.505 1.931 1.505.95 0 1.57-.556 1.93-1.505l2.914-6.578v8.018h2.192V5.538C36.164 4 35.182 3.28 34.2 3.28zM40.058 11.822c-.098 0-.229-.098-.229-.23v-1.57h5.498v-1.8H39.83V6.88c0-.098.098-.229.23-.229h5.465V4.786h-6.546c-.785 0-1.309.621-1.309 1.309v6.185c0 .655.556 1.31 1.31 1.31h6.545v-1.866h-5.466v.098zM49.222 13.687V6.946c0-.099.098-.23.229-.23h5.465V4.851h-6.545c-.786 0-1.31.622-1.31 1.31v7.494l2.16.032zM89.15 9.302c0-3.076-1.343-4.516-4.68-4.516h-.786c-3.339 0-4.68 1.472-4.68 4.516 0 3.01 1.341 4.516 4.68 4.516h.72c3.403-.065 4.745-1.505 4.745-4.516zm-4.746 2.65h-.72c-1.8 0-2.553-.817-2.553-2.65 0-1.767.622-2.651 2.553-2.651h.72c1.865 0 2.552.884 2.552 2.65 0 1.8-.687 2.652-2.552 2.652zM72.884 3.476h-4.386c-3.273 0-4.582 1.67-4.582 4.517 0 .458.066.883.099 1.243.36 2.03 1.57 3.273 4.614 3.273h.982v1.146h2.193v-1.146h.949c3.076 0 4.287-1.243 4.614-3.273a7.1 7.1 0 0 0 .098-1.243c-.032-2.847-1.374-4.517-4.581-4.517zm-3.339 7.2h-.981c-1.506 0-2.03-.556-2.357-1.472-.098-.328-.098-.786-.098-1.244 0-1.865.884-2.65 2.127-2.65h1.342v5.366h-.033zm5.63-1.374c-.328.884-.884 1.473-2.357 1.473h-.982v-5.4h1.342c1.244 0 2.127.785 2.127 2.65-.032.491-.032.884-.13 1.277z"/></g></g></g></svg>',
-    restart: '<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M17.475 1.102c-.305-.127-.566-.074-.782.157L15.239 2.7A8.682 8.682 0 0 0 12.505.95a8.427 8.427 0 0 0-3.18-.62 8.352 8.352 0 0 0-3.333.682 8.66 8.66 0 0 0-2.74 1.833 8.67 8.67 0 0 0-1.833 2.74 8.35 8.35 0 0 0-.682 3.332c0 1.163.227 2.273.682 3.332a8.673 8.673 0 0 0 1.833 2.74 8.672 8.672 0 0 0 2.74 1.833 8.352 8.352 0 0 0 3.332.682c1.282 0 2.501-.27 3.656-.811a8.383 8.383 0 0 0 2.952-2.286.364.364 0 0 0 .084-.252.309.309 0 0 0-.106-.229l-1.532-1.543a.43.43 0 0 0-.28-.1c-.119.014-.204.059-.257.134a5.61 5.61 0 0 1-2.001 1.644 5.64 5.64 0 0 1-2.516.58 5.57 5.57 0 0 1-2.22-.452 5.752 5.752 0 0 1-1.827-1.224 5.777 5.777 0 0 1-1.225-1.829A5.568 5.568 0 0 1 3.6 8.918c0-.775.15-1.515.452-2.22a5.756 5.756 0 0 1 1.225-1.827 5.76 5.76 0 0 1 1.828-1.225 5.57 5.57 0 0 1 2.22-.453c1.498 0 2.798.51 3.902 1.532l-1.544 1.543c-.23.224-.283.48-.156.771.127.298.346.448.66.448h5.009a.69.69 0 0 0 .503-.213.688.688 0 0 0 .212-.503V1.762c0-.313-.145-.533-.436-.66z" fill-rule="evenodd"/></svg>',
-    next: '<svg width="26" height="20" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M15.376 0l-2.334 2.333L20.71 10l-7.667 7.667L15.376 20l10-10z" fill-rule="nonzero"/><path d="M.642 8.155h21.715v3.691H.642z"/></g></svg>'
+  logo: '<svg width="100" height="18" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="#00B856" fill-rule="nonzero"><path d="M9.916.073V9.17c0 .425-.327.72-.72.72h-1.08c-.065 0-.098.065-.098.098v7.626c.262 0 .524.065.818.065 4.877 0 8.837-3.96 8.837-8.836 0-4.484-3.371-8.248-7.757-8.771zM9.72 13.687a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08.065.59-.458 1.08-1.08 1.08zm2.585 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08 0 .557-.425 1.08-1.08 1.08zm2.619 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.523-1.08 1.08-1.08.621 0 1.08.524 1.08 1.08a1.09 1.09 0 0 1-1.08 1.08z"/><path d="M8.836.04C3.96.04 0 4 0 8.876c0 4.288 2.978 7.79 6.97 8.608V9.53c0-.36.328-.655.655-.72h1.08c.066 0 .099-.065.099-.098L8.836.04zM7.135 7.306a1.09 1.09 0 0 1-1.08-1.08c0-.622.523-1.08 1.08-1.08.621 0 1.08.523 1.08 1.08 0 .556-.491 1.08-1.08 1.08z"/><g><path d="M97.298 4.851v3.338h-4.45V4.851h-2.259v8.836h2.258V10.12h4.451v3.567h2.193V4.851zM60.513 5.866c-.36-.786-1.08-1.211-1.8-1.211s-1.473.425-1.8 1.21l-3.568 7.855h2.357l.785-1.865h4.582l.786 1.865h2.356l-3.698-7.854zm-3.404 4.221l1.342-3.24c.065-.098.098-.098.164-.098.065 0 .163 0 .163.098l1.342 3.24h-3.01zM34.2 3.28c-1.047 0-1.702.556-2.193 1.67l-2.847 6.643-2.88-6.677c-.458-1.08-1.145-1.669-2.193-1.669-.982 0-1.963.655-1.963 2.193v8.215h2.192v-7.92l2.913 6.578c.36.949 1.047 1.505 1.931 1.505.95 0 1.57-.556 1.93-1.505l2.914-6.578v8.018h2.192V5.538C36.164 4 35.182 3.28 34.2 3.28zM40.058 11.822c-.098 0-.229-.098-.229-.23v-1.57h5.498v-1.8H39.83V6.88c0-.098.098-.229.23-.229h5.465V4.786h-6.546c-.785 0-1.309.621-1.309 1.309v6.185c0 .655.556 1.31 1.31 1.31h6.545v-1.866h-5.466v.098zM49.222 13.687V6.946c0-.099.098-.23.229-.23h5.465V4.851h-6.545c-.786 0-1.31.622-1.31 1.31v7.494l2.16.032zM89.15 9.302c0-3.076-1.343-4.516-4.68-4.516h-.786c-3.339 0-4.68 1.472-4.68 4.516 0 3.01 1.341 4.516 4.68 4.516h.72c3.403-.065 4.745-1.505 4.745-4.516zm-4.746 2.65h-.72c-1.8 0-2.553-.817-2.553-2.65 0-1.767.622-2.651 2.553-2.651h.72c1.865 0 2.552.884 2.552 2.65 0 1.8-.687 2.652-2.552 2.652zM72.884 3.476h-4.386c-3.273 0-4.582 1.67-4.582 4.517 0 .458.066.883.099 1.243.36 2.03 1.57 3.273 4.614 3.273h.982v1.146h2.193v-1.146h.949c3.076 0 4.287-1.243 4.614-3.273a7.1 7.1 0 0 0 .098-1.243c-.032-2.847-1.374-4.517-4.581-4.517zm-3.339 7.2h-.981c-1.506 0-2.03-.556-2.357-1.472-.098-.328-.098-.786-.098-1.244 0-1.865.884-2.65 2.127-2.65h1.342v5.366h-.033zm5.63-1.374c-.328.884-.884 1.473-2.357 1.473h-.982v-5.4h1.342c1.244 0 2.127.785 2.127 2.65-.032.491-.032.884-.13 1.277z"/></g></g></g></svg>',
+  restart: '<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M17.475 1.102c-.305-.127-.566-.074-.782.157L15.239 2.7A8.682 8.682 0 0 0 12.505.95a8.427 8.427 0 0 0-3.18-.62 8.352 8.352 0 0 0-3.333.682 8.66 8.66 0 0 0-2.74 1.833 8.67 8.67 0 0 0-1.833 2.74 8.35 8.35 0 0 0-.682 3.332c0 1.163.227 2.273.682 3.332a8.673 8.673 0 0 0 1.833 2.74 8.672 8.672 0 0 0 2.74 1.833 8.352 8.352 0 0 0 3.332.682c1.282 0 2.501-.27 3.656-.811a8.383 8.383 0 0 0 2.952-2.286.364.364 0 0 0 .084-.252.309.309 0 0 0-.106-.229l-1.532-1.543a.43.43 0 0 0-.28-.1c-.119.014-.204.059-.257.134a5.61 5.61 0 0 1-2.001 1.644 5.64 5.64 0 0 1-2.516.58 5.57 5.57 0 0 1-2.22-.452 5.752 5.752 0 0 1-1.827-1.224 5.777 5.777 0 0 1-1.225-1.829A5.568 5.568 0 0 1 3.6 8.918c0-.775.15-1.515.452-2.22a5.756 5.756 0 0 1 1.225-1.827 5.76 5.76 0 0 1 1.828-1.225 5.57 5.57 0 0 1 2.22-.453c1.498 0 2.798.51 3.902 1.532l-1.544 1.543c-.23.224-.283.48-.156.771.127.298.346.448.66.448h5.009a.69.69 0 0 0 .503-.213.688.688 0 0 0 .212-.503V1.762c0-.313-.145-.533-.436-.66z" fill-rule="evenodd"/></svg>',
+  next: '<svg width="26" height="20" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M15.376 0l-2.334 2.333L20.71 10l-7.667 7.667L15.376 20l10-10z" fill-rule="nonzero"/><path d="M.642 8.155h21.715v3.691H.642z"/></g></svg>'
 };
 
 /***/ }),
@@ -2685,18 +2684,18 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = {
 
-    set: function set(b, e, m) {
-        var cname = b;
+  set: function set(b, e, m) {
+    var cname = b;
 
-        if (e) cname += "__" + e;
-        if (m) cname += "--" + m;
+    if (e) cname += "__" + e;
+    if (m) cname += "--" + m;
 
-        return cname;
-    }
+    return cname;
+  }
 
 };
 
@@ -2708,17 +2707,17 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 var BREAKPOINTS = {
-    mobile: 680
+  mobile: 680
 };
 
 /**
  * Check if screen size is mobile
  */
 var isMobile = exports.isMobile = function isMobile() {
-    return !window.matchMedia("(min-width: " + BREAKPOINTS.mobile + "px)").matches;
+  return !window.matchMedia("(min-width: " + BREAKPOINTS.mobile + "px)").matches;
 };
 
 /***/ }),
@@ -2729,7 +2728,7 @@ var isMobile = exports.isMobile = function isMobile() {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -2739,15 +2738,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
  * @param {Array} array
  */
 var getMostFrequentValue = exports.getMostFrequentValue = function getMostFrequentValue(array) {
-    var result = [].concat(_toConsumableArray(array));
+  var result = [].concat(_toConsumableArray(array));
 
-    return result.sort(function (a, b) {
-        return result.filter(function (v) {
-            return v === a;
-        }).length - result.filter(function (v) {
-            return v === b;
-        }).length;
-    }).pop();
+  return result.sort(function (a, b) {
+    return result.filter(function (v) {
+      return v === a;
+    }).length - result.filter(function (v) {
+      return v === b;
+    }).length;
+  }).pop();
 };
 
 /**
@@ -2755,16 +2754,16 @@ var getMostFrequentValue = exports.getMostFrequentValue = function getMostFreque
  * @param {Array} array
  */
 var shuffle = exports.shuffle = function shuffle(array) {
-    var j = void 0,
-        x = void 0,
-        i = void 0;
+  var j = void 0,
+      x = void 0,
+      i = void 0;
 
-    for (i = array.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = array[i];
-        array[i] = array[j];
-        array[j] = x;
-    }
+  for (i = array.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = array[i];
+    array[i] = array[j];
+    array[j] = x;
+  }
 };
 
 /**
@@ -2772,7 +2771,7 @@ var shuffle = exports.shuffle = function shuffle(array) {
  * @param {NodeList} nodeList
  */
 var toArray = exports.toArray = function toArray(nodeList) {
-    return Array.prototype.slice.call(nodeList);
+  return Array.prototype.slice.call(nodeList);
 };
 
 /***/ }),
@@ -2783,7 +2782,7 @@ var toArray = exports.toArray = function toArray(nodeList) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2793,11 +2792,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * @param {Array} urls - array of images urls
  */
 var preloadImages = exports.preloadImages = function preloadImages(urls) {
-    urls.forEach(function (url) {
-        var image = new Image();
+  urls.forEach(function (url) {
+    var image = new Image();
 
-        image.src = url;
-    });
+    image.src = url;
+  });
 };
 
 /**
@@ -2806,17 +2805,17 @@ var preloadImages = exports.preloadImages = function preloadImages(urls) {
  * @param {Array} words - array of 3 words
  */
 var declineWord = exports.declineWord = function declineWord(number, words) {
-    var result = number + '&nbsp;';
+  var result = number + '&nbsp;';
 
-    if (number % 10 == 1 && number % 100 != 11) {
-        result += words[0];
-    } else if ([2, 3, 4].indexOf(number % 10) > -1 && [12, 13, 14].indexOf(number % 100) < 0) {
-        result += words[1];
-    } else {
-        result += words[2];
-    }
+  if (number % 10 == 1 && number % 100 != 11) {
+    result += words[0];
+  } else if ([2, 3, 4].indexOf(number % 10) > -1 && [12, 13, 14].indexOf(number % 100) < 0) {
+    result += words[1];
+  } else {
+    result += words[2];
+  }
 
-    return result;
+  return result;
 };
 
 /**
@@ -2825,9 +2824,9 @@ var declineWord = exports.declineWord = function declineWord(number, words) {
  * @param {String} string - string to insert after thousands. Non-breaking space by default
  */
 var formatNumber = exports.formatNumber = function formatNumber(number) {
-    var string = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '&nbsp;';
+  var string = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '&nbsp;';
 
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, string);
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, string);
 };
 
 /**
@@ -2836,39 +2835,39 @@ var formatNumber = exports.formatNumber = function formatNumber(number) {
  * @param {Number} offset - offset from top
  */
 var scrollToElement = exports.scrollToElement = function scrollToElement(element) {
-    var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-    var y = element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - offset;
+  var y = element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - offset;
 
-    window.scroll(0, y);
+  window.scroll(0, y);
 };
 
 var copyToClipboard = exports.copyToClipboard = function copyToClipboard(string, callback) {
-    var input = document.createElement('textarea'),
-        isSuccess = false;
+  var input = document.createElement('textarea'),
+      isSuccess = false;
 
-    _extends(input.style, {
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        opacity: '0'
-    });
+  _extends(input.style, {
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    opacity: '0'
+  });
 
-    input.value = string;
+  input.value = string;
 
-    document.body.appendChild(input);
+  document.body.appendChild(input);
 
-    input.select();
+  input.select();
 
-    try {
-        var copy = document.execCommand('copy');
+  try {
+    document.execCommand('copy');
 
-        isSuccess = true;
-    } catch (e) {}
+    isSuccess = true;
+  } catch (e) {}
 
-    document.body.removeChild(input);
+  document.body.removeChild(input);
 
-    callback(isSuccess);
+  callback(isSuccess);
 };
 
 /***/ }),

@@ -1,12 +1,12 @@
 export default {
 
-    set: (b, e, m) => {
-        let cname = b;
+  set: (b, e, m) => {
+    let cname = b;
 
-        if (e) cname += `__${e}`;
-        if (m) cname += `--${m}`;
+    if (e) cname += `__${e}`;
+    if (m) cname += `--${m}`;
 
-        return cname;
-    }
+    return cname;
+  }
 
 };

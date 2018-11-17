@@ -83,5 +83,6 @@
         "Symbol": true,
         "setTimeout": true,
         "Image": true,
+        "IS_PRODUCTION": true
     }
 }
