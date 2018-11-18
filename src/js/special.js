@@ -495,7 +495,7 @@ class Special extends BaseSpecial {
             this.makeOptionMessage(response.data.message);
 
             if (this.activeIndex >= this.totalLength - 1) {
-              this.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
+              this.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
             } else {
               this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
             }
@@ -516,6 +516,19 @@ class Special extends BaseSpecial {
       .catch((error) => {
         console.log('Check answer error', error);
       });
+  }
+
+  /**
+   * Shows conclusion scene
+   */
+  makeConclusion() {
+    this.updateMode('conclusion');
+    this.nodes.counter.textContent = '— ЗАКЛЮЧЕНИЕ —';
+    this.nodes.mainText.innerHTML = DATA.conclusion;
+
+    removeChildren(this.nodes.options);
+    removeChildren(this.nodes.actions);
+    this.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
   }
 
   /**
