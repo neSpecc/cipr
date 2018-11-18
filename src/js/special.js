@@ -24,9 +24,11 @@
  */
 
 /**
- * @todo remove after refactoring
+ * @typedef {object} result
+ * @property {array} range - [1, 3]
+ * @property {string} title - 'Вы белка'
+ * @property {string} message - '6 из 7 правильныйх ответов'
  */
-let CSS = {};
 
 /**
  * Dependencies
@@ -42,26 +44,11 @@ import BaseSpecial from './base';
 import ajax from '@codexteam/ajax';
 
 import DATA from './data';
-import Svg from './svg';
-import Bem from './bem';
-import {
-  prepend,
-  make,
-  removeChildren,
-} from './lib/dom';
-
-import {
-  isMobile
-} from './lib/check';
-
-import {
-  shuffle
-} from './lib/array';
-
-import {
-  scrollToElement,
-  declineWord
-} from './lib/helper';
+import SVG from './svg';
+import { prepend, make, removeChildren } from './lib/dom';
+import { isMobile } from './lib/check';
+import { shuffle } from './lib/array';
+import { scrollToElement } from './lib/helper';
 
 /**
  * Special constructor
@@ -85,9 +72,20 @@ class Special extends BaseSpecial {
       options: null,
       optionsItems: [],
       actions: null,
+      resultsButton: null,
     };
 
     this.setDefaultValues();
+  }
+
+  /**
+   * Parametres uses in app
+   */
+  setDefaultValues() {
+    this.activeIndex = 0;
+    this.totalLength = DATA.questions.length;
+    this.userPoints = 0;
+    this.isPending = false;
   }
 
   /**
@@ -107,6 +105,11 @@ class Special extends BaseSpecial {
     }
   }
 
+  /**
+   *
+   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
+   * @constructor
+   */
   static get CSS() {
     return {
       wrapper: 'bf-special',
@@ -132,8 +135,13 @@ class Special extends BaseSpecial {
 
       title: 'bf-special__title',
       button: 'bf-special__button',
+      buttonSecond: 'bf-special__button--second',
       introText: 'bf-special__intro',
 
+      result: 'bf-special__result',
+      resultContent: 'bf-special__result-content',
+      resultActions: 'bf-special__result-actions',
+      resultButton: 'bf-special__result-button',
     };
   }
 
@@ -397,8 +405,6 @@ class Special extends BaseSpecial {
               this.makeOptionMessage(response.data.message);
 
               if (this.activeIndex >= this.totalLength - 1) {
-                this.findResult();
-
                 this.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
               } else {
                 this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
@@ -427,26 +433,119 @@ class Special extends BaseSpecial {
     this.nodes.options.appendChild(messageEl);
   }
 
+  /**
+   * Creates results screen
+   */
+  makeResult() {
+    /**
+     * @type {result}
+     */
+    let data = this.findResult();
+
+    this.updateMode('result');
+
+    let result = make('div', Special.CSS.result),
+      resultContent = make('div', Special.CSS.resultContent),
+      resultActions = make('div', Special.CSS.resultActions);
+
+    // result.style.backgroundImage = `url(${this.imageUrl(data.cover)})`;
+
+    this.nodes.mainText.innerHTML = DATA.outro;
+    removeChildren(this.nodes.options);
+    removeChildren(this.nodes.actions);
+
+    resultContent.innerHTML = `
+      ${data.message}
+      <p>${data.title}</p>
+    `;
+
+    result.appendChild(resultContent);
+    resultContent.appendChild(resultActions);
+    prepend(this.nodes.content, result);
+
+    Share.create(resultActions, {
+      url: `${CONFIG.share.url}/${this.userPoints}`,
+      twitter: CONFIG.share.twitter
+    });
+
+    this.nodes.resultsButton = make('div', [Special.CSS.button, Special.CSS.buttonSecond], {
+      innerHTML: `${SVG.trophy} РЕЗУЛЬТАТЫ ДРУГИХ ПОЛЬЗОВАТЕЛЕЙ`,
+      data: {
+        click: 'showResults'
+      }
+    });
+
+    result.appendChild(this.nodes.resultsButton);
 
 
+    // this.nodes.actions.appendChild(make('span', Special.CSS.button, {
+    //   textContent: 'ПРОЙТИ ЕЩЕ РАЗ',
+    //   data: {
+    //     click: 'restart'
+    //   }
+    // }));
+    this.nodes.actions.appendChild(make('a', Special.CSS.button, {
+      href: DATA.promoUrl,
+      target: '_blank',
+      textContent: DATA.CTAText
+    }));
 
+    if (isMobile()) scrollToElement(this.container);
 
-
-
-
-
-
-
-
-
-  setDefaultValues() {
-    this.activeIndex = 0;
-    this.totalLength = DATA.questions.length;
-    this.userPoints = 0;
-    this.messages = {};
-    this.isPending = false;
-    this.timer = null;
+    Analytics.sendEvent('Result screen', 'Hit');
+    Analytics.sendEvent(`Result ${this.userPoints} screen`, 'Hit');
   }
+
+  /**
+   * Get result by users points
+   * @return {result}
+   */
+  findResult() {
+    let results = DATA.results,
+      finalResult = null;
+
+    for (let result of results) {
+      if (this.userPoints >= result.range[0] && this.userPoints <= result.range[1]) {
+        finalResult = result;
+        break;
+      }
+    }
+
+    finalResult.message =`${this.userPoints} из ${this.totalLength} разгаданных шифров`;
+    // finalResult.message =`${this.userPoints} их ${this.totalLength} ${declineWord(this.userPoints, ['правильный ответ', 'правильных ответа', 'правильных ответов'])}`;
+
+    return finalResult;
+  }
+
+  /**
+   * Start game from first question
+   */
+  restart() {
+    this.setDefaultValues();
+    this.updateMode('progress');
+
+    removeChildren(this.nodes.content);
+    this.nodes.content.appendChild(this.nodes.mainText);
+    this.nodes.content.appendChild(this.nodes.options);
+    this.nodes.content.appendChild(this.nodes.actions);
+
+    this.makeQuestion(0);
+
+    Analytics.sendEvent('Restart button', 'Click');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   keydownHandler(event) {
     if (event.target === this.container && event.keyCode === this.keyCodes.enter) {
@@ -470,35 +569,6 @@ class Special extends BaseSpecial {
 
 
   /**
-     * @typedef {object} result
-     * @property {array} range - [1, 3]
-     * @property {string} title - 'Вы белка'
-     * @property {string} message - 'Вы набрали 2 очков за 15 секунд'
-     * @property {string} image  - 'adad.png'
-     */
-
-  /**
-     * @return {result}
-     */
-  findResult() {
-    let results = DATA.results,
-      finalResult = null;
-
-    let secondsWasted = Math.floor(this.timerValue / 10);
-
-    for (let result of results) {
-      if (secondsWasted >= result.range[0] && secondsWasted <= result.range[1]) {
-        finalResult = result;
-        break;
-      }
-    }
-
-    finalResult.message =`Я угадал ${declineWord(this.userPoints, ['пару', 'пары', 'пар'])} за ${declineWord(secondsWasted, ['секунду', 'секунды', 'секунд'])}`;
-
-    return finalResult;
-  }
-
-  /**
      * Format image URL: add static URL if need
      * @param {string} url
      */
@@ -508,78 +578,6 @@ class Special extends BaseSpecial {
     }
 
     return this.staticURL + url;
-  }
-
-  makeResult() {
-    /**
-         * @type {result}
-         */
-    let data = this.findResult();
-
-    let secondsWasted = Math.floor(this.timerValue / 10);
-
-    this.stopTimer();
-
-    let result = make('div', Bem.set(CSS.main, 'result')),
-      resultContent = make('div', Bem.set(CSS.main, 'resultContent')),
-      resultActions = make('div', Bem.set(CSS.main, 'resultActions')),
-      restartButton = make('div', Bem.set(CSS.main, 'restartButton'), {
-        data: {
-          click: 'restart'
-        }
-      });
-
-    this.updateMode('result');
-
-    result.style.backgroundImage = `url(${this.imageUrl(data.cover)})`;
-
-    this.mainText.innerHTML = `
-            <div class="${Bem.set(CSS.main, 'text-content')}">
-                <div class="${Bem.set(CSS.main, 'text-body')}">${DATA.outro}</div>\
-                <a class="${Bem.set(CSS.main, 'button')}" href="${DATA.promoUrl}" target="_blank">
-                    <span class="${Bem.set(CSS.main, 'button-content')}">
-                        ${DATA.CTAText}
-                    </span>
-                </a>
-            </div>
-        `;
-    removeChildren(this.mainOptions);
-    removeChildren(this.mainActions);
-
-    resultContent.innerHTML = `<div class="${Bem.set(CSS.main, 'resultPoints')}">${data.message}</div>
-            <div class="${Bem.set(CSS.main, 'title')}">${data.title}</div>`;
-    result.appendChild(resultContent);
-    resultContent.appendChild(resultActions);
-    prepend(this.content, result);
-
-
-    Share.make(resultActions, {
-      url: `${CONFIG.share.url}/${this.userPoints}/${secondsWasted}`,
-      twitter: CONFIG.share.twitter
-    });
-
-    restartButton.innerHTML = 'Пройти ещё раз' + Svg.restart;
-    resultActions.appendChild(restartButton);
-
-    if (isMobile()) scrollToElement(this.container);
-
-    Analytics.sendEvent('Result screen', 'Hit');
-    Analytics.sendEvent(`Result ${this.userPoints} screen`, 'Hit');
-  }
-
-  restart() {
-    this.setDefaultValues();
-    this.updateMode('progress');
-
-    removeChildren(this.content);
-    this.content.appendChild(this.timerWrapper);
-    this.content.appendChild(this.mainText);
-    this.content.appendChild(this.mainOptions);
-    this.content.appendChild(this.mainActions);
-
-    this.makeQuestion(0);
-
-    Analytics.sendEvent('Restart button', 'Click');
   }
 }
 

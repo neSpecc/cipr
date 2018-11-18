@@ -791,10 +791,6 @@ var _svg = __webpack_require__(33);
 
 var _svg2 = _interopRequireDefault(_svg);
 
-var _bem = __webpack_require__(34);
-
-var _bem2 = _interopRequireDefault(_bem);
-
 var _dom = __webpack_require__(7);
 
 var _check = __webpack_require__(35);
@@ -839,9 +835,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  */
 
 /**
- * @todo remove after refactoring
+ * @typedef {object} result
+ * @property {array} range - [1, 3]
+ * @property {string} title - 'Вы белка'
+ * @property {string} message - '6 из 7 правильныйх ответов'
  */
-var CSS = {};
 
 /**
  * Dependencies
@@ -875,7 +873,8 @@ var Special = function (_BaseSpecial) {
       mainText: null,
       options: null,
       optionsItems: [],
-      actions: null
+      actions: null,
+      resultsButton: null
     };
 
     _this.setDefaultValues();
@@ -883,12 +882,25 @@ var Special = function (_BaseSpecial) {
   }
 
   /**
-   * App stated
-   * @param {InitParams} params
+   * Parametres uses in app
    */
 
 
   _createClass(Special, [{
+    key: 'setDefaultValues',
+    value: function setDefaultValues() {
+      this.activeIndex = 0;
+      this.totalLength = _data2.default.questions.length;
+      this.userPoints = 0;
+      this.isPending = false;
+    }
+
+    /**
+     * App stated
+     * @param {InitParams} params
+     */
+
+  }, {
     key: 'init',
     value: function init() {
       var _this2 = this;
@@ -908,6 +920,13 @@ var Special = function (_BaseSpecial) {
         });
       }
     }
+
+    /**
+     *
+     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
+     * @constructor
+     */
+
   }, {
     key: 'render',
 
@@ -1192,8 +1211,6 @@ var Special = function (_BaseSpecial) {
             _this5.makeOptionMessage(response.data.message);
 
             if (_this5.activeIndex >= _this5.totalLength - 1) {
-              _this5.findResult();
-
               _this5.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
             } else {
               _this5.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
@@ -1223,51 +1240,79 @@ var Special = function (_BaseSpecial) {
 
       this.nodes.options.appendChild(messageEl);
     }
+
+    /**
+     * Creates results screen
+     */
+
   }, {
-    key: 'setDefaultValues',
-    value: function setDefaultValues() {
-      this.activeIndex = 0;
-      this.totalLength = _data2.default.questions.length;
-      this.userPoints = 0;
-      this.messages = {};
-      this.isPending = false;
-      this.timer = null;
-    }
-  }, {
-    key: 'keydownHandler',
-    value: function keydownHandler(event) {
-      if (event.target === this.container && event.keyCode === this.keyCodes.enter) {
-        if (this.mode === 'start') {
-          this.start();
-        } else if (this.mode === 'progress' && this.isPending) {
-          if (this.activeIndex >= this.totalLength) {
-            this.makeResult();
-          } else {
-            this.makeQuestion();
-          }
+    key: 'makeResult',
+    value: function makeResult() {
+      /**
+       * @type {result}
+       */
+      var data = this.findResult();
+
+      this.updateMode('result');
+
+      var result = (0, _dom.make)('div', Special.CSS.result),
+          resultContent = (0, _dom.make)('div', Special.CSS.resultContent),
+          resultActions = (0, _dom.make)('div', Special.CSS.resultActions);
+
+      // result.style.backgroundImage = `url(${this.imageUrl(data.cover)})`;
+
+      this.nodes.mainText.innerHTML = _data2.default.outro;
+      (0, _dom.removeChildren)(this.nodes.options);
+      (0, _dom.removeChildren)(this.nodes.actions);
+
+      resultContent.innerHTML = '\n      ' + data.message + '\n      <p>' + data.title + '</p>\n    ';
+
+      result.appendChild(resultContent);
+      resultContent.appendChild(resultActions);
+      (0, _dom.prepend)(this.nodes.content, result);
+
+      Share.create(resultActions, {
+        url: CONFIG.share.url + '/' + this.userPoints,
+        twitter: CONFIG.share.twitter
+      });
+
+      this.nodes.resultsButton = (0, _dom.make)('div', [Special.CSS.button, Special.CSS.buttonSecond], {
+        innerHTML: _svg2.default.trophy + ' \u0420\u0415\u0417\u0423\u041B\u042C\u0422\u0410\u0422\u042B \u0414\u0420\u0423\u0413\u0418\u0425 \u041F\u041E\u041B\u042C\u0417\u041E\u0412\u0410\u0422\u0415\u041B\u0415\u0419',
+        data: {
+          click: 'showResults'
         }
-      }
+      });
+
+      result.appendChild(this.nodes.resultsButton);
+
+      // this.nodes.actions.appendChild(make('span', Special.CSS.button, {
+      //   textContent: 'ПРОЙТИ ЕЩЕ РАЗ',
+      //   data: {
+      //     click: 'restart'
+      //   }
+      // }));
+      this.nodes.actions.appendChild((0, _dom.make)('a', Special.CSS.button, {
+        href: _data2.default.promoUrl,
+        target: '_blank',
+        textContent: _data2.default.CTAText
+      }));
+
+      if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
+
+      Analytics.sendEvent('Result screen', 'Hit');
+      Analytics.sendEvent('Result ' + this.userPoints + ' screen', 'Hit');
     }
 
     /**
-       * @typedef {object} result
-       * @property {array} range - [1, 3]
-       * @property {string} title - 'Вы белка'
-       * @property {string} message - 'Вы набрали 2 очков за 15 секунд'
-       * @property {string} image  - 'adad.png'
-       */
-
-    /**
-       * @return {result}
-       */
+     * Get result by users points
+     * @return {result}
+     */
 
   }, {
     key: 'findResult',
     value: function findResult() {
       var results = _data2.default.results,
           finalResult = null;
-
-      var secondsWasted = Math.floor(this.timerValue / 10);
 
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
@@ -1277,7 +1322,7 @@ var Special = function (_BaseSpecial) {
         for (var _iterator = results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var result = _step.value;
 
-          if (secondsWasted >= result.range[0] && secondsWasted <= result.range[1]) {
+          if (this.userPoints >= result.range[0] && this.userPoints <= result.range[1]) {
             finalResult = result;
             break;
           }
@@ -1297,9 +1342,45 @@ var Special = function (_BaseSpecial) {
         }
       }
 
-      finalResult.message = '\u042F \u0443\u0433\u0430\u0434\u0430\u043B ' + (0, _helper.declineWord)(this.userPoints, ['пару', 'пары', 'пар']) + ' \u0437\u0430 ' + (0, _helper.declineWord)(secondsWasted, ['секунду', 'секунды', 'секунд']);
+      finalResult.message = this.userPoints + ' \u0438\u0437 ' + this.totalLength + ' \u0440\u0430\u0437\u0433\u0430\u0434\u0430\u043D\u043D\u044B\u0445 \u0448\u0438\u0444\u0440\u043E\u0432';
+      // finalResult.message =`${this.userPoints} их ${this.totalLength} ${declineWord(this.userPoints, ['правильный ответ', 'правильных ответа', 'правильных ответов'])}`;
 
       return finalResult;
+    }
+
+    /**
+     * Start game from first question
+     */
+
+  }, {
+    key: 'restart',
+    value: function restart() {
+      this.setDefaultValues();
+      this.updateMode('progress');
+
+      (0, _dom.removeChildren)(this.nodes.content);
+      this.nodes.content.appendChild(this.nodes.mainText);
+      this.nodes.content.appendChild(this.nodes.options);
+      this.nodes.content.appendChild(this.nodes.actions);
+
+      this.makeQuestion(0);
+
+      Analytics.sendEvent('Restart button', 'Click');
+    }
+  }, {
+    key: 'keydownHandler',
+    value: function keydownHandler(event) {
+      if (event.target === this.container && event.keyCode === this.keyCodes.enter) {
+        if (this.mode === 'start') {
+          this.start();
+        } else if (this.mode === 'progress' && this.isPending) {
+          if (this.activeIndex >= this.totalLength) {
+            this.makeResult();
+          } else {
+            this.makeQuestion();
+          }
+        }
+      }
     }
 
     /**
@@ -1315,69 +1396,6 @@ var Special = function (_BaseSpecial) {
       }
 
       return this.staticURL + url;
-    }
-  }, {
-    key: 'makeResult',
-    value: function makeResult() {
-      /**
-           * @type {result}
-           */
-      var data = this.findResult();
-
-      var secondsWasted = Math.floor(this.timerValue / 10);
-
-      this.stopTimer();
-
-      var result = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'result')),
-          resultContent = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'resultContent')),
-          resultActions = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'resultActions')),
-          restartButton = (0, _dom.make)('div', _bem2.default.set(CSS.main, 'restartButton'), {
-        data: {
-          click: 'restart'
-        }
-      });
-
-      this.updateMode('result');
-
-      result.style.backgroundImage = 'url(' + this.imageUrl(data.cover) + ')';
-
-      this.mainText.innerHTML = '\n            <div class="' + _bem2.default.set(CSS.main, 'text-content') + '">\n                <div class="' + _bem2.default.set(CSS.main, 'text-body') + '">' + _data2.default.outro + '</div>                <a class="' + _bem2.default.set(CSS.main, 'button') + '" href="' + _data2.default.promoUrl + '" target="_blank">\n                    <span class="' + _bem2.default.set(CSS.main, 'button-content') + '">\n                        ' + _data2.default.CTAText + '\n                    </span>\n                </a>\n            </div>\n        ';
-      (0, _dom.removeChildren)(this.mainOptions);
-      (0, _dom.removeChildren)(this.mainActions);
-
-      resultContent.innerHTML = '<div class="' + _bem2.default.set(CSS.main, 'resultPoints') + '">' + data.message + '</div>\n            <div class="' + _bem2.default.set(CSS.main, 'title') + '">' + data.title + '</div>';
-      result.appendChild(resultContent);
-      resultContent.appendChild(resultActions);
-      (0, _dom.prepend)(this.content, result);
-
-      Share.make(resultActions, {
-        url: CONFIG.share.url + '/' + this.userPoints + '/' + secondsWasted,
-        twitter: CONFIG.share.twitter
-      });
-
-      restartButton.innerHTML = 'Пройти ещё раз' + _svg2.default.restart;
-      resultActions.appendChild(restartButton);
-
-      if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
-
-      Analytics.sendEvent('Result screen', 'Hit');
-      Analytics.sendEvent('Result ' + this.userPoints + ' screen', 'Hit');
-    }
-  }, {
-    key: 'restart',
-    value: function restart() {
-      this.setDefaultValues();
-      this.updateMode('progress');
-
-      (0, _dom.removeChildren)(this.content);
-      this.content.appendChild(this.timerWrapper);
-      this.content.appendChild(this.mainText);
-      this.content.appendChild(this.mainOptions);
-      this.content.appendChild(this.mainActions);
-
-      this.makeQuestion(0);
-
-      Analytics.sendEvent('Restart button', 'Click');
     }
   }], [{
     key: 'CSS',
@@ -1406,8 +1424,13 @@ var Special = function (_BaseSpecial) {
 
         title: 'bf-special__title',
         button: 'bf-special__button',
-        introText: 'bf-special__intro'
+        buttonSecond: 'bf-special__button--second',
+        introText: 'bf-special__intro',
 
+        result: 'bf-special__result',
+        resultContent: 'bf-special__result-content',
+        resultActions: 'bf-special__result-actions',
+        resultButton: 'bf-special__result-button'
       };
     }
   }]);
@@ -1427,7 +1450,7 @@ module.exports = Special;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.make = exports.init = undefined;
+exports.create = exports.init = undefined;
 
 var _cmttLikely = __webpack_require__(11);
 
@@ -1460,14 +1483,14 @@ var init = exports.init = function init() {
  * @param {Element} parentContainer
  * @param {Array} socials
  */
-var make = exports.make = function make(parentContainer) {
+var create = exports.create = function create(parentContainer) {
   var set = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  var likelyContainer = (0, _dom.makeElement)('div', [CSS.likely, CSS.likelyCustom]),
+  var likelyContainer = (0, _dom.make)('div', [CSS.likely, CSS.likelyCustom]),
       socials = ['facebook', 'vkontakte', 'twitter'];
 
   socials.forEach(function (social) {
-    var button = (0, _dom.makeElement)('div', social);
+    var button = (0, _dom.make)('div', social);
 
     if (social === 'facebook') button.textContent = 'Поделиться';
 
@@ -2600,10 +2623,10 @@ exports.default = {
   task: 'Select correct answer',
   intro: '\n    \u041A \u0432\u044B\u0445\u043E\u0434\u0443 <b>Battlefield V</b> \u043C\u044B \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u0438\u043B\u0438 \u043A\u0432\u0435\u0441\u0442, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0432\u044B \u043F\u0440\u0438\u043C\u0435\u0440\u0438\u0442\u0435 \u043D\u0430 \u0441\u0435\u0431\u044F \u0440\u043E\u043B\u044C \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0430 \u0432\u0440\u0435\u043C\u0451\u043D \u0412\u0442\u043E\u0440\u043E\u0439 \u043C\u0438\u0440\u043E\u0432\u043E\u0439. \u0412\u0430\u0448\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043D\u0430\u0446\u0438\u0441\u0442\u043E\u0432 \u0438 \u043F\u0440\u0438\u043D\u044F\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E\u0435 \u0440\u0435\u0448\u0435\u043D\u0438\u0435, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043C\u043E\u0447\u044C \u0432\u044B\u0438\u0433\u0440\u0430\u0442\u044C \u0432\u043E\u0439\u043D\u0443.\n    <div class="intro-prizes">\n      <div class="intro-prizes__image"></div>\n      <div class="intro-prizes__text">\n        \u041A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u044B, \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0438\u0432\u0448\u0438\u0435 \u043D\u0430 \u0432\u0441\u0435 \u0441\u0435\u043C\u044C \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432, \u043F\u043E\u043B\u0443\u0447\u0430\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u043F\u043E\u0443\u0447\u0430\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435 \u043A\u0440\u0443\u0442\u044B\u0445 \u043F\u0440\u0438\u0437\u043E\u0432: <b>[\u041F\u0420\u0418\u0417\u042B]</b>\n      </div>\n    </div>\n  ',
   headerMenu: ['Конкурс', 'О Battlefield V', 'О NVIDIA RTX'],
-  outro: 'outro',
+  outro: '\n    <div class="outro-prizes">\n      <div class="outro-prizes__image"></div>\n      <div class="outro-prizes__text">\n        28 \u043D\u043E\u044F\u0431\u0440\u044F \u0432 [\u0412\u0420\u0415\u041C\u042F] \u043C\u044B \u043F\u0440\u043E\u0432\u0435\u0434\u0451\u043C \u0441\u0442\u0440\u0438\u043C, \u043D\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0440\u0430\u0441\u0441\u043A\u0430\u0436\u0435\u043C \u043E Battlefield V, \u0430 \u0442\u0430\u043A\u0436\u0435 \u0440\u0430\u0437\u044B\u0433\u0440\u0430\u0435\u043C \u043F\u0440\u0438\u0437\u044B \u0441\u0440\u0435\u0434\u0438 \u0442\u0435\u0445, \u043A\u0442\u043E \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043F\u0440\u043E\u0448\u0451\u043B \u043A\u0432\u0435\u0441\u0442. \u041D\u0435 \u043F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u0435! \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u044E \u043C\u043E\u0436\u043D\u043E \u043D\u0430 Twitch [https://twitch.tv/dtfru].\n      </div>\n    </div>\n  ',
   logoUrl: '',
   promoUrl: '',
-  CTAText: 'Подключить',
+  CTAText: 'УЗНАТЬ БОЛЬШЕ О Battlefield V',
   questions: [{
     text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
     options: [{
@@ -2636,21 +2659,14 @@ exports.default = {
     }]
   }],
   results: [{
-    range: [0, 15],
-    title: 'А улитка не&nbsp;успела проползти и&nbsp;сантиметра пути',
-    cover: 'https://leonardo.osnova.io/83c4905f-bb75-919c-b4c4-4a8e87f944a8'
+    range: [0, 4],
+    title: 'Начинающий криптограф'
   }, {
-    range: [15, 20],
-    title: 'Свет преодолел&nbsp;бы несколько миллионов километров',
-    cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
+    range: [5, 7],
+    title: 'Знаток дела'
   }, {
-    range: [20, 30],
-    title: 'А комар успел 10&nbsp;тысяч раз взмахнуть крыльями',
-    cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
-  }, {
-    range: [30, 99999],
-    title: 'За это время сын маминой подруги успел&nbsp;бы прославиться',
-    cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
+    range: [7, 9999],
+    title: 'Почти Тьюринг'
   }]
 };
 
@@ -2665,35 +2681,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  logo: '<svg width="100" height="18" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="#00B856" fill-rule="nonzero"><path d="M9.916.073V9.17c0 .425-.327.72-.72.72h-1.08c-.065 0-.098.065-.098.098v7.626c.262 0 .524.065.818.065 4.877 0 8.837-3.96 8.837-8.836 0-4.484-3.371-8.248-7.757-8.771zM9.72 13.687a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08.065.59-.458 1.08-1.08 1.08zm2.585 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.524-1.08 1.08-1.08.622 0 1.08.524 1.08 1.08 0 .557-.425 1.08-1.08 1.08zm2.619 0a1.09 1.09 0 0 1-1.08-1.08c0-.621.523-1.08 1.08-1.08.621 0 1.08.524 1.08 1.08a1.09 1.09 0 0 1-1.08 1.08z"/><path d="M8.836.04C3.96.04 0 4 0 8.876c0 4.288 2.978 7.79 6.97 8.608V9.53c0-.36.328-.655.655-.72h1.08c.066 0 .099-.065.099-.098L8.836.04zM7.135 7.306a1.09 1.09 0 0 1-1.08-1.08c0-.622.523-1.08 1.08-1.08.621 0 1.08.523 1.08 1.08 0 .556-.491 1.08-1.08 1.08z"/><g><path d="M97.298 4.851v3.338h-4.45V4.851h-2.259v8.836h2.258V10.12h4.451v3.567h2.193V4.851zM60.513 5.866c-.36-.786-1.08-1.211-1.8-1.211s-1.473.425-1.8 1.21l-3.568 7.855h2.357l.785-1.865h4.582l.786 1.865h2.356l-3.698-7.854zm-3.404 4.221l1.342-3.24c.065-.098.098-.098.164-.098.065 0 .163 0 .163.098l1.342 3.24h-3.01zM34.2 3.28c-1.047 0-1.702.556-2.193 1.67l-2.847 6.643-2.88-6.677c-.458-1.08-1.145-1.669-2.193-1.669-.982 0-1.963.655-1.963 2.193v8.215h2.192v-7.92l2.913 6.578c.36.949 1.047 1.505 1.931 1.505.95 0 1.57-.556 1.93-1.505l2.914-6.578v8.018h2.192V5.538C36.164 4 35.182 3.28 34.2 3.28zM40.058 11.822c-.098 0-.229-.098-.229-.23v-1.57h5.498v-1.8H39.83V6.88c0-.098.098-.229.23-.229h5.465V4.786h-6.546c-.785 0-1.309.621-1.309 1.309v6.185c0 .655.556 1.31 1.31 1.31h6.545v-1.866h-5.466v.098zM49.222 13.687V6.946c0-.099.098-.23.229-.23h5.465V4.851h-6.545c-.786 0-1.31.622-1.31 1.31v7.494l2.16.032zM89.15 9.302c0-3.076-1.343-4.516-4.68-4.516h-.786c-3.339 0-4.68 1.472-4.68 4.516 0 3.01 1.341 4.516 4.68 4.516h.72c3.403-.065 4.745-1.505 4.745-4.516zm-4.746 2.65h-.72c-1.8 0-2.553-.817-2.553-2.65 0-1.767.622-2.651 2.553-2.651h.72c1.865 0 2.552.884 2.552 2.65 0 1.8-.687 2.652-2.552 2.652zM72.884 3.476h-4.386c-3.273 0-4.582 1.67-4.582 4.517 0 .458.066.883.099 1.243.36 2.03 1.57 3.273 4.614 3.273h.982v1.146h2.193v-1.146h.949c3.076 0 4.287-1.243 4.614-3.273a7.1 7.1 0 0 0 .098-1.243c-.032-2.847-1.374-4.517-4.581-4.517zm-3.339 7.2h-.981c-1.506 0-2.03-.556-2.357-1.472-.098-.328-.098-.786-.098-1.244 0-1.865.884-2.65 2.127-2.65h1.342v5.366h-.033zm5.63-1.374c-.328.884-.884 1.473-2.357 1.473h-.982v-5.4h1.342c1.244 0 2.127.785 2.127 2.65-.032.491-.032.884-.13 1.277z"/></g></g></g></svg>',
-  restart: '<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M17.475 1.102c-.305-.127-.566-.074-.782.157L15.239 2.7A8.682 8.682 0 0 0 12.505.95a8.427 8.427 0 0 0-3.18-.62 8.352 8.352 0 0 0-3.333.682 8.66 8.66 0 0 0-2.74 1.833 8.67 8.67 0 0 0-1.833 2.74 8.35 8.35 0 0 0-.682 3.332c0 1.163.227 2.273.682 3.332a8.673 8.673 0 0 0 1.833 2.74 8.672 8.672 0 0 0 2.74 1.833 8.352 8.352 0 0 0 3.332.682c1.282 0 2.501-.27 3.656-.811a8.383 8.383 0 0 0 2.952-2.286.364.364 0 0 0 .084-.252.309.309 0 0 0-.106-.229l-1.532-1.543a.43.43 0 0 0-.28-.1c-.119.014-.204.059-.257.134a5.61 5.61 0 0 1-2.001 1.644 5.64 5.64 0 0 1-2.516.58 5.57 5.57 0 0 1-2.22-.452 5.752 5.752 0 0 1-1.827-1.224 5.777 5.777 0 0 1-1.225-1.829A5.568 5.568 0 0 1 3.6 8.918c0-.775.15-1.515.452-2.22a5.756 5.756 0 0 1 1.225-1.827 5.76 5.76 0 0 1 1.828-1.225 5.57 5.57 0 0 1 2.22-.453c1.498 0 2.798.51 3.902 1.532l-1.544 1.543c-.23.224-.283.48-.156.771.127.298.346.448.66.448h5.009a.69.69 0 0 0 .503-.213.688.688 0 0 0 .212-.503V1.762c0-.313-.145-.533-.436-.66z" fill-rule="evenodd"/></svg>',
-  next: '<svg width="26" height="20" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M15.376 0l-2.334 2.333L20.71 10l-7.667 7.667L15.376 20l10-10z" fill-rule="nonzero"/><path d="M.642 8.155h21.715v3.691H.642z"/></g></svg>'
+  trophy: '<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"><path d="M17.5 2.62V0h-14v2.62H0v3.5a4.39 4.39 0 0 0 3.55 4.3 7 7 0 0 0 6.07 6.14v2.69H5.25V21h10.94v-1.75h-4.82v-2.69a7 7 0 0 0 6.08-6.14A4.39 4.39 0 0 0 21 6.12v-3.5zm-14 6a2.62 2.62 0 0 1-1.75-2.5V4.38H3.5zm12.25 1a5.25 5.25 0 1 1-10.5 0V1.75h10.5zm3.5-3.5A2.62 2.62 0 0 1 17.5 8.6V4.38h1.75z" fill-rule="evenodd"/></svg>'
 };
 
 /***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-
-  set: function set(b, e, m) {
-    var cname = b;
-
-    if (e) cname += "__" + e;
-    if (m) cname += "--" + m;
-
-    return cname;
-  }
-
-};
-
-/***/ }),
+/* 34 */,
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2799,7 +2791,7 @@ var preloadImages = exports.preloadImages = function preloadImages(urls) {
  * @param {Array} words - array of 3 words
  */
 var declineWord = exports.declineWord = function declineWord(number, words) {
-  var result = number + '&nbsp;';
+  var result = '';
 
   if (number % 10 == 1 && number % 100 != 11) {
     result += words[0];

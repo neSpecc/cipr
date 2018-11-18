@@ -16,7 +16,7 @@ export const preloadImages = (urls) => {
  * @param {Array} words - array of 3 words
  */
 export const declineWord = (number, words) => {
-  let result = number + '&nbsp;';
+  let result = '';
 
   if (number % 10 == 1 && number % 100 != 11) {
     result += words[0];

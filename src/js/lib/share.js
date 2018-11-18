@@ -1,6 +1,6 @@
 import Likely from 'cmtt-likely';
 import {
-  makeElement
+  make
 } from './dom';
 import * as Analytics from './analytics';
 
@@ -21,12 +21,12 @@ export const init = () => {
  * @param {Element} parentContainer
  * @param {Array} socials
  */
-export const make = (parentContainer, set = {}) => {
-  let likelyContainer = makeElement('div', [CSS.likely, CSS.likelyCustom]),
+export const create = (parentContainer, set = {}) => {
+  let likelyContainer = make('div', [CSS.likely, CSS.likelyCustom]),
     socials = ['facebook', 'vkontakte', 'twitter'];
 
   socials.forEach(social => {
-    let button = makeElement('div', social);
+    let button = make('div', social);
 
     if (social === 'facebook') button.textContent = 'Поделиться';
 

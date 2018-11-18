@@ -1,8 +1,10 @@
 @import url('from-data.pcss');
+@import url('likely.pcss');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
 .bf-special {
   --color-buttons-bg: #F68700;
+  --color-buttons-bg--hover: #FFA61B;
   --color-buttons-text: #fff;
   --color-container-bg: rgba(37, 42, 92, 0.8);
   --color-text-out-countainer: #252A5C;
@@ -14,8 +16,13 @@
   width: 100%;
   height: 100%;
   background: url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat;
+  background-size: cover;
   font-family: 'Montserrat', sans-serif;
   padding: 40px;
+
+  svg {
+    fill: currentColor;
+  }
 
   &__header {
     display: flex;
@@ -61,7 +68,7 @@
   }
 
   &__container {
-    max-width: 700px;
+    max-width: 960px;
     margin: auto;
   }
 
@@ -75,7 +82,18 @@
     cursor: pointer;
 
     &:hover {
-      background: var(--color-container-bg);
+      background: var(--color-buttons-bg--hover);
+    }
+
+    &--second {
+      background: transparent;
+      box-shadow: inset 0 0 0 2px #fff;
+      color: #fff;
+
+      &:hover {
+        background: #fff;
+        color: var(--color-text-out-countainer);
+      }
     }
   }
 
@@ -105,6 +123,10 @@
     margin-top: 30px;
     font-size: 16px;
     line-height: 1.5em;
+
+    &:empty {
+      display: none;
+    }
 
     &-item,
     &-message {
@@ -151,8 +173,44 @@
     }
   }
 
-  &__actions &__button {
-    margin: 40px auto 0;
+  &__actions {
+    text-align: center;
+
+    ^&__button {
+      margin: 40px auto 0;
+    }
+  }
+
+  &__result {
+    &-content {
+      background: #83D5F7 url('https://leonardo.osnova.io/f66f4158-3bdc-a1fa-b9db-c5fb64910b3d/') no-repeat;
+      background-size: cover;
+      font-size: 28px;
+      font-weight: 700;
+      padding: 30px;
+      color: var(--color-text-out-countainer);
+
+      p {
+        font-size: 38px;
+        font-weight: 800;
+        margin-top: 10px;
+      }
+    }
+
+    .likely {
+      margin-top: 30px;
+    }
+
+    ^&__button {
+      margin-top: 30px;
+      display: block;
+      text-align: center;
+
+      svg {
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
   }
 }
 
@@ -162,10 +220,44 @@
  */
 .bf-special {
   &[data-mode="start"] {
+    ^&__container {
+      max-width: 700px;
+    }
+
     ^&__content {
       background: transparent;
       text-align: center;
       padding: 0;
+    }
+
+    ^&__title {
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      color: var(--color-text-out-countainer);
+    }
+
+    ^&__intro {
+      background: var(--color-container-bg);
+      padding: 40px;
+      font-size: 18px;
+      line-height: 1.5em;
+      color: #fff;
+      text-align: left;
+      margin: 30px 0;
+    }
+  }
+}
+
+
+/**
+ * Result scene
+ * ================================
+ */
+.bf-special {
+  &[data-mode="result"] {
+    ^&__counter {
+      display: none;
     }
 
     ^&__title {

@@ -19,10 +19,17 @@ export default {
     'О Battlefield V',
     'О NVIDIA RTX'
   ],
-  outro: `outro`,
+  outro: `
+    <div class="outro-prizes">
+      <div class="outro-prizes__image"></div>
+      <div class="outro-prizes__text">
+        28 ноября в [ВРЕМЯ] мы проведём стрим, на котором расскажем о Battlefield V, а также разыграем призы среди тех, кто успешно прошёл квест. Не пропустите! Смотреть трансляцию можно на Twitch [https://twitch.tv/dtfru].
+      </div>
+    </div>
+  `,
   logoUrl: '',
   promoUrl: '',
-  CTAText: 'Подключить',
+  CTAText: 'УЗНАТЬ БОЛЬШЕ О Battlefield V',
   questions: [
     {
       text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
@@ -69,24 +76,16 @@ export default {
   ],
   results: [
     {
-      range: [0, 15],
-      title: 'А улитка не&nbsp;успела проползти и&nbsp;сантиметра пути',
-      cover: 'https://leonardo.osnova.io/83c4905f-bb75-919c-b4c4-4a8e87f944a8'
+      range: [0, 4],
+      title: 'Начинающий криптограф',
     },
     {
-      range: [15, 20],
-      title: 'Свет преодолел&nbsp;бы несколько миллионов километров',
-      cover: 'https://leonardo.osnova.io/81514d36-8db9-3012-adc1-cf9df4735738'
+      range: [5, 7],
+      title: 'Знаток дела',
     },
     {
-      range: [20, 30],
-      title: 'А комар успел 10&nbsp;тысяч раз взмахнуть крыльями',
-      cover: 'https://leonardo.osnova.io/fd0fc018-f002-e91e-e9ae-07b72cd1af44'
+      range: [7, 9999],
+      title: 'Почти Тьюринг',
     },
-    {
-      range: [30, 99999],
-      title: 'За это время сын маминой подруги успел&nbsp;бы прославиться',
-      cover: 'https://leonardo.osnova.io/91847ec4-4597-a55f-1e84-6efdbbc65de4'
-    }
   ]
 };
