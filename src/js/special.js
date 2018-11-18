@@ -67,8 +67,9 @@ class Special extends BaseSpecial {
       header: null,
       counter: null,
       headerMenu: null,
-      headerMenuButtons: [],
+      headerMenuTabs: [],
       content: null,
+      tabs: [],
       mainText: null,
       options: null,
       optionsItems: [],
@@ -107,7 +108,7 @@ class Special extends BaseSpecial {
   }
 
   /**
-   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
+   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
    */
   static get CSS() {
     return {
@@ -118,8 +119,10 @@ class Special extends BaseSpecial {
       headerLogo: 'bf-special__header-logo',
       headerMenu: 'bf-special__header-menu',
       headerMenuButton: 'bf-special__header-menu-button',
+      headerMenuButtonActive: 'bf-special__header-menu-button--active',
 
       content: 'bf-special__content',
+      contentHidden: 'bf-special__content--hidden',
       counter: 'bf-special__counter',
       mainText: 'bf-special__content-text',
 
@@ -186,21 +189,21 @@ class Special extends BaseSpecial {
     /**
      * Append Header menu if enabled
      */
-    if (DATA.headerMenu) {
+    if (DATA.tabs) {
       this.nodes.headerMenu = make('div', Special.CSS.headerMenu);
-      DATA.headerMenu.forEach((tab, index) => {
+      this.nodes.header.appendChild(this.nodes.headerMenu);
+      DATA.tabs.forEach(({tab, label}) => {
         let button = make('span', Special.CSS.headerMenuButton, {
-          textContent: tab,
+          textContent: label,
           data: {
             click: 'tabClicked',
-            index
+            tab
           }
         });
 
-        this.nodes.headerMenuButtons.push(button);
+        this.nodes.headerMenuTabs.push(button);
         this.nodes.headerMenu.appendChild(button);
       });
-      this.nodes.header.appendChild(this.nodes.headerMenu);
     }
 
     this.nodes.wrapper.appendChild(this.nodes.header);
@@ -209,7 +212,12 @@ class Special extends BaseSpecial {
     /**
      * Content
      */
-    this.nodes.content = make('div', Special.CSS.content);
+    this.nodes.content = make('div', Special.CSS.content, {
+      data : {
+        tab: 'main'
+      }
+    });
+    this.nodes.tabs.push(this.nodes.content);
 
     this.nodes.counter = make('div', Special.CSS.counter);
     this.nodes.mainText = make('div', Special.CSS.mainText);
@@ -224,6 +232,27 @@ class Special extends BaseSpecial {
     this.nodes.container.appendChild(this.nodes.content);
 
     /**
+     * Append other tabs if we have DATA.tabs
+     */
+    if (Array.isArray(DATA.tabs)) {
+      DATA.tabs.forEach(({tab, content}) => {
+        if (!content) {
+          return;
+        }
+        let tabContainer = make('div', [Special.CSS.content, Special.CSS.contentHidden], {
+          innerHTML: content,
+          data: {
+            tab
+          }
+        });
+
+        this.nodes.tabs.push(tabContainer);
+        this.nodes.container.appendChild(tabContainer);
+      });
+    }
+
+
+    /**
      * Append all app to the initial container
      */
     this.nodes.wrapper.appendChild(this.nodes.container);
@@ -236,6 +265,7 @@ class Special extends BaseSpecial {
       this.keydownHandler(event);
     });
 
+    this.activateTab('main');
     this.updateMode('start');
 
     Analytics.sendEvent('Start screen', 'Load');
@@ -567,7 +597,6 @@ class Special extends BaseSpecial {
     }
 
     finalResult.message =`${this.userPoints} из ${this.totalLength} разгаданных шифров`;
-    // finalResult.message =`${this.userPoints} их ${this.totalLength} ${declineWord(this.userPoints, ['правильный ответ', 'правильных ответа', 'правильных ответов'])}`;
 
     return finalResult;
   }
@@ -587,6 +616,32 @@ class Special extends BaseSpecial {
     this.makeQuestion(0);
 
     Analytics.sendEvent('Restart button', 'Click');
+  }
+
+  /**
+   * Handler for header tab clicks
+   * @param {Element} button - clicked tab
+   */
+  tabClicked(button) {
+    const { tab } = button.dataset;
+
+    this.activateTab(tab);
+  }
+
+  /**
+   * Make specified tab active
+   * @param {string} tab - tab name
+   */
+  activateTab(tab) {
+    this.nodes.container.dataset.tab = tab;
+
+    this.nodes.headerMenuTabs.forEach((item) => {
+      item.classList.toggle(Special.CSS.headerMenuButtonActive, item.dataset.tab === tab);
+    });
+
+    this.nodes.tabs.forEach((tabContainer) => {
+      tabContainer.classList.toggle(Special.CSS.contentHidden, tabContainer.dataset.tab !== tab);
+    });
   }
 
 

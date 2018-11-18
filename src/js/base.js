@@ -82,8 +82,8 @@ export default class BaseSpecial {
       let el  = event.target;
 
       /**
-            * Bubble click
-            */
+       * Bubble click
+       */
       while (el) {
         let action = el.dataset ? el.dataset[eventName] : null;
 

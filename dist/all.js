@@ -793,11 +793,11 @@ var _svg2 = _interopRequireDefault(_svg);
 
 var _dom = __webpack_require__(7);
 
-var _check = __webpack_require__(35);
+var _check = __webpack_require__(34);
 
-var _array = __webpack_require__(36);
+var _array = __webpack_require__(35);
 
-var _helper = __webpack_require__(37);
+var _helper = __webpack_require__(36);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -847,7 +847,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Dependencies
  */
-__webpack_require__(38);
+__webpack_require__(37);
 
 var CONFIG = __webpack_require__(5);
 
@@ -871,8 +871,9 @@ var Special = function (_BaseSpecial) {
       header: null,
       counter: null,
       headerMenu: null,
-      headerMenuButtons: [],
+      headerMenuTabs: [],
       content: null,
+      tabs: [],
       mainText: null,
       options: null,
       optionsItems: [],
@@ -925,7 +926,7 @@ var Special = function (_BaseSpecial) {
     }
 
     /**
-     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
+     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
      */
 
   }, {
@@ -969,21 +970,24 @@ var Special = function (_BaseSpecial) {
       /**
        * Append Header menu if enabled
        */
-      if (_data2.default.headerMenu) {
+      if (_data2.default.tabs) {
         this.nodes.headerMenu = (0, _dom.make)('div', Special.CSS.headerMenu);
-        _data2.default.headerMenu.forEach(function (tab, index) {
+        this.nodes.header.appendChild(this.nodes.headerMenu);
+        _data2.default.tabs.forEach(function (_ref) {
+          var tab = _ref.tab,
+              label = _ref.label;
+
           var button = (0, _dom.make)('span', Special.CSS.headerMenuButton, {
-            textContent: tab,
+            textContent: label,
             data: {
               click: 'tabClicked',
-              index: index
+              tab: tab
             }
           });
 
-          _this3.nodes.headerMenuButtons.push(button);
+          _this3.nodes.headerMenuTabs.push(button);
           _this3.nodes.headerMenu.appendChild(button);
         });
-        this.nodes.header.appendChild(this.nodes.headerMenu);
       }
 
       this.nodes.wrapper.appendChild(this.nodes.header);
@@ -991,7 +995,12 @@ var Special = function (_BaseSpecial) {
       /**
        * Content
        */
-      this.nodes.content = (0, _dom.make)('div', Special.CSS.content);
+      this.nodes.content = (0, _dom.make)('div', Special.CSS.content, {
+        data: {
+          tab: 'main'
+        }
+      });
+      this.nodes.tabs.push(this.nodes.content);
 
       this.nodes.counter = (0, _dom.make)('div', Special.CSS.counter);
       this.nodes.mainText = (0, _dom.make)('div', Special.CSS.mainText);
@@ -1006,6 +1015,29 @@ var Special = function (_BaseSpecial) {
       this.nodes.container.appendChild(this.nodes.content);
 
       /**
+       * Append other tabs if we have DATA.tabs
+       */
+      if (Array.isArray(_data2.default.tabs)) {
+        _data2.default.tabs.forEach(function (_ref2) {
+          var tab = _ref2.tab,
+              content = _ref2.content;
+
+          if (!content) {
+            return;
+          }
+          var tabContainer = (0, _dom.make)('div', [Special.CSS.content, Special.CSS.contentHidden], {
+            innerHTML: content,
+            data: {
+              tab: tab
+            }
+          });
+
+          _this3.nodes.tabs.push(tabContainer);
+          _this3.nodes.container.appendChild(tabContainer);
+        });
+      }
+
+      /**
        * Append all app to the initial container
        */
       this.nodes.wrapper.appendChild(this.nodes.container);
@@ -1018,6 +1050,7 @@ var Special = function (_BaseSpecial) {
         _this3.keydownHandler(event);
       });
 
+      this.activateTab('main');
       this.updateMode('start');
 
       Analytics.sendEvent('Start screen', 'Load');
@@ -1403,7 +1436,6 @@ var Special = function (_BaseSpecial) {
       }
 
       finalResult.message = this.userPoints + ' \u0438\u0437 ' + this.totalLength + ' \u0440\u0430\u0437\u0433\u0430\u0434\u0430\u043D\u043D\u044B\u0445 \u0448\u0438\u0444\u0440\u043E\u0432';
-      // finalResult.message =`${this.userPoints} их ${this.totalLength} ${declineWord(this.userPoints, ['правильный ответ', 'правильных ответа', 'правильных ответов'])}`;
 
       return finalResult;
     }
@@ -1426,6 +1458,39 @@ var Special = function (_BaseSpecial) {
       this.makeQuestion(0);
 
       Analytics.sendEvent('Restart button', 'Click');
+    }
+
+    /**
+     * Handler for header tab clicks
+     * @param {Element} button - clicked tab
+     */
+
+  }, {
+    key: 'tabClicked',
+    value: function tabClicked(button) {
+      var tab = button.dataset.tab;
+
+
+      this.activateTab(tab);
+    }
+
+    /**
+     * Make specified tab active
+     * @param {string} tab - tab name
+     */
+
+  }, {
+    key: 'activateTab',
+    value: function activateTab(tab) {
+      this.nodes.container.dataset.tab = tab;
+
+      this.nodes.headerMenuTabs.forEach(function (item) {
+        item.classList.toggle(Special.CSS.headerMenuButtonActive, item.dataset.tab === tab);
+      });
+
+      this.nodes.tabs.forEach(function (tabContainer) {
+        tabContainer.classList.toggle(Special.CSS.contentHidden, tabContainer.dataset.tab !== tab);
+      });
     }
   }, {
     key: 'keydownHandler',
@@ -1468,8 +1533,10 @@ var Special = function (_BaseSpecial) {
         headerLogo: 'bf-special__header-logo',
         headerMenu: 'bf-special__header-menu',
         headerMenuButton: 'bf-special__header-menu-button',
+        headerMenuButtonActive: 'bf-special__header-menu-button--active',
 
         content: 'bf-special__content',
+        contentHidden: 'bf-special__content--hidden',
         counter: 'bf-special__counter',
         mainText: 'bf-special__content-text',
 
@@ -2532,8 +2599,8 @@ var BaseSpecial = function () {
         var el = event.target;
 
         /**
-              * Bubble click
-              */
+         * Bubble click
+         */
         while (el) {
           var action = el.dataset ? el.dataset[eventName] : null;
 
@@ -2686,11 +2753,22 @@ exports.default = {
   title: '\n    <span class="intro-logo"></span>\n    <br/>\n    \u2014 \u0414\u0415\u0428\u0418\u0424\u0420\u041E\u0412\u041A\u0410 \u2014\n  ',
   task: 'Select correct answer',
   intro: '\n    \u041A \u0432\u044B\u0445\u043E\u0434\u0443 <b>Battlefield V</b> \u043C\u044B \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u0438\u043B\u0438 \u043A\u0432\u0435\u0441\u0442, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0432\u044B \u043F\u0440\u0438\u043C\u0435\u0440\u0438\u0442\u0435 \u043D\u0430 \u0441\u0435\u0431\u044F \u0440\u043E\u043B\u044C \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0430 \u0432\u0440\u0435\u043C\u0451\u043D \u0412\u0442\u043E\u0440\u043E\u0439 \u043C\u0438\u0440\u043E\u0432\u043E\u0439. \u0412\u0430\u0448\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043D\u0430\u0446\u0438\u0441\u0442\u043E\u0432 \u0438 \u043F\u0440\u0438\u043D\u044F\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E\u0435 \u0440\u0435\u0448\u0435\u043D\u0438\u0435, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043C\u043E\u0447\u044C \u0432\u044B\u0438\u0433\u0440\u0430\u0442\u044C \u0432\u043E\u0439\u043D\u0443.\n    <div class="intro-prizes">\n      <div class="intro-prizes__image"></div>\n      <div class="intro-prizes__text">\n        \u041A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u044B, \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0438\u0432\u0448\u0438\u0435 \u043D\u0430 \u0432\u0441\u0435 \u0441\u0435\u043C\u044C \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432, \u043F\u043E\u043B\u0443\u0447\u0430\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u043F\u043E\u0443\u0447\u0430\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435 \u043A\u0440\u0443\u0442\u044B\u0445 \u043F\u0440\u0438\u0437\u043E\u0432: <b>[\u041F\u0420\u0418\u0417\u042B]</b>\n      </div>\n    </div>\n  ',
-  headerMenu: ['Конкурс', 'О Battlefield V', 'О NVIDIA RTX'],
+  tabs: [{
+    tab: 'main',
+    label: 'Конкурс'
+  }, {
+    tab: 'aboutGame',
+    label: 'О Battlefield V',
+    content: '\n        <div class="about-game">\n          <p>\n            <b>Battlefield V</b> \u2013 \u0412\u0442\u043E\u0440\u0430\u044F \u043C\u0438\u0440\u043E\u0432\u0430\u044F \u0432 \u0441\u043E\u0432\u0435\u0440\u0448\u0435\u043D\u043D\u043E \u043D\u043E\u0432\u043E\u043C \u0441\u0432\u0435\u0442\u0435. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043C\u0443\u043B\u044C\u0442\u0438\u043F\u043B\u0435\u0435\u0440\u043D\u044B\u0445 \u0431\u043E\u044F\u0445 \u0432 \u043D\u043E\u0432\u044B\u0445 \u0438 \u043A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0440\u0435\u0436\u0438\u043C\u0430\u0445. \u0421\u044E\u0436\u0435\u0442\u043D\u0430\u044F \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u044F \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E \u043B\u044E\u0434\u0435\u0439, \u0447\u044C\u0438 \u0441\u0443\u0434\u044C\u0431\u044B \u0431\u044B\u043B\u0438 \u0432\u0442\u044F\u043D\u0443\u0442\u044B \u0432 \u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430. \n          </p>\n          <p>\n            <b>Battlefield V</b> \u043E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u043F\u0440\u043E\u043F\u0443\u0441\u043A\u043E\u0432. \xAB\u0425\u043E\u0434 \u0432\u043E\u0439\u043D\u044B\xBB \u2013 \u043D\u043E\u0432\u044B\u0439 \u0441\u0435\u0440\u0432\u0438\u0441, \u0441\u043D\u0430\u0431\u0436\u0430\u044E\u0449\u0438\u0439 \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u043C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u043E\u043C \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043B\u0435\u0442.\n          </p>\n          <h2>\n            \u0422\u0420\u0415\u0419\u041B\u0415\u0420\u042B \u0418 \u0412\u0418\u0414\u0415\u041E \u041F\u041E \u0418\u0413\u0420\u0415\n          </h2>\n          <img src="https://leonardo.osnova.io/b8334bfa-a0a4-28af-fd28-4242dca9ef23">\n          <div class="about-game__buttons">\n            <a class="bf-special__button" href="">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E BATTLEFIELD V\n            </a>\n          </div>\n        </div>\n      '
+  }, {
+    tab: 'aboutPrize',
+    label: 'О NVIDIA RTX',
+    content: '\n        <div class="about-nvidia">\n          <img class="about-nvidia__cover" src="https://leonardo.osnova.io/05d01e0b-9a77-ea0f-dbbd-6694570218df">\n          <img class="about-nvidia__logo" src="https://leonardo.osnova.io/21a6011a-788a-1955-ba9e-a6746a44e614">\n          <p>\n            <b>GEFORCE RTX</b> \u2014 \u043D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0440\u0435\u0430\u043B\u0438\u0437\u043C\u0430 \u0433\u0440\u0430\u0444\u0438\u043A\u0438 \u043D\u0430 PC. \n            \u0412\u0438\u0434\u0435\u043E\u043A\u0430\u0440\u0442\u044B RTX \u0441\u043E\u0432\u043C\u0435\u0449\u0430\u044E\u0442 \u0432 \u0441\u0435\u0431\u0435 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438 \u0442\u0440\u0430\u0441\u0441\u0438\u0440\u043E\u0432\u043A\u0438 \u043B\u0443\u0447\u0435\u0439 \u0432 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0438, \u0438\u0441\u043A\u0443\u0441\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u043B\u043B\u0435\u043A\u0442 \u0438 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u0443\u0435\u043C\u044B\u0435 \u0448\u0435\u0439\u0434\u0435\u0440\u044B. \u042D\u0442\u043E \u0438\u043D\u043E\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 \u043E\u043F\u044B\u0442.\n          </p>\n          <p>\n            \u041F\u0440\u0438\u0437 \u044D\u0442\u043E\u0433\u043E \u043A\u043E\u043D\u043A\u0443\u0440\u0441\u0430 \u2014 \u043A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 PC Battlefield V \u043D\u0430 \u0431\u0430\u0437\u0435 <b>NVIDIA GEFORCE RTX 2080 Ti</b>.\n          </p>\n          <div class="about-game__buttons">\n            <a class="bf-special__button" href="">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E NVIDIA RTX\n            </a>\n          </div>\n        </div> \n      '
+  }],
   outro: '\n    <div class="outro-prizes">\n      <div class="outro-prizes__image"></div>\n      <div class="outro-prizes__text">\n        28 \u043D\u043E\u044F\u0431\u0440\u044F \u0432 [\u0412\u0420\u0415\u041C\u042F] \u043C\u044B \u043F\u0440\u043E\u0432\u0435\u0434\u0451\u043C \u0441\u0442\u0440\u0438\u043C, \u043D\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0440\u0430\u0441\u0441\u043A\u0430\u0436\u0435\u043C \u043E Battlefield V, \u0430 \u0442\u0430\u043A\u0436\u0435 \u0440\u0430\u0437\u044B\u0433\u0440\u0430\u0435\u043C \u043F\u0440\u0438\u0437\u044B \u0441\u0440\u0435\u0434\u0438 \u0442\u0435\u0445, \u043A\u0442\u043E \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043F\u0440\u043E\u0448\u0451\u043B \u043A\u0432\u0435\u0441\u0442. \u041D\u0435 \u043F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u0435! \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u044E \u043C\u043E\u0436\u043D\u043E \u043D\u0430 Twitch [https://twitch.tv/dtfru].\n      </div>\n    </div>\n  ',
   logoUrl: '',
   promoUrl: '',
-  CTAText: 'УЗНАТЬ БОЛЬШЕ О Battlefield V',
+  CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',
   questions: [{
     text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
     image: 'https://leonardo.osnova.io/f00aa764-e678-871b-17f6-fe2ba66cb761',
@@ -2751,8 +2829,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 34 */,
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2773,7 +2850,7 @@ var isMobile = exports.isMobile = function isMobile() {
 };
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2827,7 +2904,7 @@ var toArray = exports.toArray = function toArray(nodeList) {
 };
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2923,7 +3000,7 @@ var copyToClipboard = exports.copyToClipboard = function copyToClipboard(string,
 };
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -14,10 +14,56 @@ export default {
       </div>
     </div>
   `,
-  headerMenu: [
-    'Конкурс',
-    'О Battlefield V',
-    'О NVIDIA RTX'
+  tabs: [
+    {
+      tab: 'main',
+      label: 'Конкурс',
+    },
+    {
+      tab: 'aboutGame',
+      label: 'О Battlefield V',
+      content: `
+        <div class="about-game">
+          <p>
+            <b>Battlefield V</b> – Вторая мировая в совершенно новом свете. Примитие участие в мультиплеерных боях в новых и классических режимах. Сюжетная кампания рассказывает про людей, чьи судьбы были втянуты в величайший военный конфликт в истории человечества. 
+          </p>
+          <p>
+            <b>Battlefield V</b> отказывается от сезонных пропусков. «Ход войны» – новый сервис, снабжающий игроков бесплатным контентом в течение нескольких лет.
+          </p>
+          <h2>
+            ТРЕЙЛЕРЫ И ВИДЕО ПО ИГРЕ
+          </h2>
+          <img src="https://leonardo.osnova.io/b8334bfa-a0a4-28af-fd28-4242dca9ef23">
+          <div class="about-game__buttons">
+            <a class="bf-special__button" href="">
+              УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V
+            </a>
+          </div>
+        </div>
+      `,
+    },
+    {
+      tab: 'aboutPrize',
+      label: 'О NVIDIA RTX',
+      content: `
+        <div class="about-nvidia">
+          <img class="about-nvidia__cover" src="https://leonardo.osnova.io/05d01e0b-9a77-ea0f-dbbd-6694570218df">
+          <img class="about-nvidia__logo" src="https://leonardo.osnova.io/21a6011a-788a-1955-ba9e-a6746a44e614">
+          <p>
+            <b>GEFORCE RTX</b> — новый уровень реализма графики на PC. 
+            Видеокарты RTX совмещают в себе технологии трассировки лучей в реальном времени, искусственный интеллект и программируемые шейдеры. Это иной игровой опыт.
+          </p>
+          <p>
+            Приз этого конкурса — кастомный игровой PC Battlefield V на базе <b>NVIDIA GEFORCE RTX 2080 Ti</b>.
+          </p>
+          <div class="about-game__buttons">
+            <a class="bf-special__button" href="">
+              УЗНАТЬ БОЛЬШЕ О NVIDIA RTX
+            </a>
+          </div>
+        </div> 
+      `,
+    }
   ],
   outro: `
     <div class="outro-prizes">
@@ -29,7 +75,7 @@ export default {
   `,
   logoUrl: '',
   promoUrl: '',
-  CTAText: 'УЗНАТЬ БОЛЬШЕ О Battlefield V',
+  CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',
   questions: [
     {
       text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',

@@ -41,7 +41,8 @@
         padding: 15px 0;
         cursor: pointer;
 
-        &:hover {
+        &:hover,
+        &--active {
           box-shadow: 0 3px 0 0 var(--color-buttons-bg);
         }
       }
@@ -111,6 +112,10 @@
     background: var(--color-container-bg);
     color: #fff;
     padding: 60px;
+
+    &--hidden {
+      display: none;
+    }
 
     b {
       font-weight: bold;
@@ -297,11 +302,11 @@
  */
 .bf-special {
   &[data-mode="start"] {
-    ^&__container {
+    ^&__container[data-tab="main"] {
       max-width: 700px;
     }
 
-    ^&__content {
+    ^&__content[data-tab="main"] {
       background: transparent;
       text-align: center;
       padding: 0;
@@ -325,7 +330,6 @@
     }
   }
 }
-
 
 /**
  * Result scene
