@@ -1,7 +1,7 @@
 /**
  * Make html element
  * @param {String} tagName
- * @param {Array} classNames - array of classnames
+ * @param {Array|string} classNames - array of classnames
  * @param {Object} attributes - object with html attributes
  */
 export const make = function make(tagName, classNames = [], attributes = []) {
@@ -9,10 +9,8 @@ export const make = function make(tagName, classNames = [], attributes = []) {
 
   let element = document.createElement(tagName);
 
-  if (typeof classNames === 'object') {
-    classNames.forEach(className => {
-      element.classList.add(className);
-    });
+  if (Array.isArray(classNames)) {
+    element.classList.add(...classNames);
   } else {
     element.classList.add(classNames);
   }

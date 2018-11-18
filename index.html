@@ -105,11 +105,12 @@
         s.onload = function () {
             var special = new SpeccSpecial({
                 css: './dist/all.css?' + ver,
-                staticURL: '/src/assets/'
+                staticURL: '/src/assets/',
             });
             special.init({
                 container: newContainer,
                 articleUrl: '/11111',
+                apiEndpoint: 'http://v.dtf.osnova.io/special/battlefield',
                 share: {
                     url: 'https://vc.ru/share/url',
                     twitter: 'twitter title'

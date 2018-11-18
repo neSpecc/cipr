@@ -1,7 +1,13 @@
 /**
- * Dependencies
+ * Class for special project tests
  */
-require('../css/app.pcss');
+/**
+ * @typedef {object} InitParams
+ * @property {Element} container - where to append
+ * @property {string} articleUrl - url of entry that has the app injected
+ * @property {{url, twitter}} share - sharing params
+ * @property {string} apiEndpoint - route for requests to backend (checkAuth, checkAnswer etc)
+ */
 
 /**
  * @typedef {object} question
@@ -13,25 +19,27 @@ require('../css/app.pcss');
 /**
  * @typedef {object} option
  * @description Available answer item
- * @property {number} id
+ * @property {number} id - we can't use option'a index, because they will be shuffled
  * @property {string} text
- * @property {string} message
- * @property {boolean} isCorrect
- * @property {string} img
- * @property {string} imgWrong
- * @property {string} imgCorrect
- * @property {string} imgDisabled
  */
 
+/**
+ * @todo remove after refactoring
+ */
+let CSS = {};
 
-
-
+/**
+ * Dependencies
+ */
+require('../css/app.pcss');
 
 const CONFIG = require('./config');
 
 import * as Analytics from './lib/analytics';
 import * as Share from './lib/share';
 import BaseSpecial from './base';
+
+import ajax from '@codexteam/ajax';
 
 import DATA from './data';
 import Svg from './svg';
@@ -40,7 +48,6 @@ import {
   prepend,
   make,
   removeChildren,
-  replace,
 } from './lib/dom';
 
 import {
@@ -57,25 +64,6 @@ import {
 } from './lib/helper';
 
 /**
- * Constants
- */
-// const PATH = window.__PATH || '.';
-
-const CSS = {
-  // state: {
-  //   active: 'l-active'
-  // },
-  // main: 'bf-special',
-};
-
-/**
- * @typedef {object} InitParams
- * @property {Element} container - where to append
- * @property {string} articleUrl - url of entry that has the app injected
- * @property {{url, twitter}} share - sharing params
- */
-
-/**
  * Special constructor
  */
 class Special extends BaseSpecial {
@@ -89,12 +77,13 @@ class Special extends BaseSpecial {
       wrapper: null,
       container: null,
       header: null,
-      headerCounter: null,
+      counter: null,
       headerMenu: null,
       headerMenuButtons: [],
       content: null,
       mainText: null,
       options: null,
+      optionsItems: [],
       actions: null,
     };
 
@@ -125,18 +114,26 @@ class Special extends BaseSpecial {
 
       header: 'bf-special__header',
       headerLogo: 'bf-special__header-logo',
-      headerCounter: 'bf-special__header-counter',
       headerMenu: 'bf-special__header-menu',
       headerMenuButton: 'bf-special__header-menu-button',
 
       content: 'bf-special__content',
+      counter: 'bf-special__counter',
       mainText: 'bf-special__content-text',
+
       options: 'bf-special__options',
+      optionsDisabled: 'bf-special__options--disabled',
+      optionsItem: 'bf-special__options-item',
+      optionsItemCorrect: 'bf-special__options-item--correct',
+      optionsItemError: 'bf-special__options-item--incorrect',
+      optionsMessage: 'bf-special__options-message',
+
       actions: 'bf-special__actions',
 
       title: 'bf-special__title',
       button: 'bf-special__button',
       introText: 'bf-special__intro',
+
     };
   }
 
@@ -146,10 +143,18 @@ class Special extends BaseSpecial {
    * <wrapper>
    *   <container>
    *     <header>
-   *       <header-logo>
-   *       <header-counter>
+   *       <header-logo--left>
+   *       <header-logo--right>
+   *       <header-menu>
+   *         <header-menu-button>
+   *         ...
+   *       </header-menu>
    *     </header>
    *     <content>
+   *       <header-counter>
+   *       <main-text>
+   *       <options>
+   *       <actions>
    *   </container>
    * </wrapper>
    */
@@ -166,7 +171,6 @@ class Special extends BaseSpecial {
         <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--right" href="${DATA.logoUrl}" target="_blank"></a>
       `
     });
-    this.nodes.headerCounter = make('div', Special.CSS.headerCounter);
 
     /**
      * Append Header menu if enabled
@@ -188,7 +192,6 @@ class Special extends BaseSpecial {
       this.nodes.header.appendChild(this.nodes.headerMenu);
     }
 
-    this.nodes.header.appendChild(this.nodes.headerCounter);
     this.nodes.wrapper.appendChild(this.nodes.header);
 
 
@@ -197,10 +200,12 @@ class Special extends BaseSpecial {
      */
     this.nodes.content = make('div', Special.CSS.content);
 
+    this.nodes.counter = make('div', Special.CSS.counter);
     this.nodes.mainText = make('div', Special.CSS.mainText);
     this.nodes.options = make('div', Special.CSS.options);
     this.nodes.actions = make('div', Special.CSS.actions);
 
+    this.nodes.content.appendChild(this.nodes.counter);
     this.nodes.content.appendChild(this.nodes.mainText);
     this.nodes.content.appendChild(this.nodes.options);
     this.nodes.content.appendChild(this.nodes.actions);
@@ -225,14 +230,6 @@ class Special extends BaseSpecial {
     Analytics.sendEvent('Start screen', 'Load');
 
     // this.preloader.load(DATA.questions[0].options.map(option => this.staticURL + option.img));
-  }
-
-
-  /**
-   * Set current question number to the header counter
-   */
-  updateCounter() {
-    this.nodes.headerCounter.textContent = `Вопрос ${this.activeIndex + 1} из ${DATA.questions.length}`;
   }
 
   /**
@@ -279,10 +276,156 @@ class Special extends BaseSpecial {
     this.nodes.wrapper.dataset.mode = this.mode;
   }
 
+  /**
+   * Shows first question
+   * Called after click on the START button on intro screen
+   */
+  start() {
+    this.updateMode('progress');
+    this.makeQuestion();
 
+    Analytics.sendEvent('Start button', 'Click');
+  }
 
+  /**
+   * Create question corresponding with current active index
+   */
+  makeQuestion() {
+    /**
+     * @type {question}
+     */
+    let data = DATA.questions[this.activeIndex];
 
+    if (!data) {
+      throw new Error(`Missing data for question #${this.activeIndex} or incorrect index`);
+    }
 
+    removeChildren(this.nodes.options);
+    removeChildren(this.nodes.actions);
+    this.nodes.optionsItems = [];
+
+    this.isPending = false;
+    this.nodes.options.classList.remove(Special.CSS.optionsDisabled);
+
+    this.updateCounter();
+    this.nodes.mainText.innerHTML = `${data.text}`;
+
+    this.makeQuestionOptions(data.options);
+
+    if (isMobile()) scrollToElement(this.container);
+
+    Analytics.sendEvent(`Question ${this.activeIndex + 1} screen`, 'Hit');
+
+    // if (DATA.questions[this.activeIndex + 1]) {
+    //   this.preloader.load(DATA.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
+    // }
+  }
+
+  /**
+   * Set current question number to the header counter
+   */
+  updateCounter() {
+    this.nodes.counter.textContent = `— ЗАДАНИЕ ${this.activeIndex + 1} —`;
+  }
+
+  /**
+   * Renders possible answers
+   * @param {option[]} options
+   */
+  makeQuestionOptions(options) {
+    shuffle(options);
+
+    options.forEach(option => {
+      let item = make('div', Special.CSS.optionsItem, {
+        data: {
+          click: 'submitAnswer',
+          id: option.id,
+          number: this.activeIndex
+        },
+        textContent: option.text
+      });
+
+      this.nodes.optionsItems.push(item);
+      this.nodes.options.appendChild(item);
+    });
+  }
+
+  /**
+   * Check selected answer
+   * @param {Element} button - clicked option
+   */
+  submitAnswer(button) {
+    if (!this.isPending) {
+      let id = parseInt(button.dataset.id);
+
+      this.isPending = true;
+      this.nodes.options.classList.add(Special.CSS.optionsDisabled);
+
+      // ajax to check
+      ajax.get({
+        url: `${this.params.apiEndpoint}/check_answer`,
+        data: {
+          question: this.activeIndex,
+          answer: id
+        }
+      })
+        .then(
+          /**
+           * Osnova response
+           * @param {object} response
+           * @param {number} response.rc  - code (200)
+           * @param {string} response.rm  - message (successfull)
+           * @param {{message: string, isCorrect: boolean}} response.data  - response data
+           */
+          (response) => {
+            if (response && response.rc === 200) {
+              if (response.data.isCorrect) {
+                this.userPoints++;
+                button.classList.add(Special.CSS.optionsItemCorrect);
+              } else {
+                button.classList.add(Special.CSS.optionsItemError);
+              }
+
+              /**
+               * Remove other items
+               */
+              this.nodes.optionsItems.filter( item => item !== button).forEach(item => item.remove());
+
+              /**
+               * Append description
+               */
+              this.makeOptionMessage(response.data.message);
+
+              if (this.activeIndex >= this.totalLength - 1) {
+                this.findResult();
+
+                this.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
+              } else {
+                this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
+              }
+
+              this.activeIndex++;
+            } else {
+              console.log('Error while check answer:', response);
+            }
+          })
+        .catch((error) => {
+          console.log('Check answer error', error);
+        });
+    }
+  }
+
+  /**
+   * Show description after answer
+   * @param {string} message - description got from backend
+   */
+  makeOptionMessage(message) {
+    let messageEl = make('div', Special.CSS.optionsMessage, {
+      innerHTML: message
+    });
+
+    this.nodes.options.appendChild(messageEl);
+  }
 
 
 
@@ -300,10 +443,8 @@ class Special extends BaseSpecial {
     this.activeIndex = 0;
     this.totalLength = DATA.questions.length;
     this.userPoints = 0;
-    this.activeCorrectId = null;
     this.messages = {};
     this.isPending = false;
-    this.stopTimer();
     this.timer = null;
   }
 
@@ -321,177 +462,12 @@ class Special extends BaseSpecial {
     }
   }
 
-  start() {
-    this.updateMode('progress');
-    this.makeQuestion(this.activeIndex);
-    this.restartTimer();
-
-    Analytics.sendEvent('Start button', 'Click');
-  }
-
-  makeQuestion() {
-    /**
-       * @type {question}
-       */
-    let data = DATA.questions[this.activeIndex];
-
-    if (data) {
-      removeChildren(this.mainOptions);
-      removeChildren(this.mainActions);
-
-      this.isPending = false;
-      this.mainOptions.classList.remove(Bem.set(CSS.main, 'options', 'disabled'));
-
-      this.restartTimer(false);
-      this.updateCounter();
-      this.mainText.innerHTML = `${DATA.task}`;
-
-      this.makeQuestionOptions(data.options);
-
-      if (isMobile()) scrollToElement(this.container);
-
-      Analytics.sendEvent(`Question ${this.activeIndex + 1} screen`, 'Hit');
-
-      if (DATA.questions[this.activeIndex + 1]) {
-        this.preloader.load(DATA.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
-      }
-    } else {
-      throw new Error('Missing question data');
-    }
-  }
-
-  /**
-    * @param {option[]} options
-    */
-  makeQuestionOptions(options) {
-    shuffle(options);
-
-    options.forEach(option => {
-      let item = make('div', Bem.set(CSS.main, 'option'), {
-        data: {
-          click: 'submitAnswer',
-          id: option.id,
-          number: this.activeIndex
-        }
-      });
-      //
-      // let image = make('img', Bem.set(CSS.main, 'option-image'), {
-      //     src: this.staticURL + option.img,
-      //     data: {
-      //         id: option.id
-      //     }
-      // });
-
-      let imageCached = this.preloader.get(this.staticURL + option.img);
-
-      imageCached.classList.add(Bem.set(CSS.main, 'option-image'));
-      imageCached.dataset.id = option.id;
-
-      let label = make('div', [], {
-        innerHTML: option.text
-      });
-
-      item.appendChild(imageCached);
-      item.appendChild(label);
 
 
-      this.mainOptions.appendChild(item);
 
-      if (option.isCorrect) {
-        this.activeCorrectId = option.id;
-      }
 
-      this.messages[option.id] = option.message;
 
-      this.preloader.load([
-        this.staticURL + option.imgCorrect,
-        this.staticURL + option.imgWrong,
-        this.staticURL + option.imgDisabled
-      ]);
-    });
-  }
 
-  submitAnswer(button) {
-    if (!this.isPending) {
-      let id = parseInt(button.dataset.id);
-
-      this.stopTimer(false);
-
-      this.isPending = true;
-      this.mainOptions.classList.add(Bem.set(CSS.main, 'options', 'disabled'));
-
-      let images = this.content.querySelectorAll('.' + Bem.set(CSS.main, 'option-image'));
-
-      /**
-            * @type {question}
-            */
-      let currentQuestion = DATA.questions[this.activeIndex];
-
-      Array.from(images).forEach( (img, index) => {
-        let imageId = parseInt(img.dataset.id),
-          imageWrapper = img.parentNode;
-
-        // clicked image
-        if (id === imageId) {
-          let clickedImage;
-
-          if (id === this.activeCorrectId) {
-            clickedImage = this.preloader.get(this.staticURL + currentQuestion.options[index].imgCorrect);
-          } else {
-            clickedImage = this.preloader.get(this.staticURL + currentQuestion.options[index].imgWrong);
-          }
-
-          clickedImage.classList.add(Bem.set(CSS.main, 'option-image'));
-
-          replace(img, clickedImage);
-
-          // second image
-        } else {
-          let secondImage = this.preloader.get(this.staticURL + currentQuestion.options[index].imgDisabled);
-
-          secondImage.classList.add(Bem.set(CSS.main, 'option-image'));
-          replace(img, secondImage);
-        }
-
-        let messageOverlay = make('div', Bem.set(CSS.main, 'option-overlay'), {
-          innerHTML: '<i></i> ' +  currentQuestion.options[index].message
-        });
-
-        imageWrapper.appendChild(messageOverlay);
-      });
-
-      if (id === this.activeCorrectId) {
-        this.userPoints++;
-        button.classList.add(Bem.set(CSS.main, 'option', 'success'));
-      } else {
-        button.classList.add(Bem.set(CSS.main, 'option', 'error'));
-      }
-
-      // this.makeOptionMessage(id);
-
-      if (this.activeIndex >= this.totalLength - 1) {
-        this.findResult();
-
-        this.makeActionButton('Результат', 'makeResult');
-
-        this.preloader.load([
-          this.staticURL + this.findResult().cover
-        ]);
-      } else {
-        this.makeActionButton('Продолжить', 'makeQuestion');
-      }
-
-      this.activeIndex++;
-    }
-  }
-
-  makeOptionMessage(id) {
-    let message = make('div', Bem.set(CSS.main, 'message'), {
-      innerHTML: this.messages[id]
-    });
-
-    this.mainOptions.appendChild(message);
-  }
 
   /**
      * @typedef {object} result
@@ -591,66 +567,6 @@ class Special extends BaseSpecial {
     Analytics.sendEvent(`Result ${this.userPoints} screen`, 'Hit');
   }
 
-  /**
-    * Format number to string like HH:MM:SS
-    * @param {number} time - timer count in 0.1s
-    * @return {string}
-    */
-  formatTime(time) {
-    var decileSec = parseInt(time, 10); // don't forget the second param
-
-    let sec = decileSec / 10;
-    let minLeft = sec / 60;
-    let fullMin = Math.floor(minLeft);
-    let secLeft = (decileSec - fullMin) % 600 / 10;
-    let fullSecLeft = Math.floor(secLeft);
-    let decileSecLeft = parseInt(String(secLeft).split('.')[1], 10) * 6;
-
-    if (isNaN(decileSecLeft)) {
-      decileSecLeft = 0;
-    }
-
-    fullMin = fullMin < 10 ? `0${fullMin}`: fullMin;
-    fullSecLeft = fullSecLeft < 10 ? `0${fullSecLeft}`: fullSecLeft;
-    decileSecLeft = decileSecLeft < 10 ? `0${decileSecLeft}`: decileSecLeft;
-
-    return `${fullMin}:${fullSecLeft}:${decileSecLeft}`;
-  }
-
-  set timerValue(val) {
-    this._timerValue += 1;
-    this.timerContent.textContent = this.formatTime(this._timerValue);
-  }
-
-  get timerValue() {
-    return this._timerValue;
-  }
-
-  /**
-     * Stop timer if it is running
-     * @param {boolean} clear - need to clear value
-     */
-  stopTimer(clear = true) {
-    if (this.timer) {
-      window.clearInterval(this.timer);
-      if (clear) {
-        this._timerValue = 0;
-      }
-    }
-  }
-
-  /**
-    * Starts new timer for the game
-    * @param {boolean} clear - need to clear value
-    */
-  restartTimer(clear) {
-    this.stopTimer(clear);
-
-    this.timer = window.setInterval(() => {
-      this.timerValue++;
-    }, 100);
-  }
-
   restart() {
     this.setDefaultValues();
     this.updateMode('progress');
@@ -662,7 +578,6 @@ class Special extends BaseSpecial {
     this.content.appendChild(this.mainActions);
 
     this.makeQuestion(0);
-    this.restartTimer();
 
     Analytics.sendEvent('Restart button', 'Click');
   }

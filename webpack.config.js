@@ -3,6 +3,8 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const WebpackOnBuildPlugin = require('on-build-webpack');
+const fs = require('fs');
 
 const Config = require('./src/js/config.js');
 
@@ -26,19 +28,34 @@ if (isProduction) {
     ]);
 } else {
     plugins.push(...[
-        new BrowserSyncPlugin({
-            port: 3040,
-            host: '0.0.0.0',
-            server: {
-                baseDir: './'
-            },
-            https: true,
-            ghostMode: false,
-            notify: false,
-            scrollProportionally: false,
-            cors: true
-        })
+        // new BrowserSyncPlugin({
+        //     port: 3040,
+        //     host: '0.0.0.0',
+        //     server: {
+        //         baseDir: './'
+        //     },
+        //     https: false  ,
+        //     ghostMode: false,
+        //     notify: false,
+        //     scrollProportionally: false,
+        //     cors: true
+        // })
     ]);
+  /**
+   * Move bundles to the Osnova
+   */
+  plugins.push(new WebpackOnBuildPlugin(function(stats) {
+    // /Users/specc/cmtt/osnova/src/Components/Specials/Projects/Battlefield/
+    const projectInOnsnova = path.resolve(__dirname, '../', 'osnova', 'src', 'Components', 'Specials', 'Projects', 'Battlefield');
+    const bundlePath = path.resolve(__dirname, 'dist', 'all.js');
+    const cssBundlePath = path.resolve(__dirname, 'dist', 'all.css');
+
+    // copy js
+    fs.createReadStream(bundlePath).pipe(fs.createWriteStream(path.resolve(projectInOnsnova, 'js', 'vendor', 'all.js')));
+
+    // copy css
+    fs.createReadStream(cssBundlePath).pipe(fs.createWriteStream(path.resolve(projectInOnsnova, 'styles', 'all.css')));
+  }))
 }
 
 module.exports = {

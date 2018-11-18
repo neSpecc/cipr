@@ -6,6 +6,8 @@
   --color-buttons-text: #fff;
   --color-container-bg: rgba(37, 42, 92, 0.8);
   --color-text-out-countainer: #252A5C;
+  --color-answer-correct: #18D784;
+  --color-answer-incorrect: #E43768;
 
   display: flex;
   flex-direction: column;
@@ -79,10 +81,78 @@
 
   &__content {
     background: var(--color-container-bg);
+    color: #fff;
+    padding: 40px;
 
     b {
       font-weight: bold;
     }
+
+    &-text {
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+  }
+
+  &__counter {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__options {
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 1.5em;
+
+    &-item,
+    &-message {
+      font-weight: 600;
+      padding: 20px 30px;
+    }
+
+    &-item {
+      display: flex;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        width: 19px;
+        height: 19px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        margin-right: 30px;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        &:before {
+          background: #fff;
+        }
+      }
+
+      &--correct,
+      &--incorrect {
+        color: var(--color-text-out-countainer);
+      }
+
+      &--correct {
+        background: var(--color-answer-correct);
+      }
+
+      &--incorrect {
+        background: var(--color-answer-incorrect);
+      }
+    }
+
+    &-message {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &__actions &__button {
+    margin: 40px auto 0;
   }
 }
 
@@ -95,12 +165,14 @@
     ^&__content {
       background: transparent;
       text-align: center;
+      padding: 0;
     }
 
     ^&__title {
       font-size: 30px;
       font-weight: 600;
       letter-spacing: 0.025em;
+      color: var(--color-text-out-countainer);
     }
 
     ^&__intro {

@@ -5,7 +5,7 @@
  *
  * @usage preloader.load(url)
  * @usage preloader.load([url1, url2])
- * @usage preloader.get(url) -> Image
+ * @usage let imageCached = preloader.get(url); el.appendChild(imageCached);
  *
  */
 

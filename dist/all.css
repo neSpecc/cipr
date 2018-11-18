@@ -26,6 +26,8 @@
   --color-buttons-text: #fff;
   --color-container-bg: rgba(37, 42, 92, 0.8);
   --color-text-out-countainer: #252A5C;
+  --color-answer-correct: #18D784;
+  --color-answer-incorrect: #E43768;
 
   display: -ms-flexbox;
 
@@ -82,18 +84,63 @@
       background: var(--color-container-bg);
     }.bf-special__content {
     background: var(--color-container-bg);
+    color: #fff;
+    padding: 40px;
   }.bf-special__content b {
       font-weight: bold;
-    }/**
+    }.bf-special__content-text {
+      font-size: 16px;
+      line-height: 1.5em;
+    }.bf-special__counter {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+  }.bf-special__options {
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 1.5em;
+  }.bf-special__options-item,
+    .bf-special__options-message {
+      font-weight: 600;
+      padding: 20px 30px;
+    }.bf-special__options-item {
+      display: -ms-flexbox;
+      display: flex;
+      cursor: pointer
+    }.bf-special__options-item::before {
+        content: '';
+        width: 19px;
+        height: 19px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        margin-right: 30px;
+        vertical-align: middle;
+      }.bf-special__options-item:hover:before {
+          background: #fff;
+        }.bf-special__options-item--correct,
+      .bf-special__options-item--incorrect {
+        color: var(--color-text-out-countainer);
+      }.bf-special__options-item--correct {
+        background: var(--color-answer-correct);
+      }.bf-special__options-item--incorrect {
+        background: var(--color-answer-incorrect);
+      }.bf-special__options-message {
+      background: rgba(255, 255, 255, 0.2);
+    }.bf-special__actions .bf-special__button {
+    margin: 40px auto 0;
+  }/**
  * Start scene
  * ================================
  */.bf-special[data-mode="start"] .bf-special__content {
       background: transparent;
       text-align: center;
+      padding: 0;
     }.bf-special[data-mode="start"] .bf-special__title {
       font-size: 30px;
       font-weight: 600;
       letter-spacing: 0.025em;
+      color: var(--color-text-out-countainer);
     }.bf-special[data-mode="start"] .bf-special__intro {
       background: var(--color-container-bg);
       padding: 40px;
