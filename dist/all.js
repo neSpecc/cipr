@@ -922,9 +922,7 @@ var Special = function (_BaseSpecial) {
     }
 
     /**
-     *
-     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
-     * @constructor
+     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
      */
 
   }, {
@@ -1045,6 +1043,8 @@ var Special = function (_BaseSpecial) {
   }, {
     key: 'makeActionButton',
     value: function makeActionButton(text, func) {
+      (0, _dom.removeChildren)(this.nodes.actions);
+
       var button = (0, _dom.make)('div', Special.CSS.button, {
         type: 'button',
         data: {
@@ -1144,7 +1144,7 @@ var Special = function (_BaseSpecial) {
       options.forEach(function (option) {
         var item = (0, _dom.make)('div', Special.CSS.optionsItem, {
           data: {
-            click: 'submitAnswer',
+            click: 'selectAnswer',
             id: option.id,
             number: _this4.activeIndex
           },
@@ -1157,8 +1157,29 @@ var Special = function (_BaseSpecial) {
     }
 
     /**
-     * Check selected answer
+     * Select answer
      * @param {Element} button - clicked option
+     */
+
+  }, {
+    key: 'selectAnswer',
+    value: function selectAnswer(button) {
+      if (this.isPending) {
+        return;
+      }
+
+      this.nodes.optionsItems.forEach(function (btn) {
+        btn.classList.remove(Special.CSS.optionsItemSelected);
+      });
+
+      button.classList.add(Special.CSS.optionsItemSelected);
+
+      this.makeActionButton('ПОДТВЕРДИТЬ', 'submitAnswer');
+    }
+
+    /**
+     * Check selected answer
+     * @param {Element} button - clicked 'Confirm' button
      */
 
   }, {
@@ -1166,64 +1187,78 @@ var Special = function (_BaseSpecial) {
     value: function submitAnswer(button) {
       var _this5 = this;
 
-      if (!this.isPending) {
-        var id = parseInt(button.dataset.id);
-
-        this.isPending = true;
-        this.nodes.options.classList.add(Special.CSS.optionsDisabled);
-
-        // ajax to check
-        _ajax2.default.get({
-          url: this.params.apiEndpoint + '/check_answer',
-          data: {
-            question: this.activeIndex,
-            answer: id
-          }
-        }).then(
-        /**
-         * Osnova response
-         * @param {object} response
-         * @param {number} response.rc  - code (200)
-         * @param {string} response.rm  - message (successfull)
-         * @param {{message: string, isCorrect: boolean}} response.data  - response data
-         */
-        function (response) {
-          if (response && response.rc === 200) {
-            if (response.data.isCorrect) {
-              _this5.userPoints++;
-              button.classList.add(Special.CSS.optionsItemCorrect);
-            } else {
-              button.classList.add(Special.CSS.optionsItemError);
-            }
-
-            /**
-             * Remove other items
-             */
-            _this5.nodes.optionsItems.filter(function (item) {
-              return item !== button;
-            }).forEach(function (item) {
-              return item.remove();
-            });
-
-            /**
-             * Append description
-             */
-            _this5.makeOptionMessage(response.data.message);
-
-            if (_this5.activeIndex >= _this5.totalLength - 1) {
-              _this5.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
-            } else {
-              _this5.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
-            }
-
-            _this5.activeIndex++;
-          } else {
-            console.log('Error while check answer:', response);
-          }
-        }).catch(function (error) {
-          console.log('Check answer error', error);
-        });
+      if (this.isPending) {
+        return;
       }
+
+      var selectedItem = this.nodes.optionsItems.find(function (item) {
+        return item.classList.contains(Special.CSS.optionsItemSelected);
+      });
+      var id = parseInt(selectedItem.dataset.id);
+
+      this.isPending = true;
+      this.nodes.options.classList.add(Special.CSS.optionsDisabled);
+      button.classList.add(Special.CSS.buttonDisabled);
+
+      selectedItem.classList.remove(Special.CSS.optionsItemSelected);
+      selectedItem.classList.add(Special.CSS.optionsItemLoading);
+
+      // ajax to check
+      _ajax2.default.get({
+        url: this.params.apiEndpoint + '/check_answer',
+        data: {
+          question: this.activeIndex,
+          answer: id
+        }
+      }).then(
+      /**
+       * Osnova response
+       * @param {object} response
+       * @param {number} response.rc  - code (200)
+       * @param {string} response.rm  - message (successfull)
+       * @param {{message: string, isCorrect: boolean}} response.data  - response data
+       */
+      function (response) {
+        _this5.nodes.options.classList.remove(Special.CSS.optionsDisabled);
+        selectedItem.classList.remove(Special.CSS.optionsItemLoading);
+
+        if (response && response.rc === 200) {
+          if (response.data.isCorrect) {
+            _this5.userPoints++;
+            selectedItem.classList.add(Special.CSS.optionsItemCorrect);
+          } else {
+            selectedItem.classList.add(Special.CSS.optionsItemError);
+          }
+
+          /**
+           * Remove other items
+           */
+          _this5.nodes.optionsItems.filter(function (item) {
+            return item !== selectedItem;
+          }).forEach(function (item) {
+            return item.remove();
+          });
+
+          /**
+           * Append description
+           */
+          _this5.makeOptionMessage(response.data.message);
+
+          if (_this5.activeIndex >= _this5.totalLength - 1) {
+            _this5.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
+          } else {
+            _this5.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
+          }
+
+          button.classList.remove(Special.CSS.buttonDisabled);
+
+          _this5.activeIndex++;
+        } else {
+          console.log('Error while check answer:', response);
+        }
+      }).catch(function (error) {
+        console.log('Check answer error', error);
+      });
     }
 
     /**
@@ -1416,6 +1451,8 @@ var Special = function (_BaseSpecial) {
         options: 'bf-special__options',
         optionsDisabled: 'bf-special__options--disabled',
         optionsItem: 'bf-special__options-item',
+        optionsItemSelected: 'bf-special__options-item--selected',
+        optionsItemLoading: 'bf-special__options-item--loading',
         optionsItemCorrect: 'bf-special__options-item--correct',
         optionsItemError: 'bf-special__options-item--incorrect',
         optionsMessage: 'bf-special__options-message',
@@ -1425,6 +1462,7 @@ var Special = function (_BaseSpecial) {
         title: 'bf-special__title',
         button: 'bf-special__button',
         buttonSecond: 'bf-special__button--second',
+        buttonDisabled: 'bf-special__button--disabled',
         introText: 'bf-special__intro',
 
         result: 'bf-special__result',

@@ -1,5 +1,6 @@
 @import url('from-data.pcss');
 @import url('likely.pcss');
+@import url('animations.pcss');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
 .bf-special {
@@ -95,12 +96,20 @@
         color: var(--color-text-out-countainer);
       }
     }
+
+    &--disabled {
+      opacity: 0.5;
+
+      &:hover {
+        background: var(--color-buttons-bg);
+      }
+    }
   }
 
   &__content {
     background: var(--color-container-bg);
     color: #fff;
-    padding: 40px;
+    padding: 60px;
 
     b {
       font-weight: bold;
@@ -114,9 +123,10 @@
 
   &__counter {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
     margin-bottom: 40px;
+    letter-spacing: 0.05em;
   }
 
   &__options {
@@ -149,22 +159,77 @@
       }
 
       &:hover {
-        &:before {
-          background: #fff;
+        box-shadow: inset 0 0 0 2px #fff;
+      }
+
+      &--selected {
+        background: #fff;
+        color: var(--color-text-out-countainer);
+
+        &::before {
+          border-color: var(--color-text-out-countainer);
         }
       }
 
       &--correct,
       &--incorrect {
         color: var(--color-text-out-countainer);
+
+        &:hover {
+          box-shadow: none;
+        }
       }
 
       &--correct {
         background: var(--color-answer-correct);
+
+        &::before {
+          background: url(https://leonardo.osnova.io/91955042-4f49-5b12-e436-102dabc3ea5e) no-repeat;
+          width: 29px;
+          height: 20px;
+          background-size: 29px auto;
+          border: 0 !important;
+        }
       }
 
       &--incorrect {
         background: var(--color-answer-incorrect);
+
+        &::before {
+          background: url(https://leonardo.osnova.io/a94979a3-ea8e-e438-38fd-c4f5c59c5683) no-repeat;
+          width: 20px;
+          height: 21px;
+          background-size: auto 21px;
+          border: 0 !important;
+        }
+      }
+
+      &--loading {
+        &::before {
+          content: '';
+          width: 19px;
+          height: 19px;
+          border: 2px solid #fff;
+          border-top-color: var(--color-buttons-bg);
+          border-radius: 50%;
+          margin-right: 30px;
+          vertical-align: middle;
+          animation: rotating 2s infinite linear;
+        }
+      }
+    }
+
+    &--disabled {
+      ^&-item {
+        opacity: 0.5;
+
+        &:hover::before {
+          background: transparent;
+        }
+      }
+
+      ^&-item--loading {
+        opacity: 1;
       }
     }
 

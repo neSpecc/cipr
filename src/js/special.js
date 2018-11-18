@@ -106,9 +106,7 @@ class Special extends BaseSpecial {
   }
 
   /**
-   *
-   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
-   * @constructor
+   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, content: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
    */
   static get CSS() {
     return {
@@ -127,6 +125,8 @@ class Special extends BaseSpecial {
       options: 'bf-special__options',
       optionsDisabled: 'bf-special__options--disabled',
       optionsItem: 'bf-special__options-item',
+      optionsItemSelected: 'bf-special__options-item--selected',
+      optionsItemLoading: 'bf-special__options-item--loading',
       optionsItemCorrect: 'bf-special__options-item--correct',
       optionsItemError: 'bf-special__options-item--incorrect',
       optionsMessage: 'bf-special__options-message',
@@ -136,6 +136,7 @@ class Special extends BaseSpecial {
       title: 'bf-special__title',
       button: 'bf-special__button',
       buttonSecond: 'bf-special__button--second',
+      buttonDisabled: 'bf-special__button--disabled',
       introText: 'bf-special__intro',
 
       result: 'bf-special__result',
@@ -264,6 +265,8 @@ class Special extends BaseSpecial {
    * @param {string} func - name of method that should be triggered by click
    */
   makeActionButton(text, func) {
+    removeChildren(this.nodes.actions);
+
     let button = make('div', Special.CSS.button, {
       type: 'button',
       data: {
@@ -346,7 +349,7 @@ class Special extends BaseSpecial {
     options.forEach(option => {
       let item = make('div', Special.CSS.optionsItem, {
         data: {
-          click: 'submitAnswer',
+          click: 'selectAnswer',
           id: option.id,
           number: this.activeIndex
         },
@@ -359,66 +362,96 @@ class Special extends BaseSpecial {
   }
 
   /**
-   * Check selected answer
+   * Select answer
    * @param {Element} button - clicked option
    */
-  submitAnswer(button) {
-    if (!this.isPending) {
-      let id = parseInt(button.dataset.id);
-
-      this.isPending = true;
-      this.nodes.options.classList.add(Special.CSS.optionsDisabled);
-
-      // ajax to check
-      ajax.get({
-        url: `${this.params.apiEndpoint}/check_answer`,
-        data: {
-          question: this.activeIndex,
-          answer: id
-        }
-      })
-        .then(
-          /**
-           * Osnova response
-           * @param {object} response
-           * @param {number} response.rc  - code (200)
-           * @param {string} response.rm  - message (successfull)
-           * @param {{message: string, isCorrect: boolean}} response.data  - response data
-           */
-          (response) => {
-            if (response && response.rc === 200) {
-              if (response.data.isCorrect) {
-                this.userPoints++;
-                button.classList.add(Special.CSS.optionsItemCorrect);
-              } else {
-                button.classList.add(Special.CSS.optionsItemError);
-              }
-
-              /**
-               * Remove other items
-               */
-              this.nodes.optionsItems.filter( item => item !== button).forEach(item => item.remove());
-
-              /**
-               * Append description
-               */
-              this.makeOptionMessage(response.data.message);
-
-              if (this.activeIndex >= this.totalLength - 1) {
-                this.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
-              } else {
-                this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
-              }
-
-              this.activeIndex++;
-            } else {
-              console.log('Error while check answer:', response);
-            }
-          })
-        .catch((error) => {
-          console.log('Check answer error', error);
-        });
+  selectAnswer(button) {
+    if (this.isPending) {
+      return;
     }
+
+    this.nodes.optionsItems.forEach( btn => {
+      btn.classList.remove(Special.CSS.optionsItemSelected);
+    });
+
+    button.classList.add(Special.CSS.optionsItemSelected);
+
+    this.makeActionButton('ПОДТВЕРДИТЬ', 'submitAnswer');
+  }
+
+  /**
+   * Check selected answer
+   * @param {Element} button - clicked 'Confirm' button
+   */
+  submitAnswer(button) {
+    if (this.isPending) {
+      return;
+    }
+
+    let selectedItem = this.nodes.optionsItems.find((item) => item.classList.contains(Special.CSS.optionsItemSelected));
+    let id = parseInt(selectedItem.dataset.id);
+
+    this.isPending = true;
+    this.nodes.options.classList.add(Special.CSS.optionsDisabled);
+    button.classList.add(Special.CSS.buttonDisabled);
+
+    selectedItem.classList.remove(Special.CSS.optionsItemSelected);
+    selectedItem.classList.add(Special.CSS.optionsItemLoading);
+
+    // ajax to check
+    ajax.get({
+      url: `${this.params.apiEndpoint}/check_answer`,
+      data: {
+        question: this.activeIndex,
+        answer: id
+      }
+    })
+      .then(
+        /**
+         * Osnova response
+         * @param {object} response
+         * @param {number} response.rc  - code (200)
+         * @param {string} response.rm  - message (successfull)
+         * @param {{message: string, isCorrect: boolean}} response.data  - response data
+         */
+        (response) => {
+          this.nodes.options.classList.remove(Special.CSS.optionsDisabled);
+          selectedItem.classList.remove(Special.CSS.optionsItemLoading);
+
+          if (response && response.rc === 200) {
+            if (response.data.isCorrect) {
+              this.userPoints++;
+              selectedItem.classList.add(Special.CSS.optionsItemCorrect);
+            } else {
+              selectedItem.classList.add(Special.CSS.optionsItemError);
+            }
+
+            /**
+             * Remove other items
+             */
+            this.nodes.optionsItems.filter( item => item !== selectedItem).forEach(item => item.remove());
+
+            /**
+             * Append description
+             */
+            this.makeOptionMessage(response.data.message);
+
+            if (this.activeIndex >= this.totalLength - 1) {
+              this.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
+            } else {
+              this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
+            }
+
+            button.classList.remove(Special.CSS.buttonDisabled);
+
+            this.activeIndex++;
+          } else {
+            console.log('Error while check answer:', response);
+          }
+        })
+      .catch((error) => {
+        console.log('Check answer error', error);
+      });
   }
 
   /**
