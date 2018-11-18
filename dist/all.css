@@ -228,8 +228,12 @@
     }.bf-special__actions {
     text-align: center;
   }.bf-special__actions .bf-special__button {
-      margin: 40px auto 0;
-    }.bf-special__result-content {
+      margin: 35px 15px 0;
+    }.bf-special__actions-disclaimer {
+       font-size: 16px;
+       margin-top: 20px;
+       line-height: 1.5em;
+     }.bf-special__result-content {
       background: #83D5F7 url('https://leonardo.osnova.io/f66f4158-3bdc-a1fa-b9db-c5fb64910b3d/') no-repeat;
       background-size: cover;
       font-size: 28px;

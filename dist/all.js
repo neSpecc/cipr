@@ -803,6 +803,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -1031,6 +1033,7 @@ var Special = function (_BaseSpecial) {
     value: function makeIntro() {
       this.nodes.mainText.innerHTML = '\n      <div class="' + Special.CSS.title + '">\n        <a href="' + CONFIG.articleUrl + '">\n          ' + _data2.default.title + '\n        </a>\n      </div>\n      <div class="' + Special.CSS.introText + '">\n        ' + _data2.default.intro + '\n      </div>\n    ';
 
+      (0, _dom.removeChildren)(this.nodes.actions);
       this.makeActionButton('НАЧАТЬ ИГРУ', 'start');
     }
 
@@ -1038,14 +1041,21 @@ var Special = function (_BaseSpecial) {
      * Creates a button
      * @param {string} text - button's text
      * @param {string} func - name of method that should be triggered by click
+     * @param {string[]} additionalCSS - array of CSS classes for button
      */
 
   }, {
     key: 'makeActionButton',
     value: function makeActionButton(text, func) {
-      (0, _dom.removeChildren)(this.nodes.actions);
+      var additionalCSS = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-      var button = (0, _dom.make)('div', Special.CSS.button, {
+      var buttonStyle = [Special.CSS.button];
+
+      if (Array.isArray(additionalCSS)) {
+        buttonStyle.push.apply(buttonStyle, _toConsumableArray(additionalCSS));
+      }
+
+      var button = (0, _dom.make)('div', buttonStyle, {
         type: 'button',
         data: {
           click: func
@@ -1174,6 +1184,7 @@ var Special = function (_BaseSpecial) {
 
       button.classList.add(Special.CSS.optionsItemSelected);
 
+      (0, _dom.removeChildren)(this.nodes.actions);
       this.makeActionButton('ПОДТВЕРДИТЬ', 'submitAnswer');
     }
 
@@ -1222,12 +1233,16 @@ var Special = function (_BaseSpecial) {
         _this5.nodes.options.classList.remove(Special.CSS.optionsDisabled);
         selectedItem.classList.remove(Special.CSS.optionsItemLoading);
 
+        (0, _dom.removeChildren)(_this5.nodes.actions);
+
         if (response && response.rc === 200) {
           if (response.data.isCorrect) {
             _this5.userPoints++;
             selectedItem.classList.add(Special.CSS.optionsItemCorrect);
           } else {
             selectedItem.classList.add(Special.CSS.optionsItemError);
+
+            _this5.makeActionButton('ЕЩЕ РАЗ', 'restart', [Special.CSS.buttonSecond]);
           }
 
           /**
@@ -1248,6 +1263,12 @@ var Special = function (_BaseSpecial) {
             _this5.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
           } else {
             _this5.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
+          }
+
+          if (!response.data.isCorrect) {
+            _this5.nodes.actions.appendChild((0, _dom.make)('div', Special.CSS.actionsDisclaimer, {
+              innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Одна ошибка — в розыгрыше не участвуешь.'
+            }));
           }
 
           button.classList.remove(Special.CSS.buttonDisabled);
@@ -1458,6 +1479,7 @@ var Special = function (_BaseSpecial) {
         optionsMessage: 'bf-special__options-message',
 
         actions: 'bf-special__actions',
+        actionsDisclaimer: 'bf-special__actions-disclaimer',
 
         title: 'bf-special__title',
         button: 'bf-special__button',

@@ -132,6 +132,7 @@ class Special extends BaseSpecial {
       optionsMessage: 'bf-special__options-message',
 
       actions: 'bf-special__actions',
+      actionsDisclaimer: 'bf-special__actions-disclaimer',
 
       title: 'bf-special__title',
       button: 'bf-special__button',
@@ -256,6 +257,7 @@ class Special extends BaseSpecial {
       </div>
     `;
 
+    removeChildren(this.nodes.actions);
     this.makeActionButton('НАЧАТЬ ИГРУ', 'start');
   }
 
@@ -263,11 +265,16 @@ class Special extends BaseSpecial {
    * Creates a button
    * @param {string} text - button's text
    * @param {string} func - name of method that should be triggered by click
+   * @param {string[]} additionalCSS - array of CSS classes for button
    */
-  makeActionButton(text, func) {
-    removeChildren(this.nodes.actions);
+  makeActionButton(text, func, additionalCSS = []) {
+    let buttonStyle = [ Special.CSS.button ];
 
-    let button = make('div', Special.CSS.button, {
+    if (Array.isArray(additionalCSS)) {
+      buttonStyle.push(...additionalCSS);
+    }
+
+    let button = make('div', buttonStyle, {
       type: 'button',
       data: {
         click: func
@@ -376,6 +383,7 @@ class Special extends BaseSpecial {
 
     button.classList.add(Special.CSS.optionsItemSelected);
 
+    removeChildren(this.nodes.actions);
     this.makeActionButton('ПОДТВЕРДИТЬ', 'submitAnswer');
   }
 
@@ -418,12 +426,16 @@ class Special extends BaseSpecial {
           this.nodes.options.classList.remove(Special.CSS.optionsDisabled);
           selectedItem.classList.remove(Special.CSS.optionsItemLoading);
 
+          removeChildren(this.nodes.actions);
+
           if (response && response.rc === 200) {
             if (response.data.isCorrect) {
               this.userPoints++;
               selectedItem.classList.add(Special.CSS.optionsItemCorrect);
             } else {
               selectedItem.classList.add(Special.CSS.optionsItemError);
+
+              this.makeActionButton('ЕЩЕ РАЗ', 'restart', [ Special.CSS.buttonSecond ]);
             }
 
             /**
@@ -440,6 +452,12 @@ class Special extends BaseSpecial {
               this.makeActionButton('РЕЗУЛЬТАТЫ', 'makeResult');
             } else {
               this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
+            }
+
+            if (!response.data.isCorrect) {
+              this.nodes.actions.appendChild(make('div', Special.CSS.actionsDisclaimer, {
+                innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Одна ошибка — в розыгрыше не участвуешь.'
+              }));
             }
 
             button.classList.remove(Special.CSS.buttonDisabled);
