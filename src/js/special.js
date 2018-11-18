@@ -289,7 +289,19 @@ class Special extends BaseSpecial {
     `;
 
     removeChildren(this.nodes.actions);
-    this.makeActionButton('НАЧАТЬ ИГРУ', 'start');
+    this.makeActionButton('НАЧАТЬ ИГРУ', 'showIntroduсtion');
+  }
+
+  /**
+   * Creates introduction screen
+   */
+  showIntroduсtion() {
+    this.updateMode('introduction');
+    this.nodes.counter.textContent = '— Вступление —';
+    this.nodes.mainText.innerHTML = DATA.introduction;
+
+    removeChildren(this.nodes.actions);
+    this.makeActionButton('ПРИСТУПИТЬ', 'start');
   }
 
   /**
