@@ -826,6 +826,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @typedef {object} question
  * @description Object represented single question data
  * @property {string} text
+ * @property {string} image - url of image with code
  * @property {option[]} options
  */
 
@@ -1117,6 +1118,9 @@ var Special = function (_BaseSpecial) {
 
       this.updateCounter();
       this.nodes.mainText.innerHTML = '' + data.text;
+      this.nodes.mainText.appendChild((0, _dom.make)('img', [], {
+        src: data.image
+      }));
 
       this.makeQuestionOptions(data.options);
 
@@ -2689,6 +2693,7 @@ exports.default = {
   CTAText: 'УЗНАТЬ БОЛЬШЕ О Battlefield V',
   questions: [{
     text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
+    image: 'https://leonardo.osnova.io/f00aa764-e678-871b-17f6-fe2ba66cb761',
     options: [{
       id: 1,
       text: 'Отряд утерян'
@@ -2704,6 +2709,7 @@ exports.default = {
     }]
   }, {
     text: 'После успеха с шифровальными машинами вас отправляют туда, где гораздо важнее человеческий фактор — в поместье «Трент-парк», где британская разведка размещала высокопоставленных пленных немецких офицеров. В комфортных условиях, пусть и взаперти, генералы разболтали немало фактов о немецкой военной машине — а их прослушивали на каждом шагу. Один такой офицер сильно запаниковал, когда узнал о точном месте своего заключения. В разговорах с другими немцами он упоминал некоего Виктора Второго как причину беспокойства. Что это за Виктор и почему Второй?',
+    image: 'https://leonardo.osnova.io/f00aa764-e678-871b-17f6-fe2ba66cb761',
     options: [{
       id: 1,
       text: 'Первый итальянский авианосец «Витторио Эмануэле»'

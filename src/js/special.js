@@ -13,6 +13,7 @@
  * @typedef {object} question
  * @description Object represented single question data
  * @property {string} text
+ * @property {string} image - url of image with code
  * @property {option[]} options
  */
 
@@ -327,6 +328,9 @@ class Special extends BaseSpecial {
 
     this.updateCounter();
     this.nodes.mainText.innerHTML = `${data.text}`;
+    this.nodes.mainText.appendChild(make('img', [], {
+      src: data.image
+    }));
 
     this.makeQuestionOptions(data.options);
 

@@ -15,9 +15,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  background: url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat;
-  background-size: cover;
+  min-height: 100%;
+  background: #83D5F7 url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat center top;
   font-family: 'Montserrat', sans-serif;
   padding: 40px;
 
@@ -26,10 +25,12 @@
   }
 
   &__header {
-    display: flex;
     color: var(--color-text-out-countainer);
+    margin-bottom: 30px;
 
     &-menu {
+      max-width: 600px;
+      text-align: center;
       margin: 0 auto;
       font-size: 20px;
       font-weight: 600;
@@ -117,7 +118,12 @@
 
     &-text {
       font-size: 16px;
-      line-height: 1.5em;
+      line-height: 1.55em;
+
+      img {
+        margin-top: 25px;
+        max-width: 100%;
+      }
     }
   }
 
