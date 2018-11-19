@@ -159,7 +159,6 @@
 
     svg {
       margin-right: 10px;
-      vertical-align: middle;
 
       @media (--mobile) {
         margin-top: auto;
@@ -195,6 +194,25 @@
     position: relative;
     z-index: 2;
 
+    &--loading {
+      &::before {
+        position: absolute;
+        content: '';
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+        left: 50%;
+        top: 70%;
+        border: 2px solid #fff;
+        border-top-color: var(--color-buttons-bg);
+        border-radius: 50%;
+        animation: rotating 2s infinite linear;
+      }
+    }
+
     @media (--mobile) {
       padding: 25px 20px;
     }
@@ -223,6 +241,10 @@
           margin-top: 15px;
         }
       }
+
+      p {
+        margin-top: 15px;
+      }
     }
   }
 
@@ -233,6 +255,15 @@
     margin-bottom: 40px;
     letter-spacing: 0.05em;
 
+    ^&__button {
+      padding: 10px 15px;
+      margin-left: 20px;
+    }
+
+    svg {
+      margin-right: 10px;
+    }
+
     @media (--mobile) {
       font-size: 18px;
       margin-bottom: 15px;
@@ -240,7 +271,7 @@
   }
 
   &__options {
-    margin-top: 30px;
+    margin-top: 15px;
     font-size: 16px;
     line-height: 1.5em;
 
@@ -475,6 +506,10 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
+    tr.me {
+      color: var(--color-buttons-bg);
+    }
+
     &-pagination {
       display: flex;
 
@@ -516,7 +551,6 @@
       position: relative;
       background: #252A5C;
       color: #fff;
-      padding: 30px;
     }
 
     &-close {
@@ -567,6 +601,7 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 1.6em;
+    padding: 30px;
 
     &-buttons{
       margin-top: 20px;

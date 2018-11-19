@@ -1814,7 +1814,7 @@ var _default = {
   }, {
     tab: 'aboutGame',
     label: 'О Battlefield V',
-    content: "\n        <div class=\"about-game\">\n          <p>\n            <b>Battlefield V</b> \u2013 \u0412\u0442\u043E\u0440\u0430\u044F \u043C\u0438\u0440\u043E\u0432\u0430\u044F \u0432 \u0441\u043E\u0432\u0435\u0440\u0448\u0435\u043D\u043D\u043E \u043D\u043E\u0432\u043E\u043C \u0441\u0432\u0435\u0442\u0435. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043C\u0443\u043B\u044C\u0442\u0438\u043F\u043B\u0435\u0435\u0440\u043D\u044B\u0445 \u0431\u043E\u044F\u0445 \u0432 \u043D\u043E\u0432\u044B\u0445 \u0438 \u043A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0440\u0435\u0436\u0438\u043C\u0430\u0445. \u0421\u044E\u0436\u0435\u0442\u043D\u0430\u044F \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u044F \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E \u043B\u044E\u0434\u0435\u0439, \u0447\u044C\u0438 \u0441\u0443\u0434\u044C\u0431\u044B \u0431\u044B\u043B\u0438 \u0432\u0442\u044F\u043D\u0443\u0442\u044B \u0432 \u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430. \n          </p>\n          <p>\n            <b>Battlefield V</b> \u043E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u043F\u0440\u043E\u043F\u0443\u0441\u043A\u043E\u0432. \xAB\u0425\u043E\u0434 \u0432\u043E\u0439\u043D\u044B\xBB \u2013 \u043D\u043E\u0432\u044B\u0439 \u0441\u0435\u0440\u0432\u0438\u0441, \u0441\u043D\u0430\u0431\u0436\u0430\u044E\u0449\u0438\u0439 \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u043C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u043E\u043C \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043B\u0435\u0442.\n          </p>\n          <h2>\n            \u0422\u0420\u0415\u0419\u041B\u0415\u0420\u042B \u0418 \u0412\u0418\u0414\u0415\u041E \u041F\u041E \u0418\u0413\u0420\u0415\n          </h2>\n          <img src=\"https://leonardo.osnova.io/b8334bfa-a0a4-28af-fd28-4242dca9ef23\">\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E&nbsp;BATTLEFIELD&nbsp;V\n            </a>\n          </div>\n        </div>\n      "
+    content: "\n        <div class=\"about-game\">\n          <p>\n            <b>Battlefield V</b> \u2013 \u0412\u0442\u043E\u0440\u0430\u044F \u043C\u0438\u0440\u043E\u0432\u0430\u044F \u0432 \u0441\u043E\u0432\u0435\u0440\u0448\u0435\u043D\u043D\u043E \u043D\u043E\u0432\u043E\u043C \u0441\u0432\u0435\u0442\u0435. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043C\u0443\u043B\u044C\u0442\u0438\u043F\u043B\u0435\u0435\u0440\u043D\u044B\u0445 \u0431\u043E\u044F\u0445 \u0432 \u043D\u043E\u0432\u044B\u0445 \u0438 \u043A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0440\u0435\u0436\u0438\u043C\u0430\u0445. \u0421\u044E\u0436\u0435\u0442\u043D\u0430\u044F \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u044F \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E \u043B\u044E\u0434\u0435\u0439, \u0447\u044C\u0438 \u0441\u0443\u0434\u044C\u0431\u044B \u0431\u044B\u043B\u0438 \u0432\u0442\u044F\u043D\u0443\u0442\u044B \u0432 \u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430. \n          </p>\n          <p>\n            <b>Battlefield V</b> \u043E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u043F\u0440\u043E\u043F\u0443\u0441\u043A\u043E\u0432. \xAB\u0425\u043E\u0434 \u0432\u043E\u0439\u043D\u044B\xBB \u2013 \u043D\u043E\u0432\u044B\u0439 \u0441\u0435\u0440\u0432\u0438\u0441, \u0441\u043D\u0430\u0431\u0436\u0430\u044E\u0449\u0438\u0439 \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u043C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u043E\u043C \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043B\u0435\u0442.\n          </p>\n          <h2>\n            \u0422\u0420\u0415\u0419\u041B\u0415\u0420\u042B \u0418 \u0412\u0418\u0414\u0415\u041E \u041F\u041E \u0418\u0413\u0420\u0415\n          </h2>\n          <div class=\"about-game__videos\">\n            <div class=\"about-game__videos-left\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/0ee6d7a3-5266-905a-b7aa-24eceaa1562a\" alt=\"\">\n              </div>\n            </div>\n            <div class=\"about-game__videos-right\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/e9f92c36-b929-8522-733c-86a0c9372488\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/ab970cd1-5216-af03-cd15-89aae7dee2b2\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/a1cc65b2-8bde-bd06-8489-fa6d4db08b80\" alt=\"\">\n              </div>  \n            </div>\n          </div>\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E&nbsp;BATTLEFIELD&nbsp;V\n            </a>\n          </div>\n        </div>\n      "
   }, {
     tab: 'aboutPrize',
     label: 'О NVIDIA RTX',
@@ -1828,7 +1828,7 @@ var _default = {
   questions: [{
     id: 1,
     text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
-    image: 'https://leonardo.osnova.io/f00aa764-e678-871b-17f6-fe2ba66cb761',
+    image: 'https://leonardo.osnova.io/ff9556d8-f752-b78e-80b2-8d2940e854d5',
     options: [{
       id: 1,
       text: 'Отряд утерян'
@@ -1845,7 +1845,7 @@ var _default = {
   }, {
     id: 2,
     text: 'После успеха с шифровальными машинами вас отправляют туда, где гораздо важнее человеческий фактор — в поместье «Трент-парк», где британская разведка размещала высокопоставленных пленных немецких офицеров. В комфортных условиях, пусть и взаперти, генералы разболтали немало фактов о немецкой военной машине — а их прослушивали на каждом шагу. Один такой офицер сильно запаниковал, когда узнал о точном месте своего заключения. В разговорах с другими немцами он упоминал некоего Виктора Второго как причину беспокойства. Что это за Виктор и почему Второй?',
-    image: 'https://leonardo.osnova.io/f00aa764-e678-871b-17f6-fe2ba66cb761',
+    image: 'https://leonardo.osnova.io/cfffb78d-320e-9356-ed56-2e34f7ecda4e',
     options: [{
       id: 1,
       text: 'Первый итальянский авианосец «Витторио Эмануэле»'
@@ -1858,6 +1858,91 @@ var _default = {
     }, {
       id: 4,
       text: 'Баллистическая ракета «Фау-2»'
+    }]
+  }, {
+    id: 3,
+    text: "\u041D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u0432\u0430\u0448\u0438 \u0443\u0441\u043F\u0435\u0445\u0438, \u0412\u0435\u0440\u043C\u0430\u0445\u0442 \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0430\u0435\u0442 \u043D\u0430\u0441\u0442\u0443\u043F\u0430\u0442\u044C. \u0412\u043E\u0442 \u0443\u0436\u0435 \u043F\u0430\u043B\u0430 \u0424\u0440\u0430\u043D\u0446\u0438\u044F, \u0438 \u043D\u0435\u043C\u0435\u0446\u043A\u0438\u0435 \u0441\u0430\u043C\u043E\u043B\u0451\u0442\u044B \u0438\u0441\u043F\u044B\u0442\u044B\u0432\u0430\u044E\u0442 \u043D\u0430 \u043F\u0440\u043E\u0447\u043D\u043E\u0441\u0442\u044C \u043E\u0431\u043E\u0440\u043E\u043D\u0443 \u0411\u0440\u0438\u0442\u0430\u043D\u0438\u0438. \u0412 1941 \u0433\u043E\u0434\u0443 \u041B\u043E\u043D\u0434\u043E\u043D \u0442\u0435\u0440\u043F\u0438\u0442 \u043C\u0430\u0441\u0441\u043E\u0432\u044B\u0435 \u0431\u043E\u043C\u0431\u0430\u0440\u0434\u0438\u0440\u043E\u0432\u043A\u0438 \xAB\u041B\u044E\u0444\u0442\u0432\u0430\u0444\u0444\u0435\xBB. \u041F\u043E \u043F\u0443\u0442\u0438 \u043D\u0430 \u0440\u0430\u0431\u043E\u0442\u0443 \u0432\u044B \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E \u043F\u0440\u043E\u0445\u043E\u0434\u0438\u0442\u0435 \u0438 \u043C\u0438\u043C\u043E \u0440\u0443\u0438\u043D, \u0438 \u0440\u044F\u0434\u043E\u043C \u0441 \u0434\u043E\u043C\u0430\u043C\u0438, \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u0435\u0449\u0451 \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u0447\u0438\u043D\u0438\u0442\u044C. \u0421\u0440\u0435\u0434\u0438 \u0448\u0443\u043C\u0430 \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E \u0437\u0432\u043E\u043D\u043A\u043E \u0441\u043B\u044B\u0448\u0438\u0442\u0441\u044F \u0441\u0442\u0443\u043A \u043C\u043E\u043B\u043E\u0442\u043A\u0430 \u0436\u0435\u0441\u0442\u044F\u043D\u0449\u0438\u043A\u0430, \u043B\u0430\u0442\u0430\u044E\u0449\u0435\u0433\u043E \u043E\u0434\u043D\u0443 \u0438\u0437 \u043A\u0440\u044B\u0448. \u041E\u043D \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E \u0437\u0432\u044F\u043A\u0430\u043B \u0442\u043E \u0432 \u043E\u0434\u043D\u043E\u043C, \u0442\u043E \u0432 \u0434\u0440\u0443\u0433\u043E\u043C \u0440\u0430\u0439\u043E\u043D\u0435 \u041B\u043E\u043D\u0434\u043E\u043D\u0430, \u043F\u043E\u043A\u0430 \u0432\u044B \u043D\u0435 \u043F\u0440\u0438\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0435 \u0430\u0440\u0435\u0441\u0442\u043E\u0432\u0430\u0442\u044C \u0436\u0435\u0441\u0442\u044F\u043D\u0449\u0438\u043A\u0430, \u043F\u043E\u0442\u043E\u043C\u0443 \u0447\u0442\u043E \u0432 \u0435\u0433\u043E \u0441\u0442\u0443\u043A\u0435 \u0435\u0441\u0442\u044C \u0437\u0430\u043A\u043E\u043D\u043E\u043C\u0435\u0440\u043D\u043E\u0441\u0442\u044C.\n            <p>\u0427\u0442\u043E \u0432\u044B \u043F\u043E\u0441\u043E\u0432\u0435\u0442\u0443\u0435\u0442\u0435 \u0441\u0434\u0435\u043B\u0430\u0442\u044C \u0432\u043B\u0430\u0441\u0442\u044F\u043C \u043D\u0430 \u043E\u0441\u043D\u043E\u0432\u0435 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u043D\u043D\u043E\u0433\u043E \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F?</p>",
+    image: 'https://leonardo.osnova.io/cfffb78d-320e-9356-ed56-2e34f7ecda4e',
+    options: [{
+      id: 1,
+      text: 'Улучшить светомаскировку вокзала'
+    }, {
+      id: 2,
+      text: 'Изучить систему ПВО в Вестминстере и перенести опыт на другие защитные комплексы'
+    }, {
+      id: 3,
+      text: 'Усилить воздушное прикрытие авиабазы'
+    }, {
+      id: 4,
+      text: 'Отменить режим повышенной боеготовности в пригородах'
+    }]
+  }, {
+    id: 4,
+    text: "\u0423\u0436\u0435 \u0442\u0440\u0438 \u0433\u043E\u0434\u0430 \u0432\u044B \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0435\u0442\u0435, \u043A\u0430\u043A \u0432 \u0437\u0430\u0445\u0432\u0430\u0447\u0435\u043D\u043D\u043E\u0439 \u0415\u0432\u0440\u043E\u043F\u0435 \u0432\u0435\u0434\u0451\u0442\u0441\u044F \u043F\u043E\u0434\u0440\u044B\u0432\u043D\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u043F\u043E \u0432\u0441\u0435\u043C \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u044B\u043C \u0444\u0440\u043E\u043D\u0442\u0430\u043C, \u043D\u043E \u043E\u0447\u0435\u0440\u0435\u0434\u043D\u044B\u0435 \u0434\u043E\u043D\u0435\u0441\u0435\u043D\u0438\u044F \u0440\u0435\u0437\u043A\u043E \u043F\u043E\u0434\u043D\u0438\u043C\u0430\u044E\u0442 \u0441\u0442\u0430\u0432\u043A\u0438. \u0412 \u041D\u043E\u0440\u0432\u0435\u0433\u0438\u0438 \u0432\u0441\u0451 \u0430\u043A\u0442\u0438\u0432\u043D\u0435\u0435 \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0437\u0430\u0432\u043E\u0434, \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u044F\u0449\u0438\u0439 \u043E\u043A\u0441\u0438\u0434 \u0434\u0435\u0439\u0442\u0435\u0440\u0438\u044F, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043E\u0441\u0442\u0440\u043E \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C \u043D\u0435\u043C\u0435\u0446\u043A\u0438\u043C \u0444\u0438\u0437\u0438\u043A\u0430\u043C-\u044F\u0434\u0435\u0440\u0449\u0438\u043A\u0430\u043C \u0434\u043B\u044F \u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430 \u0431\u0443\u0434\u0443\u0449\u0435\u0439 \u0430\u0442\u043E\u043C\u043D\u043E\u0439 \u0431\u043E\u043C\u0431\u044B. \u041A \u0441\u0447\u0430\u0441\u0442\u044C\u044E, \u043D\u0430 \u0437\u0430\u0432\u043E\u0434\u0435 \u043E\u043A\u0430\u0437\u0430\u043B\u0441\u044F \u0441\u0432\u043E\u0439 \u0447\u0435\u043B\u043E\u0432\u0435\u043A, \u0443\u0447\u0451\u043D\u044B\u0439 \u0438\u0437 \u0421\u0421\u0421\u0420 \u043F\u043E\u0434 \u043F\u0440\u0438\u043A\u0440\u044B\u0442\u0438\u0435\u043C, \u0442\u0430\u0439\u043D\u043E \u0432\u0435\u0434\u0443\u0449\u0438\u0439 \u043F\u043E\u0434\u0440\u044B\u0432\u043D\u0443\u044E \u0434\u0435\u044F\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C. \u041E\u043D \u0441\u043E\u0431\u0440\u0430\u043B \u0446\u0435\u043D\u043D\u044B\u0435 \u0441\u0432\u0435\u0434\u0435\u043D\u0438\u044F, \u0442\u043E\u043B\u044C\u043A\u043E \u043F\u0435\u0440\u0435\u0434\u0430\u0442\u044C \u0438\u0445 \u043D\u0435\u043F\u0440\u043E\u0441\u0442\u043E, \u0432\u0435\u0434\u044C \u0437\u0430 \u0443\u0447\u0451\u043D\u044B\u043C\u0438 \u043F\u0440\u0438\u0441\u0442\u0430\u043B\u044C\u043D\u043E \u0441\u043B\u0435\u0434\u044F\u0442. \n          <p>\u0424\u0438\u0437\u0438\u043A \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043D\u0430 \u043C\u0435\u043B\u043E\u0432\u043E\u0439 \u0434\u043E\u0441\u043A\u0435 \u0432 \u043E\u0434\u043D\u043E\u043C \u0438\u0437 \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u043E\u0432 \u0440\u044F\u0434 \u0446\u0438\u0444\u0440, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043F\u043E\u043B\u0443\u0447\u0438\u043B\u043E\u0441\u044C \u0441\u0444\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0447\u0435\u0440\u0435\u0437 \u043E\u043A\u043D\u043E. \u0427\u0442\u043E \u0432\u044B \u043F\u043E\u0441\u043E\u0432\u0435\u0442\u0443\u0435\u0442\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u043E\u0432\u0430\u043D\u0438\u044E, \u0435\u0441\u043B\u0438 \u043E\u043F\u0438\u0440\u0430\u0442\u044C\u0441\u044F \u043D\u0430 \u0441\u0432\u0435\u0434\u0435\u043D\u0438\u044F \u043E\u0442 \u0443\u0447\u0451\u043D\u043E\u0433\u043E?</p>",
+    image: 'https://leonardo.osnova.io/5abd74ac-2113-eb7b-a5d1-3ac42b35da00',
+    options: [{
+      id: 1,
+      text: 'Отменить запланированный авианалёт на завод и придумать план наземной диверсии'
+    }, {
+      id: 2,
+      text: 'Перехватить и потопить судно с оборудованием'
+    }, {
+      id: 3,
+      text: 'Взорвать дамбу, питающую завод'
+    }, {
+      id: 4,
+      text: 'Завербовать учёных на заводе и устроить саботаж'
+    }]
+  }, {
+    id: 5,
+    text: "\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u043E \u0432\u044B \u0447\u0438\u0442\u0430\u043B\u0438 \u0434\u043E\u043D\u0435\u0441\u0435\u043D\u0438\u0435 \u0438\u0437 \u043B\u0435\u0434\u044F\u043D\u043E\u0439 \u0421\u043A\u0430\u043D\u0434\u0438\u043D\u0430\u0432\u0438\u0438, \u0430 \u0432\u043E\u0442 \u0443\u0436\u0435 \u0438\u0437\u0443\u0447\u0430\u0435\u0442\u0435 \u0441\u0432\u0435\u0434\u0435\u043D\u0438\u044F \u0438\u0437 \u0421\u0435\u0432\u0435\u0440\u043D\u043E\u0439 \u0410\u0444\u0440\u0438\u043A\u0438. \u0421\u0430\u0431\u043E\u0442\u0430\u0436\u043D\u0438\u043A\u0438 \u0438\u0437 SBS \u0433\u043E\u0442\u043E\u0432\u0438\u043B\u0438 \u0434\u0435\u0440\u0437\u043A\u0443\u044E \u0434\u0438\u0432\u0435\u0440\u0441\u0438\u044E \u043F\u0440\u043E\u0442\u0438\u0432 \u0430\u0440\u043C\u0435\u0439\u0441\u043A\u043E\u0433\u043E \u043A\u043E\u0440\u043F\u0443\u0441\u0430 \u042D\u0440\u0432\u0438\u043D\u0430 \u0420\u043E\u043C\u043C\u0435\u043B\u044F, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0442\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u043E \u0432\u044B\u0441\u0430\u0434\u0438\u043B\u0441\u044F \u0432 \u0422\u0440\u0438\u043F\u043E\u043B\u0438, \u043D\u043E \u043F\u0440\u0438\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043B\u0438 \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u043A\u0443, \u043A\u043E\u0433\u0434\u0430 \u0443\u0432\u0438\u0434\u0435\u043B\u0438 \u0446\u0435\u043B\u0443\u044E \u0430\u0440\u043C\u0430\u0434\u0443 \u0433\u043E\u0442\u043E\u0432\u044B\u0445 \u043A \u0431\u043E\u044E \u0442\u0430\u043D\u043A\u043E\u0432. \u0422\u0435\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0435\u043C \u0432 \u0432\u0430\u0448 \u0448\u0442\u0430\u0431 \u043F\u043E\u043F\u0430\u043B\u0430 \u0448\u0438\u0444\u0440\u043E\u0432\u043A\u0430, \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043D\u0430\u044F \u0434\u0432\u043E\u0439\u043D\u044B\u043C \u0430\u0433\u0435\u043D\u0442\u043E\u043C \u0432 \u0412\u0435\u0440\u043C\u0430\u0445\u0442\u0435. \n          <p>\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u043E\u0434\u0438\u0440\u043E\u0432\u0430\u043D\u043E \u043A\u043D\u0438\u0436\u043D\u044B\u043C \u0448\u0438\u0444\u0440\u043E\u043C, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043E\u043F\u0438\u0440\u0430\u0435\u0442\u0441\u044F \u043D\u0430 \u043F\u0435\u0440\u0432\u044B\u0435 \u0441\u0442\u0440\u043E\u043A\u0438 \u0440\u043E\u043C\u0430\u043D\u0430 \u042D\u0440\u0438\u0445\u0430 \u041C\u0430\u0440\u0438\u0438 \u0420\u0435\u043C\u0430\u0440\u043A\u0430 \xAB\u0412\u043E\u0437\u043B\u044E\u0431\u0438 \u0431\u043B\u0438\u0436\u043D\u0435\u0433\u043E \u0441\u0432\u043E\u0435\u0433\u043E\xBB.  \u041A\u0430\u043A \u0436\u0435 \u0431\u044B\u0442\u044C \u0434\u0430\u043B\u044C\u0448\u0435 \u0434\u0438\u0432\u0435\u0440\u0441\u0430\u043D\u0442\u0430\u043C \u0438\u0437 \u043B\u043E\u0434\u043E\u0447\u043D\u043E\u0439 \u0441\u043B\u0443\u0436\u0431\u044B?</p>",
+    image: 'https://leonardo.osnova.io/ec8a1c57-e3a2-f401-2e0f-6ba638274cc6',
+    options: [{
+      id: 1,
+      text: 'Нужно заминировать аэродром и лишить немцев воздушной поддержки'
+    }, {
+      id: 2,
+      text: 'Пусть лодочники нападут на десантные корабли, а войска Союзников могут бить в лоб, пока есть время'
+    }, {
+      id: 3,
+      text: 'Прокрасться в штаб и ликвидировать самого Роммеля!'
+    }, {
+      id: 4,
+      text: 'Подняться вверх по реке и оттуда наблюдать за силами нацистов'
+    }]
+  }, {
+    id: 6,
+    text: "\u041A \u0441\u0435\u0440\u0435\u0434\u0438\u043D\u0435 \u0432\u043E\u0439\u043D\u044B \u0432\u044B \u0432\u0441\u0451 \u0447\u0430\u0449\u0435 \u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u0447\u0430\u0435\u0442\u0435 \u0441 \u0440\u0430\u0437\u0432\u0435\u0434\u043A\u043E\u0439 \u0421\u0428\u0410, \u043A\u043E\u0442\u043E\u0440\u0430\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u043E \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0431\u0440\u0438\u0442\u0430\u043D\u0441\u043A\u043E\u0439. \u0412 \u0438\u044E\u043B\u0435 1943 \u0433\u043E\u0434\u0430, \u043A\u043E\u0433\u0434\u0430 \u044F\u043D\u043A\u0438 \u0432\u044B\u0441\u0430\u0434\u0438\u043B\u0438\u0441\u044C \u043D\u0430 \u0421\u0438\u0446\u0438\u043B\u0438\u0438, \u0432\u043D\u0438\u043C\u0430\u043D\u0438\u0435 \u0430\u0433\u0435\u043D\u0442\u0443\u0440\u044B \u0431\u044B\u043B\u043E \u043F\u0440\u0438\u043A\u043E\u0432\u0430\u043D\u043E \u043A \u0441\u043E\u0431\u044B\u0442\u0438\u044F\u043C \u0432 \u0420\u0438\u043C\u0435. \u041E\u0441\u043E\u0431\u0435\u043D\u043D\u043E \u0432\u0430\u0441 \u0443\u0434\u0438\u0432\u0438\u043B \u0442\u0435\u043A\u0441\u0442 \u043F\u0438\u0441\u044C\u043C\u0430 \u043E\u0434\u043D\u043E\u0433\u043E \u0438\u0442\u0430\u043B\u044C\u044F\u043D\u0441\u043A\u043E\u0433\u043E \u0441\u0435\u043D\u0430\u0442\u043E\u0440\u0430, \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0435\u043D\u043D\u043E\u0435 \u0432 \u0435\u0433\u043E \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0435 \u043F\u043E\u043B\u0435\u0432\u044B\u043C \u0430\u0433\u0435\u043D\u0442\u043E\u043C. \u0412 \u0437\u0430\u043F\u0438\u0441\u043D\u043E\u0439 \u043A\u043D\u0438\u0436\u043A\u0435 \u0441\u0435\u043D\u0430\u0442\u043E\u0440\u0430 \u0431\u044B\u043B\u043E \u0443\u043A\u0430\u0437\u0430\u043D\u043E, \u0447\u0442\u043E \u0441\u043C\u0435\u0449\u0435\u043D\u0438\u0435 \u0440\u0430\u0432\u043D\u043E \u0442\u0440\u0451\u043C.\n          <p>\u0427\u0442\u043E \u0432\u044B \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0438\u0442\u0435 \u0440\u0438\u043C\u0441\u043A\u043E\u0439 \u044F\u0447\u0435\u0439\u043A\u0435 \u0441\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u044F, \u043E\u0441\u043D\u043E\u0432\u044B\u0432\u0430\u044F\u0441\u044C \u043D\u0430 \u044D\u0442\u0438\u0445 \u0434\u0430\u043D\u043D\u044B\u0445?</p>",
+    image: 'https://leonardo.osnova.io/a1f61eb9-e30c-6836-1c83-be72a999acfc ',
+    options: [{
+      id: 1,
+      text: 'Отступить к горной базе неподалёку от Рима'
+    }, {
+      id: 2,
+      text: 'Направить оперативную группу к двум часам к зданию тюрьмы'
+    }, {
+      id: 3,
+      text: 'Проследить за покушением и довершить начатое, если понадобится'
+    }, {
+      id: 4,
+      text: 'Обеспечить безопасность короля Италии'
+    }]
+  }, {
+    id: 7,
+    text: "\u041B\u0435\u0442\u043E\u043C \u0438 \u043E\u0441\u0435\u043D\u044C\u044E 1944-\u0433\u043E \u0433\u043E\u0434\u0430 \u043D\u0430 \u0432\u0430\u0441 \u043E\u0431\u0440\u0443\u0448\u0438\u043B\u0430\u0441\u044C \u043D\u0430\u0441\u0442\u043E\u044F\u0449\u0430\u044F \u043B\u0430\u0432\u0438\u043D\u0430 \u0440\u0430\u0431\u043E\u0442\u044B, \u0432\u0435\u0434\u044C \u0430\u0440\u043C\u0438\u044F\u043C \u043D\u0430 \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u043E\u0442\u043A\u0440\u044B\u0442\u043E\u043C \u0437\u0430\u043F\u0430\u0434\u043D\u043E\u043C \u0444\u0440\u043E\u043D\u0442\u0435 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u0430 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u043E\u0432\u0449\u0438\u043A\u043E\u0432. \u0412 \u0430\u0432\u0433\u0443\u0441\u0442\u0435 \u043A \u041F\u0430\u0440\u0438\u0436\u0443 \u043F\u0440\u0438\u0431\u043B\u0438\u0436\u0430\u043B\u0438\u0441\u044C \u0432\u043E\u0439\u0441\u043A\u0430 \u0421\u043E\u044E\u0437\u043D\u0438\u043A\u043E\u0432, \u0438 \u043D\u0435 \u043E\u0441\u0442\u0430\u0432\u0430\u043B\u043E\u0441\u044C \u0441\u043E\u043C\u043D\u0435\u043D\u0438\u0439, \u0447\u0442\u043E \u043D\u0430\u0446\u0438\u0441\u0442\u044B \u0441\u043A\u043E\u0440\u043E \u043F\u043E\u043A\u0438\u043D\u0443\u0442 \u0433\u043E\u0440\u043E\u0434. \u041E\u0434\u043D\u0430\u043A\u043E \u0444\u0440\u0430\u043D\u0446\u0443\u0437\u0441\u043A\u043E\u0435 \u0421\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u0435 \u043F\u043E\u0440\u044F\u0434\u043A\u043E\u043C \u0432\u0441\u0442\u0440\u0435\u0432\u043E\u0436\u0438\u043B\u043E\u0441\u044C, \u043A\u043E\u0433\u0434\u0430 \u043F\u043E\u043B\u0443\u0447\u0438\u043B\u043E \u0448\u0438\u0444\u0440\u043E\u0432\u043A\u0443 \u043E\u0442 \u043E\u0434\u043D\u043E\u0433\u043E \u0438\u0437 \u0441\u0432\u043E\u0438\u0445 \u0430\u0433\u0435\u043D\u0442\u043E\u0432 \u0432 \u043A\u043E\u043C\u0435\u043D\u0434\u0430\u0442\u0443\u0440\u0435.\n          <p>\u041A\u0430\u043A \u0434\u043E\u043B\u0436\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0438\u0442\u044C \u0421\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u0435 \u043D\u0430 \u0443\u0433\u0440\u043E\u0437\u0443, \u043E \u043A\u043E\u0442\u043E\u0440\u043E\u0439 \u0432\u044B \u0443\u0437\u043D\u0430\u043B\u0438 \u0438\u0437 \u0448\u0438\u0444\u0440\u043E\u0432\u043A\u0438?</p>",
+    image: 'https://leonardo.osnova.io/5f3729cd-a59e-4651-440a-13b499cf1004',
+    options: [{
+      id: 1,
+      text: 'Предупредить всех сочувствующих о скорых репрессиях'
+    }, {
+      id: 2,
+      text: 'Угнать цистерны и спрятать на брошенной железнодорожной ветке'
+    }, {
+      id: 3,
+      text: 'Бросить всё и бежать в леса!'
+    }, {
+      id: 4,
+      text: 'Саботировать закладку взрывчатки под основание Эйфелевой башни'
     }]
   }],
   results: [{
@@ -2660,7 +2745,7 @@ function (_BaseSpecial) {
   _createClass(Special, [{
     key: "setDefaultValues",
     value: function setDefaultValues() {
-      this.activeIndex = 0;
+      this.currentQuestionId = 1;
       this.totalLength = _data.default.questions.length;
       this.userPoints = 0;
       this.isPending = false;
@@ -2693,7 +2778,7 @@ function (_BaseSpecial) {
     }
     /**
      *
-     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, authButtons: string}}
+     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
      * @constructor
      */
 
@@ -2812,6 +2897,9 @@ function (_BaseSpecial) {
       this.nodes.popupContainer = (0, _dom.make)('div', Special.CSS.popupContainer);
       this.nodes.popup.appendChild(this.nodes.popupContainer);
       this.nodes.wrapper.appendChild(this.nodes.popup);
+      this.nodes.popup.addEventListener('click', function (event) {
+        _this3.popupOutsideClicked(event);
+      });
       /**
        * Append all app to the initial container
        */
@@ -2866,9 +2954,13 @@ function (_BaseSpecial) {
           return;
         }
 
-        _this4.activeIndex = response.data.active_question;
+        if (response.data.active_question) {
+          _this4.currentQuestionId = response.data.active_question;
 
-        _this4.makeIntroduction();
+          _this4.makeIntroduction();
+        } else {
+          _this4.makeResult();
+        }
       });
     }
     /**
@@ -2940,13 +3032,17 @@ function (_BaseSpecial) {
   }, {
     key: "makeQuestion",
     value: function makeQuestion() {
+      var _this5 = this;
+
       /**
        * @type {question}
        */
-      var data = _data.default.questions[this.activeIndex];
+      var data = _data.default.questions.find(function (q) {
+        return q.id === _this5.currentQuestionId;
+      });
 
       if (!data) {
-        throw new Error("Missing data for question #".concat(this.activeIndex, " or incorrect index"));
+        throw new Error("Missing data for question #".concat(this.currentQuestionId, " or incorrect index"));
       }
 
       (0, _dom.removeChildren)(this.nodes.options);
@@ -2961,9 +3057,7 @@ function (_BaseSpecial) {
       }));
       this.makeQuestionOptions(data.options);
       if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
-      Analytics.sendEvent("Question ".concat(this.activeIndex + 1, " screen"), 'Hit'); // if (DATA.questions[this.activeIndex + 1]) {
-      //   this.preloader.load(DATA.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
-      // }
+      Analytics.sendEvent("Question ".concat(this.currentQuestionId, " screen"), 'Hit');
     }
     /**
      * Set current question number to the header counter
@@ -2972,7 +3066,7 @@ function (_BaseSpecial) {
   }, {
     key: "updateCounter",
     value: function updateCounter() {
-      this.nodes.counter.textContent = "\u2014 \u0417\u0410\u0414\u0410\u041D\u0418\u0415 ".concat(this.activeIndex + 1, " \u2014");
+      this.nodes.counter.textContent = "\u2014 \u0417\u0410\u0414\u0410\u041D\u0418\u0415 ".concat(this.currentQuestionId, " \u2014");
     }
     /**
      * Renders possible answers
@@ -2982,7 +3076,7 @@ function (_BaseSpecial) {
   }, {
     key: "makeQuestionOptions",
     value: function makeQuestionOptions(options) {
-      var _this5 = this;
+      var _this6 = this;
 
       (0, _array.shuffle)(options);
       options.forEach(function (option) {
@@ -2990,14 +3084,14 @@ function (_BaseSpecial) {
           data: {
             click: 'selectAnswer',
             id: option.id,
-            number: _this5.activeIndex
+            number: _this6.currentQuestionId
           },
           textContent: option.text
         });
 
-        _this5.nodes.optionsItems.push(item);
+        _this6.nodes.optionsItems.push(item);
 
-        _this5.nodes.options.appendChild(item);
+        _this6.nodes.options.appendChild(item);
       });
     }
     /**
@@ -3027,7 +3121,7 @@ function (_BaseSpecial) {
   }, {
     key: "submitAnswer",
     value: function submitAnswer(button) {
-      var _this6 = this;
+      var _this7 = this;
 
       if (this.isPending) {
         return;
@@ -3044,9 +3138,9 @@ function (_BaseSpecial) {
       selectedItem.classList.add(Special.CSS.optionsItemLoading); // ajax to check
 
       _ajax.default.get({
-        url: "".concat(this.params.apiEndpoint, "/check_answer"),
+        url: "".concat(this.params.apiEndpoint, "/answer"),
         data: {
-          question: this.activeIndex,
+          question: this.currentQuestionId,
           answer: id
         }
       }).then(
@@ -3055,29 +3149,35 @@ function (_BaseSpecial) {
        * @param {object} response
        * @param {number} response.rc  - code (200)
        * @param {string} response.rm  - message (successfull)
-       * @param {{message: string, isCorrect: boolean}} response.data  - response data
+       * @param {object} response.data  - response data
+       * @param {object} response.data.answers  - {"1": 2, "2": 4} list of { question -> answer } pairs
+       * @param {null} response.data.result
+       * @param {string} response.data.active_question - next question id
+       * @param {boolean} response.data.is_finished
+       * @param {boolean} response.data.is_correct
+       * @param {string} response.data.message
        */
       function (response) {
-        _this6.nodes.options.classList.remove(Special.CSS.optionsDisabled);
+        _this7.nodes.options.classList.remove(Special.CSS.optionsDisabled);
 
         selectedItem.classList.remove(Special.CSS.optionsItemLoading);
-        (0, _dom.removeChildren)(_this6.nodes.actions);
+        (0, _dom.removeChildren)(_this7.nodes.actions);
 
         if (response && response.rc === 200) {
-          if (response.data.isCorrect) {
-            _this6.userPoints++;
+          if (response.data.is_correct) {
+            _this7.userPoints++;
             selectedItem.classList.add(Special.CSS.optionsItemCorrect);
           } else {
             selectedItem.classList.add(Special.CSS.optionsItemError);
 
-            _this6.makeActionButton('ЕЩЕ РАЗ', 'restart', [Special.CSS.buttonSecond]);
+            _this7.makeActionButton('ЕЩЕ РАЗ', 'restart', [Special.CSS.buttonSecond]);
           }
           /**
            * Remove other items
            */
 
 
-          _this6.nodes.optionsItems.filter(function (item) {
+          _this7.nodes.optionsItems.filter(function (item) {
             return item !== selectedItem;
           }).forEach(function (item) {
             return item.remove();
@@ -3087,22 +3187,22 @@ function (_BaseSpecial) {
            */
 
 
-          _this6.makeOptionMessage(response.data.message);
+          _this7.makeOptionMessage(response.data.message);
 
-          if (_this6.activeIndex >= _this6.totalLength - 1) {
-            _this6.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
+          if (_this7.currentQuestionId >= _this7.totalLength) {
+            _this7.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
           } else {
-            _this6.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
+            _this7.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
           }
 
-          if (!response.data.isCorrect) {
-            _this6.nodes.actions.appendChild((0, _dom.make)('div', Special.CSS.actionsDisclaimer, {
+          if (!response.data.is_correct) {
+            _this7.nodes.actions.appendChild((0, _dom.make)('div', Special.CSS.actionsDisclaimer, {
               innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Одна ошибка — в розыгрыше не участвуешь.'
             }));
           }
 
           button.classList.remove(Special.CSS.buttonDisabled);
-          _this6.activeIndex++;
+          _this7.currentQuestionId = response.data.active_question;
         } else {
           console.log('Error while check answer:', response);
         }
@@ -3144,9 +3244,14 @@ function (_BaseSpecial) {
   }, {
     key: "makeResult",
     value: function makeResult() {
+      (0, _dom.removeElement)(this.nodes.result);
+      (0, _dom.removeChildren)(this.nodes.options);
+      (0, _dom.removeChildren)(this.nodes.actions);
+      (0, _dom.removeChildren)(this.nodes.mainText);
       /**
        * @type {result}
        */
+
       var data = this.findResult();
       this.updateMode('result');
       this.nodes.result = (0, _dom.make)('div', Special.CSS.result);
@@ -3277,56 +3382,54 @@ function (_BaseSpecial) {
   }, {
     key: "showResultsTable",
     value: function showResultsTable() {
+      var _this8 = this;
+
       this.updateMode('result-table');
       (0, _dom.removeElement)(this.nodes.result);
       (0, _dom.removeChildren)(this.nodes.options);
       (0, _dom.removeChildren)(this.nodes.actions);
       (0, _dom.removeChildren)(this.nodes.mainText);
-      this.nodes.counter.innerHTML = "".concat(_svg.default.trophy, " \u0422\u0423\u0420\u041D\u0418\u0420\u041D\u0410\u042F \u0422\u0410\u0411\u041B\u0418\u0426\u0410");
-      this.nodes.counter.appendChild((0, _dom.make)('span', Special.CSS.button, {
-        innerHTML: "".concat(_svg.default.back, " \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F"),
-        data: {
-          click: 'makeResult'
-        }
-      }));
-      var table = "\n      <table class=\"".concat(Special.CSS.resultsTable, "\">\n        <tr>\n          <th>#</th>\n          <th>\u0418\u043C\u044F</th>\n          <th>\u0428\u0438\u0444\u0440\u044B</th>\n        </tr>\n    ");
-      var users = [{
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }, {
-        name: 'Username Username',
-        points: 7
-      }];
-      users.forEach(function (user, index) {
-        table += "\n        <tr>\n          <td>".concat(index + 1, "</td>\n          <td>").concat(user.name, "</td>\n          <td>").concat(user.points + 1, "</td>\n        </tr>\n      ");
+      this.nodes.counter.innerHTML = "".concat(_svg.default.trophy, " \u0422\u0443\u0440\u043D\u0438\u0440\u043D\u0430\u044F \u0442\u0430\u0431\u043B\u0438\u0446\u0430");
+      this.nodes.content.classList.add(Special.CSS.contentLoading); // ajax to check
+
+      _ajax.default.get({
+        url: "".concat(this.params.apiEndpoint, "/results")
+      }).then(
+      /**
+       * @param {object} response
+       * @param {number} response.rc
+       * @param {string} response.message
+       * @param {object} response.data
+       * @param {number} response.data.count
+       * @param {{rank, name, points, isMe}[]} response.data.list
+       */
+      function (response) {
+        _this8.nodes.content.classList.remove(Special.CSS.contentLoading);
+
+        console.log('results', response);
+
+        _this8.nodes.counter.appendChild((0, _dom.make)('span', Special.CSS.button, {
+          innerHTML: "".concat(_svg.default.back, " \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F"),
+          data: {
+            click: 'makeResult'
+          }
+        }));
+
+        var table = "\n          <table class=\"".concat(Special.CSS.resultsTable, "\">\n            <tr>\n              <th>#</th>\n              <th>\u0418\u043C\u044F</th>\n              <th>\u0428\u0438\u0444\u0440\u044B</th>\n            </tr>\n        ");
+        response.data.list.forEach(function (user, index) {
+          table += "\n            <tr class=\"".concat(user.isMe ? 'me' : '', "\">\n              <td>").concat(index + 1, "</td>\n              <td>").concat(user.name, "</td>\n              <td>").concat(user.points + 1, "</td>\n            </tr>\n          ");
+        });
+        table += '</table>';
+        _this8.nodes.options.innerHTML = table; // this.nodes.actions.innerHTML = `
+        //   <div class="${Special.CSS.resultsTable}-pagination">
+        //     <span>1</span>
+        //     <span>2</span>
+        //     <span>3</span>
+        //     <span>4</span>
+        //   </div>
+        // `;
       });
-      table += '</table>';
-      this.nodes.options.innerHTML = table;
-      this.nodes.actions.innerHTML = "\n      <div class=\"".concat(Special.CSS.resultsTable, "-pagination\">\n        <span>1</span> \n        <span>2</span> \n        <span>3</span> \n        <span>4</span> \n      </div>\n    ");
+
       Analytics.sendEvent('Results table', 'Hit');
     }
     /**
@@ -3346,11 +3449,13 @@ function (_BaseSpecial) {
   }, {
     key: "auth",
     value: function auth(button) {
-      var _this7 = this;
+      var _this9 = this;
 
       var url = button.dataset.url;
       new _auth.default(url, function () {
-        _this7.checkUserState();
+        _this9.checkUserState();
+
+        _this9.closePopup();
       });
     }
   }, {
@@ -3365,6 +3470,32 @@ function (_BaseSpecial) {
       this.nodes.popupContainer.innerHTML = '';
       this.nodes.popup.classList.remove(Special.CSS.popupShowed);
     }
+    /**
+     * Clicks on the popup overlay to close popup
+     * @param event
+     */
+
+  }, {
+    key: "popupOutsideClicked",
+    value: function popupOutsideClicked(event) {
+      var isInsidePopupContent = event.target.closest(".".concat(Special.CSS.popupContainer)) !== null;
+
+      if (!isInsidePopupContent) {
+        this.closePopup();
+      }
+    }
+    /**
+     * Handle clicks on video thumbnail
+     * @param {Element} wrapper - video thumb wrapper
+     */
+
+  }, {
+    key: "showVideo",
+    value: function showVideo(wrapper) {
+      var url = wrapper.dataset.url;
+      console.log('showVideo', url);
+      this.showPopup("\n      <iframe width=\"".concat(Math.round(window.innerWidth * 0.8), "\" height=\"").concat(Math.round(window.innerHeight * 0.8), "\" src=\"").concat(url, "\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n    "));
+    }
   }, {
     key: "keydownHandler",
     value: function keydownHandler(event) {
@@ -3372,7 +3503,7 @@ function (_BaseSpecial) {
         if (this.mode === 'start') {
           this.start();
         } else if (this.mode === 'progress' && this.isPending) {
-          if (this.activeIndex >= this.totalLength) {
+          if (this.currentQuestionId >= this.totalLength) {
             this.makeResult();
           } else {
             this.makeQuestion();
@@ -3406,6 +3537,7 @@ function (_BaseSpecial) {
         headerMenuButton: 'bf-special__header-menu-button',
         headerMenuButtonActive: 'bf-special__header-menu-button--active',
         content: 'bf-special__content',
+        contentLoading: 'bf-special__content--loading',
         contentHidden: 'bf-special__content--hidden',
         counter: 'bf-special__counter',
         mainText: 'bf-special__content-text',
@@ -3441,6 +3573,22 @@ function (_BaseSpecial) {
 
   return Special;
 }(_base.default);
+
+if (!Element.prototype.matches) Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function (s) {
+    var el = this;
+    if (!document.documentElement.contains(el)) return null;
+
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+
+    return null;
+  };
+}
 
 module.exports = Special;
 

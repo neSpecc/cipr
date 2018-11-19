@@ -147,6 +147,65 @@
     }
   }
 
+  &__videos {
+    display: flex;
+
+    &-wrapper {
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        background: rgba(0, 0, 0, 0.6) url(https://leonardo.osnova.io/fcd69c3e-d7f0-868b-7e16-0ab3ceb6bd32) no-repeat 57% center;
+        background-size: 33px auto;
+        opacity: 0.8;
+        border-radius: 50%;
+      }
+
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &:not(:last-of-type){
+        margin-bottom: 10px;
+      }
+    }
+
+    &-left {
+
+    }
+
+    &-right {
+      width: 190px;
+      margin-left: 10px;
+
+      img {
+        height: 113px;
+        width: 190px;
+        vertical-align: bottom;
+      }
+
+      ^&-wrapper {
+        &::before {
+          width: 70px;
+          height: 70px;
+          margin-top: -35px;
+          margin-left: -35px;
+          background-size: 26px auto;
+        }
+      }
+    }
+  }
+
   img {
     max-width: 100%;
   }

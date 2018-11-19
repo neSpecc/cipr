@@ -89,7 +89,7 @@ class Special extends BaseSpecial {
    * Parametres uses in app
    */
   setDefaultValues() {
-    this.activeIndex = 0;
+    this.currentQuestionId = 1;
     this.totalLength = DATA.questions.length;
     this.userPoints = 0;
     this.isPending = false;
@@ -114,7 +114,7 @@ class Special extends BaseSpecial {
 
   /**
    *
-   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, authButtons: string}}
+   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
    * @constructor
    */
   static get CSS() {
@@ -129,6 +129,7 @@ class Special extends BaseSpecial {
       headerMenuButtonActive: 'bf-special__header-menu-button--active',
 
       content: 'bf-special__content',
+      contentLoading: 'bf-special__content--loading',
       contentHidden: 'bf-special__content--hidden',
       counter: 'bf-special__counter',
       mainText: 'bf-special__content-text',
@@ -275,6 +276,9 @@ class Special extends BaseSpecial {
     this.nodes.popupContainer = make('div', Special.CSS.popupContainer);
     this.nodes.popup.appendChild(this.nodes.popupContainer);
     this.nodes.wrapper.appendChild(this.nodes.popup);
+    this.nodes.popup.addEventListener('click', (event) => {
+      this.popupOutsideClicked(event)
+    });
 
 
     /**
@@ -339,10 +343,12 @@ class Special extends BaseSpecial {
           return;
         }
 
-        this.activeIndex = response.data.active_question;
-
-        this.makeIntroduction();
-
+        if (response.data.active_question){
+          this.currentQuestionId = response.data.active_question;
+          this.makeIntroduction();
+        } else {
+          this.makeResult();
+        }
       });
   }
 
@@ -409,10 +415,10 @@ class Special extends BaseSpecial {
     /**
      * @type {question}
      */
-    let data = DATA.questions[this.activeIndex];
+    let data = DATA.questions.find( q => q.id === this.currentQuestionId );
 
     if (!data) {
-      throw new Error(`Missing data for question #${this.activeIndex} or incorrect index`);
+      throw new Error(`Missing data for question #${this.currentQuestionId} or incorrect index`);
     }
 
     removeChildren(this.nodes.options);
@@ -432,18 +438,14 @@ class Special extends BaseSpecial {
 
     if (isMobile()) scrollToElement(this.container);
 
-    Analytics.sendEvent(`Question ${this.activeIndex + 1} screen`, 'Hit');
-
-    // if (DATA.questions[this.activeIndex + 1]) {
-    //   this.preloader.load(DATA.questions[this.activeIndex + 1].options.map(option => this.staticURL + option.img));
-    // }
+    Analytics.sendEvent(`Question ${this.currentQuestionId} screen`, 'Hit');
   }
 
   /**
    * Set current question number to the header counter
    */
   updateCounter() {
-    this.nodes.counter.textContent = `— ЗАДАНИЕ ${this.activeIndex + 1} —`;
+    this.nodes.counter.textContent = `— ЗАДАНИЕ ${this.currentQuestionId} —`;
   }
 
   /**
@@ -458,7 +460,7 @@ class Special extends BaseSpecial {
         data: {
           click: 'selectAnswer',
           id: option.id,
-          number: this.activeIndex
+          number: this.currentQuestionId
         },
         textContent: option.text
       });
@@ -508,9 +510,9 @@ class Special extends BaseSpecial {
 
     // ajax to check
     ajax.get({
-      url: `${this.params.apiEndpoint}/check_answer`,
+      url: `${this.params.apiEndpoint}/answer`,
       data: {
-        question: this.activeIndex,
+        question: this.currentQuestionId,
         answer: id
       }
     })
@@ -520,7 +522,13 @@ class Special extends BaseSpecial {
          * @param {object} response
          * @param {number} response.rc  - code (200)
          * @param {string} response.rm  - message (successfull)
-         * @param {{message: string, isCorrect: boolean}} response.data  - response data
+         * @param {object} response.data  - response data
+         * @param {object} response.data.answers  - {"1": 2, "2": 4} list of { question -> answer } pairs
+         * @param {null} response.data.result
+         * @param {string} response.data.active_question - next question id
+         * @param {boolean} response.data.is_finished
+         * @param {boolean} response.data.is_correct
+         * @param {string} response.data.message
          */
         (response) => {
           this.nodes.options.classList.remove(Special.CSS.optionsDisabled);
@@ -529,7 +537,7 @@ class Special extends BaseSpecial {
           removeChildren(this.nodes.actions);
 
           if (response && response.rc === 200) {
-            if (response.data.isCorrect) {
+            if (response.data.is_correct) {
               this.userPoints++;
               selectedItem.classList.add(Special.CSS.optionsItemCorrect);
             } else {
@@ -548,13 +556,13 @@ class Special extends BaseSpecial {
              */
             this.makeOptionMessage(response.data.message);
 
-            if (this.activeIndex >= this.totalLength - 1) {
+            if (this.currentQuestionId >= this.totalLength) {
               this.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
             } else {
               this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
             }
 
-            if (!response.data.isCorrect) {
+            if (!response.data.is_correct) {
               this.nodes.actions.appendChild(make('div', Special.CSS.actionsDisclaimer, {
                 innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Одна ошибка — в розыгрыше не участвуешь.'
               }));
@@ -562,7 +570,7 @@ class Special extends BaseSpecial {
 
             button.classList.remove(Special.CSS.buttonDisabled);
 
-            this.activeIndex++;
+            this.currentQuestionId = response.data.active_question;
           } else {
             console.log('Error while check answer:', response);
           }
@@ -601,6 +609,12 @@ class Special extends BaseSpecial {
    * Creates results screen
    */
   makeResult() {
+    removeElement(this.nodes.result);
+    removeChildren(this.nodes.options);
+    removeChildren(this.nodes.actions);
+    removeChildren(this.nodes.mainText);
+
+
     /**
      * @type {result}
      */
@@ -735,60 +749,68 @@ class Special extends BaseSpecial {
     removeChildren(this.nodes.actions);
     removeChildren(this.nodes.mainText);
 
-    this.nodes.counter.innerHTML = `${SVG.trophy} ТУРНИРНАЯ ТАБЛИЦА`;
+    this.nodes.counter.innerHTML = `${SVG.trophy} Турнирная таблица`;
 
-    this.nodes.counter.appendChild(make('span', Special.CSS.button, {
-      innerHTML: `${SVG.back} Вернуться`,
-      data: {
-        click: 'makeResult'
+    this.nodes.content.classList.add(Special.CSS.contentLoading);
+
+    // ajax to check
+    ajax.get({
+      url: `${this.params.apiEndpoint}/results`,
+    }).then(
+      /**
+       * @param {object} response
+       * @param {number} response.rc
+       * @param {string} response.message
+       * @param {object} response.data
+       * @param {number} response.data.count
+       * @param {{rank, name, points, isMe}[]} response.data.list
+       */
+      (response) => {
+        this.nodes.content.classList.remove(Special.CSS.contentLoading);
+        console.log('results', response);
+
+        this.nodes.counter.appendChild(make('span', Special.CSS.button, {
+          innerHTML: `${SVG.back} Вернуться`,
+          data: {
+            click: 'makeResult'
+          }
+        }));
+
+        let table = `
+          <table class="${ Special.CSS.resultsTable }">
+            <tr>
+              <th>#</th>
+              <th>Имя</th>
+              <th>Шифры</th>
+            </tr>
+        `;
+
+        response.data.list.forEach((user, index) => {
+          table += `
+            <tr class="${user.isMe ? 'me' : ''}">
+              <td>${index + 1}</td>
+              <td>${user.name}</td>
+              <td>${user.points + 1}</td>
+            </tr>
+          `
+        });
+
+        table += '</table>';
+
+
+
+        this.nodes.options.innerHTML = table;
+        // this.nodes.actions.innerHTML = `
+        //   <div class="${Special.CSS.resultsTable}-pagination">
+        //     <span>1</span>
+        //     <span>2</span>
+        //     <span>3</span>
+        //     <span>4</span>
+        //   </div>
+        // `;
       }
-    }));
+    );
 
-    let table = `
-      <table class="${ Special.CSS.resultsTable }">
-        <tr>
-          <th>#</th>
-          <th>Имя</th>
-          <th>Шифры</th>
-        </tr>
-    `;
-
-    let users = [
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-      {name: 'Username Username', points: 7},
-    ];
-
-    users.forEach((user, index) => {
-      table += `
-        <tr>
-          <td>${index + 1}</td>
-          <td>${user.name}</td>
-          <td>${user.points + 1}</td>
-        </tr>
-      `
-    });
-
-    table += '</table>';
-
-
-
-    this.nodes.options.innerHTML = table;
-    this.nodes.actions.innerHTML = `
-      <div class="${Special.CSS.resultsTable}-pagination">
-        <span>1</span> 
-        <span>2</span> 
-        <span>3</span> 
-        <span>4</span> 
-      </div>
-    `;
 
     Analytics.sendEvent('Results table', 'Hit');
   }
@@ -820,6 +842,7 @@ class Special extends BaseSpecial {
 
     new Auth(url, () => {
       this.checkUserState();
+      this.closePopup();
     });
   }
 
@@ -837,6 +860,32 @@ class Special extends BaseSpecial {
     this.nodes.popup.classList.remove(Special.CSS.popupShowed);
   }
 
+  /**
+   * Clicks on the popup overlay to close popup
+   * @param event
+   */
+  popupOutsideClicked(event){
+    let isInsidePopupContent = event.target.closest(`.${Special.CSS.popupContainer}`) !== null;
+
+    if (!isInsidePopupContent) {
+      this.closePopup();
+    }
+  }
+
+  /**
+   * Handle clicks on video thumbnail
+   * @param {Element} wrapper - video thumb wrapper
+   */
+  showVideo(wrapper){
+    const url = wrapper.dataset.url;
+
+    console.log('showVideo', url);
+
+    this.showPopup(`
+      <iframe width="${Math.round(window.innerWidth * 0.8)}" height="${Math.round(window.innerHeight * 0.8)}" src="${url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `);
+  }
+
 
 
 
@@ -851,7 +900,7 @@ class Special extends BaseSpecial {
       if (this.mode === 'start') {
         this.start();
       } else if (this.mode === 'progress' && this.isPending) {
-        if (this.activeIndex >= this.totalLength) {
+        if (this.currentQuestionId >= this.totalLength) {
           this.makeResult();
         } else {
           this.makeQuestion();
@@ -878,6 +927,22 @@ class Special extends BaseSpecial {
 
     return this.staticURL + url;
   }
+}
+
+if (!Element.prototype.matches)
+  Element.prototype.matches = Element.prototype.msMatchesSelector ||
+    Element.prototype.webkitMatchesSelector;
+
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function(s) {
+    var el = this;
+    if (!document.documentElement.contains(el)) return null;
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+    return null;
+  };
 }
 
 module.exports = Special;

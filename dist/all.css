@@ -124,7 +124,46 @@
       font-size: 16px;
       margin: 15px 0 10px
   }
-    }.about-game img {
+    }.about-game__videos {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }.about-game__videos-wrapper {
+      position: relative;
+      cursor: pointer
+    }.about-game__videos-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        background: rgba(0, 0, 0, 0.6) url(https://leonardo.osnova.io/fcd69c3e-d7f0-868b-7e16-0ab3ceb6bd32) no-repeat 57% center;
+        background-size: 33px auto;
+        opacity: 0.8;
+        border-radius: 50%;
+      }.about-game__videos-wrapper:hover::before {
+          opacity: 1;
+        }.about-game__videos-wrapper:not(:last-of-type){
+        margin-bottom: 10px;
+      }.about-game__videos-left {
+
+    }.about-game__videos-right {
+      width: 190px;
+      margin-left: 10px;
+    }.about-game__videos-right img {
+        height: 113px;
+        width: 190px;
+        vertical-align: bottom;
+      }.about-game__videos-right .about-game__videos-wrapper::before {
+          width: 70px;
+          height: 70px;
+          margin-top: -35px;
+          margin-left: -35px;
+          background-size: 26px auto;
+        }.about-game img {
     max-width: 100%;
   }.likely {
   display: -webkit-box;
@@ -325,8 +364,7 @@
     }.bf-special__button:hover {
       background: var(--color-buttons-bg--hover);
     }.bf-special__button svg {
-      margin-right: 10px;
-      vertical-align: middle
+      margin-right: 10px
     }@media (max-width: 679px) {
 
     .bf-special__button svg {
@@ -351,8 +389,24 @@
     color: #fff;
     padding: 60px;
     position: relative;
-    z-index: 2
-  }@media (max-width: 679px) {
+    z-index: 2;
+  }.bf-special__content--loading::before {
+        position: absolute;
+        content: '';
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+        left: 50%;
+        top: 70%;
+        border: 2px solid #fff;
+        border-top-color: var(--color-buttons-bg);
+        border-radius: 50%;
+        -webkit-animation: rotating 2s infinite linear;
+                animation: rotating 2s infinite linear;
+      }@media (max-width: 679px) {
 
   .bf-special__content {
       padding: 25px 20px
@@ -377,20 +431,27 @@
       .bf-special__content-text img {
           margin-top: 15px
       }
-        }.bf-special__counter {
+        }.bf-special__content-text p {
+        margin-top: 15px;
+      }.bf-special__counter {
     font-size: 32px;
     font-weight: 600;
     text-align: center;
     margin-bottom: 40px;
-    letter-spacing: 0.05em
-  }@media (max-width: 679px) {
+    letter-spacing: 0.05em;
+  }.bf-special__counter .bf-special__button {
+      padding: 10px 15px;
+      margin-left: 20px;
+    }.bf-special__counter svg {
+      margin-right: 10px;
+    }@media (max-width: 679px) {
 
   .bf-special__counter {
       font-size: 18px;
       margin-bottom: 15px
   }
     }.bf-special__options {
-    margin-top: 30px;
+    margin-top: 15px;
     font-size: 16px;
     line-height: 1.5em
   }@media (max-width: 679px) {
@@ -573,6 +634,8 @@
         text-align: center;
       }.bf-special__table tr:nth-of-type(2n){
       background: rgba(255, 255, 255, 0.2);
+    }.bf-special__table tr.me {
+      color: var(--color-buttons-bg);
     }.bf-special__table-pagination {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -614,7 +677,6 @@
       position: relative;
       background: #252A5C;
       color: #fff;
-      padding: 30px;
     }.bf-special__popup-close {
       position: absolute;
       right: 20px;
@@ -655,6 +717,7 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 1.6em;
+    padding: 30px;
   }.bf-special__auth-buttons{
       margin-top: 20px;
     }.bf-special__auth-buttons span {
