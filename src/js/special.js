@@ -183,6 +183,7 @@ class Special extends BaseSpecial {
       innerHTML: `
         <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--left" href="${DATA.logoUrl}" target="_blank"></a>
         <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--right" href="${DATA.logoUrl}" target="_blank"></a>
+        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--bottom" href="${DATA.logoUrl}" target="_blank"></a>
       `
     });
 
@@ -668,10 +669,6 @@ class Special extends BaseSpecial {
       tabContainer.classList.toggle(Special.CSS.contentHidden, tabContainer.dataset.tab !== tab);
     });
   }
-
-
-
-
 
 
 

@@ -37,7 +37,7 @@ export default {
           <img src="https://leonardo.osnova.io/b8334bfa-a0a4-28af-fd28-4242dca9ef23">
           <div class="about-game__buttons">
             <a class="bf-special__button" href="">
-              УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V
+              УЗНАТЬ БОЛЬШЕ О&nbsp;BATTLEFIELD&nbsp;V
             </a>
           </div>
         </div>

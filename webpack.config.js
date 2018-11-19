@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackOnBuildPlugin = require('on-build-webpack');
@@ -20,13 +19,7 @@ const plugins = [
 
 ];
 
-if (isProduction) {
-    plugins.push(...[
-        new UglifyJsPlugin({
-            sourceMap: true
-        })
-    ]);
-} else {
+if (!isProduction) {
     plugins.push(...[
         // new BrowserSyncPlugin({
         //     port: 3040,
@@ -55,6 +48,8 @@ if (isProduction) {
 
     // copy css
     fs.createReadStream(cssBundlePath).pipe(fs.createWriteStream(path.resolve(projectInOnsnova, 'styles', 'all.css')));
+
+    console.log('Bundles copied to osnova');
   }))
 }
 
@@ -77,9 +72,12 @@ module.exports = {
                     options: {
                         cacheDirectory: true,
                         presets: [
-                            'env'
+                            '@babel/env'
                         ],
-                        plugins: ['transform-object-assign']
+                        plugins: [
+                          'transform-object-assign',
+                          '@babel/plugin-transform-modules-commonjs'
+                        ],
                     }
                 }, {
                     loader: 'eslint-loader?fix=true&esModules=true'
@@ -125,8 +123,24 @@ module.exports = {
                         {
                             loader: 'postcss-loader',
                             options: {
-                                ident: 'postcss',
-                                sourceMap: true
+                              plugins: (loader) => [
+                                require('postcss-smart-import'),
+                                require('postcss-custom-properties'),
+                                require('postcss-apply'),
+                                require('postcss-media-minmax'),
+                                require('postcss-custom-selectors'),
+                                require('postcss-nested-ancestors'),
+                                require('postcss-nesting'),
+                                require('postcss-nested'),
+                                require('postcss-color-mod-function'),
+                                require('postcss-color-hex-alpha'),
+                                require('postcss-font-variant'),
+                                require('postcss-font-family-system-ui'),
+                                require('postcss-custom-media')(),
+                                require('autoprefixer')({
+                                  'browsers': ['last 2 versions', '> 1%']
+                                })
+                              ]
                             }
                         },
                     ]

@@ -2,65 +2,132 @@
 .intro-prizes {
   background: rgba(238, 240, 251, 0.2);
   padding: 15px 30px;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 30px;
-}.intro-prizes__image {
+  margin-top: 30px
+}@media (max-width: 679px) {.intro-prizes {
+    padding: 15px;
+    margin-top: 15px
+}
+  }.intro-prizes__image {
     content: '';
     background: url('https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00');
     min-width: 75px;
     height: 114px;
     background-size: 75px 114px;
-    margin-right: 30px;
-  }.intro-prizes__text {
-    font-size: 16px;
-  }.intro-logo {
+    margin-right: 30px
+  }@media (max-width: 679px) {
+
+
+  .intro-prizes__image {
+      min-width: 57px;
+      height: 87px;
+      background-size: cover;
+      margin-right: 15px
+  }
+    }.intro-prizes__text {
+    font-size: 16px
+  }@media (max-width: 679px) {
+
+  .intro-prizes__text {
+      font-size: 14px
+  }
+    }.intro-logo {
   display: inline-block;
   background: url('https://leonardo.osnova.io/bf4cb6ca-dec6-126c-f953-6da3dc4a3113') no-repeat;
   width: 471px;
   height: 86px;
   background-size: cover;
-  margin-bottom: 10px;
-}.outro-prizes {
+  margin-bottom: 10px
+}@media (max-width: 679px) {.intro-logo {
+    width: 190px;
+    height: 34px
+}
+  }.outro-prizes {
   background: rgba(238, 240, 251, 0.2);
   padding: 15px 30px;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 30px;
-}.outro-prizes__image {
+  margin-top: 30px
+}@media (max-width: 679px) {.outro-prizes {
+    margin-top: 15px;
+    padding: 15px
+}
+  }.outro-prizes__image {
     content: '';
     background: url('https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00');
     min-width: 75px;
     height: 114px;
     background-size: 75px 114px;
-    margin-right: 30px;
-  }.outro-prizes__text {
-    font-size: 16px;
-  }.about-nvidia,
+    margin-right: 30px
+  }@media (max-width: 679px) {
+
+  .outro-prizes__image {
+      min-width: 57px;
+      height: 87px;
+      background-size: cover;
+      margin-right: 15px
+  }
+    }.outro-prizes__text {
+    font-size: 16px
+  }@media (max-width: 679px) {
+
+  .outro-prizes__text {
+      font-size: 14px
+  }
+    }.about-nvidia,
 .about-game {
   font-size: 16px;
-  line-height: 1.5em;
-}.about-nvidia .bf-special__button, .about-game .bf-special__button {
-    margin: 30px auto 0;
-  }.about-nvidia__buttons, .about-game__buttons {
+  line-height: 1.5em
+}@media (max-width: 679px) {.about-nvidia,
+.about-game {
+    font-size: 15px
+}
+  }.about-nvidia .bf-special__button, .about-game .bf-special__button {
+    margin: 30px auto 0
+  }@media (max-width: 679px) {
+
+  .about-nvidia .bf-special__button, .about-game .bf-special__button {
+      margin-top: 15px
+  }
+    }.about-nvidia__buttons, .about-game__buttons {
     text-align: center;
   }.about-nvidia p, .about-game p {
     margin: 15px 0
   }.about-nvidia__cover {
     margin-bottom: 30px;
-    max-width: 100%;
-  }.about-nvidia__logo {
+    max-width: 100%
+  }@media (max-width: 679px) {
+  .about-nvidia__cover {
+      margin-bottom: 15px
+  }
+    }.about-nvidia__logo {
     max-width: 286px;
     margin-right: 30px;
-    float: left;
-  }.about-game h2 {
+    float: left
+  }@media (max-width: 679px) {
+
+  .about-nvidia__logo {
+      float: none;
+      margin-right: 0;
+      margin-bottom: 15px
+  }
+    }.about-game h2 {
     font-size: 24px;
     font-weight: 600;
     text-align: center;
-    margin: 30px 0 25px;
-  }.about-game img {
+    margin: 30px 0 25px
+  }@media (max-width: 679px) {
+  .about-game h2 {
+      font-size: 16px;
+      margin: 15px 0 10px
+  }
+    }.about-game img {
     max-width: 100%;
   }.likely {
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }.likely__widget {
@@ -80,15 +147,30 @@
       padding: 0 15px;
     }.likely__widget--facebook svg {
         margin-right: 10px;
+      }@media (max-width: 679px) {
+
+    .likely__widget--facebook {
+        font-size: 0;
+    }
+
+        .likely__widget--facebook svg {
+          margin-right: 0;
+        }
       }.likely__widget--vkontakte {
       background: #5381B6;
     }.likely__widget--vkontakte svg {
       }.likely__widget--twitter {
       background: #32ACFF;
     }.likely__widget--twitter svg {
-      }@keyframes rotating {
+      }@-webkit-keyframes rotating {
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}@keyframes rotating {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }.bf-special {
   --color-buttons-bg: #F68700;
@@ -99,66 +181,146 @@
   --color-answer-correct: #18D784;
   --color-answer-incorrect: #E43768;
 
+
+
+  display: -webkit-box;
+
+
+
   display: -ms-flexbox;
 
+
+
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   min-height: 100%;
   background: #83D5F7 url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat center top;
   font-family: 'Montserrat', sans-serif;
-  padding: 40px;
-}.bf-special svg {
+  padding: 40px
+}@media (max-width: 679px) {.bf-special {
+    padding: 20px
+}
+  }.bf-special svg {
     fill: currentColor;
   }.bf-special__header {
     color: var(--color-text-out-countainer);
-    margin-bottom: 30px;
-  }.bf-special__header-menu {
+    margin-bottom: 30px
+  }@media (max-width: 679px) {
+
+  .bf-special__header {
+      margin-bottom: 0
+  }
+    }.bf-special__header-menu {
       max-width: 600px;
       text-align: center;
       margin: 0 auto;
       font-size: 20px;
-      font-weight: 600;
-    }.bf-special__header-menu-button {
+      font-weight: 600
+    }@media (max-width: 679px) {
+
+    .bf-special__header-menu {
+        margin-top: 35px;
+        font-size: 14px
+    }
+      }@media (max-width: 330px) {
+
+    .bf-special__header-menu {
+        margin: 35px -10px 0
+    }
+      }.bf-special__header-menu-button {
         display: inline-block;
         margin: 0 15px;
         padding: 15px 0;
-        cursor: pointer;
-      }.bf-special__header-menu-button:hover,
+        cursor: pointer
+      }.bf-special__header-menu-button:last-of-type {
+          margin-right: 0 !important;
+        }.bf-special__header-menu-button:first-of-type {
+          margin-left: 0 !important;
+        }@media (max-width: 679px) {
+
+      .bf-special__header-menu-button {
+          margin: 0 10px;
+          padding: 5px 0
+      }
+        }@media (max-width: 330px) {
+
+      .bf-special__header-menu-button {
+          margin: 0 5px
+      }
+        }.bf-special__header-menu-button:hover,
         .bf-special__header-menu-button--active {
-          box-shadow: 0 3px 0 0 var(--color-buttons-bg);
+          -webkit-box-shadow: 0 3px 0 0 var(--color-buttons-bg);
+                  box-shadow: 0 3px 0 0 var(--color-buttons-bg);
         }.bf-special__header-logo {
       position: absolute;
       background-repeat: no-repeat;
       background-size: cover;
-      top: 40px;
-    }.bf-special__header-logo--left {
+      top: 40px
+    }@media (max-width: 679px) {
+
+    .bf-special__header-logo {
+        top: 20px
+    }
+      }.bf-special__header-logo--left {
         left: 40px;
         background-image: url('https://leonardo.osnova.io/2c4abde2-637a-6084-77d2-3eb38cacb527');
         width: 163px;
-        height: 30px;
-      }.bf-special__header-logo--right {
+        height: 30px
+      }@media (max-width: 679px) {
+
+      .bf-special__header-logo--left {
+          width: 98px;
+          height: 18px;
+          left: 20px
+      }
+        }.bf-special__header-logo--right {
         right: 40px;
         background-image: url('https://leonardo.osnova.io/50049094-f83e-46ed-1b3f-99edcea70960');
         width: 82px;
-        height: 28px;
+        height: 28px
+      }@media (max-width: 679px) {
+
+      .bf-special__header-logo--right {
+          width: 57px;
+          height: 20px;
+          right: 20px
+      }
+        }.bf-special__header-logo--bottom {
+        top: auto;
+        bottom: 40px;
+        left: 40px;
+        background-image: url('https://leonardo.osnova.io/26ccf56e-d591-33ec-3966-979d7d95866f');
+        width: 295px;
+        height: 44px;
       }.bf-special__container {
     max-width: 960px;
     margin: auto;
   }.bf-special__button {
+    position: relative;
     display: inline-block;
     padding: 25px 50px;
     background: var(--color-buttons-bg);
     color: var(--color-buttons-text);
     font-weight: 600;
     font-size: 20px;
-    cursor: pointer
-  }.bf-special__button:hover {
+    cursor: pointer;
+    z-index: 3
+  }@media (max-width: 679px) {
+
+  .bf-special__button {
+      font-size: 16px;
+      padding: 15px 26px
+  }
+    }.bf-special__button:hover {
       background: var(--color-buttons-bg--hover);
     }.bf-special__button--second {
       background: transparent;
-      box-shadow: inset 0 0 0 2px #fff;
+      -webkit-box-shadow: inset 0 0 0 2px #fff;
+              box-shadow: inset 0 0 0 2px #fff;
       color: #fff
     }.bf-special__button--second:hover {
         background: #fff;
@@ -171,33 +333,69 @@
     background: var(--color-container-bg);
     color: #fff;
     padding: 60px;
-  }.bf-special__content--hidden {
+    position: relative;
+    z-index: 2
+  }@media (max-width: 679px) {
+
+  .bf-special__content {
+      padding: 25px 20px
+  }
+    }.bf-special__content--hidden {
       display: none;
     }.bf-special__content b {
       font-weight: bold;
     }.bf-special__content-text {
       font-size: 16px;
-      line-height: 1.7em;
-    }.bf-special__content-text img {
+      line-height: 1.7em
+    }@media (max-width: 679px) {
+
+    .bf-special__content-text {
+        font-size: 14px
+    }
+      }.bf-special__content-text img {
         margin-top: 25px;
-        max-width: 100%;
-      }.bf-special__counter {
+        max-width: 100%
+      }@media (max-width: 679px) {
+
+      .bf-special__content-text img {
+          margin-top: 15px
+      }
+        }.bf-special__counter {
     font-size: 32px;
     font-weight: 600;
     text-align: center;
     margin-bottom: 40px;
-    letter-spacing: 0.05em;
-  }.bf-special__options {
+    letter-spacing: 0.05em
+  }@media (max-width: 679px) {
+
+  .bf-special__counter {
+      font-size: 18px;
+      margin-bottom: 15px
+  }
+    }.bf-special__options {
     margin-top: 30px;
     font-size: 16px;
     line-height: 1.5em
-  }.bf-special__options:empty {
+  }@media (max-width: 679px) {
+
+  .bf-special__options {
+      margin-top: 15px;
+      font-size: 14px
+  }
+    }.bf-special__options:empty {
       display: none;
     }.bf-special__options-item,
     .bf-special__options-message {
       font-weight: 600;
-      padding: 20px 30px;
-    }.bf-special__options-item {
+      padding: 20px 30px
+    }@media (max-width: 679px) {
+
+    .bf-special__options-item,
+    .bf-special__options-message {
+        padding: 10px 20px
+    }
+      }.bf-special__options-item {
+      display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       cursor: pointer
@@ -205,12 +403,22 @@
         content: '';
         width: 19px;
         height: 19px;
+        min-width: 19px;
+        min-height: 19px;
         border: 2px solid #fff;
         border-radius: 50%;
         margin-right: 30px;
-        vertical-align: middle;
-      }.bf-special__options-item:hover {
-        box-shadow: inset 0 0 0 2px #fff;
+        vertical-align: middle
+      }@media (max-width: 679px) {
+
+      .bf-special__options-item::before {
+          margin-right: 15px;
+          margin-top: auto;
+          margin-bottom: auto
+      }
+        }.bf-special__options-item:hover {
+        -webkit-box-shadow: inset 0 0 0 2px #fff;
+                box-shadow: inset 0 0 0 2px #fff;
       }.bf-special__options-item--selected {
         background: #fff;
         color: var(--color-text-out-countainer)
@@ -220,7 +428,8 @@
       .bf-special__options-item--incorrect {
         color: var(--color-text-out-countainer)
       }.bf-special__options-item--correct:hover, .bf-special__options-item--incorrect:hover {
-          box-shadow: none;
+          -webkit-box-shadow: none;
+                  box-shadow: none;
         }.bf-special__options-item--correct {
         background: var(--color-answer-correct)
       }.bf-special__options-item--correct::before {
@@ -228,16 +437,30 @@
           width: 29px;
           height: 20px;
           background-size: 29px auto;
-          border: 0 !important;
-        }.bf-special__options-item--incorrect {
+          border: 0 !important
+        }@media (max-width: 679px) {
+
+        .bf-special__options-item--correct::before {
+            width: 23px;
+            height: 22px;
+            background-size: contain
+        }
+          }.bf-special__options-item--incorrect {
         background: var(--color-answer-incorrect)
       }.bf-special__options-item--incorrect::before {
           background: url(https://leonardo.osnova.io/a94979a3-ea8e-e438-38fd-c4f5c59c5683) no-repeat;
           width: 20px;
           height: 21px;
           background-size: auto 21px;
-          border: 0 !important;
-        }.bf-special__options-item--loading::before {
+          border: 0 !important
+        }@media (max-width: 679px) {
+
+        .bf-special__options-item--incorrect::before {
+            width: 20px;
+            height: 20px;
+            background-size: cover
+        }
+          }.bf-special__options-item--loading::before {
           content: '';
           width: 19px;
           height: 19px;
@@ -246,8 +469,13 @@
           border-radius: 50%;
           margin-right: 30px;
           vertical-align: middle;
-          animation: rotating 2s infinite linear;
-        }.bf-special__options--disabled .bf-special__options-item {
+          -webkit-animation: rotating 2s infinite linear;
+                  animation: rotating 2s infinite linear
+        }@media (max-width: 679px) {
+        .bf-special__options-item--loading::before {
+            margin-right: 15px
+        }
+          }.bf-special__options--disabled .bf-special__options-item {
         opacity: 0.5
       }.bf-special__options--disabled .bf-special__options-item:hover::before {
           background: transparent;
@@ -258,32 +486,72 @@
     }.bf-special__actions {
     text-align: center;
   }.bf-special__actions .bf-special__button {
-      margin: 35px 15px 0;
-    }.bf-special__actions-disclaimer {
+      margin: 35px 15px 0
+    }@media (max-width: 679px) {
+
+    .bf-special__actions .bf-special__button {
+        margin: 20px 5px 0
+    }
+      }.bf-special__actions-disclaimer {
        font-size: 16px;
        margin-top: 20px;
-       line-height: 1.5em;
-     }.bf-special__result-content {
+       line-height: 1.5em
+     }@media (max-width: 679px) {
+
+     .bf-special__actions-disclaimer {
+         font-size: 13px;
+         margin-top: 15px
+     }
+       }.bf-special__result-content {
       background: #83D5F7 url('https://leonardo.osnova.io/f66f4158-3bdc-a1fa-b9db-c5fb64910b3d/') no-repeat;
       background-size: cover;
       font-size: 28px;
       font-weight: 700;
       padding: 30px;
-      color: var(--color-text-out-countainer);
-    }.bf-special__result-content p {
+      color: var(--color-text-out-countainer)
+    }@media (max-width: 679px) {
+    .bf-special__result-content {
+        padding: 20px;
+        font-size: 18px
+    }
+      }.bf-special__result-content p {
         font-size: 38px;
         font-weight: 800;
-        margin-top: 10px;
-      }.bf-special__result .likely {
+        margin-top: 10px
+      }@media (max-width: 679px) {
+
+      .bf-special__result-content p {
+          font-size: 22px
+      }
+        }.bf-special__result .likely {
       margin-top: 30px;
     }.bf-special__result .bf-special__button {
       margin-top: 30px;
       display: block;
-      text-align: center;
-    }.bf-special__result .bf-special__button svg {
+      text-align: center
+    }@media (max-width: 679px) {
+
+    .bf-special__result .bf-special__button {
+        margin-top: 15px;
+        font-size: 13px;
+        padding: 15px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        line-height: 1.45em;
+        text-align: left
+    }
+      }.bf-special__result .bf-special__button svg {
         margin-right: 10px;
-        vertical-align: middle;
-      }/**
+        vertical-align: middle
+      }@media (max-width: 679px) {
+
+      .bf-special__result .bf-special__button svg {
+          margin-top: auto;
+          margin-bottom: auto;
+          margin-right: 15px
+      }
+        }/**
  * Start scene
  * ================================
  */.bf-special[data-mode="start"] .bf-special__container[data-tab="main"] {
@@ -296,16 +564,27 @@
       font-size: 30px;
       font-weight: 600;
       letter-spacing: 0.025em;
-      color: var(--color-text-out-countainer);
-    }.bf-special[data-mode="start"] .bf-special__intro {
+      color: var(--color-text-out-countainer)
+    }@media (max-width: 679px) {
+
+    .bf-special[data-mode="start"] .bf-special__title {
+        font-size: 20px
+    }
+      }.bf-special[data-mode="start"] .bf-special__intro {
       background: var(--color-container-bg);
       padding: 40px;
       font-size: 18px;
       line-height: 1.5em;
       color: #fff;
       text-align: left;
-      margin: 30px 0;
-    }/**
+      margin: 30px 0
+    }@media (max-width: 679px) {
+
+    .bf-special[data-mode="start"] .bf-special__intro {
+        padding: 20px;
+        font-size: 15px
+    }
+      }/**
  * Result scene
  * ================================
  */.bf-special[data-mode="result"] .bf-special__counter {

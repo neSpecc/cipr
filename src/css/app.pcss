@@ -1,3 +1,4 @@
+@import url('mq.pcss');
 @import url('from-data.pcss');
 @import url('likely.pcss');
 @import url('animations.pcss');
@@ -12,6 +13,8 @@
   --color-answer-correct: #18D784;
   --color-answer-incorrect: #E43768;
 
+
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -19,6 +22,10 @@
   background: #83D5F7 url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat center top;
   font-family: 'Montserrat', sans-serif;
   padding: 40px;
+
+  @media (--mobile) {
+    padding: 20px;
+  }
 
   svg {
     fill: currentColor;
@@ -28,6 +35,10 @@
     color: var(--color-text-out-countainer);
     margin-bottom: 30px;
 
+    @media (--mobile) {
+      margin-bottom: 0;
+    }
+
     &-menu {
       max-width: 600px;
       text-align: center;
@@ -35,11 +46,37 @@
       font-size: 20px;
       font-weight: 600;
 
+      @media (--mobile) {
+        margin-top: 35px;
+        font-size: 14px;
+      }
+
+      @media (--small-mobile) {
+        margin: 35px -10px 0;
+      }
+
       &-button {
         display: inline-block;
         margin: 0 15px;
         padding: 15px 0;
         cursor: pointer;
+
+        &:last-of-type {
+          margin-right: 0 !important;
+        }
+
+        &:first-of-type {
+          margin-left: 0 !important;
+        }
+
+        @media (--mobile) {
+          margin: 0 10px;
+          padding: 5px 0;
+        }
+
+        @media (--small-mobile) {
+          margin: 0 5px;
+        }
 
         &:hover,
         &--active {
@@ -54,11 +91,21 @@
       background-size: cover;
       top: 40px;
 
+      @media (--mobile) {
+        top: 20px;
+      }
+
       &--left {
         left: 40px;
         background-image: url('https://leonardo.osnova.io/2c4abde2-637a-6084-77d2-3eb38cacb527');
         width: 163px;
         height: 30px;
+
+        @media (--mobile) {
+          width: 98px;
+          height: 18px;
+          left: 20px;
+        }
       }
 
       &--right {
@@ -66,6 +113,21 @@
         background-image: url('https://leonardo.osnova.io/50049094-f83e-46ed-1b3f-99edcea70960');
         width: 82px;
         height: 28px;
+
+        @media (--mobile) {
+          width: 57px;
+          height: 20px;
+          right: 20px;
+        }
+      }
+
+      &--bottom {
+        top: auto;
+        bottom: 40px;
+        left: 40px;
+        background-image: url('https://leonardo.osnova.io/26ccf56e-d591-33ec-3966-979d7d95866f');
+        width: 295px;
+        height: 44px;
       }
     }
   }
@@ -76,6 +138,7 @@
   }
 
   &__button {
+    position: relative;
     display: inline-block;
     padding: 25px 50px;
     background: var(--color-buttons-bg);
@@ -83,6 +146,12 @@
     font-weight: 600;
     font-size: 20px;
     cursor: pointer;
+    z-index: 3;
+
+    @media (--mobile) {
+      font-size: 16px;
+      padding: 15px 26px;
+    }
 
     &:hover {
       background: var(--color-buttons-bg--hover);
@@ -112,6 +181,12 @@
     background: var(--color-container-bg);
     color: #fff;
     padding: 60px;
+    position: relative;
+    z-index: 2;
+
+    @media (--mobile) {
+      padding: 25px 20px;
+    }
 
     &--hidden {
       display: none;
@@ -125,9 +200,17 @@
       font-size: 16px;
       line-height: 1.7em;
 
+      @media (--mobile) {
+        font-size: 14px;
+      }
+
       img {
         margin-top: 25px;
         max-width: 100%;
+
+        @media (--mobile) {
+          margin-top: 15px;
+        }
       }
     }
   }
@@ -138,12 +221,22 @@
     text-align: center;
     margin-bottom: 40px;
     letter-spacing: 0.05em;
+
+    @media (--mobile) {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
   }
 
   &__options {
     margin-top: 30px;
     font-size: 16px;
     line-height: 1.5em;
+
+    @media (--mobile) {
+      margin-top: 15px;
+      font-size: 14px;
+    }
 
     &:empty {
       display: none;
@@ -153,6 +246,10 @@
     &-message {
       font-weight: 600;
       padding: 20px 30px;
+
+      @media (--mobile) {
+        padding: 10px 20px;
+      }
     }
 
     &-item {
@@ -163,10 +260,18 @@
         content: '';
         width: 19px;
         height: 19px;
+        min-width: 19px;
+        min-height: 19px;
         border: 2px solid #fff;
         border-radius: 50%;
         margin-right: 30px;
         vertical-align: middle;
+
+        @media (--mobile) {
+          margin-right: 15px;
+          margin-top: auto;
+          margin-bottom: auto;
+        }
       }
 
       &:hover {
@@ -200,6 +305,12 @@
           height: 20px;
           background-size: 29px auto;
           border: 0 !important;
+
+          @media (--mobile) {
+            width: 23px;
+            height: 22px;
+            background-size: contain;
+          }
         }
       }
 
@@ -212,6 +323,12 @@
           height: 21px;
           background-size: auto 21px;
           border: 0 !important;
+
+          @media (--mobile) {
+            width: 20px;
+            height: 20px;
+            background-size: cover;
+          }
         }
       }
 
@@ -226,6 +343,10 @@
           margin-right: 30px;
           vertical-align: middle;
           animation: rotating 2s infinite linear;
+
+          @media (--mobile) {
+            margin-right: 15px;
+          }
         }
       }
     }
@@ -254,12 +375,21 @@
 
     ^&__button {
       margin: 35px 15px 0;
+
+      @media (--mobile) {
+        margin: 20px 5px 0;
+      }
     }
 
      &-disclaimer {
        font-size: 16px;
        margin-top: 20px;
        line-height: 1.5em;
+
+       @media (--mobile) {
+         font-size: 13px;
+         margin-top: 15px;
+       }
      }
   }
 
@@ -272,10 +402,19 @@
       padding: 30px;
       color: var(--color-text-out-countainer);
 
+      @media (--mobile) {
+        padding: 20px;
+        font-size: 18px;
+      }
+
       p {
         font-size: 38px;
         font-weight: 800;
         margin-top: 10px;
+
+        @media (--mobile) {
+          font-size: 22px;
+        }
       }
     }
 
@@ -288,9 +427,24 @@
       display: block;
       text-align: center;
 
+      @media (--mobile) {
+        margin-top: 15px;
+        font-size: 13px;
+        padding: 15px;
+        display: flex;
+        line-height: 1.45em;
+        text-align: left;
+      }
+
       svg {
         margin-right: 10px;
         vertical-align: middle;
+
+        @media (--mobile) {
+          margin-top: auto;
+          margin-bottom: auto;
+          margin-right: 15px;
+        }
       }
     }
   }
@@ -317,6 +471,10 @@
       font-weight: 600;
       letter-spacing: 0.025em;
       color: var(--color-text-out-countainer);
+
+      @media (--mobile) {
+        font-size: 20px;
+      }
     }
 
     ^&__intro {
@@ -327,6 +485,11 @@
       color: #fff;
       text-align: left;
       margin: 30px 0;
+
+      @media (--mobile) {
+        padding: 20px;
+        font-size: 15px;
+      }
     }
   }
 }
