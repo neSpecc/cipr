@@ -583,6 +583,101 @@
         font-size: 24px;
         font-weight: 700;
       }/**
+   * Popup
+   * =============
+   */.bf-special__popup {
+    background: rgba(0,0,0, 0.9);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+    -webkit-transition: -webkit-transform 150ms ease-in;
+    transition: -webkit-transform 150ms ease-in;
+    transition: transform 150ms ease-in;
+    transition: transform 150ms ease-in, -webkit-transform 150ms ease-in;
+  }.bf-special__popup--showed {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transform: none;
+              transform: none;
+    }.bf-special__popup-container {
+      margin: auto;
+      position: relative;
+      background: #252A5C;
+      color: #fff;
+      padding: 30px;
+    }.bf-special__popup-close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      -webkit-transition: -webkit-transform 150ms ease;
+      transition: -webkit-transform 150ms ease;
+      transition: transform 150ms ease;
+      transition: transform 150ms ease, -webkit-transform 150ms ease;
+      will-change: transform
+    }.bf-special__popup-close::before,
+      .bf-special__popup-close::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 3px;
+        height: 26px;
+        background: #fff;
+        border-radius: 2px;
+        left: 45%;
+        top: 10%;
+      }.bf-special__popup-close::after {
+        -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+      }.bf-special__popup-close::before {
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+      }.bf-special__popup-close:hover::before,
+      .bf-special__popup-close:hover::after {
+        background: var(--color-buttons-bg);
+      }/**
+   * Auth
+   * ==============
+   */.bf-special__auth {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6em;
+  }.bf-special__auth-buttons{
+      margin-top: 20px;
+    }.bf-special__auth-buttons span {
+        display: inline-block;
+        padding: 13px 0;
+        font-size: 18px;
+        margin: 14px 10px 0 0;
+        min-width: 150px;
+        text-align: center;
+
+        cursor: pointer
+      }.bf-special__auth-buttons span:hover {
+          -webkit-transform: scale(1.02);
+                  transform: scale(1.02);
+        }.bf-special__auth-buttons .vk {
+        background: #4871A0;
+      }.bf-special__auth-buttons .fb {
+        background: #345494;
+      }.bf-special__auth-buttons .tw {
+        background: #1C9EF6;
+      }.bf-special__auth-buttons .ggl {
+        background: #DC4335;
+      }/**
  * Start scene
  * ================================
  */.bf-special[data-mode="start"] .bf-special__container[data-tab="main"] {

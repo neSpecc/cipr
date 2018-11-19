@@ -12,6 +12,7 @@
 /**
  * @typedef {object} question
  * @description Object represented single question data
+ * @property {number} id - question's id
  * @property {string} text
  * @property {string} image - url of image with code
  * @property {option[]} options
@@ -50,6 +51,7 @@ import { prepend, make, removeChildren, removeElement } from './lib/dom';
 import { isMobile } from './lib/check';
 import { shuffle } from './lib/array';
 import { scrollToElement } from './lib/helper';
+import Auth from './auth';
 
 /**
  * Special constructor
@@ -76,6 +78,8 @@ class Special extends BaseSpecial {
       actions: null,
       resultsButton: null,
       result: null,
+      popup: null,
+      popupContainer: null,
     };
 
     this.setDefaultValues();
@@ -109,7 +113,9 @@ class Special extends BaseSpecial {
   }
 
   /**
-   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
+   *
+   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, authButtons: string}}
+   * @constructor
    */
   static get CSS() {
     return {
@@ -149,7 +155,15 @@ class Special extends BaseSpecial {
       resultContent: 'bf-special__result-content',
       resultActions: 'bf-special__result-actions',
       resultButton: 'bf-special__result-button',
-      resultsTable: 'bf-special__table'
+      resultsTable: 'bf-special__table',
+
+      popup: 'bf-special__popup',
+      popupShowed: 'bf-special__popup--showed',
+      popupContainer: 'bf-special__popup-container',
+      popupClose: 'bf-special__popup-close',
+
+      auth: 'bf-special__auth',
+      authButtons: 'bf-special__auth-buttons',
     };
   }
 
@@ -254,6 +268,14 @@ class Special extends BaseSpecial {
       });
     }
 
+    /**
+     * Create popup
+     */
+    this.nodes.popup = make('div', Special.CSS.popup);
+    this.nodes.popupContainer = make('div', Special.CSS.popupContainer);
+    this.nodes.popup.appendChild(this.nodes.popupContainer);
+    this.nodes.wrapper.appendChild(this.nodes.popup);
+
 
     /**
      * Append all app to the initial container
@@ -292,13 +314,42 @@ class Special extends BaseSpecial {
     `;
 
     removeChildren(this.nodes.actions);
-    this.makeActionButton('НАЧАТЬ ИГРУ', 'showIntroduсtion');
+    this.makeActionButton('НАЧАТЬ ИГРУ', 'checkUserState');
+  }
+
+  /**
+   * Check user auth and game state
+   */
+  checkUserState() {
+
+    ajax.get({
+      url: `${this.params.apiEndpoint}/start`
+    }).then(
+      /**
+       * Osnova response with user state
+       * @param {object} response
+       * @param {number} response.rc  - code (200)
+       * @param {string} response.rm  - message (successfull)
+       * @param {{active_question: number, answers, is_finished: boolean, result: null}} response.data  - response datas
+       */
+      (response) => {
+        console.log('response', response);
+        if (response.rc === 403){
+          this.showAuth();
+          return;
+        }
+
+        this.activeIndex = response.data.active_question;
+
+        this.makeIntroduction();
+
+      });
   }
 
   /**
    * Creates introduction screen
    */
-  showIntroduсtion() {
+  makeIntroduction(){
     this.updateMode('introduction');
     this.nodes.counter.textContent = '— Вступление —';
     this.nodes.mainText.innerHTML = DATA.introduction;
@@ -740,6 +791,50 @@ class Special extends BaseSpecial {
     `;
 
     Analytics.sendEvent('Results table', 'Hit');
+  }
+
+  /**
+   * Shows auth popup
+   */
+  showAuth(){
+    this.showPopup(`
+      <div class="${Special.CSS.auth}">
+        Авторизуйтесь, для <br> участия в розыгрыше
+        <div class="${Special.CSS.authButtons}">
+          <span class="vk" data-click="auth" data-url="/auth/vk">ВКонтакте</span>
+          <span class="fb" data-click="auth" data-url="/auth/facebook">Facebook</span>
+          <br>
+          <span class="tw" data-click="auth" data-url="/auth/twitter">Twitter</span>
+          <span class="ggl" data-click="auth" data-url="/auth/googleplus">Google</span>
+        </div>
+      </div>
+    `);
+  }
+
+  /**
+   * Handle clicks on the auth button
+   * @param {Element} button
+   */
+  auth(button) {
+    const url = button.dataset.url;
+
+    new Auth(url, () => {
+      this.checkUserState();
+    });
+  }
+
+
+  showPopup(content){
+    this.nodes.popupContainer.innerHTML = content += `
+      <span class="${Special.CSS.popupClose}" data-click="closePopup"></span>
+    `;
+
+    this.nodes.popup.classList.add(Special.CSS.popupShowed);
+  }
+
+  closePopup(){
+    this.nodes.popupContainer.innerHTML = '';
+    this.nodes.popup.classList.remove(Special.CSS.popupShowed);
   }
 
 

@@ -1531,6 +1531,90 @@ module.exports = Likely;
 
 /***/ }),
 
+/***/ "./src/js/auth.js":
+/*!************************!*\
+  !*** ./src/js/auth.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Auth =
+/*#__PURE__*/
+function () {
+  /**
+   * @param {string} url - /auth/vk
+   * @param callback  - callback that will be called after auth
+   */
+  function Auth(url, callback) {
+    var _this = this;
+
+    _classCallCheck(this, Auth);
+
+    this.url = url;
+    this.callback = callback;
+    window.addEventListener('storage', function () {
+      _this.storageChangeHandler();
+    });
+    this.open();
+  }
+  /**
+   * Open auth popup
+   */
+
+
+  _createClass(Auth, [{
+    key: "open",
+    value: function open() {
+      var left = window.screen.width / 2 - 800 / 2;
+      var top = window.screen.height / 2 - 570 / 2;
+      window.localStorage.removeItem('logged_in');
+      console.log('now will open');
+      window.open(this.url, 'displayWindow', "width=720,height=440,left=".concat(left, ",top=").concat(top, ",location=no,directories=no,status=no,toolbar=no,menubar=no"));
+    }
+    /**
+     * Watch for local storage changing
+     **/
+
+  }, {
+    key: "storageChangeHandler",
+    value: function storageChangeHandler() {
+      /** Если появился ключ, означающий успешную авторизацию... */
+      if (parseInt(window.localStorage.logged_in) === 1) {
+        window.localStorage.removeItem('logged_in');
+        this.callback();
+      }
+      /** Если появился ключ, означающий проваленную авторизацию, делаем что-то (если нужно) */
+
+
+      if (window.localStorage.auth_error) {
+        console.log('Auth error', window.localStorage.auth_error);
+        window.localStorage.removeItem('auth_error');
+      }
+    }
+  }]);
+
+  return Auth;
+}();
+
+exports.default = Auth;
+;
+
+/***/ }),
+
 /***/ "./src/js/base.js":
 /*!************************!*\
   !*** ./src/js/base.js ***!
@@ -1742,6 +1826,7 @@ var _default = {
   promoUrl: '',
   CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',
   questions: [{
+    id: 1,
     text: 'Вас направили на помощь команде математиков под началом Алана Тьюринга, чтобы раскрыть тайну немецкого шифра «Энигма». Чтобы найти закономерность в россыпи случайных букв и цифр, нужно опираться хоть на какие-то известные слова. Однажды эксперты из Блетчли-парка всё же нашли два слова, от которых можно отталкиваться при расшифровке: TZYPQ GAOPXE. Что это за слова?',
     image: 'https://leonardo.osnova.io/f00aa764-e678-871b-17f6-fe2ba66cb761',
     options: [{
@@ -1758,6 +1843,7 @@ var _default = {
       text: 'Взять живыми'
     }]
   }, {
+    id: 2,
     text: 'После успеха с шифровальными машинами вас отправляют туда, где гораздо важнее человеческий фактор — в поместье «Трент-парк», где британская разведка размещала высокопоставленных пленных немецких офицеров. В комфортных условиях, пусть и взаперти, генералы разболтали немало фактов о немецкой военной машине — а их прослушивали на каждом шагу. Один такой офицер сильно запаниковал, когда узнал о точном месте своего заключения. В разговорах с другими немцами он упоминал некоего Виктора Второго как причину беспокойства. Что это за Виктор и почему Второй?',
     image: 'https://leonardo.osnova.io/f00aa764-e678-871b-17f6-fe2ba66cb761',
     options: [{
@@ -2451,6 +2537,8 @@ var _array = __webpack_require__(/*! ./lib/array */ "./src/js/lib/array.js");
 
 var _helper = __webpack_require__(/*! ./lib/helper */ "./src/js/lib/helper.js");
 
+var _auth = _interopRequireDefault(__webpack_require__(/*! ./auth */ "./src/js/auth.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -2498,6 +2586,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 /**
  * @typedef {object} question
  * @description Object represented single question data
+ * @property {number} id - question's id
  * @property {string} text
  * @property {string} image - url of image with code
  * @property {option[]} options
@@ -2554,7 +2643,9 @@ function (_BaseSpecial) {
       optionsItems: [],
       actions: null,
       resultsButton: null,
-      result: null
+      result: null,
+      popup: null,
+      popupContainer: null
     };
 
     _this.setDefaultValues();
@@ -2601,7 +2692,9 @@ function (_BaseSpecial) {
       }
     }
     /**
-     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string}}
+     *
+     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, authButtons: string}}
+     * @constructor
      */
 
   }, {
@@ -2711,9 +2804,17 @@ function (_BaseSpecial) {
         });
       }
       /**
-       * Append all app to the initial container
+       * Create popup
        */
 
+
+      this.nodes.popup = (0, _dom.make)('div', Special.CSS.popup);
+      this.nodes.popupContainer = (0, _dom.make)('div', Special.CSS.popupContainer);
+      this.nodes.popup.appendChild(this.nodes.popupContainer);
+      this.nodes.wrapper.appendChild(this.nodes.popup);
+      /**
+       * Append all app to the initial container
+       */
 
       this.nodes.wrapper.appendChild(this.nodes.container);
       this.container.appendChild(this.nodes.wrapper);
@@ -2735,15 +2836,48 @@ function (_BaseSpecial) {
     value: function makeIntro() {
       this.nodes.mainText.innerHTML = "\n      <div class=\"".concat(Special.CSS.title, "\">\n        <a href=\"").concat(CONFIG.articleUrl, "\">\n          ").concat(_data.default.title, "\n        </a>\n      </div>\n      <div class=\"").concat(Special.CSS.introText, "\">\n        ").concat(_data.default.intro, "\n      </div>\n    ");
       (0, _dom.removeChildren)(this.nodes.actions);
-      this.makeActionButton('НАЧАТЬ ИГРУ', 'showIntroduсtion');
+      this.makeActionButton('НАЧАТЬ ИГРУ', 'checkUserState');
+    }
+    /**
+     * Check user auth and game state
+     */
+
+  }, {
+    key: "checkUserState",
+    value: function checkUserState() {
+      var _this4 = this;
+
+      _ajax.default.get({
+        url: "".concat(this.params.apiEndpoint, "/start")
+      }).then(
+      /**
+       * Osnova response with user state
+       * @param {object} response
+       * @param {number} response.rc  - code (200)
+       * @param {string} response.rm  - message (successfull)
+       * @param {{active_question: number, answers, is_finished: boolean, result: null}} response.data  - response datas
+       */
+      function (response) {
+        console.log('response', response);
+
+        if (response.rc === 403) {
+          _this4.showAuth();
+
+          return;
+        }
+
+        _this4.activeIndex = response.data.active_question;
+
+        _this4.makeIntroduction();
+      });
     }
     /**
      * Creates introduction screen
      */
 
   }, {
-    key: "showIntrodu\u0441tion",
-    value: function showIntroduTion() {
+    key: "makeIntroduction",
+    value: function makeIntroduction() {
       this.updateMode('introduction');
       this.nodes.counter.textContent = '— Вступление —';
       this.nodes.mainText.innerHTML = _data.default.introduction;
@@ -2848,7 +2982,7 @@ function (_BaseSpecial) {
   }, {
     key: "makeQuestionOptions",
     value: function makeQuestionOptions(options) {
-      var _this4 = this;
+      var _this5 = this;
 
       (0, _array.shuffle)(options);
       options.forEach(function (option) {
@@ -2856,14 +2990,14 @@ function (_BaseSpecial) {
           data: {
             click: 'selectAnswer',
             id: option.id,
-            number: _this4.activeIndex
+            number: _this5.activeIndex
           },
           textContent: option.text
         });
 
-        _this4.nodes.optionsItems.push(item);
+        _this5.nodes.optionsItems.push(item);
 
-        _this4.nodes.options.appendChild(item);
+        _this5.nodes.options.appendChild(item);
       });
     }
     /**
@@ -2893,7 +3027,7 @@ function (_BaseSpecial) {
   }, {
     key: "submitAnswer",
     value: function submitAnswer(button) {
-      var _this5 = this;
+      var _this6 = this;
 
       if (this.isPending) {
         return;
@@ -2924,26 +3058,26 @@ function (_BaseSpecial) {
        * @param {{message: string, isCorrect: boolean}} response.data  - response data
        */
       function (response) {
-        _this5.nodes.options.classList.remove(Special.CSS.optionsDisabled);
+        _this6.nodes.options.classList.remove(Special.CSS.optionsDisabled);
 
         selectedItem.classList.remove(Special.CSS.optionsItemLoading);
-        (0, _dom.removeChildren)(_this5.nodes.actions);
+        (0, _dom.removeChildren)(_this6.nodes.actions);
 
         if (response && response.rc === 200) {
           if (response.data.isCorrect) {
-            _this5.userPoints++;
+            _this6.userPoints++;
             selectedItem.classList.add(Special.CSS.optionsItemCorrect);
           } else {
             selectedItem.classList.add(Special.CSS.optionsItemError);
 
-            _this5.makeActionButton('ЕЩЕ РАЗ', 'restart', [Special.CSS.buttonSecond]);
+            _this6.makeActionButton('ЕЩЕ РАЗ', 'restart', [Special.CSS.buttonSecond]);
           }
           /**
            * Remove other items
            */
 
 
-          _this5.nodes.optionsItems.filter(function (item) {
+          _this6.nodes.optionsItems.filter(function (item) {
             return item !== selectedItem;
           }).forEach(function (item) {
             return item.remove();
@@ -2953,22 +3087,22 @@ function (_BaseSpecial) {
            */
 
 
-          _this5.makeOptionMessage(response.data.message);
+          _this6.makeOptionMessage(response.data.message);
 
-          if (_this5.activeIndex >= _this5.totalLength - 1) {
-            _this5.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
+          if (_this6.activeIndex >= _this6.totalLength - 1) {
+            _this6.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
           } else {
-            _this5.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
+            _this6.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
           }
 
           if (!response.data.isCorrect) {
-            _this5.nodes.actions.appendChild((0, _dom.make)('div', Special.CSS.actionsDisclaimer, {
+            _this6.nodes.actions.appendChild((0, _dom.make)('div', Special.CSS.actionsDisclaimer, {
               innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Одна ошибка — в розыгрыше не участвуешь.'
             }));
           }
 
           button.classList.remove(Special.CSS.buttonDisabled);
-          _this5.activeIndex++;
+          _this6.activeIndex++;
         } else {
           console.log('Error while check answer:', response);
         }
@@ -3195,6 +3329,42 @@ function (_BaseSpecial) {
       this.nodes.actions.innerHTML = "\n      <div class=\"".concat(Special.CSS.resultsTable, "-pagination\">\n        <span>1</span> \n        <span>2</span> \n        <span>3</span> \n        <span>4</span> \n      </div>\n    ");
       Analytics.sendEvent('Results table', 'Hit');
     }
+    /**
+     * Shows auth popup
+     */
+
+  }, {
+    key: "showAuth",
+    value: function showAuth() {
+      this.showPopup("\n      <div class=\"".concat(Special.CSS.auth, "\">\n        \u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0443\u0439\u0442\u0435\u0441\u044C, \u0434\u043B\u044F <br> \u0443\u0447\u0430\u0441\u0442\u0438\u044F \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435\n        <div class=\"").concat(Special.CSS.authButtons, "\">\n          <span class=\"vk\" data-click=\"auth\" data-url=\"/auth/vk\">\u0412\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u0435</span>\n          <span class=\"fb\" data-click=\"auth\" data-url=\"/auth/facebook\">Facebook</span>\n          <br>\n          <span class=\"tw\" data-click=\"auth\" data-url=\"/auth/twitter\">Twitter</span>\n          <span class=\"ggl\" data-click=\"auth\" data-url=\"/auth/googleplus\">Google</span>\n        </div>\n      </div>\n    "));
+    }
+    /**
+     * Handle clicks on the auth button
+     * @param {Element} button
+     */
+
+  }, {
+    key: "auth",
+    value: function auth(button) {
+      var _this7 = this;
+
+      var url = button.dataset.url;
+      new _auth.default(url, function () {
+        _this7.checkUserState();
+      });
+    }
+  }, {
+    key: "showPopup",
+    value: function showPopup(content) {
+      this.nodes.popupContainer.innerHTML = content += "\n      <span class=\"".concat(Special.CSS.popupClose, "\" data-click=\"closePopup\"></span>\n    ");
+      this.nodes.popup.classList.add(Special.CSS.popupShowed);
+    }
+  }, {
+    key: "closePopup",
+    value: function closePopup() {
+      this.nodes.popupContainer.innerHTML = '';
+      this.nodes.popup.classList.remove(Special.CSS.popupShowed);
+    }
   }, {
     key: "keydownHandler",
     value: function keydownHandler(event) {
@@ -3258,7 +3428,13 @@ function (_BaseSpecial) {
         resultContent: 'bf-special__result-content',
         resultActions: 'bf-special__result-actions',
         resultButton: 'bf-special__result-button',
-        resultsTable: 'bf-special__table'
+        resultsTable: 'bf-special__table',
+        popup: 'bf-special__popup',
+        popupShowed: 'bf-special__popup--showed',
+        popupContainer: 'bf-special__popup-container',
+        popupClose: 'bf-special__popup-close',
+        auth: 'bf-special__auth',
+        authButtons: 'bf-special__auth-buttons'
       };
     }
   }]);

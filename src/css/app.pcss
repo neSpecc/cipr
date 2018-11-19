@@ -486,6 +486,123 @@
       }
     }
   }
+
+  /**
+   * Popup
+   * =============
+   */
+  &__popup {
+    background: rgba(0,0,0, 0.9);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: transform 150ms ease-in;
+
+    &--showed {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+
+    &-container {
+      margin: auto;
+      position: relative;
+      background: #252A5C;
+      color: #fff;
+      padding: 30px;
+    }
+
+    &-close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: transform 150ms ease;
+      will-change: transform;
+
+      &::before,
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 3px;
+        height: 26px;
+        background: #fff;
+        border-radius: 2px;
+        left: 45%;
+        top: 10%;
+      }
+
+      &::after {
+        transform: rotate(45deg);
+      }
+
+      &::before {
+        transform: rotate(-45deg);
+      }
+
+
+      &:hover::before,
+      &:hover::after {
+        background: var(--color-buttons-bg);
+      }
+    }
+  }
+
+  /**
+   * Auth
+   * ==============
+   */
+  &__auth {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6em;
+
+    &-buttons{
+      margin-top: 20px;
+
+      span {
+        display: inline-block;
+        padding: 13px 0;
+        font-size: 18px;
+        margin: 14px 10px 0 0;
+        min-width: 150px;
+        text-align: center;
+
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+
+      .vk {
+        background: #4871A0;
+      }
+
+      .fb {
+        background: #345494;
+      }
+
+      .tw {
+        background: #1C9EF6;
+      }
+
+      .ggl {
+        background: #DC4335;
+      }
+    }
+  }
 }
 
 /**
