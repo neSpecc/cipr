@@ -46,7 +46,7 @@ import ajax from '@codexteam/ajax';
 
 import DATA from './data';
 import SVG from './svg';
-import { prepend, make, removeChildren } from './lib/dom';
+import { prepend, make, removeChildren, removeElement } from './lib/dom';
 import { isMobile } from './lib/check';
 import { shuffle } from './lib/array';
 import { scrollToElement } from './lib/helper';
@@ -75,6 +75,7 @@ class Special extends BaseSpecial {
       optionsItems: [],
       actions: null,
       resultsButton: null,
+      result: null,
     };
 
     this.setDefaultValues();
@@ -148,6 +149,7 @@ class Special extends BaseSpecial {
       resultContent: 'bf-special__result-content',
       resultActions: 'bf-special__result-actions',
       resultButton: 'bf-special__result-button',
+      resultsTable: 'bf-special__table'
     };
   }
 
@@ -555,8 +557,9 @@ class Special extends BaseSpecial {
 
     this.updateMode('result');
 
-    let result = make('div', Special.CSS.result),
-      resultContent = make('div', Special.CSS.resultContent),
+    this.nodes.result = make('div', Special.CSS.result);
+
+    let resultContent = make('div', Special.CSS.resultContent),
       resultActions = make('div', Special.CSS.resultActions);
 
     // result.style.backgroundImage = `url(${this.imageUrl(data.cover)})`;
@@ -570,9 +573,9 @@ class Special extends BaseSpecial {
       <p>${data.title}</p>
     `;
 
-    result.appendChild(resultContent);
+    this.nodes.result.appendChild(resultContent);
     resultContent.appendChild(resultActions);
-    prepend(this.nodes.content, result);
+    prepend(this.nodes.content, this.nodes.result);
 
     Share.create(resultActions, {
       url: `${CONFIG.share.url}/${this.userPoints}`,
@@ -582,11 +585,11 @@ class Special extends BaseSpecial {
     this.nodes.resultsButton = make('div', [Special.CSS.button, Special.CSS.buttonSecond], {
       innerHTML: `${SVG.trophy} РЕЗУЛЬТАТЫ ДРУГИХ ПОЛЬЗОВАТЕЛЕЙ`,
       data: {
-        click: 'showResults'
+        click: 'showResultsTable'
       }
     });
 
-    result.appendChild(this.nodes.resultsButton);
+    this.nodes.result.appendChild(this.nodes.resultsButton);
 
 
     // this.nodes.actions.appendChild(make('span', Special.CSS.button, {
@@ -668,6 +671,75 @@ class Special extends BaseSpecial {
     this.nodes.tabs.forEach((tabContainer) => {
       tabContainer.classList.toggle(Special.CSS.contentHidden, tabContainer.dataset.tab !== tab);
     });
+  }
+
+  /**
+   * Shows results table
+   */
+  showResultsTable(){
+    this.updateMode('result-table');
+
+    removeElement(this.nodes.result);
+    removeChildren(this.nodes.options);
+    removeChildren(this.nodes.actions);
+    removeChildren(this.nodes.mainText);
+
+    this.nodes.counter.innerHTML = `${SVG.trophy} ТУРНИРНАЯ ТАБЛИЦА`;
+
+    this.nodes.counter.appendChild(make('span', Special.CSS.button, {
+      innerHTML: `${SVG.back} Вернуться`,
+      data: {
+        click: 'makeResult'
+      }
+    }));
+
+    let table = `
+      <table class="${ Special.CSS.resultsTable }">
+        <tr>
+          <th>#</th>
+          <th>Имя</th>
+          <th>Шифры</th>
+        </tr>
+    `;
+
+    let users = [
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+      {name: 'Username Username', points: 7},
+    ];
+
+    users.forEach((user, index) => {
+      table += `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${user.name}</td>
+          <td>${user.points + 1}</td>
+        </tr>
+      `
+    });
+
+    table += '</table>';
+
+
+
+    this.nodes.options.innerHTML = table;
+    this.nodes.actions.innerHTML = `
+      <div class="${Special.CSS.resultsTable}-pagination">
+        <span>1</span> 
+        <span>2</span> 
+        <span>3</span> 
+        <span>4</span> 
+      </div>
+    `;
+
+    Analytics.sendEvent('Results table', 'Hit');
   }
 
 

@@ -157,6 +157,17 @@
       background: var(--color-buttons-bg--hover);
     }
 
+    svg {
+      margin-right: 10px;
+      vertical-align: middle;
+
+      @media (--mobile) {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 15px;
+      }
+    }
+
     &--second {
       background: transparent;
       box-shadow: inset 0 0 0 2px #fff;
@@ -435,16 +446,43 @@
         line-height: 1.45em;
         text-align: left;
       }
+    }
+  }
 
-      svg {
-        margin-right: 10px;
-        vertical-align: middle;
+  &__table {
+    font-size: 20px;
+    width: 100%;
 
-        @media (--mobile) {
-          margin-top: auto;
-          margin-bottom: auto;
-          margin-right: 15px;
-        }
+    th {
+      font-weight: bold;
+    }
+
+    td,
+    th {
+      padding: 10px;
+      text-align: left;
+
+      &:first-of-type {
+        text-align: right;
+      }
+
+      &:last-of-type {
+        text-align: center;
+      }
+    }
+
+    tr:nth-of-type(2n){
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    &-pagination {
+      display: flex;
+
+      span {
+        display: inline-block;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: 700;
       }
     }
   }

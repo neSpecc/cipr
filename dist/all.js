@@ -2553,7 +2553,8 @@ function (_BaseSpecial) {
       options: null,
       optionsItems: [],
       actions: null,
-      resultsButton: null
+      resultsButton: null,
+      result: null
     };
 
     _this.setDefaultValues();
@@ -3014,17 +3015,17 @@ function (_BaseSpecial) {
        */
       var data = this.findResult();
       this.updateMode('result');
-      var result = (0, _dom.make)('div', Special.CSS.result),
-          resultContent = (0, _dom.make)('div', Special.CSS.resultContent),
+      this.nodes.result = (0, _dom.make)('div', Special.CSS.result);
+      var resultContent = (0, _dom.make)('div', Special.CSS.resultContent),
           resultActions = (0, _dom.make)('div', Special.CSS.resultActions); // result.style.backgroundImage = `url(${this.imageUrl(data.cover)})`;
 
       this.nodes.mainText.innerHTML = _data.default.outro;
       (0, _dom.removeChildren)(this.nodes.options);
       (0, _dom.removeChildren)(this.nodes.actions);
       resultContent.innerHTML = "\n      ".concat(data.message, "\n      <p>").concat(data.title, "</p>\n    ");
-      result.appendChild(resultContent);
+      this.nodes.result.appendChild(resultContent);
       resultContent.appendChild(resultActions);
-      (0, _dom.prepend)(this.nodes.content, result);
+      (0, _dom.prepend)(this.nodes.content, this.nodes.result);
       Share.create(resultActions, {
         url: "".concat(CONFIG.share.url, "/").concat(this.userPoints),
         twitter: CONFIG.share.twitter
@@ -3032,10 +3033,10 @@ function (_BaseSpecial) {
       this.nodes.resultsButton = (0, _dom.make)('div', [Special.CSS.button, Special.CSS.buttonSecond], {
         innerHTML: "".concat(_svg.default.trophy, " \u0420\u0415\u0417\u0423\u041B\u042C\u0422\u0410\u0422\u042B \u0414\u0420\u0423\u0413\u0418\u0425 \u041F\u041E\u041B\u042C\u0417\u041E\u0412\u0410\u0422\u0415\u041B\u0415\u0419"),
         data: {
-          click: 'showResults'
+          click: 'showResultsTable'
         }
       });
-      result.appendChild(this.nodes.resultsButton); // this.nodes.actions.appendChild(make('span', Special.CSS.button, {
+      this.nodes.result.appendChild(this.nodes.resultsButton); // this.nodes.actions.appendChild(make('span', Special.CSS.button, {
       //   textContent: 'ПРОЙТИ ЕЩЕ РАЗ',
       //   data: {
       //     click: 'restart'
@@ -3135,6 +3136,65 @@ function (_BaseSpecial) {
         tabContainer.classList.toggle(Special.CSS.contentHidden, tabContainer.dataset.tab !== tab);
       });
     }
+    /**
+     * Shows results table
+     */
+
+  }, {
+    key: "showResultsTable",
+    value: function showResultsTable() {
+      this.updateMode('result-table');
+      (0, _dom.removeElement)(this.nodes.result);
+      (0, _dom.removeChildren)(this.nodes.options);
+      (0, _dom.removeChildren)(this.nodes.actions);
+      (0, _dom.removeChildren)(this.nodes.mainText);
+      this.nodes.counter.innerHTML = "".concat(_svg.default.trophy, " \u0422\u0423\u0420\u041D\u0418\u0420\u041D\u0410\u042F \u0422\u0410\u0411\u041B\u0418\u0426\u0410");
+      this.nodes.counter.appendChild((0, _dom.make)('span', Special.CSS.button, {
+        innerHTML: "".concat(_svg.default.back, " \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F"),
+        data: {
+          click: 'makeResult'
+        }
+      }));
+      var table = "\n      <table class=\"".concat(Special.CSS.resultsTable, "\">\n        <tr>\n          <th>#</th>\n          <th>\u0418\u043C\u044F</th>\n          <th>\u0428\u0438\u0444\u0440\u044B</th>\n        </tr>\n    ");
+      var users = [{
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }, {
+        name: 'Username Username',
+        points: 7
+      }];
+      users.forEach(function (user, index) {
+        table += "\n        <tr>\n          <td>".concat(index + 1, "</td>\n          <td>").concat(user.name, "</td>\n          <td>").concat(user.points + 1, "</td>\n        </tr>\n      ");
+      });
+      table += '</table>';
+      this.nodes.options.innerHTML = table;
+      this.nodes.actions.innerHTML = "\n      <div class=\"".concat(Special.CSS.resultsTable, "-pagination\">\n        <span>1</span> \n        <span>2</span> \n        <span>3</span> \n        <span>4</span> \n      </div>\n    ");
+      Analytics.sendEvent('Results table', 'Hit');
+    }
   }, {
     key: "keydownHandler",
     value: function keydownHandler(event) {
@@ -3197,7 +3257,8 @@ function (_BaseSpecial) {
         result: 'bf-special__result',
         resultContent: 'bf-special__result-content',
         resultActions: 'bf-special__result-actions',
-        resultButton: 'bf-special__result-button'
+        resultButton: 'bf-special__result-button',
+        resultsTable: 'bf-special__table'
       };
     }
   }]);
@@ -3224,7 +3285,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  trophy: '<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"><path d="M17.5 2.62V0h-14v2.62H0v3.5a4.39 4.39 0 0 0 3.55 4.3 7 7 0 0 0 6.07 6.14v2.69H5.25V21h10.94v-1.75h-4.82v-2.69a7 7 0 0 0 6.08-6.14A4.39 4.39 0 0 0 21 6.12v-3.5zm-14 6a2.62 2.62 0 0 1-1.75-2.5V4.38H3.5zm12.25 1a5.25 5.25 0 1 1-10.5 0V1.75h10.5zm3.5-3.5A2.62 2.62 0 0 1 17.5 8.6V4.38h1.75z" fill-rule="evenodd"/></svg>'
+  trophy: '<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"><path d="M17.5 2.62V0h-14v2.62H0v3.5a4.39 4.39 0 0 0 3.55 4.3 7 7 0 0 0 6.07 6.14v2.69H5.25V21h10.94v-1.75h-4.82v-2.69a7 7 0 0 0 6.08-6.14A4.39 4.39 0 0 0 21 6.12v-3.5zm-14 6a2.62 2.62 0 0 1-1.75-2.5V4.38H3.5zm12.25 1a5.25 5.25 0 1 1-10.5 0V1.75h10.5zm3.5-3.5A2.62 2.62 0 0 1 17.5 8.6V4.38h1.75z" fill-rule="evenodd"/></svg>',
+  back: '<svg xmlns="http://www.w3.org/2000/svg" width="9.56" height="15.98" viewBox="0 0 9.56 15.98"><path fill-rule="evenodd" d="M3.58 7.92l5.89-5.85L7.39 0 0 7.34l.61.6-.61.6 7.46 7.44 2.1-2.1-5.98-5.96z"/></svg>'
 };
 exports.default = _default;
 

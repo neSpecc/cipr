@@ -1,3 +1,4 @@
 export default {
-  trophy: '<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"><path d="M17.5 2.62V0h-14v2.62H0v3.5a4.39 4.39 0 0 0 3.55 4.3 7 7 0 0 0 6.07 6.14v2.69H5.25V21h10.94v-1.75h-4.82v-2.69a7 7 0 0 0 6.08-6.14A4.39 4.39 0 0 0 21 6.12v-3.5zm-14 6a2.62 2.62 0 0 1-1.75-2.5V4.38H3.5zm12.25 1a5.25 5.25 0 1 1-10.5 0V1.75h10.5zm3.5-3.5A2.62 2.62 0 0 1 17.5 8.6V4.38h1.75z" fill-rule="evenodd"/></svg>'
+  trophy: '<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"><path d="M17.5 2.62V0h-14v2.62H0v3.5a4.39 4.39 0 0 0 3.55 4.3 7 7 0 0 0 6.07 6.14v2.69H5.25V21h10.94v-1.75h-4.82v-2.69a7 7 0 0 0 6.08-6.14A4.39 4.39 0 0 0 21 6.12v-3.5zm-14 6a2.62 2.62 0 0 1-1.75-2.5V4.38H3.5zm12.25 1a5.25 5.25 0 1 1-10.5 0V1.75h10.5zm3.5-3.5A2.62 2.62 0 0 1 17.5 8.6V4.38h1.75z" fill-rule="evenodd"/></svg>',
+  back: '<svg xmlns="http://www.w3.org/2000/svg" width="9.56" height="15.98" viewBox="0 0 9.56 15.98"><path fill-rule="evenodd" d="M3.58 7.92l5.89-5.85L7.39 0 0 7.34l.61.6-.61.6 7.46 7.44 2.1-2.1-5.98-5.96z"/></svg>',
 };

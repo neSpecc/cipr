@@ -131,7 +131,9 @@
   display: -ms-flexbox;
   display: flex;
 }.likely__widget {
-    display: inline-block;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
     height: 46px;
     width: 46px;
     color: #fff;
@@ -162,7 +164,12 @@
       }.likely__widget--twitter {
       background: #32ACFF;
     }.likely__widget--twitter svg {
-      }@-webkit-keyframes rotating {
+      }.likely__icon {
+    margin: auto;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }@-webkit-keyframes rotating {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
@@ -317,7 +324,17 @@
   }
     }.bf-special__button:hover {
       background: var(--color-buttons-bg--hover);
-    }.bf-special__button--second {
+    }.bf-special__button svg {
+      margin-right: 10px;
+      vertical-align: middle
+    }@media (max-width: 679px) {
+
+    .bf-special__button svg {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 15px
+    }
+      }.bf-special__button--second {
       background: transparent;
       -webkit-box-shadow: inset 0 0 0 2px #fff;
               box-shadow: inset 0 0 0 2px #fff;
@@ -541,17 +558,31 @@
         line-height: 1.45em;
         text-align: left
     }
-      }.bf-special__result .bf-special__button svg {
-        margin-right: 10px;
-        vertical-align: middle
-      }@media (max-width: 679px) {
-
-      .bf-special__result .bf-special__button svg {
-          margin-top: auto;
-          margin-bottom: auto;
-          margin-right: 15px
-      }
-        }/**
+      }.bf-special__table {
+    font-size: 20px;
+    width: 100%;
+  }.bf-special__table th {
+      font-weight: bold;
+    }.bf-special__table td,
+    .bf-special__table th {
+      padding: 10px;
+      text-align: left
+    }.bf-special__table td:first-of-type, .bf-special__table th:first-of-type {
+        text-align: right;
+      }.bf-special__table td:last-of-type, .bf-special__table th:last-of-type {
+        text-align: center;
+      }.bf-special__table tr:nth-of-type(2n){
+      background: rgba(255, 255, 255, 0.2);
+    }.bf-special__table-pagination {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }.bf-special__table-pagination span {
+        display: inline-block;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: 700;
+      }/**
  * Start scene
  * ================================
  */.bf-special[data-mode="start"] .bf-special__container[data-tab="main"] {
