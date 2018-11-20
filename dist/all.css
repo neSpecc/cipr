@@ -95,7 +95,8 @@
   .about-nvidia__logo {
       float: none;
       margin-right: 0;
-      margin-bottom: 15px
+      margin-bottom: 15px;
+      max-width: 100%
   }
     }.about-game h2 {
     font-size: 24px;
@@ -110,8 +111,18 @@
     }.about-game__videos {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-  }.about-game__videos-wrapper {
+    display: flex
+  }@media (max-width: 679px) {
+
+  .about-game__videos {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column
+  }
+    }.about-game__videos img {
+      vertical-align: bottom;
+    }.about-game__videos-wrapper {
       position: relative;
       cursor: pointer
     }.about-game__videos-wrapper::before {
@@ -131,17 +142,31 @@
           opacity: 1;
         }.about-game__videos-wrapper:not(:last-of-type){
         margin-bottom: 10px;
-      }.about-game__videos-left {
+      }@media (max-width: 679px) {
 
-    }.about-game__videos-right {
+    .about-game__videos-left {
+        margin-bottom: 10px
+    }
+      }.about-game__videos-right {
       width: 190px;
-      margin-left: 10px;
-    }.about-game__videos-right img {
+      margin-left: 10px
+    }@media (max-width: 679px) {
+
+    .about-game__videos-right {
+        width: auto;
+        margin-left: 0
+    }
+      }.about-game__videos-right img {
         height: 113px;
         min-width: 190px;
         vertical-align: bottom;
-        display: block;
-      }.about-game__videos-right .about-game__videos-wrapper::before {
+        display: block
+      }@media (max-width: 679px) {
+
+      .about-game__videos-right img {
+          height: auto
+      }
+        }.about-game__videos-right .about-game__videos-wrapper::before {
           width: 70px;
           height: 70px;
           margin-top: -35px;

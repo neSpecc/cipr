@@ -114,6 +114,7 @@
       float: none;
       margin-right: 0;
       margin-bottom: 15px;
+      max-width: 100%;
     }
   }
 }
@@ -133,6 +134,14 @@
 
   &__videos {
     display: flex;
+
+    @media (--mobile) {
+      flex-direction: column;
+    }
+
+    img {
+      vertical-align: bottom;
+    }
 
     &-wrapper {
       position: relative;
@@ -165,18 +174,29 @@
     }
 
     &-left {
-
+      @media (--mobile) {
+        margin-bottom: 10px;
+      }
     }
 
     &-right {
       width: 190px;
       margin-left: 10px;
 
+      @media (--mobile) {
+        width: auto;
+        margin-left: 0;
+      }
+
       img {
         height: 113px;
         min-width: 190px;
         vertical-align: bottom;
         display: block;
+
+        @media (--mobile) {
+          height: auto;
+        }
       }
 
       ^&-wrapper {
