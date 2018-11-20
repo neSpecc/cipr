@@ -97,6 +97,46 @@ export default {
       </div>
     </div>
   `,
+  prizePopup: `
+    <div class="about-prize">
+      <div class="about-prize__image">
+        <img src="https://leonardo.osnova.io/b273f4e8-22ea-658f-0928-e4a24bb10c84" alt="">
+      </div>
+      <div class="about-prize__text">
+        <h2>КОНФИГУРАЦИЯ</h2>
+        <p>
+          <b>Видеокарта:</b> NVIDIA GEFORCE RTX 2080 Ti
+        </p>
+        <p>
+          <b>Процессор:</b> Intel Core i7-9700K (8 ядер/8 потоков)
+          </p>
+        <p>
+          <b>Модуль памяти:</b> 32 Гб DDR4 Corsair Vengance RGB Pro, 3000 МГц
+        </p>
+        <p>
+          <b>Материнская плата:</b> ASUS ROG STRIX Z390-H GAMING
+        </p>
+        <p>
+          <b>Звук:</b> Интегрированная карта с системой 7.1
+        </p>
+        <p>
+          <b>SSD:</b> 500 Гб, Samsung 970 EVO
+        </p>
+        <p>
+          <b>Жесткий диск:</b> 2 Тб <br>
+          <b>Блок питания:</b> 750W, Corsair HX750i
+        </p>
+        
+        <p>
+          <b>Кулер:</b> NZXT KRAKEN WATER COOLER X52 <br>
+          <b>Корпус:</b> Invasion Rush с системой охлаждения и шумоизоляции
+        </p>
+        <p>
+          <b>Сборка:</b> Индивидуальный проект от INVASION Labs
+        </p>
+      </div>
+    </div>
+  `,
   logoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
   promoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
   CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',

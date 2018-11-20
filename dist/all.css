@@ -149,7 +149,48 @@
           background-size: 26px auto;
         }.about-game img {
     max-width: 100%;
-  }.likely {
+  }.about-prize {
+  padding: 50px;
+  font-size: 16px;
+  line-height: 1.7em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
+}@media (max-width: 679px) {.about-prize {
+    padding: 20px;
+    font-size: 14px;
+    display: block
+}
+  }.about-prize h2 {
+    font-size: 24px;
+    margin-top: 1em;
+    margin-bottom: 1.7em;
+    font-weight: 700
+  }@media (max-width: 679px) {
+
+  .about-prize h2 {
+      font-size: 18px
+  }
+    }.about-prize p:not(:last-of-type){
+    margin-bottom: 1.3em;
+  }.about-prize b {
+    font-weight: 700;
+  }.about-prize__image {
+    margin-right: 50px;
+  }.about-prize__image img {
+      max-width: 419px
+    }@media (max-width: 679px) {
+
+    .about-prize__image img {
+        max-width: 100px
+    }
+      }@media (max-width: 679px) {
+
+  .about-prize__image {
+      float: right;
+      margin: 50px 0 5px 10px
+  }
+    }.likely {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -710,6 +751,7 @@
     transition: -webkit-transform 150ms ease-in;
     transition: transform 150ms ease-in;
     transition: transform 150ms ease-in, -webkit-transform 150ms ease-in;
+    overflow: auto;
   }.bf-special__popup--showed {
       opacity: 1;
       visibility: visible;

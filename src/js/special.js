@@ -932,8 +932,6 @@ class Special extends BaseSpecial {
   showVideo(wrapper){
     const url = wrapper.dataset.url;
 
-    console.log('showVideo', url);
-
     this.showPopup(`
       <iframe width="${Math.round(window.innerWidth * 0.8)}" height="${Math.round(window.innerHeight * 0.8)}" src="${url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `);
@@ -943,9 +941,7 @@ class Special extends BaseSpecial {
    * Show prize popup
    */
   showPrize(){
-    this.showPopup(`
-      PRIZE
-    `);
+    this.showPopup(DATA.prizePopup);
   }
 
 
