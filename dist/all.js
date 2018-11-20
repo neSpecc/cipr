@@ -2928,7 +2928,7 @@ function (_BaseSpecial) {
     }
     /**
      * Check user auth and game state
-     * @param {Element} button - НАЧАТЬ ИГРУ
+     * @param {Element} [button] - НАЧАТЬ ИГРУ
      */
 
   }, {
@@ -2936,11 +2936,13 @@ function (_BaseSpecial) {
     value: function checkUserState(button) {
       var _this4 = this;
 
-      if (button.classList.contains(Special.CSS.buttonLoading)) {
+      if (button && button.classList.contains(Special.CSS.buttonLoading)) {
         return;
       }
 
-      button.classList.add(Special.CSS.buttonLoading);
+      if (button) {
+        button.classList.add(Special.CSS.buttonLoading);
+      }
 
       _ajax.default.get({
         url: "".concat(this.params.apiEndpoint, "/start")
@@ -2953,8 +2955,9 @@ function (_BaseSpecial) {
        * @param {{active_question: number, answers, is_finished: boolean, result: null}} response.data  - response datas
        */
       function (response) {
-        button.classList.remove(Special.CSS.buttonLoading);
-        console.log('response', response);
+        if (button) {
+          button.classList.remove(Special.CSS.buttonLoading);
+        }
 
         if (response.rc === 403) {
           _this4.showAuth();
@@ -3494,7 +3497,7 @@ function (_BaseSpecial) {
   }, {
     key: "showAuth",
     value: function showAuth() {
-      this.showPopup("\n      <div class=\"".concat(Special.CSS.auth, "\">\n        \u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0443\u0439\u0442\u0435\u0441\u044C, \u0434\u043B\u044F <br> \u0443\u0447\u0430\u0441\u0442\u0438\u044F \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435\n        <div class=\"").concat(Special.CSS.authButtons, "\">\n          <span class=\"vk\" data-click=\"auth\" data-url=\"/auth/vk\">\u0412\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u0435</span>\n          <span class=\"fb\" data-click=\"auth\" data-url=\"/auth/facebook\">Facebook</span>\n          <br>\n          <span class=\"tw\" data-click=\"auth\" data-url=\"/auth/twitter\">Twitter</span>\n          <span class=\"ggl\" data-click=\"auth\" data-url=\"/auth/googleplus\">Google</span>\n        </div>\n      </div>\n    "));
+      this.showPopup("\n      <div class=\"".concat(Special.CSS.auth, "\">\n        \u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0443\u0439\u0442\u0435\u0441\u044C \u0434\u043B\u044F \u0442\u043E\u0433\u043E, <br> \u0447\u0442\u043E\u0431\u044B \u043D\u0430\u0447\u0430\u0442\u044C \u043A\u0432\u0435\u0441\u0442\n        <div class=\"").concat(Special.CSS.authButtons, "\">\n          <span class=\"vk\" data-click=\"auth\" data-url=\"/auth/vk\">\u0412\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u0435</span>\n          <span class=\"fb\" data-click=\"auth\" data-url=\"/auth/facebook\">Facebook</span>\n          <br>\n          <span class=\"tw\" data-click=\"auth\" data-url=\"/auth/twitter\">Twitter</span>\n          <span class=\"ggl\" data-click=\"auth\" data-url=\"/auth/googleplus\">Google</span>\n        </div>\n      </div>\n    "));
     }
     /**
      * Handle clicks on the auth button

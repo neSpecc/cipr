@@ -324,15 +324,17 @@ class Special extends BaseSpecial {
 
   /**
    * Check user auth and game state
-   * @param {Element} button - НАЧАТЬ ИГРУ
+   * @param {Element} [button] - НАЧАТЬ ИГРУ
    */
   checkUserState(button) {
 
-    if (button.classList.contains(Special.CSS.buttonLoading)){
+    if (button && button.classList.contains(Special.CSS.buttonLoading)){
       return;
     }
 
-    button.classList.add(Special.CSS.buttonLoading);
+    if (button){
+      button.classList.add(Special.CSS.buttonLoading);
+    }
 
     ajax.get({
       url: `${this.params.apiEndpoint}/start`
@@ -345,8 +347,10 @@ class Special extends BaseSpecial {
        * @param {{active_question: number, answers, is_finished: boolean, result: null}} response.data  - response datas
        */
       (response) => {
-        button.classList.remove(Special.CSS.buttonLoading);
-        console.log('response', response);
+        if (button) {
+          button.classList.remove(Special.CSS.buttonLoading);
+        }
+
         if (response.rc === 403){
           this.showAuth();
           return;
@@ -874,7 +878,7 @@ class Special extends BaseSpecial {
   showAuth(){
     this.showPopup(`
       <div class="${Special.CSS.auth}">
-        Авторизуйтесь, для <br> участия в розыгрыше
+        Авторизуйтесь для того, <br> чтобы начать квест
         <div class="${Special.CSS.authButtons}">
           <span class="vk" data-click="auth" data-url="/auth/vk">ВКонтакте</span>
           <span class="fb" data-click="auth" data-url="/auth/facebook">Facebook</span>
