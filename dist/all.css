@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800);
 .intro-prizes,
 .outro-prizes {
   background: rgba(238, 240, 251, 0.2);
@@ -40,6 +40,10 @@
   .intro-prizes__text, .outro-prizes__text {
       font-size: 14px
   }
+    }.intro-prizes__text a, .outro-prizes__text a {
+      color: var(--color-buttons-bg);
+      font-weight: bold;
+      border-bottom: 2px solid var(--color-buttons-bg);
     }.intro-prizes .clickable, .outro-prizes .clickable {
     border-bottom: 2px solid var(--color-buttons-bg);
     cursor: pointer;
@@ -64,15 +68,16 @@
     font-size: 15px
 }
   }.about-nvidia .bf-special__button, .about-game .bf-special__button {
-    margin: 30px auto 0
+    margin: 0 auto 0;
+  }.about-nvidia__buttons, .about-game__buttons {
+    text-align: center;
+    margin-top: 30px
   }@media (max-width: 679px) {
 
-  .about-nvidia .bf-special__button, .about-game .bf-special__button {
+  .about-nvidia__buttons, .about-game__buttons {
       margin-top: 15px
   }
-    }.about-nvidia__buttons, .about-game__buttons {
-    text-align: center;
-  }.about-nvidia p, .about-game p {
+    }.about-nvidia p, .about-game p {
     margin: 15px 0
   }.about-nvidia__cover {
     margin-bottom: 30px;
@@ -197,6 +202,20 @@
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}@-webkit-keyframes loadingBg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -56px 0;
+  }
+}@keyframes loadingBg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -56px 0;
+  }
 }.bf-special {
   --color-buttons-bg: #F68700;
   --color-buttons-bg--hover: #FFA61B;
@@ -206,15 +225,9 @@
   --color-answer-correct: #18D784;
   --color-answer-incorrect: #E43768;
 
-
-
   display: -webkit-box;
 
-
-
   display: -ms-flexbox;
-
-
 
   display: flex;
   -webkit-box-orient: vertical;
@@ -317,7 +330,7 @@
         }.bf-special__header-logo--bottom {
         top: auto;
         bottom: 40px;
-        left: 40px;
+        right: 40px;
         background-image: url('https://leonardo.osnova.io/26ccf56e-d591-33ec-3966-979d7d95866f');
         width: 295px;
         height: 44px
@@ -340,7 +353,7 @@
     position: relative;
     display: inline-block;
     padding: 25px 50px;
-    background: var(--color-buttons-bg);
+    background-color: var(--color-buttons-bg);
     color: var(--color-buttons-text);
     font-weight: 600;
     font-size: 20px;
@@ -353,7 +366,7 @@
       padding: 15px 26px
   }
     }.bf-special__button:hover {
-      background: var(--color-buttons-bg--hover);
+      background-color: var(--color-buttons-bg--hover);
     }.bf-special__button svg {
       margin-right: 10px
     }@media (max-width: 679px) {
@@ -364,18 +377,29 @@
         margin-right: 15px
     }
       }.bf-special__button--second {
-      background: transparent;
+      background-color: transparent;
       -webkit-box-shadow: inset 0 0 0 2px #fff;
               box-shadow: inset 0 0 0 2px #fff;
       color: #fff
     }.bf-special__button--second:hover {
-        background: #fff;
+        background-color: #fff;
         color: var(--color-text-out-countainer);
       }.bf-special__button--disabled {
       opacity: 0.5
     }.bf-special__button--disabled:hover {
-        background: var(--color-buttons-bg);
-      }.bf-special__content {
+        background-color: var(--color-buttons-bg);
+      }.bf-special__button--loading {
+      background-color: var(--color-buttons-bg) !important;
+      background-image: repeating-linear-gradient(-45deg,transparent,transparent 9px,var(--color-buttons-bg) 0px,var(--color-buttons-bg--hover) 21px) !important;
+      background-size: 30px 73px !important;
+      -webkit-animation: loadingBg 1s infinite linear;
+              animation: loadingBg 1s infinite linear;
+    }.bf-special__button--second.bf-special__button--loading{
+      background-color: transparent !important;
+      background-image: repeating-linear-gradient(-45deg,transparent,transparent 9px, rgba(255,255,255,.2) 0, rgba(255,255,255, 0.2) 21px)!important;
+      background-size: 30px 73px!important;
+      color: #fff !important;
+    }.bf-special__content {
     background: var(--color-container-bg);
     color: #fff;
     padding: 60px;
@@ -806,7 +830,9 @@
       font-weight: 600;
       letter-spacing: 0.025em;
       color: var(--color-text-out-countainer);
-    }.bf-special[data-mode="result"] .bf-special__intro {
+    }.bf-special[data-mode="result"] .bf-special__button--second svg {
+        vertical-align: middle;
+      }.bf-special[data-mode="result"] .bf-special__intro {
       background: var(--color-container-bg);
       padding: 40px;
       font-size: 18px;

@@ -24,7 +24,7 @@ export default {
     },
     {
       tab: 'aboutGame',
-      label: 'О Battlefield V',
+      label: 'Battlefield V',
       content: `
         <div class="about-game">
           <p>
@@ -55,7 +55,7 @@ export default {
             </div>
           </div>
           <div class="about-game__buttons">
-            <a class="bf-special__button" href="">
+            <a class="bf-special__button" href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank">
               УЗНАТЬ БОЛЬШЕ О&nbsp;BATTLEFIELD&nbsp;V
             </a>
           </div>
@@ -64,7 +64,7 @@ export default {
     },
     {
       tab: 'aboutPrize',
-      label: 'О NVIDIA RTX',
+      label: 'NVIDIA RTX',
       content: `
         <div class="about-nvidia">
           <img class="about-nvidia__cover" src="https://leonardo.osnova.io/05d01e0b-9a77-ea0f-dbbd-6694570218df">
@@ -76,8 +76,9 @@ export default {
           <p>
             Приз этого конкурса — кастомный игровой PC Battlefield V на базе <b>NVIDIA GEFORCE RTX 2080 Ti</b>.
           </p>
+          <br clear="all">
           <div class="about-game__buttons">
-            <a class="bf-special__button" href="">
+            <a class="bf-special__button" href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank">
               УЗНАТЬ БОЛЬШЕ О NVIDIA RTX
             </a>
           </div>
@@ -92,12 +93,12 @@ export default {
         <img src="https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00" alt="">
       </div>
       <div class="outro-prizes__text">
-        28 ноября в [ВРЕМЯ] мы проведём стрим, на котором расскажем о Battlefield V, а также разыграем призы среди тех, кто успешно прошёл квест. Не пропустите! Смотреть трансляцию можно на Twitch [https://twitch.tv/dtfru].
+        28 ноября 15:00 мы проведём стрим, на котором расскажем о Battlefield V, а также разыграем призы среди тех, кто успешно прошёл квест. Не пропустите! Смотреть трансляцию можно на <a href="//twitch.tv/dtfru" target="_blank">Twitch</a>.
       </div>
     </div>
   `,
-  logoUrl: '',
-  promoUrl: '',
+  logoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
+  promoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
   CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',
   questions: [
     {
@@ -126,7 +127,6 @@ export default {
     {
       id: 2,
       text: 'После успеха с шифровальными машинами вас отправляют туда, где гораздо важнее человеческий фактор — в поместье «Трент-парк», где британская разведка размещала высокопоставленных пленных немецких офицеров. В комфортных условиях, пусть и взаперти, генералы разболтали немало фактов о немецкой военной машине — а их прослушивали на каждом шагу. Один такой офицер сильно запаниковал, когда узнал о точном месте своего заключения. В разговорах с другими немцами он упоминал некоего Виктора Второго как причину беспокойства. Что это за Виктор и почему Второй?',
-      image: 'https://leonardo.osnova.io/cfffb78d-320e-9356-ed56-2e34f7ecda4e',
       options: [
         {
           id: 1,

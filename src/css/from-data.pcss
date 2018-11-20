@@ -39,6 +39,12 @@
     @media (--mobile) {
       font-size: 14px;
     }
+
+    a {
+      color: var(--color-buttons-bg);
+      font-weight: bold;
+      border-bottom: 2px solid var(--color-buttons-bg);
+    }
   }
 
   .clickable {
@@ -72,15 +78,16 @@
   }
 
   .bf-special__button {
-    margin: 30px auto 0;
-
-    @media (--mobile) {
-      margin-top: 15px;
-    }
+    margin: 0 auto 0;
   }
 
   &__buttons {
     text-align: center;
+    margin-top: 30px;
+
+    @media (--mobile) {
+      margin-top: 15px;
+    }
   }
 
   p {

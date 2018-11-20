@@ -114,7 +114,7 @@ class Special extends BaseSpecial {
 
   /**
    *
-   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
+   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, buttonLoading: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
    * @constructor
    */
   static get CSS() {
@@ -150,6 +150,7 @@ class Special extends BaseSpecial {
       button: 'bf-special__button',
       buttonSecond: 'bf-special__button--second',
       buttonDisabled: 'bf-special__button--disabled',
+      buttonLoading: 'bf-special__button--loading',
       introText: 'bf-special__intro',
 
       result: 'bf-special__result',
@@ -323,8 +324,15 @@ class Special extends BaseSpecial {
 
   /**
    * Check user auth and game state
+   * @param {Element} button - НАЧАТЬ ИГРУ
    */
-  checkUserState() {
+  checkUserState(button) {
+
+    if (button.classList.contains(Special.CSS.buttonLoading)){
+      return;
+    }
+
+    button.classList.add(Special.CSS.buttonLoading);
 
     ajax.get({
       url: `${this.params.apiEndpoint}/start`
@@ -337,6 +345,7 @@ class Special extends BaseSpecial {
        * @param {{active_question: number, answers, is_finished: boolean, result: null}} response.data  - response datas
        */
       (response) => {
+        button.classList.remove(Special.CSS.buttonLoading);
         console.log('response', response);
         if (response.rc === 403){
           this.showAuth();
@@ -347,6 +356,7 @@ class Special extends BaseSpecial {
           this.currentQuestionId = response.data.active_question;
           this.makeIntroduction();
         } else {
+          this.userPoints = response.data.result || 0;
           this.makeResult();
         }
       });
@@ -412,6 +422,8 @@ class Special extends BaseSpecial {
    * Create question corresponding with current active index
    */
   makeQuestion() {
+    console.log('makeQuestion', this.currentQuestionId);
+
     /**
      * @type {question}
      */
@@ -430,9 +442,11 @@ class Special extends BaseSpecial {
 
     this.updateCounter();
     this.nodes.mainText.innerHTML = `${data.text}`;
-    this.nodes.mainText.appendChild(make('img', [], {
-      src: data.image
-    }));
+    if (data.image) {
+      this.nodes.mainText.appendChild(make('img', [], {
+        src: data.image
+      }));
+    }
 
     this.makeQuestionOptions(data.options);
 
@@ -538,7 +552,6 @@ class Special extends BaseSpecial {
 
           if (response && response.rc === 200) {
             if (response.data.is_correct) {
-              this.userPoints++;
               selectedItem.classList.add(Special.CSS.optionsItemCorrect);
             } else {
               selectedItem.classList.add(Special.CSS.optionsItemError);
@@ -557,6 +570,7 @@ class Special extends BaseSpecial {
             this.makeOptionMessage(response.data.message);
 
             if (!response.data.active_question) {
+              this.userPoints = response.data.result;
               this.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
             } else {
               this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
@@ -697,19 +711,41 @@ class Special extends BaseSpecial {
 
   /**
    * Start game from first question
+   * @param {Element} button - Restart button
    */
-  restart() {
-    this.setDefaultValues();
-    this.updateMode('progress');
+  restart(button) {
+    if (button.classList.contains(Special.CSS.buttonLoading)){
+      return;
+    }
 
-    removeChildren(this.nodes.content);
-    this.nodes.content.appendChild(this.nodes.mainText);
-    this.nodes.content.appendChild(this.nodes.options);
-    this.nodes.content.appendChild(this.nodes.actions);
-
-    this.makeQuestion(0);
-
+    button.classList.add(Special.CSS.buttonLoading);
     Analytics.sendEvent('Restart button', 'Click');
+
+    ajax.get({
+      url: `${this.params.apiEndpoint}/retry`,
+    }).then(
+      /**
+       * @param {object} response
+       * @param {number} response.rc
+       * @param {string} response.message
+       * @param {object} response.data
+       * @param {number} response.data.active_question
+       */
+      (response) => {
+        button.classList.remove(Special.CSS.buttonLoading);
+
+        this.currentQuestionId = response.data.active_question;
+
+        this.updateMode('progress');
+
+        removeChildren(this.nodes.content);
+        this.nodes.content.appendChild(this.nodes.mainText);
+        this.nodes.content.appendChild(this.nodes.options);
+        this.nodes.content.appendChild(this.nodes.actions);
+
+        this.makeQuestion();
+      }
+    );
   }
 
   /**

@@ -1813,17 +1813,17 @@ var _default = {
     label: 'Конкурс'
   }, {
     tab: 'aboutGame',
-    label: 'О Battlefield V',
-    content: "\n        <div class=\"about-game\">\n          <p>\n            <b>Battlefield V</b> \u2013 \u0412\u0442\u043E\u0440\u0430\u044F \u043C\u0438\u0440\u043E\u0432\u0430\u044F \u0432 \u0441\u043E\u0432\u0435\u0440\u0448\u0435\u043D\u043D\u043E \u043D\u043E\u0432\u043E\u043C \u0441\u0432\u0435\u0442\u0435. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043C\u0443\u043B\u044C\u0442\u0438\u043F\u043B\u0435\u0435\u0440\u043D\u044B\u0445 \u0431\u043E\u044F\u0445 \u0432 \u043D\u043E\u0432\u044B\u0445 \u0438 \u043A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0440\u0435\u0436\u0438\u043C\u0430\u0445. \u0421\u044E\u0436\u0435\u0442\u043D\u0430\u044F \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u044F \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E \u043B\u044E\u0434\u0435\u0439, \u0447\u044C\u0438 \u0441\u0443\u0434\u044C\u0431\u044B \u0431\u044B\u043B\u0438 \u0432\u0442\u044F\u043D\u0443\u0442\u044B \u0432 \u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430. \n          </p>\n          <p>\n            <b>Battlefield V</b> \u043E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u043F\u0440\u043E\u043F\u0443\u0441\u043A\u043E\u0432. \xAB\u0425\u043E\u0434 \u0432\u043E\u0439\u043D\u044B\xBB \u2013 \u043D\u043E\u0432\u044B\u0439 \u0441\u0435\u0440\u0432\u0438\u0441, \u0441\u043D\u0430\u0431\u0436\u0430\u044E\u0449\u0438\u0439 \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u043C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u043E\u043C \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043B\u0435\u0442.\n          </p>\n          <h2>\n            \u0422\u0420\u0415\u0419\u041B\u0415\u0420\u042B \u0418 \u0412\u0418\u0414\u0415\u041E \u041F\u041E \u0418\u0413\u0420\u0415\n          </h2>\n          <div class=\"about-game__videos\">\n            <div class=\"about-game__videos-left\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/A_LsjERkTvo\">\n                <img src=\"https://img.youtube.com/vi/A_LsjERkTvo/maxresdefault.jpg\" alt=\"\">\n              </div>\n            </div>\n            <div class=\"about-game__videos-right\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/icnuPKY-M-E\">\n                <img src=\"https://img.youtube.com/vi/icnuPKY-M-E/maxresdefault.jpg\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/nrnpp5nAgtg\">\n                <img src=\"https://img.youtube.com/vi/nrnpp5nAgtg/maxresdefault.jpg\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/_fOXh_9_-_c\">\n                <img src=\"https://img.youtube.com/vi/_fOXh_9_-_c/maxresdefault.jpg\" alt=\"\">\n              </div>  \n            </div>\n          </div>\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E&nbsp;BATTLEFIELD&nbsp;V\n            </a>\n          </div>\n        </div>\n      "
+    label: 'Battlefield V',
+    content: "\n        <div class=\"about-game\">\n          <p>\n            <b>Battlefield V</b> \u2013 \u0412\u0442\u043E\u0440\u0430\u044F \u043C\u0438\u0440\u043E\u0432\u0430\u044F \u0432 \u0441\u043E\u0432\u0435\u0440\u0448\u0435\u043D\u043D\u043E \u043D\u043E\u0432\u043E\u043C \u0441\u0432\u0435\u0442\u0435. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043C\u0443\u043B\u044C\u0442\u0438\u043F\u043B\u0435\u0435\u0440\u043D\u044B\u0445 \u0431\u043E\u044F\u0445 \u0432 \u043D\u043E\u0432\u044B\u0445 \u0438 \u043A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0440\u0435\u0436\u0438\u043C\u0430\u0445. \u0421\u044E\u0436\u0435\u0442\u043D\u0430\u044F \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u044F \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E \u043B\u044E\u0434\u0435\u0439, \u0447\u044C\u0438 \u0441\u0443\u0434\u044C\u0431\u044B \u0431\u044B\u043B\u0438 \u0432\u0442\u044F\u043D\u0443\u0442\u044B \u0432 \u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430. \n          </p>\n          <p>\n            <b>Battlefield V</b> \u043E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u043F\u0440\u043E\u043F\u0443\u0441\u043A\u043E\u0432. \xAB\u0425\u043E\u0434 \u0432\u043E\u0439\u043D\u044B\xBB \u2013 \u043D\u043E\u0432\u044B\u0439 \u0441\u0435\u0440\u0432\u0438\u0441, \u0441\u043D\u0430\u0431\u0436\u0430\u044E\u0449\u0438\u0439 \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u043C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u043E\u043C \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043B\u0435\u0442.\n          </p>\n          <h2>\n            \u0422\u0420\u0415\u0419\u041B\u0415\u0420\u042B \u0418 \u0412\u0418\u0414\u0415\u041E \u041F\u041E \u0418\u0413\u0420\u0415\n          </h2>\n          <div class=\"about-game__videos\">\n            <div class=\"about-game__videos-left\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/A_LsjERkTvo\">\n                <img src=\"https://img.youtube.com/vi/A_LsjERkTvo/maxresdefault.jpg\" alt=\"\">\n              </div>\n            </div>\n            <div class=\"about-game__videos-right\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/icnuPKY-M-E\">\n                <img src=\"https://img.youtube.com/vi/icnuPKY-M-E/maxresdefault.jpg\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/nrnpp5nAgtg\">\n                <img src=\"https://img.youtube.com/vi/nrnpp5nAgtg/maxresdefault.jpg\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/_fOXh_9_-_c\">\n                <img src=\"https://img.youtube.com/vi/_fOXh_9_-_c/maxresdefault.jpg\" alt=\"\">\n              </div>  \n            </div>\n          </div>\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one\" target=\"_blank\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E&nbsp;BATTLEFIELD&nbsp;V\n            </a>\n          </div>\n        </div>\n      "
   }, {
     tab: 'aboutPrize',
-    label: 'О NVIDIA RTX',
-    content: "\n        <div class=\"about-nvidia\">\n          <img class=\"about-nvidia__cover\" src=\"https://leonardo.osnova.io/05d01e0b-9a77-ea0f-dbbd-6694570218df\">\n          <img class=\"about-nvidia__logo\" src=\"https://leonardo.osnova.io/21a6011a-788a-1955-ba9e-a6746a44e614\">\n          <p>\n            <b>GEFORCE RTX</b> \u2014 \u043D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0440\u0435\u0430\u043B\u0438\u0437\u043C\u0430 \u0433\u0440\u0430\u0444\u0438\u043A\u0438 \u043D\u0430 PC. \n            \u0412\u0438\u0434\u0435\u043E\u043A\u0430\u0440\u0442\u044B RTX \u0441\u043E\u0432\u043C\u0435\u0449\u0430\u044E\u0442 \u0432 \u0441\u0435\u0431\u0435 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438 \u0442\u0440\u0430\u0441\u0441\u0438\u0440\u043E\u0432\u043A\u0438 \u043B\u0443\u0447\u0435\u0439 \u0432 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0438, \u0438\u0441\u043A\u0443\u0441\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u043B\u043B\u0435\u043A\u0442 \u0438 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u0443\u0435\u043C\u044B\u0435 \u0448\u0435\u0439\u0434\u0435\u0440\u044B. \u042D\u0442\u043E \u0438\u043D\u043E\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 \u043E\u043F\u044B\u0442.\n          </p>\n          <p>\n            \u041F\u0440\u0438\u0437 \u044D\u0442\u043E\u0433\u043E \u043A\u043E\u043D\u043A\u0443\u0440\u0441\u0430 \u2014 \u043A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 PC Battlefield V \u043D\u0430 \u0431\u0430\u0437\u0435 <b>NVIDIA GEFORCE RTX 2080 Ti</b>.\n          </p>\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E NVIDIA RTX\n            </a>\n          </div>\n        </div> \n      "
+    label: 'NVIDIA RTX',
+    content: "\n        <div class=\"about-nvidia\">\n          <img class=\"about-nvidia__cover\" src=\"https://leonardo.osnova.io/05d01e0b-9a77-ea0f-dbbd-6694570218df\">\n          <img class=\"about-nvidia__logo\" src=\"https://leonardo.osnova.io/21a6011a-788a-1955-ba9e-a6746a44e614\">\n          <p>\n            <b>GEFORCE RTX</b> \u2014 \u043D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0440\u0435\u0430\u043B\u0438\u0437\u043C\u0430 \u0433\u0440\u0430\u0444\u0438\u043A\u0438 \u043D\u0430 PC. \n            \u0412\u0438\u0434\u0435\u043E\u043A\u0430\u0440\u0442\u044B RTX \u0441\u043E\u0432\u043C\u0435\u0449\u0430\u044E\u0442 \u0432 \u0441\u0435\u0431\u0435 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438 \u0442\u0440\u0430\u0441\u0441\u0438\u0440\u043E\u0432\u043A\u0438 \u043B\u0443\u0447\u0435\u0439 \u0432 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0438, \u0438\u0441\u043A\u0443\u0441\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u043B\u043B\u0435\u043A\u0442 \u0438 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u0443\u0435\u043C\u044B\u0435 \u0448\u0435\u0439\u0434\u0435\u0440\u044B. \u042D\u0442\u043E \u0438\u043D\u043E\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 \u043E\u043F\u044B\u0442.\n          </p>\n          <p>\n            \u041F\u0440\u0438\u0437 \u044D\u0442\u043E\u0433\u043E \u043A\u043E\u043D\u043A\u0443\u0440\u0441\u0430 \u2014 \u043A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 PC Battlefield V \u043D\u0430 \u0431\u0430\u0437\u0435 <b>NVIDIA GEFORCE RTX 2080 Ti</b>.\n          </p>\n          <br clear=\"all\">\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one\" target=\"_blank\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E NVIDIA RTX\n            </a>\n          </div>\n        </div> \n      "
   }],
   conclusion: 'Война продлится ещё целый год как в Европе, так и в Азии, и вас ждёт масса работы. Но ставки уже не столь высоки. Все знают, что нацизм обречён, и его уничтожение – лишь дело времени. Пускай в своей агонии Третий Рейх и будет выдумывать одно чудо-оружие за другим, это ему уже не поможет, и неважно, узнают об этом Союзники или нет.',
-  outro: "\n    <div class=\"outro-prizes\">\n      <div class=\"outro-prizes__image\">\n        <img src=\"https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00\" alt=\"\">\n      </div>\n      <div class=\"outro-prizes__text\">\n        28 \u043D\u043E\u044F\u0431\u0440\u044F \u0432 [\u0412\u0420\u0415\u041C\u042F] \u043C\u044B \u043F\u0440\u043E\u0432\u0435\u0434\u0451\u043C \u0441\u0442\u0440\u0438\u043C, \u043D\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0440\u0430\u0441\u0441\u043A\u0430\u0436\u0435\u043C \u043E Battlefield V, \u0430 \u0442\u0430\u043A\u0436\u0435 \u0440\u0430\u0437\u044B\u0433\u0440\u0430\u0435\u043C \u043F\u0440\u0438\u0437\u044B \u0441\u0440\u0435\u0434\u0438 \u0442\u0435\u0445, \u043A\u0442\u043E \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043F\u0440\u043E\u0448\u0451\u043B \u043A\u0432\u0435\u0441\u0442. \u041D\u0435 \u043F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u0435! \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u044E \u043C\u043E\u0436\u043D\u043E \u043D\u0430 Twitch [https://twitch.tv/dtfru].\n      </div>\n    </div>\n  ",
-  logoUrl: '',
-  promoUrl: '',
+  outro: "\n    <div class=\"outro-prizes\">\n      <div class=\"outro-prizes__image\">\n        <img src=\"https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00\" alt=\"\">\n      </div>\n      <div class=\"outro-prizes__text\">\n        28 \u043D\u043E\u044F\u0431\u0440\u044F 15:00 \u043C\u044B \u043F\u0440\u043E\u0432\u0435\u0434\u0451\u043C \u0441\u0442\u0440\u0438\u043C, \u043D\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0440\u0430\u0441\u0441\u043A\u0430\u0436\u0435\u043C \u043E Battlefield V, \u0430 \u0442\u0430\u043A\u0436\u0435 \u0440\u0430\u0437\u044B\u0433\u0440\u0430\u0435\u043C \u043F\u0440\u0438\u0437\u044B \u0441\u0440\u0435\u0434\u0438 \u0442\u0435\u0445, \u043A\u0442\u043E \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043F\u0440\u043E\u0448\u0451\u043B \u043A\u0432\u0435\u0441\u0442. \u041D\u0435 \u043F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u0435! \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u044E \u043C\u043E\u0436\u043D\u043E \u043D\u0430 <a href=\"//twitch.tv/dtfru\" target=\"_blank\">Twitch</a>.\n      </div>\n    </div>\n  ",
+  logoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
+  promoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
   CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',
   questions: [{
     id: 1,
@@ -1845,7 +1845,6 @@ var _default = {
   }, {
     id: 2,
     text: 'После успеха с шифровальными машинами вас отправляют туда, где гораздо важнее человеческий фактор — в поместье «Трент-парк», где британская разведка размещала высокопоставленных пленных немецких офицеров. В комфортных условиях, пусть и взаперти, генералы разболтали немало фактов о немецкой военной машине — а их прослушивали на каждом шагу. Один такой офицер сильно запаниковал, когда узнал о точном месте своего заключения. В разговорах с другими немцами он упоминал некоего Виктора Второго как причину беспокойства. Что это за Виктор и почему Второй?',
-    image: 'https://leonardo.osnova.io/cfffb78d-320e-9356-ed56-2e34f7ecda4e',
     options: [{
       id: 1,
       text: 'Первый итальянский авианосец «Витторио Эмануэле»'
@@ -2778,7 +2777,7 @@ function (_BaseSpecial) {
     }
     /**
      *
-     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
+     * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, buttonLoading: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
      * @constructor
      */
 
@@ -2928,12 +2927,19 @@ function (_BaseSpecial) {
     }
     /**
      * Check user auth and game state
+     * @param {Element} button - НАЧАТЬ ИГРУ
      */
 
   }, {
     key: "checkUserState",
-    value: function checkUserState() {
+    value: function checkUserState(button) {
       var _this4 = this;
+
+      if (button.classList.contains(Special.CSS.buttonLoading)) {
+        return;
+      }
+
+      button.classList.add(Special.CSS.buttonLoading);
 
       _ajax.default.get({
         url: "".concat(this.params.apiEndpoint, "/start")
@@ -2946,6 +2952,7 @@ function (_BaseSpecial) {
        * @param {{active_question: number, answers, is_finished: boolean, result: null}} response.data  - response datas
        */
       function (response) {
+        button.classList.remove(Special.CSS.buttonLoading);
         console.log('response', response);
 
         if (response.rc === 403) {
@@ -2959,6 +2966,8 @@ function (_BaseSpecial) {
 
           _this4.makeIntroduction();
         } else {
+          _this4.userPoints = response.data.result || 0;
+
           _this4.makeResult();
         }
       });
@@ -3034,9 +3043,11 @@ function (_BaseSpecial) {
     value: function makeQuestion() {
       var _this5 = this;
 
+      console.log('makeQuestion', this.currentQuestionId);
       /**
        * @type {question}
        */
+
       var data = _data.default.questions.find(function (q) {
         return q.id === _this5.currentQuestionId;
       });
@@ -3052,9 +3063,13 @@ function (_BaseSpecial) {
       this.nodes.options.classList.remove(Special.CSS.optionsDisabled);
       this.updateCounter();
       this.nodes.mainText.innerHTML = "".concat(data.text);
-      this.nodes.mainText.appendChild((0, _dom.make)('img', [], {
-        src: data.image
-      }));
+
+      if (data.image) {
+        this.nodes.mainText.appendChild((0, _dom.make)('img', [], {
+          src: data.image
+        }));
+      }
+
       this.makeQuestionOptions(data.options);
       if ((0, _check.isMobile)()) (0, _helper.scrollToElement)(this.container);
       Analytics.sendEvent("Question ".concat(this.currentQuestionId, " screen"), 'Hit');
@@ -3165,7 +3180,6 @@ function (_BaseSpecial) {
 
         if (response && response.rc === 200) {
           if (response.data.is_correct) {
-            _this7.userPoints++;
             selectedItem.classList.add(Special.CSS.optionsItemCorrect);
           } else {
             selectedItem.classList.add(Special.CSS.optionsItemError);
@@ -3190,6 +3204,8 @@ function (_BaseSpecial) {
           _this7.makeOptionMessage(response.data.message);
 
           if (!response.data.active_question) {
+            _this7.userPoints = response.data.result;
+
             _this7.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
           } else {
             _this7.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
@@ -3334,19 +3350,47 @@ function (_BaseSpecial) {
     }
     /**
      * Start game from first question
+     * @param {Element} button - Restart button
      */
 
   }, {
     key: "restart",
-    value: function restart() {
-      this.setDefaultValues();
-      this.updateMode('progress');
-      (0, _dom.removeChildren)(this.nodes.content);
-      this.nodes.content.appendChild(this.nodes.mainText);
-      this.nodes.content.appendChild(this.nodes.options);
-      this.nodes.content.appendChild(this.nodes.actions);
-      this.makeQuestion(0);
+    value: function restart(button) {
+      var _this8 = this;
+
+      if (button.classList.contains(Special.CSS.buttonLoading)) {
+        return;
+      }
+
+      button.classList.add(Special.CSS.buttonLoading);
       Analytics.sendEvent('Restart button', 'Click');
+
+      _ajax.default.get({
+        url: "".concat(this.params.apiEndpoint, "/retry")
+      }).then(
+      /**
+       * @param {object} response
+       * @param {number} response.rc
+       * @param {string} response.message
+       * @param {object} response.data
+       * @param {number} response.data.active_question
+       */
+      function (response) {
+        button.classList.remove(Special.CSS.buttonLoading);
+        _this8.currentQuestionId = response.data.active_question;
+
+        _this8.updateMode('progress');
+
+        (0, _dom.removeChildren)(_this8.nodes.content);
+
+        _this8.nodes.content.appendChild(_this8.nodes.mainText);
+
+        _this8.nodes.content.appendChild(_this8.nodes.options);
+
+        _this8.nodes.content.appendChild(_this8.nodes.actions);
+
+        _this8.makeQuestion();
+      });
     }
     /**
      * Handler for header tab clicks
@@ -3383,7 +3427,7 @@ function (_BaseSpecial) {
   }, {
     key: "showResultsTable",
     value: function showResultsTable(button) {
-      var _this8 = this;
+      var _this9 = this;
 
       this.updateMode('result-table');
       (0, _dom.removeElement)(this.nodes.result);
@@ -3412,11 +3456,11 @@ function (_BaseSpecial) {
        * @param {{rank, name, points, isMe}[]} response.data.list
        */
       function (response) {
-        _this8.nodes.content.classList.remove(Special.CSS.contentLoading);
+        _this9.nodes.content.classList.remove(Special.CSS.contentLoading);
 
         console.log('results', response);
 
-        _this8.nodes.counter.appendChild((0, _dom.make)('span', Special.CSS.button, {
+        _this9.nodes.counter.appendChild((0, _dom.make)('span', Special.CSS.button, {
           innerHTML: "".concat(_svg.default.back, " \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F"),
           data: {
             click: 'makeResult'
@@ -3428,7 +3472,7 @@ function (_BaseSpecial) {
           table += "\n            <tr class=\"".concat(user.isMe ? 'me' : '', "\">\n              <td>").concat(user.rank, "</td>\n              <td>").concat(user.name, "</td>\n              <td>").concat(user.points + 1, "</td>\n            </tr>\n          ");
         });
         table += '</table>';
-        _this8.nodes.options.innerHTML = table;
+        _this9.nodes.options.innerHTML = table;
         var paginationButtonsCount = Math.ceil(response.data.count / limit);
         var paginator = "\n          <div class=\"".concat(Special.CSS.resultsTable, "-pagination\">\n        ");
 
@@ -3437,7 +3481,7 @@ function (_BaseSpecial) {
         }
 
         paginator += "</div>";
-        _this8.nodes.actions.innerHTML = paginator;
+        _this9.nodes.actions.innerHTML = paginator;
       });
 
       Analytics.sendEvent('Results table', 'Hit');
@@ -3459,13 +3503,13 @@ function (_BaseSpecial) {
   }, {
     key: "auth",
     value: function auth(button) {
-      var _this9 = this;
+      var _this10 = this;
 
       var url = button.dataset.url;
       new _auth.default(url, function () {
-        _this9.checkUserState();
+        _this10.checkUserState();
 
-        _this9.closePopup();
+        _this10.closePopup();
       });
     }
   }, {
@@ -3574,6 +3618,7 @@ function (_BaseSpecial) {
         button: 'bf-special__button',
         buttonSecond: 'bf-special__button--second',
         buttonDisabled: 'bf-special__button--disabled',
+        buttonLoading: 'bf-special__button--loading',
         introText: 'bf-special__intro',
         result: 'bf-special__result',
         resultContent: 'bf-special__result-content',

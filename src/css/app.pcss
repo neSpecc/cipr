@@ -2,7 +2,7 @@
 @import url('from-data.pcss');
 @import url('likely.pcss');
 @import url('animations.pcss');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800');
 
 .bf-special {
   --color-buttons-bg: #F68700;
@@ -12,8 +12,6 @@
   --color-text-out-countainer: #252A5C;
   --color-answer-correct: #18D784;
   --color-answer-incorrect: #E43768;
-
-
 
   display: flex;
   flex-direction: column;
@@ -124,7 +122,7 @@
       &--bottom {
         top: auto;
         bottom: 40px;
-        left: 40px;
+        right: 40px;
         background-image: url('https://leonardo.osnova.io/26ccf56e-d591-33ec-3966-979d7d95866f');
         width: 295px;
         height: 44px;
@@ -151,7 +149,7 @@
     position: relative;
     display: inline-block;
     padding: 25px 50px;
-    background: var(--color-buttons-bg);
+    background-color: var(--color-buttons-bg);
     color: var(--color-buttons-text);
     font-weight: 600;
     font-size: 20px;
@@ -164,7 +162,7 @@
     }
 
     &:hover {
-      background: var(--color-buttons-bg--hover);
+      background-color: var(--color-buttons-bg--hover);
     }
 
     svg {
@@ -178,12 +176,12 @@
     }
 
     &--second {
-      background: transparent;
+      background-color: transparent;
       box-shadow: inset 0 0 0 2px #fff;
       color: #fff;
 
       &:hover {
-        background: #fff;
+        background-color: #fff;
         color: var(--color-text-out-countainer);
       }
     }
@@ -192,8 +190,22 @@
       opacity: 0.5;
 
       &:hover {
-        background: var(--color-buttons-bg);
+        background-color: var(--color-buttons-bg);
       }
+    }
+
+    &--loading {
+      background-color: var(--color-buttons-bg) !important;
+      background-image: repeating-linear-gradient(-45deg,transparent,transparent 9px,var(--color-buttons-bg) 0px,var(--color-buttons-bg--hover) 21px) !important;
+      background-size: 30px 73px !important;
+      animation: loadingBg 1s infinite linear;
+    }
+
+    &--second&--loading{
+      background-color: transparent !important;
+      background-image: repeating-linear-gradient(-45deg,transparent,transparent 9px, rgba(255,255,255,.2) 0, rgba(255,255,255, 0.2) 21px)!important;
+      background-size: 30px 73px!important;
+      color: #fff !important;
     }
   }
 
@@ -745,6 +757,12 @@
       font-weight: 600;
       letter-spacing: 0.025em;
       color: var(--color-text-out-countainer);
+    }
+
+    ^&__button--second {
+      svg {
+        vertical-align: middle;
+      }
     }
 
     ^&__intro {
