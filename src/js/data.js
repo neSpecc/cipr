@@ -137,8 +137,8 @@ export default {
       </div>
     </div>
   `,
-  logoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
-  promoUrl: 'href="https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one" target="_blank"',
+  logoUrl: 'https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one',
+  promoUrl: 'https://www.ea.com/ru-ru/games/battlefield/battlefield-5/buy?utm_campaign=bf5-launch_hd_ru_scm_fixd_dtf_bfv-eaa-c3&utm_source=dtf&utm_medium=display&utm_content=BFV-Launch-Dis#battlefield-xbox-one',
   CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',
   questions: [
     {
