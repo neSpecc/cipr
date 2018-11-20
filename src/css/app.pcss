@@ -17,9 +17,14 @@
   flex-direction: column;
   width: 100%;
   min-height: 100%;
-  background: #83D5F7 url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat center top;
+  background: #83D5F7 url('https://leonardo.osnova.io/a7f8e958-a5ab-2304-6f19-61414305d484/') no-repeat 80% top;
+  background-size: auto 1200px;
   font-family: 'Montserrat', sans-serif;
   padding: 40px;
+
+  @media (--large-desktop) {
+    background-size: cover;
+  }
 
   @media (--mobile) {
     padding: 20px;
@@ -821,6 +826,8 @@
     }
 
     ^&__button {
+      letter-spacing: 0;
+
       @media (--mobile) {
         font-size: 0;
         width: 30px;
@@ -828,6 +835,7 @@
         vertical-align: middle;
         margin-left: auto !important;
         text-align: center;
+
 
         svg {
           margin: 0;

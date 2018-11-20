@@ -582,7 +582,7 @@ class Special extends BaseSpecial {
 
             if (!response.data.is_correct) {
               this.nodes.actions.appendChild(make('div', Special.CSS.actionsDisclaimer, {
-                innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Одна ошибка — в розыгрыше не участвуешь.'
+                innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Любая ошибка исключает из розыгрыша.'
               }));
             }
 
@@ -804,7 +804,7 @@ class Special extends BaseSpecial {
       url: `${this.params.apiEndpoint}/results`,
       data: {
         start: parseInt(offset),
-        end: parseInt(offset) + limit
+        end: parseInt(offset) + limit - 1,
       }
     }).then(
       /**
