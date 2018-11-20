@@ -1,39 +1,50 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);
-.intro-prizes {
+.intro-prizes,
+.outro-prizes {
   background: rgba(238, 240, 251, 0.2);
   padding: 15px 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 30px
-}@media (max-width: 679px) {.intro-prizes {
+}@media (max-width: 679px) {.intro-prizes,
+.outro-prizes {
     padding: 15px;
-    margin-top: 15px
+    margin-top: 15px;
+    display: block
 }
-  }.intro-prizes__image {
-    content: '';
-    background: url('https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00');
-    min-width: 75px;
-    height: 114px;
-    background-size: 75px 114px;
+  }.intro-prizes__image, .outro-prizes__image {
     margin-right: 30px
   }@media (max-width: 679px) {
 
-
-  .intro-prizes__image {
-      min-width: 57px;
-      height: 87px;
-      background-size: cover;
-      margin-right: 15px
+  .intro-prizes__image, .outro-prizes__image {
+      margin-right: 0;
+      margin-bottom: 15px;
+      float: right
   }
-    }.intro-prizes__text {
+    }.intro-prizes__image img, .outro-prizes__image img {
+      height: 114px;
+      display: block;
+      max-width: none !important;
+      margin: 0 !important
+    }@media (max-width: 679px) {
+
+    .intro-prizes__image img, .outro-prizes__image img {
+        height: 87px;
+        margin: 0 0 10px 10px !important
+    }
+      }.intro-prizes__text, .outro-prizes__text {
     font-size: 16px
   }@media (max-width: 679px) {
 
-  .intro-prizes__text {
+  .intro-prizes__text, .outro-prizes__text {
       font-size: 14px
   }
-    }.intro-logo {
+    }.intro-prizes .clickable, .outro-prizes .clickable {
+    border-bottom: 2px solid var(--color-buttons-bg);
+    cursor: pointer;
+    font-weight: 500;
+  }.intro-logo {
   display: inline-block;
   background: url('https://leonardo.osnova.io/bf4cb6ca-dec6-126c-f953-6da3dc4a3113') no-repeat;
   width: 471px;
@@ -44,40 +55,7 @@
     width: 190px;
     height: 34px
 }
-  }.outro-prizes {
-  background: rgba(238, 240, 251, 0.2);
-  padding: 15px 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 30px
-}@media (max-width: 679px) {.outro-prizes {
-    margin-top: 15px;
-    padding: 15px
-}
-  }.outro-prizes__image {
-    content: '';
-    background: url('https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00');
-    min-width: 75px;
-    height: 114px;
-    background-size: 75px 114px;
-    margin-right: 30px
-  }@media (max-width: 679px) {
-
-  .outro-prizes__image {
-      min-width: 57px;
-      height: 87px;
-      background-size: cover;
-      margin-right: 15px
-  }
-    }.outro-prizes__text {
-    font-size: 16px
-  }@media (max-width: 679px) {
-
-  .outro-prizes__text {
-      font-size: 14px
-  }
-    }.about-nvidia,
+  }.about-nvidia,
 .about-game {
   font-size: 16px;
   line-height: 1.5em
@@ -155,8 +133,9 @@
       margin-left: 10px;
     }.about-game__videos-right img {
         height: 113px;
-        width: 190px;
+        min-width: 190px;
         vertical-align: bottom;
+        display: block;
       }.about-game__videos-right .about-game__videos-wrapper::before {
           width: 70px;
           height: 70px;
@@ -269,7 +248,7 @@
     }@media (max-width: 679px) {
 
     .bf-special__header-menu {
-        margin-top: 35px;
+        margin-top: 45px;
         font-size: 14px
     }
       }@media (max-width: 330px) {
@@ -341,11 +320,23 @@
         left: 40px;
         background-image: url('https://leonardo.osnova.io/26ccf56e-d591-33ec-3966-979d7d95866f');
         width: 295px;
-        height: 44px;
-      }.bf-special__container {
+        height: 44px
+      }@media (max-width: 679px) {
+
+      .bf-special__header-logo--bottom {
+          width: 225px;
+          height: 35px;
+          background-size: contain
+      }
+        }.bf-special__container {
     max-width: 960px;
-    margin: auto;
-  }.bf-special__button {
+    margin: auto
+  }@media (max-width: 679px) {
+
+  .bf-special__container {
+      margin: 15px 0
+  }
+    }.bf-special__button {
     position: relative;
     display: inline-block;
     padding: 25px 50px;
@@ -400,12 +391,12 @@
         margin-top: -10px;
         margin-left: -10px;
         left: 50%;
-        top: 70%;
+        top: 50%;
         border: 2px solid #fff;
         border-top-color: var(--color-buttons-bg);
         border-radius: 50%;
-        -webkit-animation: rotating 2s infinite linear;
-                animation: rotating 2s infinite linear;
+        -webkit-animation: rotating 1.3s infinite linear;
+                animation: rotating 1.3s infinite linear;
       }@media (max-width: 679px) {
 
   .bf-special__content {
@@ -441,7 +432,7 @@
     letter-spacing: 0.05em;
   }.bf-special__counter .bf-special__button {
       padding: 10px 15px;
-      margin-left: 20px;
+      margin-left: 30px;
     }.bf-special__counter svg {
       margin-right: 10px;
     }@media (max-width: 679px) {
@@ -621,8 +612,16 @@
     }
       }.bf-special__table {
     font-size: 20px;
-    width: 100%;
-  }.bf-special__table th {
+    width: calc(100% + 120px);
+    margin: 0 -60px
+  }@media (max-width: 679px){
+
+  .bf-special__table {
+      width: calc(100% + 40px);
+      margin: 0 -20px;
+      font-size: 13px
+  }
+    }.bf-special__table th {
       font-weight: bold;
     }.bf-special__table td,
     .bf-special__table th {
@@ -640,12 +639,32 @@
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-    }.bf-special__table-pagination span {
+      margin-top: 20px
+    }@media (max-width: 679px) {
+
+    .bf-special__table-pagination {
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap
+    }
+      }.bf-special__table-pagination span {
         display: inline-block;
-        padding: 10px;
+        padding: 10px 14px;
         font-size: 24px;
         font-weight: 700;
-      }/**
+        cursor: pointer;
+        margin-right: 3px
+      }@media (max-width: 679px) {
+
+      .bf-special__table-pagination span {
+          padding: 8px 10px;
+          margin-right: 0;
+          font-size: 12px
+      }
+        }.bf-special__table-pagination span:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }.bf-special__table-pagination span.current {
+          background: var(--color-buttons-bg);
+        }/**
    * Popup
    * =============
    */.bf-special__popup {
@@ -677,7 +696,9 @@
       position: relative;
       background: #252A5C;
       color: #fff;
-    }.bf-special__popup-close {
+    }.bf-special__popup-container iframe {
+        vertical-align: bottom;
+      }.bf-special__popup-close {
       position: absolute;
       right: 20px;
       top: 20px;
@@ -749,6 +770,8 @@
       background: transparent;
       text-align: center;
       padding: 0;
+    }.bf-special[data-mode="start"] .bf-special__button {
+      margin-top: 0;
     }.bf-special[data-mode="start"] .bf-special__title {
       font-size: 30px;
       font-weight: 600;
@@ -791,5 +814,56 @@
       color: #fff;
       text-align: left;
       margin: 30px 0;
+    }/**
+ * Results table scene
+ * ================================
+ */.bf-special[data-mode="result-table"] .bf-special__container[data-tab="main"] {
+      max-width: 740px
+    }@media (max-width: 679px) {
+    .bf-special[data-mode="result-table"] .bf-special__container[data-tab="main"] {
+        margin: 15px 0
     }
+      }.bf-special[data-mode="result-table"] .bf-special__content {
+      min-height: 400px
+    }@media (max-width: 679px) {
+
+    .bf-special[data-mode="result-table"] .bf-special__content {
+        min-height: 250px
+    }
+      }.bf-special[data-mode="result-table"] .bf-special__counter {
+      font-size: 28px
+    }@media (max-width: 679px) {
+
+    .bf-special[data-mode="result-table"] .bf-special__counter {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        text-align: left;
+        font-size: 14px;
+    }
+
+        .bf-special[data-mode="result-table"] .bf-special__counter span {
+          margin: auto 0;
+        }
+
+        .bf-special[data-mode="result-table"] .bf-special__counter > svg {
+          width: 10px;
+          margin: auto 7px auto 0
+        }
+      }@media (max-width: 679px) {
+
+    .bf-special[data-mode="result-table"] .bf-special__button {
+        font-size: 0;
+        width: 30px;
+        padding: 7px;
+        vertical-align: middle;
+        margin-left: auto !important;
+        text-align: center;
+    }
+
+        .bf-special[data-mode="result-table"] .bf-special__button svg {
+          margin: 0;
+        }
+      }
+
 /*# sourceMappingURL=all.css.map*/

@@ -1806,7 +1806,7 @@ exports.default = void 0;
 var _default = {
   title: "\n    <span class=\"intro-logo\"></span>\n    <br/>\n    \u2014 \u0414\u0415\u0428\u0418\u0424\u0420\u041E\u0412\u041A\u0410 \u2014\n  ",
   task: 'Select correct answer',
-  intro: "\n    \u041A \u0432\u044B\u0445\u043E\u0434\u0443 <b>Battlefield V</b> \u043C\u044B \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u0438\u043B\u0438 \u043A\u0432\u0435\u0441\u0442, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0432\u044B \u043F\u0440\u0438\u043C\u0435\u0440\u0438\u0442\u0435 \u043D\u0430 \u0441\u0435\u0431\u044F \u0440\u043E\u043B\u044C \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0430 \u0432\u0440\u0435\u043C\u0451\u043D \u0412\u0442\u043E\u0440\u043E\u0439 \u043C\u0438\u0440\u043E\u0432\u043E\u0439. \u0412\u0430\u0448\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043D\u0430\u0446\u0438\u0441\u0442\u043E\u0432 \u0438 \u043F\u0440\u0438\u043D\u044F\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E\u0435 \u0440\u0435\u0448\u0435\u043D\u0438\u0435, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043C\u043E\u0447\u044C \u0432\u044B\u0438\u0433\u0440\u0430\u0442\u044C \u0432\u043E\u0439\u043D\u0443.\n    <div class=\"intro-prizes\">\n      <div class=\"intro-prizes__image\"></div>\n      <div class=\"intro-prizes__text\">\n        \u041A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u044B, \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0438\u0432\u0448\u0438\u0435 \u043D\u0430 \u0432\u0441\u0435 \u0441\u0435\u043C\u044C \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432, \u043F\u043E\u043B\u0443\u0447\u0430\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u043F\u043E\u0443\u0447\u0430\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435 \u043A\u0440\u0443\u0442\u044B\u0445 \u043F\u0440\u0438\u0437\u043E\u0432: <b>[\u041F\u0420\u0418\u0417\u042B]</b>\n      </div>\n    </div>\n  ",
+  intro: "\n    \u041A \u0432\u044B\u0445\u043E\u0434\u0443 <b>Battlefield V</b> \u043C\u044B \u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u0438\u043B\u0438 \u043A\u0432\u0435\u0441\u0442, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0432\u044B \u043F\u0440\u0438\u043C\u0435\u0440\u0438\u0442\u0435 \u043D\u0430 \u0441\u0435\u0431\u044F \u0440\u043E\u043B\u044C \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0430 \u0432\u0440\u0435\u043C\u0451\u043D \u0412\u0442\u043E\u0440\u043E\u0439 \u043C\u0438\u0440\u043E\u0432\u043E\u0439. \u0412\u0430\u0448\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043D\u0430\u0446\u0438\u0441\u0442\u043E\u0432 \u0438 \u043F\u0440\u0438\u043D\u044F\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E\u0435 \u0440\u0435\u0448\u0435\u043D\u0438\u0435, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043C\u043E\u0447\u044C \u0432\u044B\u0438\u0433\u0440\u0430\u0442\u044C \u0432\u043E\u0439\u043D\u0443.\n    <div class=\"intro-prizes\">\n      <div class=\"intro-prizes__image\">\n        <img src=\"https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00\" alt=\"\">\n      </div>\n      <div class=\"intro-prizes__text\">\n        \u041A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u044B, \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0438\u0432\u0448\u0438\u0435 \u043D\u0430 \u0432\u0441\u0435 \u0441\u0435\u043C\u044C \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432, \u043F\u043E\u043B\u0443\u0447\u0430\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u043F\u043E\u0443\u0447\u0430\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0432 \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0435 \u0433\u043B\u0430\u0432\u043D\u043E\u0433\u043E \u043F\u0440\u0438\u0437\u0430, <span class=\"clickable\" data-click=\"showPrize\">\u043A\u0430\u0441\u0442\u043E\u043C\u043D\u043E\u0433\u043E \u0438\u0433\u0440\u043E\u0432\u043E\u0433\u043E \u041F\u041A Battlefield\u2122 V</span> \u043D\u0430 \u0431\u0430\u0437\u0435 NVIDIA GEFORCE RTX 2080 Ti.\n      </div>\n    </div>\n  ",
   introduction: "\u0412\u044B \u2013 \u043E\u0444\u0438\u0446\u0435\u0440 \u0431\u0440\u0438\u0442\u0430\u043D\u0441\u043A\u043E\u0439 \u0440\u0430\u0437\u0432\u0435\u0434\u043A\u0438, \u043D\u043E \u043D\u0435 \u0438\u0437 \u0442\u0435\u0445, \u0447\u0442\u043E \u0443\u0447\u0438\u043D\u044F\u044E\u0442 \u0434\u0438\u0432\u0435\u0440\u0441\u0438\u0438 \u0432\u043E \u0432\u0440\u0430\u0436\u0435\u0441\u043A\u043E\u043C \u0442\u044B\u043B\u0443 \u0438\u043B\u0438 \u0432\u043D\u0435\u0434\u0440\u044F\u044E\u0442\u0441\u044F \u0432 \u0432\u044B\u0441\u0448\u0438\u0435 \u044D\u0448\u0435\u043B\u043E\u043D\u044B \u0432\u043B\u0430\u0441\u0442\u0438. \u0412\u0430\u0448 \u043E\u0442\u0434\u0435\u043B \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E \u0438\u0437\u0443\u0447\u0430\u0435\u0442 \u0434\u0435\u0441\u044F\u0442\u043A\u0438 \u0438 \u0441\u043E\u0442\u043D\u0438 \u043F\u0435\u0440\u0435\u0445\u0432\u0430\u0447\u0435\u043D\u043D\u044B\u0445 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439, \u0441\u0440\u0435\u0434\u0438 \u043A\u043E\u0442\u043E\u0440\u044B\u0445 \u043A\u0430\u043A \u0440\u0443\u0442\u0438\u043D\u043D\u044B\u0435 \u0434\u043E\u043A\u043B\u0430\u0434\u044B \u043E \u0441\u043D\u0430\u0431\u0436\u0435\u043D\u0438\u0438, \u0442\u0430\u043A \u0438 \u0434\u0435\u0442\u0430\u043B\u0438 \u0441\u0443\u0434\u044C\u0431\u043E\u043D\u043E\u0441\u043D\u044B\u0445 \u043E\u043F\u0435\u0440\u0430\u0446\u0438\u0439. \u041A\u043E\u043D\u0435\u0447\u043D\u043E \u0436\u0435, \u0432\u0441\u0451 \u044D\u0442\u043E \u0437\u0430\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u043D\u043E, \u0438 \u0432\u0430\u0448\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 \u2014 \u0440\u0430\u0441\u043A\u0443\u0441\u0438\u0442\u044C \u043A\u043E\u0434\u044B \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430, \u0447\u0442\u043E\u0431\u044B \u0434\u043E\u0431\u0440\u0430\u0442\u044C\u0441\u044F \u0434\u043E \u0441\u0443\u0442\u0438.",
   tabs: [{
     tab: 'main',
@@ -1814,14 +1814,14 @@ var _default = {
   }, {
     tab: 'aboutGame',
     label: 'О Battlefield V',
-    content: "\n        <div class=\"about-game\">\n          <p>\n            <b>Battlefield V</b> \u2013 \u0412\u0442\u043E\u0440\u0430\u044F \u043C\u0438\u0440\u043E\u0432\u0430\u044F \u0432 \u0441\u043E\u0432\u0435\u0440\u0448\u0435\u043D\u043D\u043E \u043D\u043E\u0432\u043E\u043C \u0441\u0432\u0435\u0442\u0435. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043C\u0443\u043B\u044C\u0442\u0438\u043F\u043B\u0435\u0435\u0440\u043D\u044B\u0445 \u0431\u043E\u044F\u0445 \u0432 \u043D\u043E\u0432\u044B\u0445 \u0438 \u043A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0440\u0435\u0436\u0438\u043C\u0430\u0445. \u0421\u044E\u0436\u0435\u0442\u043D\u0430\u044F \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u044F \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E \u043B\u044E\u0434\u0435\u0439, \u0447\u044C\u0438 \u0441\u0443\u0434\u044C\u0431\u044B \u0431\u044B\u043B\u0438 \u0432\u0442\u044F\u043D\u0443\u0442\u044B \u0432 \u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430. \n          </p>\n          <p>\n            <b>Battlefield V</b> \u043E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u043F\u0440\u043E\u043F\u0443\u0441\u043A\u043E\u0432. \xAB\u0425\u043E\u0434 \u0432\u043E\u0439\u043D\u044B\xBB \u2013 \u043D\u043E\u0432\u044B\u0439 \u0441\u0435\u0440\u0432\u0438\u0441, \u0441\u043D\u0430\u0431\u0436\u0430\u044E\u0449\u0438\u0439 \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u043C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u043E\u043C \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043B\u0435\u0442.\n          </p>\n          <h2>\n            \u0422\u0420\u0415\u0419\u041B\u0415\u0420\u042B \u0418 \u0412\u0418\u0414\u0415\u041E \u041F\u041E \u0418\u0413\u0420\u0415\n          </h2>\n          <div class=\"about-game__videos\">\n            <div class=\"about-game__videos-left\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/0ee6d7a3-5266-905a-b7aa-24eceaa1562a\" alt=\"\">\n              </div>\n            </div>\n            <div class=\"about-game__videos-right\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/e9f92c36-b929-8522-733c-86a0c9372488\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/ab970cd1-5216-af03-cd15-89aae7dee2b2\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/HjRjcgByAhk\">\n                <img src=\"https://leonardo.osnova.io/a1cc65b2-8bde-bd06-8489-fa6d4db08b80\" alt=\"\">\n              </div>  \n            </div>\n          </div>\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E&nbsp;BATTLEFIELD&nbsp;V\n            </a>\n          </div>\n        </div>\n      "
+    content: "\n        <div class=\"about-game\">\n          <p>\n            <b>Battlefield V</b> \u2013 \u0412\u0442\u043E\u0440\u0430\u044F \u043C\u0438\u0440\u043E\u0432\u0430\u044F \u0432 \u0441\u043E\u0432\u0435\u0440\u0448\u0435\u043D\u043D\u043E \u043D\u043E\u0432\u043E\u043C \u0441\u0432\u0435\u0442\u0435. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u043C\u0443\u043B\u044C\u0442\u0438\u043F\u043B\u0435\u0435\u0440\u043D\u044B\u0445 \u0431\u043E\u044F\u0445 \u0432 \u043D\u043E\u0432\u044B\u0445 \u0438 \u043A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0440\u0435\u0436\u0438\u043C\u0430\u0445. \u0421\u044E\u0436\u0435\u0442\u043D\u0430\u044F \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u044F \u0440\u0430\u0441\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u0440\u043E \u043B\u044E\u0434\u0435\u0439, \u0447\u044C\u0438 \u0441\u0443\u0434\u044C\u0431\u044B \u0431\u044B\u043B\u0438 \u0432\u0442\u044F\u043D\u0443\u0442\u044B \u0432 \u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0432\u043E\u0435\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430. \n          </p>\n          <p>\n            <b>Battlefield V</b> \u043E\u0442\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043E\u0442 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u043F\u0440\u043E\u043F\u0443\u0441\u043A\u043E\u0432. \xAB\u0425\u043E\u0434 \u0432\u043E\u0439\u043D\u044B\xBB \u2013 \u043D\u043E\u0432\u044B\u0439 \u0441\u0435\u0440\u0432\u0438\u0441, \u0441\u043D\u0430\u0431\u0436\u0430\u044E\u0449\u0438\u0439 \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u043C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u043E\u043C \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043B\u0435\u0442.\n          </p>\n          <h2>\n            \u0422\u0420\u0415\u0419\u041B\u0415\u0420\u042B \u0418 \u0412\u0418\u0414\u0415\u041E \u041F\u041E \u0418\u0413\u0420\u0415\n          </h2>\n          <div class=\"about-game__videos\">\n            <div class=\"about-game__videos-left\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/A_LsjERkTvo\">\n                <img src=\"https://img.youtube.com/vi/A_LsjERkTvo/maxresdefault.jpg\" alt=\"\">\n              </div>\n            </div>\n            <div class=\"about-game__videos-right\">\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/icnuPKY-M-E\">\n                <img src=\"https://img.youtube.com/vi/icnuPKY-M-E/maxresdefault.jpg\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/nrnpp5nAgtg\">\n                <img src=\"https://img.youtube.com/vi/nrnpp5nAgtg/maxresdefault.jpg\" alt=\"\">\n              </div>\n              <div class=\"about-game__videos-wrapper\" data-click=\"showVideo\" data-url=\"https://www.youtube.com/embed/_fOXh_9_-_c\">\n                <img src=\"https://img.youtube.com/vi/_fOXh_9_-_c/maxresdefault.jpg\" alt=\"\">\n              </div>  \n            </div>\n          </div>\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E&nbsp;BATTLEFIELD&nbsp;V\n            </a>\n          </div>\n        </div>\n      "
   }, {
     tab: 'aboutPrize',
     label: 'О NVIDIA RTX',
     content: "\n        <div class=\"about-nvidia\">\n          <img class=\"about-nvidia__cover\" src=\"https://leonardo.osnova.io/05d01e0b-9a77-ea0f-dbbd-6694570218df\">\n          <img class=\"about-nvidia__logo\" src=\"https://leonardo.osnova.io/21a6011a-788a-1955-ba9e-a6746a44e614\">\n          <p>\n            <b>GEFORCE RTX</b> \u2014 \u043D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0440\u0435\u0430\u043B\u0438\u0437\u043C\u0430 \u0433\u0440\u0430\u0444\u0438\u043A\u0438 \u043D\u0430 PC. \n            \u0412\u0438\u0434\u0435\u043E\u043A\u0430\u0440\u0442\u044B RTX \u0441\u043E\u0432\u043C\u0435\u0449\u0430\u044E\u0442 \u0432 \u0441\u0435\u0431\u0435 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438 \u0442\u0440\u0430\u0441\u0441\u0438\u0440\u043E\u0432\u043A\u0438 \u043B\u0443\u0447\u0435\u0439 \u0432 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0438, \u0438\u0441\u043A\u0443\u0441\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u043B\u043B\u0435\u043A\u0442 \u0438 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u0443\u0435\u043C\u044B\u0435 \u0448\u0435\u0439\u0434\u0435\u0440\u044B. \u042D\u0442\u043E \u0438\u043D\u043E\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 \u043E\u043F\u044B\u0442.\n          </p>\n          <p>\n            \u041F\u0440\u0438\u0437 \u044D\u0442\u043E\u0433\u043E \u043A\u043E\u043D\u043A\u0443\u0440\u0441\u0430 \u2014 \u043A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0439 \u0438\u0433\u0440\u043E\u0432\u043E\u0439 PC Battlefield V \u043D\u0430 \u0431\u0430\u0437\u0435 <b>NVIDIA GEFORCE RTX 2080 Ti</b>.\n          </p>\n          <div class=\"about-game__buttons\">\n            <a class=\"bf-special__button\" href=\"\">\n              \u0423\u0417\u041D\u0410\u0422\u042C \u0411\u041E\u041B\u042C\u0428\u0415 \u041E NVIDIA RTX\n            </a>\n          </div>\n        </div> \n      "
   }],
   conclusion: 'Война продлится ещё целый год как в Европе, так и в Азии, и вас ждёт масса работы. Но ставки уже не столь высоки. Все знают, что нацизм обречён, и его уничтожение – лишь дело времени. Пускай в своей агонии Третий Рейх и будет выдумывать одно чудо-оружие за другим, это ему уже не поможет, и неважно, узнают об этом Союзники или нет.',
-  outro: "\n    <div class=\"outro-prizes\">\n      <div class=\"outro-prizes__image\"></div>\n      <div class=\"outro-prizes__text\">\n        28 \u043D\u043E\u044F\u0431\u0440\u044F \u0432 [\u0412\u0420\u0415\u041C\u042F] \u043C\u044B \u043F\u0440\u043E\u0432\u0435\u0434\u0451\u043C \u0441\u0442\u0440\u0438\u043C, \u043D\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0440\u0430\u0441\u0441\u043A\u0430\u0436\u0435\u043C \u043E Battlefield V, \u0430 \u0442\u0430\u043A\u0436\u0435 \u0440\u0430\u0437\u044B\u0433\u0440\u0430\u0435\u043C \u043F\u0440\u0438\u0437\u044B \u0441\u0440\u0435\u0434\u0438 \u0442\u0435\u0445, \u043A\u0442\u043E \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043F\u0440\u043E\u0448\u0451\u043B \u043A\u0432\u0435\u0441\u0442. \u041D\u0435 \u043F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u0435! \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u044E \u043C\u043E\u0436\u043D\u043E \u043D\u0430 Twitch [https://twitch.tv/dtfru].\n      </div>\n    </div>\n  ",
+  outro: "\n    <div class=\"outro-prizes\">\n      <div class=\"outro-prizes__image\">\n        <img src=\"https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00\" alt=\"\">\n      </div>\n      <div class=\"outro-prizes__text\">\n        28 \u043D\u043E\u044F\u0431\u0440\u044F \u0432 [\u0412\u0420\u0415\u041C\u042F] \u043C\u044B \u043F\u0440\u043E\u0432\u0435\u0434\u0451\u043C \u0441\u0442\u0440\u0438\u043C, \u043D\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u0440\u0430\u0441\u0441\u043A\u0430\u0436\u0435\u043C \u043E Battlefield V, \u0430 \u0442\u0430\u043A\u0436\u0435 \u0440\u0430\u0437\u044B\u0433\u0440\u0430\u0435\u043C \u043F\u0440\u0438\u0437\u044B \u0441\u0440\u0435\u0434\u0438 \u0442\u0435\u0445, \u043A\u0442\u043E \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043F\u0440\u043E\u0448\u0451\u043B \u043A\u0432\u0435\u0441\u0442. \u041D\u0435 \u043F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u0435! \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u044E \u043C\u043E\u0436\u043D\u043E \u043D\u0430 Twitch [https://twitch.tv/dtfru].\n      </div>\n    </div>\n  ",
   logoUrl: '',
   promoUrl: '',
   CTAText: 'УЗНАТЬ БОЛЬШЕ О BATTLEFIELD V',
@@ -2271,7 +2271,7 @@ var removeChildren = function removeChildren(parent) {
 exports.removeChildren = removeChildren;
 
 var removeElement = function removeElement(element) {
-  if (element) {
+  if (element && element.parentNode) {
     element.parentNode.removeChild(element);
   }
 };
@@ -3189,7 +3189,7 @@ function (_BaseSpecial) {
 
           _this7.makeOptionMessage(response.data.message);
 
-          if (_this7.currentQuestionId >= _this7.totalLength) {
+          if (!response.data.active_question) {
             _this7.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
           } else {
             _this7.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
@@ -3377,11 +3377,12 @@ function (_BaseSpecial) {
     }
     /**
      * Shows results table
+     * @param {Element} button - «show results» or pagination [1], [2], [3]
      */
 
   }, {
     key: "showResultsTable",
-    value: function showResultsTable() {
+    value: function showResultsTable(button) {
       var _this8 = this;
 
       this.updateMode('result-table');
@@ -3389,11 +3390,18 @@ function (_BaseSpecial) {
       (0, _dom.removeChildren)(this.nodes.options);
       (0, _dom.removeChildren)(this.nodes.actions);
       (0, _dom.removeChildren)(this.nodes.mainText);
-      this.nodes.counter.innerHTML = "".concat(_svg.default.trophy, " \u0422\u0443\u0440\u043D\u0438\u0440\u043D\u0430\u044F \u0442\u0430\u0431\u043B\u0438\u0446\u0430");
-      this.nodes.content.classList.add(Special.CSS.contentLoading); // ajax to check
+      this.nodes.counter.innerHTML = "".concat(_svg.default.trophy, " <span>\u0422\u0443\u0440\u043D\u0438\u0440\u043D\u0430\u044F \u0442\u0430\u0431\u043B\u0438\u0446\u0430</span>");
+      this.nodes.content.classList.add(Special.CSS.contentLoading);
+      var limit = 10,
+          offset = button.dataset.offset || 0;
+      console.log('offset: %o, limit: %o', offset, limit); // ajax to check
 
       _ajax.default.get({
-        url: "".concat(this.params.apiEndpoint, "/results")
+        url: "".concat(this.params.apiEndpoint, "/results"),
+        data: {
+          start: parseInt(offset),
+          end: parseInt(offset) + limit
+        }
       }).then(
       /**
        * @param {object} response
@@ -3416,18 +3424,20 @@ function (_BaseSpecial) {
         }));
 
         var table = "\n          <table class=\"".concat(Special.CSS.resultsTable, "\">\n            <tr>\n              <th>#</th>\n              <th>\u0418\u043C\u044F</th>\n              <th>\u0428\u0438\u0444\u0440\u044B</th>\n            </tr>\n        ");
-        response.data.list.forEach(function (user, index) {
-          table += "\n            <tr class=\"".concat(user.isMe ? 'me' : '', "\">\n              <td>").concat(index + 1, "</td>\n              <td>").concat(user.name, "</td>\n              <td>").concat(user.points + 1, "</td>\n            </tr>\n          ");
+        response.data.list.forEach(function (user) {
+          table += "\n            <tr class=\"".concat(user.isMe ? 'me' : '', "\">\n              <td>").concat(user.rank, "</td>\n              <td>").concat(user.name, "</td>\n              <td>").concat(user.points + 1, "</td>\n            </tr>\n          ");
         });
         table += '</table>';
-        _this8.nodes.options.innerHTML = table; // this.nodes.actions.innerHTML = `
-        //   <div class="${Special.CSS.resultsTable}-pagination">
-        //     <span>1</span>
-        //     <span>2</span>
-        //     <span>3</span>
-        //     <span>4</span>
-        //   </div>
-        // `;
+        _this8.nodes.options.innerHTML = table;
+        var paginationButtonsCount = Math.ceil(response.data.count / limit);
+        var paginator = "\n          <div class=\"".concat(Special.CSS.resultsTable, "-pagination\">\n        ");
+
+        for (var i = 0; i < paginationButtonsCount; i++) {
+          paginator += "\n            <span class=\"".concat(Math.floor(offset / limit) === i ? 'current' : '', "\" data-click=\"showResultsTable\" data-offset=\"").concat(i * limit, "\">\n              ").concat(i + 1, "\n            </span>\n          ");
+        }
+
+        paginator += "</div>";
+        _this8.nodes.actions.innerHTML = paginator;
       });
 
       Analytics.sendEvent('Results table', 'Hit');
@@ -3495,6 +3505,15 @@ function (_BaseSpecial) {
       var url = wrapper.dataset.url;
       console.log('showVideo', url);
       this.showPopup("\n      <iframe width=\"".concat(Math.round(window.innerWidth * 0.8), "\" height=\"").concat(Math.round(window.innerHeight * 0.8), "\" src=\"").concat(url, "\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n    "));
+    }
+    /**
+     * Show prize popup
+     */
+
+  }, {
+    key: "showPrize",
+    value: function showPrize() {
+      this.showPopup("\n      PRIZE\n    ");
     }
   }, {
     key: "keydownHandler",

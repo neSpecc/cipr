@@ -82,7 +82,7 @@ export const removeChildren = (parent) => {
  * @param {Element} element
  */
 export const removeElement = (element) => {
-  if (element) {
+  if (element && element.parentNode) {
     element.parentNode.removeChild(element);
   }
 };

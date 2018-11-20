@@ -8,9 +8,11 @@ export default {
   intro: `
     К выходу <b>Battlefield V</b> мы подготовили квест, в котором вы примерите на себя роль криптографа времён Второй мировой. Ваша задача — расшифровать все сообщения нацистов и принять правильное решение, чтобы помочь выиграть войну.
     <div class="intro-prizes">
-      <div class="intro-prizes__image"></div>
+      <div class="intro-prizes__image">
+        <img src="https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00" alt="">
+      </div>
       <div class="intro-prizes__text">
-        Криптографы, правильно ответившие на все семь вопросов, получат возможность поучаствовать в розыгрыше крутых призов: <b>[ПРИЗЫ]</b>
+        Криптографы, правильно ответившие на все семь вопросов, получат возможность поучаствовать в розыгрыше главного приза, <span class="clickable" data-click="showPrize">кастомного игрового ПК Battlefield™ V</span> на базе NVIDIA GEFORCE RTX 2080 Ti.
       </div>
     </div>
   `,
@@ -36,19 +38,19 @@ export default {
           </h2>
           <div class="about-game__videos">
             <div class="about-game__videos-left">
-              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/HjRjcgByAhk">
-                <img src="https://leonardo.osnova.io/0ee6d7a3-5266-905a-b7aa-24eceaa1562a" alt="">
+              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/A_LsjERkTvo">
+                <img src="https://img.youtube.com/vi/A_LsjERkTvo/maxresdefault.jpg" alt="">
               </div>
             </div>
             <div class="about-game__videos-right">
-              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/HjRjcgByAhk">
-                <img src="https://leonardo.osnova.io/e9f92c36-b929-8522-733c-86a0c9372488" alt="">
+              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/icnuPKY-M-E">
+                <img src="https://img.youtube.com/vi/icnuPKY-M-E/maxresdefault.jpg" alt="">
               </div>
-              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/HjRjcgByAhk">
-                <img src="https://leonardo.osnova.io/ab970cd1-5216-af03-cd15-89aae7dee2b2" alt="">
+              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/nrnpp5nAgtg">
+                <img src="https://img.youtube.com/vi/nrnpp5nAgtg/maxresdefault.jpg" alt="">
               </div>
-              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/HjRjcgByAhk">
-                <img src="https://leonardo.osnova.io/a1cc65b2-8bde-bd06-8489-fa6d4db08b80" alt="">
+              <div class="about-game__videos-wrapper" data-click="showVideo" data-url="https://www.youtube.com/embed/_fOXh_9_-_c">
+                <img src="https://img.youtube.com/vi/_fOXh_9_-_c/maxresdefault.jpg" alt="">
               </div>  
             </div>
           </div>
@@ -86,7 +88,9 @@ export default {
   conclusion: 'Война продлится ещё целый год как в Европе, так и в Азии, и вас ждёт масса работы. Но ставки уже не столь высоки. Все знают, что нацизм обречён, и его уничтожение – лишь дело времени. Пускай в своей агонии Третий Рейх и будет выдумывать одно чудо-оружие за другим, это ему уже не поможет, и неважно, узнают об этом Союзники или нет.',
   outro: `
     <div class="outro-prizes">
-      <div class="outro-prizes__image"></div>
+      <div class="outro-prizes__image">
+        <img src="https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00" alt="">
+      </div>
       <div class="outro-prizes__text">
         28 ноября в [ВРЕМЯ] мы проведём стрим, на котором расскажем о Battlefield V, а также разыграем призы среди тех, кто успешно прошёл квест. Не пропустите! Смотреть трансляцию можно на Twitch [https://twitch.tv/dtfru].
       </div>

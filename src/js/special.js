@@ -556,7 +556,7 @@ class Special extends BaseSpecial {
              */
             this.makeOptionMessage(response.data.message);
 
-            if (this.currentQuestionId >= this.totalLength) {
+            if (!response.data.active_question) {
               this.makeActionButton('ЗАВЕРШИТЬ', 'makeConclusion');
             } else {
               this.makeActionButton('ПРОДОЛЖИТЬ', 'makeQuestion');
@@ -740,8 +740,9 @@ class Special extends BaseSpecial {
 
   /**
    * Shows results table
+   * @param {Element} button - «show results» or pagination [1], [2], [3]
    */
-  showResultsTable(){
+  showResultsTable(button){
     this.updateMode('result-table');
 
     removeElement(this.nodes.result);
@@ -749,13 +750,22 @@ class Special extends BaseSpecial {
     removeChildren(this.nodes.actions);
     removeChildren(this.nodes.mainText);
 
-    this.nodes.counter.innerHTML = `${SVG.trophy} Турнирная таблица`;
+    this.nodes.counter.innerHTML = `${SVG.trophy} <span>Турнирная таблица</span>`;
 
     this.nodes.content.classList.add(Special.CSS.contentLoading);
+
+    const limit = 10,
+      offset = button.dataset.offset || 0;
+
+    console.log('offset: %o, limit: %o', offset, limit);
 
     // ajax to check
     ajax.get({
       url: `${this.params.apiEndpoint}/results`,
+      data: {
+        start: parseInt(offset),
+        end: parseInt(offset) + limit
+      }
     }).then(
       /**
        * @param {object} response
@@ -785,10 +795,10 @@ class Special extends BaseSpecial {
             </tr>
         `;
 
-        response.data.list.forEach((user, index) => {
+        response.data.list.forEach((user) => {
           table += `
             <tr class="${user.isMe ? 'me' : ''}">
-              <td>${index + 1}</td>
+              <td>${user.rank}</td>
               <td>${user.name}</td>
               <td>${user.points + 1}</td>
             </tr>
@@ -797,17 +807,24 @@ class Special extends BaseSpecial {
 
         table += '</table>';
 
-
-
         this.nodes.options.innerHTML = table;
-        // this.nodes.actions.innerHTML = `
-        //   <div class="${Special.CSS.resultsTable}-pagination">
-        //     <span>1</span>
-        //     <span>2</span>
-        //     <span>3</span>
-        //     <span>4</span>
-        //   </div>
-        // `;
+
+        let paginationButtonsCount = Math.ceil(response.data.count / limit);
+        let paginator = `
+          <div class="${Special.CSS.resultsTable}-pagination">
+        `;
+
+        for (let i = 0; i < paginationButtonsCount; i++){
+          paginator += `
+            <span class="${(Math.floor(offset / limit))  === i ? 'current' : ''}" data-click="showResultsTable" data-offset="${i * limit}">
+              ${i + 1}
+            </span>
+          `
+        }
+
+        paginator += `</div>`;
+
+        this.nodes.actions.innerHTML = paginator;
       }
     );
 
@@ -883,6 +900,15 @@ class Special extends BaseSpecial {
 
     this.showPopup(`
       <iframe width="${Math.round(window.innerWidth * 0.8)}" height="${Math.round(window.innerHeight * 0.8)}" src="${url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `);
+  }
+
+  /**
+   * Show prize popup
+   */
+  showPrize(){
+    this.showPopup(`
+      PRIZE
     `);
   }
 
