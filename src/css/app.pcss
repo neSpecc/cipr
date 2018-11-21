@@ -28,6 +28,7 @@
 
   @media (--mobile) {
     padding: 20px;
+    padding-bottom: 100px;
   }
 
   svg {
@@ -39,7 +40,7 @@
     margin-bottom: 30px;
 
     @media (--mobile) {
-      margin-bottom: 0;
+      margin-bottom: 20px;
     }
 
     &-menu {
@@ -124,18 +125,34 @@
         }
       }
 
-      &--bottom {
+      &--bottom-right {
         top: auto;
         bottom: 40px;
         right: 40px;
-        background-image: url('https://leonardo.osnova.io/26ccf56e-d591-33ec-3966-979d7d95866f');
-        width: 295px;
+        background-image: url('https://leonardo.osnova.io/4e5240b0-af03-8a4c-c8b7-d1bb39bb3e4a');
+        background-size: contain;
+        width: 166px;
         height: 44px;
 
         @media (--mobile) {
-          width: 225px;
-          height: 35px;
-          background-size: contain;
+          width: 100px;
+          height: 26px;
+        }
+      }
+
+      &--bottom-left {
+        top: auto;
+        bottom: 40px;
+        left: 40px;
+        background-image: url('https://leonardo.osnova.io/31bce137-968f-6dd7-078b-77f8796755cd');
+        background-size: contain;
+        width: 107px;
+        height: 21px;
+
+        @media (--mobile) {
+          width: 80px;
+          height: 16px;
+
         }
       }
     }
@@ -144,10 +161,6 @@
   &__container {
     max-width: 960px;
     margin: auto;
-
-    @media (--mobile) {
-      margin: 15px 0;
-    }
   }
 
   &__button {
@@ -263,6 +276,7 @@
       img {
         margin-top: 25px;
         max-width: 100%;
+        cursor: pointer;
 
         @media (--mobile) {
           margin-top: 15px;
@@ -271,6 +285,23 @@
 
       p {
         margin-top: 15px;
+
+        a {
+          font-weight: 600;
+          border-bottom: 1px solid #fff;
+        }
+      }
+    }
+
+    &-image{
+      &-disclaimer {
+        text-align: center;
+        margin-top: 5px;
+        font-size: 14px;
+      }
+
+      &--bounced {
+        animation: bounceIn 200ms 1 linear;
       }
     }
   }
@@ -353,6 +384,8 @@
 
         &::before {
           border-color: var(--color-text-out-countainer);
+          background: var(--color-text-out-countainer);
+          box-shadow: inset 0 0 0 4px #fff;
         }
       }
 
@@ -464,8 +497,9 @@
 
   &__result {
     &-content {
-      background: #83D5F7 url('https://leonardo.osnova.io/f66f4158-3bdc-a1fa-b9db-c5fb64910b3d/') no-repeat;
-      background-size: cover;
+      background: #83D5F7 url('https://leonardo.osnova.io/5cb95a3a-439a-d28c-d9c3-86a9dc12a824/') no-repeat;
+      background-size: 160% auto;
+      background-position: 0% 5%;
       font-size: 28px;
       font-weight: 700;
       padding: 30px;

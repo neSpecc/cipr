@@ -15,6 +15,7 @@
  * @property {number} id - question's id
  * @property {string} text
  * @property {string} image - url of image with code
+ * @property {string} code - code placed on image. Uses for copying to clipboard
  * @property {option[]} options
  */
 
@@ -50,7 +51,7 @@ import SVG from './svg';
 import { prepend, make, removeChildren, removeElement } from './lib/dom';
 import { isMobile } from './lib/check';
 import { shuffle } from './lib/array';
-import { scrollToElement } from './lib/helper';
+import { scrollToElement, copyToClipboard, declineWord } from './lib/helper';
 import Auth from './auth';
 
 /**
@@ -114,7 +115,7 @@ class Special extends BaseSpecial {
 
   /**
    *
-   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, buttonLoading: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
+   * @return {{wrapper: string, container: string, header: string, headerLogo: string, headerMenu: string, headerMenuButton: string, headerMenuButtonActive: string, content: string, contentLoading: string, contentHidden: string, counter: string, mainText: string, contentImageDisclaimer: string, contentImageBounced: string, options: string, optionsDisabled: string, optionsItem: string, optionsItemSelected: string, optionsItemLoading: string, optionsItemCorrect: string, optionsItemError: string, optionsMessage: string, actions: string, actionsDisclaimer: string, title: string, button: string, buttonSecond: string, buttonDisabled: string, buttonLoading: string, introText: string, result: string, resultContent: string, resultActions: string, resultButton: string, resultsTable: string, popup: string, popupShowed: string, popupContainer: string, popupClose: string, auth: string, authButtons: string}}
    * @constructor
    */
   static get CSS() {
@@ -133,6 +134,8 @@ class Special extends BaseSpecial {
       contentHidden: 'bf-special__content--hidden',
       counter: 'bf-special__counter',
       mainText: 'bf-special__content-text',
+      contentImageDisclaimer: 'bf-special__content-image-disclaimer',
+      contentImageBounced: 'bf-special__content-image--bounced',
 
       options: 'bf-special__options',
       optionsDisabled: 'bf-special__options--disabled',
@@ -201,7 +204,8 @@ class Special extends BaseSpecial {
       innerHTML: `
         <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--left" href="${DATA.logoUrl}" target="_blank"></a>
         <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--right" href="${DATA.logoUrl}" target="_blank"></a>
-        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--bottom" href="${DATA.logoUrl}" target="_blank"></a>
+        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--bottom-left" href="${DATA.logoUrl}" target="_blank"></a>
+        <a class="${Special.CSS.headerLogo} ${Special.CSS.headerLogo}--bottom-right" href="${DATA.logoUrl}" target="_blank"></a>
       `
     });
 
@@ -448,7 +452,14 @@ class Special extends BaseSpecial {
     this.nodes.mainText.innerHTML = `${data.text}`;
     if (data.image) {
       this.nodes.mainText.appendChild(make('img', [], {
-        src: data.image
+        src: data.image,
+        data: {
+          click: 'copyCode',
+          code: data.code
+        }
+      }));
+      this.nodes.mainText.appendChild(make('div', Special.CSS.contentImageDisclaimer, {
+        textContent: 'Нажмите на картинку, чтобы скопировать шифр'
       }));
     }
 
@@ -582,7 +593,7 @@ class Special extends BaseSpecial {
 
             if (!response.data.is_correct) {
               this.nodes.actions.appendChild(make('div', Special.CSS.actionsDisclaimer, {
-                innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах. <br> Любая ошибка исключает из розыгрыша.'
+                innerHTML: 'Дополнительная попытка не засчитывается в финальных результатах.'
               }));
             }
 
@@ -708,7 +719,7 @@ class Special extends BaseSpecial {
       }
     }
 
-    finalResult.message =`${this.userPoints} из ${this.totalLength} разгаданных шифров`;
+    finalResult.message =`${declineWord(this.userPoints, ['Разгадан', 'Разгаданы', 'Разгадано'])} ${this.userPoints} ${declineWord(this.userPoints, ['шифр', 'шифра', 'шифров'])} из ${this.totalLength}`;
 
     return finalResult;
   }
@@ -878,7 +889,7 @@ class Special extends BaseSpecial {
   showAuth(){
     this.showPopup(`
       <div class="${Special.CSS.auth}">
-        Авторизуйтесь для того, <br> чтобы начать квест
+        Авторизуйтесь, <br> чтобы начать игру
         <div class="${Special.CSS.authButtons}">
           <span class="vk" data-click="auth" data-url="/auth/vk">ВКонтакте</span>
           <span class="fb" data-click="auth" data-url="/auth/facebook">Facebook</span>
@@ -946,6 +957,22 @@ class Special extends BaseSpecial {
    */
   showPrize(){
     this.showPopup(DATA.prizePopup);
+  }
+
+  /**
+   * Copy code to the cliboard by click on image
+   * @param {Element} image
+   */
+  copyCode(image){
+    const code = image.dataset.code;
+
+    copyToClipboard(code, () => {
+      image.classList.add(Special.CSS.contentImageBounced);
+
+      setTimeout(() => {
+        image.classList.remove(Special.CSS.contentImageBounced);
+      }, 300)
+    });
   }
 
 

@@ -7,7 +7,7 @@
   display: -ms-flexbox;
   display: flex;
   margin-top: 30px
-}@media (max-width: 679px) {.intro-prizes,
+}@media (max-width: 850px) {.intro-prizes,
 .outro-prizes {
     padding: 15px;
     margin-top: 15px;
@@ -15,7 +15,7 @@
 }
   }.intro-prizes__image, .outro-prizes__image {
     margin-right: 30px
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .intro-prizes__image, .outro-prizes__image {
       margin-right: 0;
@@ -27,7 +27,7 @@
       display: block;
       max-width: none !important;
       margin: 0 !important
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .intro-prizes__image img, .outro-prizes__image img {
         height: 87px;
@@ -35,7 +35,7 @@
     }
       }.intro-prizes__text, .outro-prizes__text {
     font-size: 16px
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .intro-prizes__text, .outro-prizes__text {
       font-size: 14px
@@ -48,6 +48,13 @@
     border-bottom: 2px solid var(--color-buttons-bg);
     cursor: pointer;
     font-weight: 500;
+  }.bf-rules {
+  display: block;
+  margin: 15px auto 0;
+  font-size: 14px;
+  text-align: center;
+}.bf-rules a {
+    border-bottom: 1px solid rgba(255,255,255,0.6);
   }.intro-logo {
   display: inline-block;
   background: url('https://leonardo.osnova.io/bf4cb6ca-dec6-126c-f953-6da3dc4a3113') no-repeat;
@@ -55,7 +62,7 @@
   height: 86px;
   background-size: cover;
   margin-bottom: 10px
-}@media (max-width: 679px) {.intro-logo {
+}@media (max-width: 850px) {.intro-logo {
     width: 190px;
     height: 34px
 }
@@ -63,7 +70,7 @@
 .about-game {
   font-size: 16px;
   line-height: 1.5em
-}@media (max-width: 679px) {.about-nvidia,
+}@media (max-width: 850px) {.about-nvidia,
 .about-game {
     font-size: 15px
 }
@@ -72,7 +79,7 @@
   }.about-nvidia__buttons, .about-game__buttons {
     text-align: center;
     margin-top: 30px
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .about-nvidia__buttons, .about-game__buttons {
       margin-top: 15px
@@ -82,7 +89,7 @@
   }.about-nvidia__cover {
     margin-bottom: 30px;
     max-width: 100%
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
   .about-nvidia__cover {
       margin-bottom: 15px
   }
@@ -90,7 +97,7 @@
     max-width: 286px;
     margin-right: 30px;
     float: left
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .about-nvidia__logo {
       float: none;
@@ -103,7 +110,7 @@
     font-weight: 600;
     text-align: center;
     margin: 30px 0 25px
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
   .about-game h2 {
       font-size: 16px;
       margin: 15px 0 10px
@@ -112,7 +119,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .about-game__videos {
       -webkit-box-orient: vertical;
@@ -142,7 +149,7 @@
           opacity: 1;
         }.about-game__videos-wrapper:not(:last-of-type){
         margin-bottom: 10px;
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
     .about-game__videos-left {
         margin-bottom: 10px
@@ -150,7 +157,7 @@
       }.about-game__videos-right {
       width: 190px;
       margin-left: 10px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .about-game__videos-right {
         width: auto;
@@ -161,7 +168,7 @@
         min-width: 190px;
         vertical-align: bottom;
         display: block
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
       .about-game__videos-right img {
           height: auto
@@ -181,7 +188,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex
-}@media (max-width: 679px) {.about-prize {
+}@media (max-width: 850px) {.about-prize {
     padding: 20px;
     font-size: 14px;
     display: block
@@ -191,7 +198,7 @@
     margin-top: 1em;
     margin-bottom: 1.7em;
     font-weight: 700
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .about-prize h2 {
       font-size: 18px
@@ -204,12 +211,12 @@
     margin-right: 50px;
   }.about-prize__image img {
       max-width: 419px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .about-prize__image img {
         max-width: 100px
     }
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
   .about-prize__image {
       float: right;
@@ -238,7 +245,7 @@
       padding: 0 15px;
     }.likely__widget--facebook svg {
         margin-right: 10px;
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
     .likely__widget--facebook {
         font-size: 0;
@@ -282,6 +289,56 @@
   100% {
     background-position: -56px 0;
   }
+}@-webkit-keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.02, 1.02, 1.02);
+            transform: scale3d(1.02, 1.02, 1.02);
+  }
+
+  60% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+            transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.02, 1.02, 1.02);
+            transform: scale3d(1.02, 1.02, 1.02);
+  }
+
+  60% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+            transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
 }.bf-special {
   --color-buttons-bg: #F68700;
   --color-buttons-bg--hover: #FFA61B;
@@ -309,18 +366,19 @@
 }@media (min-width: 1720px) {.bf-special {
     background-size: cover
 }
-  }@media (max-width: 679px) {.bf-special {
-    padding: 20px
+  }@media (max-width: 850px) {.bf-special {
+    padding: 20px;
+    padding-bottom: 100px
 }
   }.bf-special svg {
     fill: currentColor;
   }.bf-special__header {
     color: var(--color-text-out-countainer);
     margin-bottom: 30px
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .bf-special__header {
-      margin-bottom: 0
+      margin-bottom: 20px
   }
     }.bf-special__header-menu {
       max-width: 600px;
@@ -328,7 +386,7 @@
       margin: 0 auto;
       font-size: 20px;
       font-weight: 600
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__header-menu {
         margin-top: 45px;
@@ -348,7 +406,7 @@
           margin-right: 0 !important;
         }.bf-special__header-menu-button:first-of-type {
           margin-left: 0 !important;
-        }@media (max-width: 679px) {
+        }@media (max-width: 850px) {
 
       .bf-special__header-menu-button {
           margin: 0 10px;
@@ -368,7 +426,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       top: 40px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__header-logo {
         top: 20px
@@ -378,7 +436,7 @@
         background-image: url('https://leonardo.osnova.io/2c4abde2-637a-6084-77d2-3eb38cacb527');
         width: 163px;
         height: 30px
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
       .bf-special__header-logo--left {
           width: 98px;
@@ -390,36 +448,46 @@
         background-image: url('https://leonardo.osnova.io/50049094-f83e-46ed-1b3f-99edcea70960');
         width: 82px;
         height: 28px
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
       .bf-special__header-logo--right {
           width: 57px;
           height: 20px;
           right: 20px
       }
-        }.bf-special__header-logo--bottom {
+        }.bf-special__header-logo--bottom-right {
         top: auto;
         bottom: 40px;
         right: 40px;
-        background-image: url('https://leonardo.osnova.io/26ccf56e-d591-33ec-3966-979d7d95866f');
-        width: 295px;
+        background-image: url('https://leonardo.osnova.io/4e5240b0-af03-8a4c-c8b7-d1bb39bb3e4a');
+        background-size: contain;
+        width: 166px;
         height: 44px
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
-      .bf-special__header-logo--bottom {
-          width: 225px;
-          height: 35px;
-          background-size: contain
+      .bf-special__header-logo--bottom-right {
+          width: 100px;
+          height: 26px
       }
+        }.bf-special__header-logo--bottom-left {
+        top: auto;
+        bottom: 40px;
+        left: 40px;
+        background-image: url('https://leonardo.osnova.io/31bce137-968f-6dd7-078b-77f8796755cd');
+        background-size: contain;
+        width: 107px;
+        height: 21px
+      }@media (max-width: 850px) {
+
+      .bf-special__header-logo--bottom-left {
+          width: 80px;
+          height: 16px
+      }
+
         }.bf-special__container {
     max-width: 960px;
-    margin: auto
-  }@media (max-width: 679px) {
-
-  .bf-special__container {
-      margin: 15px 0
-  }
-    }.bf-special__button {
+    margin: auto;
+  }.bf-special__button {
     position: relative;
     display: inline-block;
     padding: 25px 50px;
@@ -429,7 +497,7 @@
     font-size: 20px;
     cursor: pointer;
     z-index: 3
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .bf-special__button {
       font-size: 16px;
@@ -439,7 +507,7 @@
       background-color: var(--color-buttons-bg--hover);
     }.bf-special__button svg {
       margin-right: 10px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__button svg {
         margin-top: auto;
@@ -491,7 +559,7 @@
         border-radius: 50%;
         -webkit-animation: rotating 1.3s infinite linear;
                 animation: rotating 1.3s infinite linear;
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
   .bf-special__content {
       padding: 25px 20px
@@ -503,21 +571,32 @@
     }.bf-special__content-text {
       font-size: 16px;
       line-height: 1.7em
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__content-text {
         font-size: 14px
     }
       }.bf-special__content-text img {
         margin-top: 25px;
-        max-width: 100%
-      }@media (max-width: 679px) {
+        max-width: 100%;
+        cursor: pointer
+      }@media (max-width: 850px) {
 
       .bf-special__content-text img {
           margin-top: 15px
       }
         }.bf-special__content-text p {
         margin-top: 15px;
+      }.bf-special__content-text p a {
+          font-weight: 600;
+          border-bottom: 1px solid #fff;
+        }.bf-special__content-image-disclaimer {
+        text-align: center;
+        margin-top: 5px;
+        font-size: 14px;
+      }.bf-special__content-image--bounced {
+        -webkit-animation: bounceIn 200ms 1 linear;
+                animation: bounceIn 200ms 1 linear;
       }.bf-special__counter {
     font-size: 32px;
     font-weight: 600;
@@ -529,7 +608,7 @@
       margin-left: 30px;
     }.bf-special__counter svg {
       margin-right: 10px;
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
   .bf-special__counter {
       font-size: 18px;
@@ -539,7 +618,7 @@
     margin-top: 15px;
     font-size: 16px;
     line-height: 1.5em
-  }@media (max-width: 679px) {
+  }@media (max-width: 850px) {
 
   .bf-special__options {
       margin-top: 15px;
@@ -551,7 +630,7 @@
     .bf-special__options-message {
       font-weight: 600;
       padding: 20px 30px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__options-item,
     .bf-special__options-message {
@@ -572,7 +651,7 @@
         border-radius: 50%;
         margin-right: 30px;
         vertical-align: middle
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
       .bf-special__options-item::before {
           margin-right: 15px;
@@ -587,6 +666,9 @@
         color: var(--color-text-out-countainer)
       }.bf-special__options-item--selected::before {
           border-color: var(--color-text-out-countainer);
+          background: var(--color-text-out-countainer);
+          -webkit-box-shadow: inset 0 0 0 4px #fff;
+                  box-shadow: inset 0 0 0 4px #fff;
         }.bf-special__options-item--correct,
       .bf-special__options-item--incorrect {
         color: var(--color-text-out-countainer)
@@ -601,7 +683,7 @@
           height: 20px;
           background-size: 29px auto;
           border: 0 !important
-        }@media (max-width: 679px) {
+        }@media (max-width: 850px) {
 
         .bf-special__options-item--correct::before {
             width: 23px;
@@ -616,7 +698,7 @@
           height: 21px;
           background-size: auto 21px;
           border: 0 !important
-        }@media (max-width: 679px) {
+        }@media (max-width: 850px) {
 
         .bf-special__options-item--incorrect::before {
             width: 20px;
@@ -634,7 +716,7 @@
           vertical-align: middle;
           -webkit-animation: rotating 2s infinite linear;
                   animation: rotating 2s infinite linear
-        }@media (max-width: 679px) {
+        }@media (max-width: 850px) {
         .bf-special__options-item--loading::before {
             margin-right: 15px
         }
@@ -650,7 +732,7 @@
     text-align: center;
   }.bf-special__actions .bf-special__button {
       margin: 35px 15px 0
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__actions .bf-special__button {
         margin: 20px 5px 0
@@ -659,20 +741,21 @@
        font-size: 16px;
        margin-top: 20px;
        line-height: 1.5em
-     }@media (max-width: 679px) {
+     }@media (max-width: 850px) {
 
      .bf-special__actions-disclaimer {
          font-size: 13px;
          margin-top: 15px
      }
        }.bf-special__result-content {
-      background: #83D5F7 url('https://leonardo.osnova.io/f66f4158-3bdc-a1fa-b9db-c5fb64910b3d/') no-repeat;
-      background-size: cover;
+      background: #83D5F7 url('https://leonardo.osnova.io/5cb95a3a-439a-d28c-d9c3-86a9dc12a824/') no-repeat;
+      background-size: 160% auto;
+      background-position: 0% 5%;
       font-size: 28px;
       font-weight: 700;
       padding: 30px;
       color: var(--color-text-out-countainer)
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
     .bf-special__result-content {
         padding: 20px;
         font-size: 18px
@@ -681,7 +764,7 @@
         font-size: 38px;
         font-weight: 800;
         margin-top: 10px
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
       .bf-special__result-content p {
           font-size: 22px
@@ -692,7 +775,7 @@
       margin-top: 30px;
       display: block;
       text-align: center
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__result .bf-special__button {
         margin-top: 15px;
@@ -708,7 +791,7 @@
     font-size: 20px;
     width: calc(100% + 120px);
     margin: 0 -60px
-  }@media (max-width: 679px){
+  }@media (max-width: 850px){
 
   .bf-special__table {
       width: calc(100% + 40px);
@@ -734,7 +817,7 @@
       display: -ms-flexbox;
       display: flex;
       margin-top: 20px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special__table-pagination {
         -ms-flex-wrap: wrap;
@@ -747,7 +830,7 @@
         font-weight: 700;
         cursor: pointer;
         margin-right: 3px
-      }@media (max-width: 679px) {
+      }@media (max-width: 850px) {
 
       .bf-special__table-pagination span {
           padding: 8px 10px;
@@ -872,7 +955,7 @@
       font-weight: 600;
       letter-spacing: 0.025em;
       color: var(--color-text-out-countainer)
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special[data-mode="start"] .bf-special__title {
         font-size: 20px
@@ -885,7 +968,7 @@
       color: #fff;
       text-align: left;
       margin: 30px 0
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special[data-mode="start"] .bf-special__intro {
         padding: 20px;
@@ -916,20 +999,20 @@
  * ================================
  */.bf-special[data-mode="result-table"] .bf-special__container[data-tab="main"] {
       max-width: 740px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
     .bf-special[data-mode="result-table"] .bf-special__container[data-tab="main"] {
         margin: 15px 0
     }
       }.bf-special[data-mode="result-table"] .bf-special__content {
       min-height: 400px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special[data-mode="result-table"] .bf-special__content {
         min-height: 250px
     }
       }.bf-special[data-mode="result-table"] .bf-special__counter {
       font-size: 28px
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special[data-mode="result-table"] .bf-special__counter {
         display: -webkit-box;
@@ -949,7 +1032,7 @@
         }
       }.bf-special[data-mode="result-table"] .bf-special__button {
       letter-spacing: 0
-    }@media (max-width: 679px) {
+    }@media (max-width: 850px) {
 
     .bf-special[data-mode="result-table"] .bf-special__button {
         font-size: 0;
