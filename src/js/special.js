@@ -806,16 +806,14 @@ class Special extends BaseSpecial {
     this.nodes.content.classList.add(Special.CSS.contentLoading);
 
     const limit = 10,
-      offset = button.dataset.offset || 0;
-
-    console.log('offset: %o, limit: %o', offset, limit);
+      offset = button.dataset.offset || null;
 
     // ajax to check
     ajax.get({
       url: `${this.params.apiEndpoint}/results`,
       data: {
-        start: parseInt(offset),
-        end: parseInt(offset) + limit - 1,
+        start: offset ? parseInt(offset): null,
+        end: offset ? parseInt(offset) + limit - 1 : limit - 1,
       }
     }).then(
       /**
@@ -823,7 +821,8 @@ class Special extends BaseSpecial {
        * @param {number} response.rc
        * @param {string} response.message
        * @param {object} response.data
-       * @param {number} response.data.count
+       * @param {number} response.data.count - 100
+       * @param {number} response.data.current_page - 6
        * @param {{rank, name, points, isMe}[]} response.data.list
        */
       (response) => {
@@ -851,7 +850,7 @@ class Special extends BaseSpecial {
             <tr class="${user.isMe ? 'me' : ''}">
               <td>${user.rank}</td>
               <td>${user.name}</td>
-              <td>${user.points + 1}</td>
+              <td>${user.points}</td>
             </tr>
           `
         });
@@ -860,25 +859,54 @@ class Special extends BaseSpecial {
 
         this.nodes.options.innerHTML = table;
 
-        let paginationButtonsCount = Math.ceil(response.data.count / limit);
         let paginator = `
           <div class="${Special.CSS.resultsTable}-pagination">
         `;
 
-        for (let i = 0; i < paginationButtonsCount; i++){
+        let shift = window.innerWidth < 850 ? 2 : 3;
+        let leftSide = response.data.current_page - shift;
+        let rightSide = response.data.current_page + shift;
+        let lastPageNumber = Math.floor(response.data.count / limit);
+
+        if (leftSide < shift) {
+          rightSide += shift - leftSide + 1;
+
+          if (leftSide < 1){
+            leftSide = 1;
+          }
+        }
+
+        if (rightSide > response.data.count / limit){
+          rightSide = lastPageNumber;
+        }
+
+        if (leftSide >= shift) {
+          paginator += `<span  data-click="showResultsTable" data-offset="0">
+              1
+            </span><small>•••</small>`;
+        }
+
+        for (let i = leftSide - 1; i < rightSide; i++){
           paginator += `
-            <span class="${(Math.floor(offset / limit))  === i ? 'current' : ''}" data-click="showResultsTable" data-offset="${i * limit}">
+            <span class="${response.data.current_page  === i + 1 ? 'current' : ''}" data-click="showResultsTable" data-offset="${i * limit}">
               ${i + 1}
             </span>
           `
         }
+
+        if (rightSide <= lastPageNumber - shift) {
+          paginator += `<small>•••</small>
+            <span data-click="showResultsTable" data-offset="${lastPageNumber * limit - limit}">
+              ${lastPageNumber}
+            </span>`;
+        }
+
 
         paginator += `</div>`;
 
         this.nodes.actions.innerHTML = paginator;
       }
     );
-
 
     Analytics.sendEvent('Results table', 'Hit');
   }

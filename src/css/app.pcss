@@ -581,10 +581,9 @@
     &-pagination {
       display: flex;
       margin-top: 20px;
-
-      @media (--mobile) {
-        flex-wrap: wrap;
-      }
+      max-width: 100%;
+      overflow: auto;
+      padding-bottom: 20px;
 
       span {
         display: inline-block;
@@ -593,8 +592,11 @@
         font-weight: 700;
         cursor: pointer;
         margin-right: 3px;
+        min-width: 46px;
+        text-align: center;
 
         @media (--mobile) {
+          min-width: auto;
           padding: 8px 10px;
           margin-right: 0;
           font-size: 12px;
@@ -606,6 +608,20 @@
 
         &.current {
           background: var(--color-buttons-bg);
+        }
+      }
+
+      small {
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 1.7em;
+        font-size: 24px;
+        letter-spacing: 5px;
+
+        @media (--mobile) {
+          font-size: 12px;
+          line-height: 2.1em;
+          letter-spacing: 0;
         }
       }
     }

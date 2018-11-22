@@ -3455,14 +3455,13 @@ function (_BaseSpecial) {
       this.nodes.counter.innerHTML = "".concat(_svg.default.trophy, " <span>\u0422\u0443\u0440\u043D\u0438\u0440\u043D\u0430\u044F \u0442\u0430\u0431\u043B\u0438\u0446\u0430</span>");
       this.nodes.content.classList.add(Special.CSS.contentLoading);
       var limit = 10,
-          offset = button.dataset.offset || 0;
-      console.log('offset: %o, limit: %o', offset, limit); // ajax to check
+          offset = button.dataset.offset || null; // ajax to check
 
       _ajax.default.get({
         url: "".concat(this.params.apiEndpoint, "/results"),
         data: {
-          start: parseInt(offset),
-          end: parseInt(offset) + limit - 1
+          start: offset ? parseInt(offset) : null,
+          end: offset ? parseInt(offset) + limit - 1 : limit - 1
         }
       }).then(
       /**
@@ -3470,7 +3469,8 @@ function (_BaseSpecial) {
        * @param {number} response.rc
        * @param {string} response.message
        * @param {object} response.data
-       * @param {number} response.data.count
+       * @param {number} response.data.count - 100
+       * @param {number} response.data.current_page - 6
        * @param {{rank, name, points, isMe}[]} response.data.list
        */
       function (response) {
@@ -3487,15 +3487,38 @@ function (_BaseSpecial) {
 
         var table = "\n          <table class=\"".concat(Special.CSS.resultsTable, "\">\n            <tr>\n              <th>#</th>\n              <th>\u0418\u043C\u044F</th>\n              <th>\u0428\u0438\u0444\u0440\u044B</th>\n            </tr>\n        ");
         response.data.list.forEach(function (user) {
-          table += "\n            <tr class=\"".concat(user.isMe ? 'me' : '', "\">\n              <td>").concat(user.rank, "</td>\n              <td>").concat(user.name, "</td>\n              <td>").concat(user.points + 1, "</td>\n            </tr>\n          ");
+          table += "\n            <tr class=\"".concat(user.isMe ? 'me' : '', "\">\n              <td>").concat(user.rank, "</td>\n              <td>").concat(user.name, "</td>\n              <td>").concat(user.points, "</td>\n            </tr>\n          ");
         });
         table += '</table>';
         _this9.nodes.options.innerHTML = table;
-        var paginationButtonsCount = Math.ceil(response.data.count / limit);
         var paginator = "\n          <div class=\"".concat(Special.CSS.resultsTable, "-pagination\">\n        ");
+        var shift = window.innerWidth < 850 ? 2 : 3;
+        var leftSide = response.data.current_page - shift;
+        var rightSide = response.data.current_page + shift;
+        var lastPageNumber = Math.floor(response.data.count / limit);
 
-        for (var i = 0; i < paginationButtonsCount; i++) {
-          paginator += "\n            <span class=\"".concat(Math.floor(offset / limit) === i ? 'current' : '', "\" data-click=\"showResultsTable\" data-offset=\"").concat(i * limit, "\">\n              ").concat(i + 1, "\n            </span>\n          ");
+        if (leftSide < shift) {
+          rightSide += shift - leftSide + 1;
+
+          if (leftSide < 1) {
+            leftSide = 1;
+          }
+        }
+
+        if (rightSide > response.data.count / limit) {
+          rightSide = lastPageNumber;
+        }
+
+        if (leftSide >= shift) {
+          paginator += "<span  data-click=\"showResultsTable\" data-offset=\"0\">\n              1\n            </span><small>\u2022\u2022\u2022</small>";
+        }
+
+        for (var i = leftSide - 1; i < rightSide; i++) {
+          paginator += "\n            <span class=\"".concat(response.data.current_page === i + 1 ? 'current' : '', "\" data-click=\"showResultsTable\" data-offset=\"").concat(i * limit, "\">\n              ").concat(i + 1, "\n            </span>\n          ");
+        }
+
+        if (rightSide <= lastPageNumber - shift) {
+          paginator += "<small>\u2022\u2022\u2022</small>\n            <span data-click=\"showResultsTable\" data-offset=\"".concat(lastPageNumber * limit - limit, "\">\n              ").concat(lastPageNumber, "\n            </span>");
         }
 
         paginator += "</div>";
