@@ -16,6 +16,9 @@ export default {
       </div>
     </div>
     <div class="bf-rules">
+      <div class="bf-rules__finish">
+       Конкурс уже закончился. Победителей объявим на стриме 28 ноября в 15:00.
+      </div>
       <a href="https://dtf.ru/special/battlefield/terms" target="_blank">Правила конкурса</a>
     </div>
   `,
@@ -96,7 +99,7 @@ export default {
         <img src="https://leonardo.osnova.io/b31cbabd-7a1e-a48d-6b62-6dc1e4bded00" alt="">
       </div>
       <div class="outro-prizes__text">
-        28 ноября в 15:00 мы проведём стрим, на котором расскажем о Battlefield V, а также разыграем призы среди тех, кто успешно прошёл квест. Не пропустите! Смотреть трансляцию можно на <a href="//twitch.tv/dtfru" target="_blank">Twitch</a>.
+        28 ноября в 15:00 мы проведём <a href="https://www.twitch.tv/dtfru">стрим</a>, на котором расскажем о Battlefield V, а также разыграем призы среди тех, кто успешно прошёл квест. Не пропустите! Смотреть трансляцию можно на <a href="//twitch.tv/dtfru" target="_blank">Twitch</a>.
       </div>
     </div>
   `,
